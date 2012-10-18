@@ -3,10 +3,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.wadpam.survey</groupId>
-    <artifactId>service-survey</artifactId>
+    <artifactId>webapp-survey</artifactId>
     <version>1-SNAPSHOT</version>
-    <packaging>jar</packaging>
-    <name>Pocket-Survey service</name>
+    <packaging>war</packaging>
+    <name>Pocket-Survey webapp</name>
 
     <!-- Specify hard-coded project properties here -->
     <properties>
@@ -285,6 +285,29 @@
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.1.1</version>
+                <configuration>
+                    <webResources>
+                        <resource>
+                            <directory>src/main/webapp</directory>
+                            <filtering>true</filtering>
+                            <includes>
+                                <include>**/appengine-web.xml</include>
+                                <include>**/web.xml</include>
+                            </includes>
+                        </resource>
+                    </webResources>
+                    <archive>
+                        <manifestEntries>
+                            <project-version>${project.version}</project-version>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.6</version>
                 <configuration>
@@ -323,6 +346,44 @@
                 </configuration>
             </plugin>
 
+            <plugin>
+                <groupId>net.kindleit</groupId>
+                <artifactId>maven-gae-plugin</artifactId>
+                <version>0.9.4</version>
+                <configuration>
+                    <port>8943</port>
+                    <monitorPort>8944</monitorPort>
+                    <serverId>appengine.google.com</serverId>
+                    <disableUpdateCheck>true</disableUpdateCheck>
+                    <jvmFlags>
+                        <jvmFlag>-Ddatastore.default_high_rep_job_policy_unapplied_job_pct=20</jvmFlag>
+                        <jvmFlag>-D--enable_all_permissions=true</jvmFlag>
+                    </jvmFlags>
+                </configuration>
+                <dependencies>
+                    <!-- to fix versioning for below gae-runtime dependency -->
+                    <dependency>
+                        <groupId>org.codehaus.plexus</groupId>
+                        <artifactId>plexus-archiver</artifactId>
+                        <version>2.1.2</version>
+                    </dependency>
+
+                    <dependency>
+                        <groupId>net.kindleit</groupId>
+                        <artifactId>gae-runtime</artifactId>
+                        <version>${gae.version}</version>
+                        <type>pom</type>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-jdk14</artifactId>
+                        <version>1.6.1</version>
+                    </dependency>
+                </dependencies>
+                <executions>
+                </executions>
+            </plugin>
+                        
         </plugins>
     </build>
 
@@ -378,6 +439,61 @@
 
     <profiles>
         <profile>
+            <id>itest</id>
+            <properties>
+                <spring.profiles.active>itest</spring.profiles.active>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>net.kindleit</groupId>
+                        <artifactId>maven-gae-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>start-gae</id>
+                                <phase>pre-integration-test</phase>
+                                <goals>
+                                    <goal>stop</goal>
+                                    <goal>start</goal>
+                                </goals>
+                                <configuration>
+                                    <scanIntervalSeconds>0</scanIntervalSeconds>
+                                    <daemon>true</daemon>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>stop-gae</id>
+                                <phase>post-integration-test</phase>
+                                <goals>
+                                    <goal>stop</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>surefire-itest</id>
+                                <phase>integration-test</phase>
+                                <goals>
+                                    <goal>test</goal>
+                                </goals>
+                                <configuration>
+                                    <skip>false</skip>
+                                    <includes>
+                                        <include>${itest.include}</include>
+                                    </includes>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
             <id>javadoc</id>
             <build>
                 <plugins>
@@ -407,6 +523,51 @@
             </build>
         </profile>
        
+
+        <profile>
+            <id>test</id>
+            <properties>
+                <gae.application.version>test</gae.application.version>
+                <!-- endpoints -->
+                <endpoint.apiUrl>http://warburtons-test.appspot.com/api/wbt/</endpoint.apiUrl>
+                <endpoint.signinUrl>https://warburtons-test.appspot.com/signin/wbt/</endpoint.signinUrl>
+                <endpoint.oauthUrl>https://warburtons-test.appspot.com/oauth/wbt/</endpoint.oauthUrl>
+                <!-- yyyyMMdd HHmmss -->
+                <endpoints.lastModified>20121002 114221</endpoints.lastModified>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>stage</id>
+            <properties>
+                <gae.application.version>${project.version}</gae.application.version>
+                <gae.application.id>warburtons-stage</gae.application.id>
+                <!-- endpoints -->
+                <endpoint.apiUrl>http://warburtons-stage.appspot.com/api/wbt/</endpoint.apiUrl>
+                <endpoint.signinUrl>https://warburtons-stage.appspot.com/signin/wbt/</endpoint.signinUrl>
+                <endpoint.oauthUrl>https://warburtons-stage.appspot.com/oauth/wbt/</endpoint.oauthUrl>
+                <!-- yyyyMMdd HHmmss -->
+                <endpoints.lastModified>20121002 113421</endpoints.lastModified>
+                <swagger.basePath>http://archive.goldengekko.com/archive/Warburtons/trunk/backend/API_Backend/</swagger.basePath>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>prod</id>
+            <properties>
+                <!--                <gae.application.version>${project.version}</gae.application.version>-->
+                <gae.application.version>lab</gae.application.version>
+                <gae.application.id>warburtons-prod</gae.application.id>
+                <!-- endpoints -->
+                <endpoint.apiUrl>http://warburtons-prod.appspot.com/api/wbt/</endpoint.apiUrl>
+                <endpoint.signinUrl>https://warburtons-prod.appspot.com/signin/wbt/</endpoint.signinUrl>
+                <endpoint.oauthUrl>https://warburtons-prod.appspot.com/oauth/wbt/</endpoint.oauthUrl>
+                <!-- yyyyMMdd HHmmss -->
+                <endpoints.lastModified>20121002 113421</endpoints.lastModified>
+
+                <logging.level>INFO</logging.level>
+            </properties>
+        </profile>
     </profiles>
 
 

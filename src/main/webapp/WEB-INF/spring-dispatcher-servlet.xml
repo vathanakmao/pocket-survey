@@ -33,15 +33,9 @@
         </mvc:interceptor>
     </mvc:interceptors>
     
-
-    <import resource="classpath:/spring-dao.xml" />
+    <import resource="classpath:/survey-context.xml" />
     
     <!--           Services             -->
-    
-    <bean id="surveyService" class="com.wadpam.survey.service.SurveyService"
-          init-method="init">
-        <property name="surveyDao" ref="dSurveyDao" />
-    </bean>
     
     <!--           Controllers             -->
     
@@ -50,11 +44,6 @@
     </bean>
     
     <bean id="monitorController" class="com.wadpam.open.web.MonitorController">
-    </bean>
-    
-        
-    <bean id="surveyController" class="com.wadpam.survey.web.SurveyController">
-        <property name="service" ref="surveyService" />
     </bean>
     
     <!--           View stuff             -->
