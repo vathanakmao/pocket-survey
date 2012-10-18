@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Warbuton Backoffice</title>
+	<link rel='stylesheet' href='/css/main.css' type="text/css"/>	
+</head>
+
+<body>
+	<header>
+		<h1>Waburton BackOffice</h1>
+		<button class="circlebutton-image">Logout</button>		
+	</header>
+	<div id="nav">
+		<ul class="tabs" id="menu">
+		  <li class="active" id="user"><a href="users.html">Users</a></li> 
+		  <li id="store"><a href="stores.html">Stores</a></li> 
+		  <li id="product"><a href="products.html">Products</a></li>
+		  <li id="data"><a href="data.html">Data</a></li> 
+		  <li id="analytics"><a href="#">Analytics</a></li> 
+		  <li id="documentRepository"><a href="#">Document Repository</a></li> 
+		</ul>
+	</div>
+	<!-- User Page-->
+	<div id="userPage">
+		<div id="pageContainer">
+			<div id="pageHeader">
+				<div id="topPageHeader">
+					<div class="section-header">SET UP</div>
+					<div id="addNewUser" class="clickable">Add new user...</div>
+				</div>
+				<div id="middlePageHeader">
+					<div class="section-header">SEARCH</div>
+					<div>			
+						<input type="text" id="searchName" name="searchName" value="" placeholder="Name"/>
+						<button class="simple-button">FIND</button>
+					</div>
+				</div>
+				<div id="bottomPageHeader">
+					<div class="section-header">FILTER</div>
+					<select id="chanel">
+						<option>Chanel</option>
+					</select>
+					<select id="area">
+						<option>Area</option>			
+					</select>
+					<select id="territory">
+						<option>Territory</option>
+					</select>
+					<button class="simple-button">SEARCH</button>
+				</div>
+			</div>
+			<div id="pageBody">
+				<div id="panelLeft">
+					<ul id="userSearchResult">
+						<li>SEARCH RESULT <span class="sort-section"><span class="sort-ascending active-ascending" id="userSortAscending"></span><span class="sort-decending" id="userSortDescending"></span></span></li>
+					</ul>
+					<button id="movePrevious" class="simple-button">Previous</button>
+					<button id="userMoveNext" class="simple-button">Next</button>
+				</div>	
+				<div id="userPanelCenter" class="panelCenter">
+					<!-- id of input need to specifiy key and property of json object -->
+					<div class="section-header">USER DETAILS</div>
+					<label>Name</label>
+					<input type="text" id="user_name" name="user_name" />
+
+					<label>Email Address</label>
+					<input type="email" id="user_email" name="user_email" />
+
+					<label>Manager Name</label>
+					<input type="text" id="user_managerName" name="user_managerName" />
+					
+				</div>
+		
+				<div id="panelRight">
+					<button class="circlebutton-image">EDIT</button>
+					<div style="height:20px;"></div>
+					<button class="circlebutton-image">SAVE</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Store Page -->
+	<div id="storePage" style="display:none">
+		<div id="pageContainer">
+			<div id="pageHeader">
+				<div id="topPageHeader">
+					<div id="addNewUser" class="clickable">ADD NEW STORE</div>
+					<input type="text" id="accountName" name="accountName" placeholder="Account Name"/>
+					<input type="text" id="customerGroup" name="customerGroup" placeholder="Customer Group"/>
+					<input type="text" id="SAP" name="SAP" placeholder="SAP #"/>
+					<button class="simple-button">ADD</button>
+				</div>
+			</div>
+			<div id="pageBody">
+				<div id="panelLeft">
+					<ul>
+						<li>STORES</li>
+						<li>Store 1</li>
+						<li>Store 2</li>
+						<li>Store 3</li>			
+						<li>Store 4</li>
+						<li>Store 5</li>
+						<li>Store 6</li>
+						<li>Store 7</li>
+						<li>Store 8</li>			
+						<li>Store 9</li>
+						<li>Store 10</li>
+					</ul>
+				</div>	
+				<div id="panelCenter" class="disable" class="panelCenter">
+					<div class="section-header">STORE DETAILS</div>
+					<div id="colLeft">
+					<label>Store Image</label>
+					<img src="" />
+
+					<label>Store Name</label>
+					<input type="text" id="storeName" name="storeName" />
+			
+					<label>Account</label>
+					<input type="text" id="account" name="account" />
+
+					<label>Customer Group</label>
+					<input type="text" id="customerGroup" name="customerGroup" />
+			
+					<label>SAP Number</label>
+					<input type="text" id="sapNumber" name="sapNumber" />
+
+					<label>Store Number</label>
+					<input type="text" id="storeNumber" name="storeNumber" />
+
+					<label>Street</label>
+					<input type="text" id="street" name="street" />
+
+					<label>Location</label>
+					<input type="text" id="location" name="location" />
+
+					<label>Post Code</label>
+					<input type="text" id="postCode" name="postCode" />
+					</div>
+				</div>
+		
+				<div id="panelRight">
+					<button class="circlebutton-image">EDIT</button>
+					<div style="height:20px;"></div>
+					<button class="circlebutton-image">DELETE</button>
+					<div style="height:20px;"></div>
+					<button class="circlebutton-image">SAVE</button>
+					<div style="height:20px;"></div>
+					<button class="circlebutton-image">CANCEL</button>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Product Page -->
+	<div id="productPage" style="display:none;">
+		<div id="pageContainer">
+			<div id="pageHeader">
+				<div id="topPageHeader">
+					<div id="addNewUser" class="clickable">ADD NEW PRODUCT</div>
+					<input type="text" id="productName" name="ProductName" value="" placeholder="Product Name"/>
+					<input type="text" id="productCode" name="productCode" value="" placeholder="Product Code"/>
+					<select>
+						<option>Category </option>
+					</select>
+					<button class="simple-button">ADD</button>
+				</div>
+			</div>
+			<div id="pageBody">
+				<div id="panelCenter" class="panelCenter">
+					<table id="productTable" class="tablesorter" cellspacing="0" cellpadding="0">
+						<thead>
+							<tr>
+								<th>PRODUCT NAME</th>
+								<th>PRODUCT CODE</th>
+								<th>CATEGORY</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>a Medium White 800g</td>
+								<td>001</td>
+								<td>Cook</td>
+							</tr>
+							<tr>
+								<td>b Medium White 800g</td>
+								<td>001</td>
+								<td>Bakery</td>
+							</tr>
+							<tr>
+								<td>c Medium White 800g</td>
+								<td>001</td>
+								<td>Bakery</td>
+							</tr>
+							<tr>
+								<td>d Medium White 800g</td>
+								<td>001</td>
+								<td>Bakery</td>
+							</tr>
+							<tr>
+								<td>e Medium White 800g</td>
+								<td>001</td>
+								<td>Bakery</td>
+							</tr>
+							<tr>
+								<td>f Medium White 800g</td>
+								<td>001</td>
+								<td>Bakery</td>
+							</tr>
+							<tr>
+								<td>Medium White 800g</td>
+								<td>001</td>
+								<td>Bakery</td>
+							</tr>
+							<tr>
+								<td>Medium White 800g</td>
+								<td>001</td>
+								<td>Bakery</td>
+							</tr>
+							<tr>
+								<td>Medium White 800g</td>
+								<td>001</td>
+								<td>Bakery</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>	
+				<div id="panelRight">
+					<button class="circlebutton-image">EDIT</button>
+					<div style="height:20px;"></div>
+					<button class="circlebutton-image">DELETE</button>
+					<div style="height:20px;"></div>
+					<button class="circlebutton-image">SAVE</button>
+					<div style="height:20px;"></div>
+					<button class="circlebutton-image">CANCEL</button>
+				</div>	
+			</div>
+		</div>
+	</div>
+	<!--Data page-->
+	<div id="dataPage" style="display:none;">
+		<div id="pageContainer">
+			<div id="pageHeader">
+				<div id="bottomPageHeader">
+					<div class="section-header">VISITS DATA</div>
+					<select id="chanel">
+						<option>Chanel</option>
+					</select>
+					<select id="area">
+						<option>Area</option>			
+					</select>
+					<select id="territory">
+						<option>Territory</option>
+					</select>
+					<button class="simple-button">FILTERS</button>
+				</div>
+			</div>
+			<div id="pageBody">
+				<div id="panelCenter" class="panelCenter">
+				<table id="dataTable" class="tablesorter" cellspacing="0" cellpadding="0">
+					<thead>
+						<tr>
+							<th>NAME</th>
+							<th>SELECT ALL<br/><input type="checkbox" id=""/></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Action</td>
+							<td><input type="checkbox" id=""/></td>
+						</tr>
+						<tr>
+							<td>Objectives</td>
+							<td><input type="checkbox" id=""/></td>
+						</tr>
+						<tr>
+							<td>Products</td>
+							<td><input type="checkbox" id=""/></td>
+						</tr>
+						<tr>
+							<td>Tasks</td>
+							<td><input type="checkbox" id=""/></td>
+						</tr>
+						<tr>
+							<td>Quality</td>
+							<td><input type="checkbox" id=""/></td>
+						</tr>
+					</tbody>
+				</table>
+				</div>
+				<div id="panelRight">
+					<button class="circlebutton-image">DOWNLOAD</button>
+				</div>	
+			</div>
+		</div>
+	</div>
+	<div id="footer"></div>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+	<script type="text/javascript" src="/js/common.js"></script>
+	<script type="text/javascript" src="/js/baseJSNetwork.js"></script>
+	<script type="text/javascript" src="/js/wbt.APIRequest.js"></script>
+	<script type="text/javascript" src="/js/wbt.backoffice.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			/* GUI script */
+			$("#menu li").click(function(e) {
+				e.preventDefault();
+				$("#menu li").each(function(){
+					$(this).removeClass("active");
+					$("#" + $(this).attr("id") + "Page").hide();
+					console.log("#" + $(this).attr("id") + "Page");
+				});
+				$(this).addClass("active");
+				$("#" + $(this).attr("id") + "Page").show();
+			});
+			/* Sigin Callback script */
+			persistAccessToken();
+			
+			/* load user */
+			getProfilePage();
+			
+			/*bind event of Dom object*/
+			setOnClickListener($("#userSortDescending"),sortDescending);
+			setOnClickListener($("#userSortAscending"),sortAscending);
+			setOnClickListener($("#userMoveNext"),moveNext);
+		});
+		
+		function persistAccessToken() {
+            var access_token = getFragmentByName('access_token');
+            if (access_token) {
+            	setAccessToken(access_token);
+                var providerId = getParameterByName('providerId');
+                //$("#contents").data('providerId', providerId);
+                registerFederated(access_token,providerId)
+            }
+        }
+		
+		</script>
+</body>
+</html>

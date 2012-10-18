@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Edit</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <h1 id="form_h1">Edit Entity</h1>
+        <form method="POST">
+            <table id="table_sections">
+                <thead>
+<!--                    <tr>
+                        <th>Property</th>
+                        <th>Value</th>
+                        <th>Required</th>
+                        <th>Example</th>
+                    </tr>-->
+                </thead>
+
+                <tbody id="body_sections">
+                    <tr id="tr_id">
+                        <td class="gen_label"><label for="id">ID</label></td>
+                        <td class="gen_value gen_readonly"><input id="id" name="id" type="number" value="45" readonly="readonly" size="50" /></td>
+                        <td class="gen_requried"></td>
+                        <td class="gen_example" title="1001"><img src="img/info.png" /><i>1001</i></td>
+                    </tr>
+
+                </tbody>
+
+                <tfoot>
+                    <tr>
+                        <td><input class="gen_reset" type="reset" /></td>
+                        <td><input class="gen_submit" type="submit" /></td>
+                        <td></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </form>
+        <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+        <script type="text/javascript" src="js/jquery-ui-1.8.19.custom.min.js"></script>
+        <!--        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+                <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.19/jquery-ui.min.js"></script>-->
+        <script type="text/javascript">
+$.ajaxSetup( {
+    cache: false,
+    data: null
+});
+
+//$("#loginButton").button().click(function() {
+//	 $("#f").submit();
+//});
+
+function appendSection(section) {
+    $('#body_sections').append('<tr id="section_' + section.id + '"></tr>');
+    $('#section_' + section.id).append('<td><table><thead id="section_' + section.id + '_thead"></thead>' + 
+        '<tbody id="section_' + section.id + '_tbody"></tbody></table></td>');
+    $('#section_' + section.id + '_thead').append('<th colspan="4" class="gen_section">' + section.label + '</th>');
+}
+
+function appendField(fd, types) {
+    $('#section_' + fd.sectionId + '_tbody').append('<tr id="field_' + fd.id + '"></tr>');
+    $('#field_' + fd.id).append('<td class="gen_label" width="200"><label for="' + fd.id + '"/>' + fd.label + '</td>');
+    $('#field_' + fd.id).append('<td class="gen_value" width="600"><input id="' + fd.id + 
+        '" name="' + fd.id + 
+        '" type="' + types[fd.type].html + 
+        '" size="90" /></td>');
+    if (fd.readonly) {
+        $("#" + fd.id).attr("readonly", "readonly");
+    }
+}
+
+function loadEntity(entityId) {
+    $.getJSON(entityId + '.json')
+    .done(function(data, textStatus) {
+        var fields = $("#body_sections").data("fields");
+        $.map(data, function(fd, index) {
+            var f = $("#" + index);
+            if (f) {
+                f.val(fd);
+            }
+        });
+    });
+}
+
+function loadForm(entityKind) {
+    $("#form_h1").text('Edit ' + entityKind);
+    $("#body_sections").empty();
+    $.getJSON(entityKind + '_domain.json')
+    .done(function(data, textStatus) {
+        
+        var types = new Object();
+        $.map(data.types, function(t) {
+            types[t.id] = t;
+        });
+        
+        $.map(data.sections, function(section) {
+            appendSection(section);
+        });
+        
+        $.map(data.fields, function(fd) {
+            appendField(fd, types);
+        });
+        
+        $("#body_sections").data("fields", data.fields);
+    });
+}
+
+$(function() {
+    loadForm('store');
+    loadEntity('store_1');
+});
+        </script>
+    </body>
+</html>

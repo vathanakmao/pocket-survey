@@ -1,0 +1,302 @@
+/*****************************************************
+**	two for one specific styling
+*****************************************************/
+html,body{
+	width:100%;
+	height:100%;
+}
+html, html *{
+	padding:0px;
+	margin:0px;
+}
+#login_box {
+	border: 1px solid #D9D9D9;
+    /*height: 515px;*/
+    left: 1%;
+    position: absolute;
+    top: 1%;
+    width: 98%;
+}
+#login_box a#registerLink {
+	background: url("images/bottom_button_bg.png") repeat-x scroll center top #F4F4F4;
+    bottom: 0;
+    color:#636363;
+    font-size:20px;
+    height: 60px;
+    line-height: 60px;
+    margin: auto;
+    max-height: 100px;
+    position: absolute;
+    text-align: center;
+    text-decoration: none;
+    width: 100%;
+	text-shadow: #fff 1px 1px 0px;
+	text-transform: uppercase;
+}
+
+#f{
+	position:relative;
+height: 100%;
+}
+
+#signin_msg{
+	color:#929292;
+	font-size:15px;
+	padding:10px;
+	display:none;
+}
+#signin_msg_below{color:#929292;font-size:15px;padding-left:10px;padding-right:10px;text-align: center;min-height: 100px;padding: 10px;}
+
+#signin_logo{
+	text-indent: -2000px;
+	background:url(images/logo.png) no-repeat;
+	background-position:center; 
+	min-height:110px;
+	background-size:100px auto;
+	height: 30%;
+}
+
+h1 {
+	font-size:30px;
+	color:#929292;
+	background:#fff;
+	line-height:30px;
+	width:120px;
+	margin:auto;
+	text-align:center;
+}
+
+#login_box #reset_msg h1 {
+	background: none repeat scroll 0 0 #FFFFFF;
+    color: #929292;
+    font-size: 24px;
+    line-height: 30px;
+    margin: auto;
+    text-align: center;
+    width: 200px;
+}
+
+#login_box h1 {
+	background: none repeat scroll 0 0 #FFFFFF;
+    color: #929292;
+    font-size: 24px;
+    line-height: 30px;
+    margin: auto;
+    text-align: center;
+    width: 120px;
+}
+
+.strikethrough{
+	height:15px;
+	border-bottom:1px solid #d9d9d9;
+	width:100%;
+	margin-bottom:15px;
+	display:none;
+}
+
+.login_msg{
+	color:#929292;
+	font-size:20px;
+	padding:10px;
+}
+
+.input_fields{
+	border-bottom:1px solid #d9d9d9;
+	width:90%;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	height:20px;
+	margin-bottom: 2.80%;
+	margin-left:5%;
+}
+
+#login_box label{
+	display: inline-block;
+    font-size: 16px;
+    text-transform: uppercase;
+    width: 100px;
+}
+
+.input_fields input{
+	background: none repeat scroll 0 0 #FFFFFF;
+    border: medium none;
+    font-size: 16px;
+    line-height: 20px;
+    width: 168px;
+}
+
+#cancelButton{
+	border:none;
+	width:40%;
+	margin:5%;
+	height:50px;
+	background-image: url(images/dark_button_left.png), url(images/dark_button_right.png),url(images/dark_button_middle.png);
+	background-position: left,right, center;
+	background-repeat: no-repeat,no-repeat,repeat-x;
+  -moz-box-shadow:    0px 6px 5px 0px #CCC;
+  -webkit-box-shadow: 0px 6px 5px 0px #CCC;
+  box-shadow:         0px 6px 5px 0px #CCC;
+	cursor:pointer;
+	color:#fff;
+	font-size:20px;
+	text-shadow: #53514e 1px 1px 0px;
+}
+
+#resetButton{
+	border:none;
+	width:90%;
+	margin-left: 5%;
+    margin-right: 5%;
+	height:50px;
+	background-image: url(images/light_button_left.png), url(images/light_button_right.png),url(images/light_button_middle.png);
+	background-position: left,right, center;
+	background-repeat: no-repeat,no-repeat,repeat-x;
+  -moz-box-shadow:    0px 6px 5px 0px #CCC;
+  -webkit-box-shadow: 0px 6px 5px 0px #CCC;
+  box-shadow:         0px 6px 5px 0px #CCC;
+	cursor:pointer;
+	color:#636363;
+	font-size:20px;
+	text-shadow: #fff 1px 1px 0px;
+}
+
+#invalid{color: #FF0000;font-size: 15px;margin-top:-25px;margin-left:5%;height:30px;}
+
+#loginButton{
+	border:none;
+	width:90%;
+	margin-left: 5%;
+    margin-right: 5%;
+	height:50px;
+	background-image: url(images/light_button_left.png), url(images/light_button_right.png),url(images/light_button_middle.png);
+	background-position: left,right, center;
+	background-repeat: no-repeat,no-repeat,repeat-x;
+	-moz-box-shadow:    0px 6px 5px 0px #CCC;
+	-webkit-box-shadow: 0px 6px 5px 0px #CCC;
+	box-shadow:         0px 6px 5px 0px #CCC;
+	cursor:pointer;
+	color:#636363;
+	font-size:20px;
+	text-shadow: #fff 1px 1px 0px;
+	text-transform: uppercase;
+}
+
+
+/*****************************************************
+**	two for one specific styling
+**
+**	Account Page Styling
+*****************************************************/
+
+#account body {
+	width:400px;
+	height:580px;
+	border:1px solid #aaa;
+	position:absolute;
+	top:50%;
+	left:50%;
+	margin-left:-200px;
+	margin-top:-290px;
+	padding:10px;
+
+	-moz-border-radius-bottomright: 4px/*{cornerRadius}*/;
+	-webkit-border-bottom-right-radius: 4px/*{cornerRadius}*/;
+	-khtml-border-bottom-right-radius: 4px/*{cornerRadius}*/;
+	border-bottom-right-radius: 4px/*{cornerRadius}*/;
+
+	-moz-border-radius-bottomleft: 4px/*{cornerRadius}*/;
+	-webkit-border-bottom-left-radius: 4px/*{cornerRadius}*/;
+	-khtml-border-bottom-left-radius: 4px/*{cornerRadius}*/;
+	border-bottom-left-radius: 4px/*{cornerRadius}*/;
+
+	-moz-border-radius-topright: 4px/*{cornerRadius}*/;
+	-webkit-border-top-right-radius: 4px/*{cornerRadius}*/;
+	-khtml-border-top-right-radius: 4px/*{cornerRadius}*/;
+	border-top-right-radius: 4px/*{cornerRadius}*/;
+
+	-moz-border-radius-topleft: 4px/*{cornerRadius}*/;
+	-webkit-border-top-left-radius: 4px/*{cornerRadius}*/;
+	-khtml-border-top-left-radius: 4px/*{cornerRadius}*/;
+	border-top-left-radius: 4px/*{cornerRadius}*/;
+}
+
+#account h1 {color:#000;}
+#account h2 {color:#333;}
+#account input {text-align:left;width:90%;border: 
+#AAA 1px solid;
+padding-top: 2px;
+padding-bottom: 2px;}
+#account hr{margin-top:5px;}
+#account .input_fields{border:none;}
+
+
+/*****************************************************
+**	two for one specific styling
+**
+**	Authorize Account Page Styling
+*****************************************************/
+
+
+#authorize_account #contents{
+	border: 1px solid #D9D9D9;
+	color: #929292;
+	height: 310px;
+	margin: 1%;
+	position: absolute;
+	width: 98%;
+}
+
+#authorize_account form{
+	width:48%;
+	float:left;
+}
+
+#authorize_account #contents p , #authorize_account #signin_logo{
+	padding-bottom:25px;
+}
+
+#authorize_account #contents p, #authorize_account #contents h2 {
+	padding-left: 10px;
+}
+
+#authorize_account #authorizeButton{
+	border:none;
+	width:95%;
+	margin: 5px 5% 5px 5%;
+	height:50px;
+	background-image: url(images/light_button_left.png), url(images/light_button_right.png),url(images/light_button_middle.png);
+	background-position: left,right, center;
+	background-repeat: no-repeat,no-repeat,repeat-x;
+  	-moz-box-shadow:    0px 6px 5px 0px #CCC;
+  	-webkit-box-shadow: 0px 6px 5px 0px #CCC;
+  	box-shadow:         0px 6px 5px 0px #CCC;
+	cursor:pointer;
+	color:#636363;
+	font-size:20px;
+	text-shadow: #fff 1px 1px 0px;
+}
+
+
+#authorize_account #denyButton{
+	border:none;
+	width:95%;
+	margin: 5px 5% 10px 5%;
+	height:50px;
+	background-image: url(images/dark_button_left.png), url(images/dark_button_right.png),url(images/dark_button_middle.png);
+	background-position: left,right, center;
+	background-repeat: no-repeat,no-repeat,repeat-x;
+  	-moz-box-shadow:    0px 6px 5px 0px #CCC;
+  	-webkit-box-shadow: 0px 6px 5px 0px #CCC;
+  	box-shadow:         0px 6px 5px 0px #CCC;
+	cursor:pointer;
+	color:#fff;
+	font-size:20px;
+	font-weight:bold;
+	text-align:center;
+}
+
+#remember_me{
+	display:none;
+}
+
+.reset_password_section{clear:both;margin: 12px 0px 0px 10px;display:none;}

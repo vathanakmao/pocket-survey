@@ -1,0 +1,30 @@
+{
+    "path": "/",
+    "lastModified": 1385458456,
+    "requestedPageSize": 20,
+    "cursorKey": "qtr4afd84rufehlurt5r46t5kj4ht4k5jhf",
+    "items": [
+        {
+            "id": 12093,
+            "type": "file",
+            "filename": "overview.pdf",
+            "mimeType": "application/pdf",
+            "url": "https://dropbox.net/overview.pdf?token=di49r84",
+            "lastModified": 1374848575
+        },
+        {
+            "id": 12095,
+            "type": "file",
+            "filename": "executive.ppt",
+            "mimeType": "application/microsoft-powerpoint",
+            "url": "https://dropbox.net/executive.ppt?token=di49r84",
+            "lastModified": 1385458456
+        },
+        {
+            "id": 12099,
+            "type": "folder",
+            "filename": "images",
+            "lastModified": 1371458456
+        }
+    ]
+}

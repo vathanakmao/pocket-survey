@@ -1,0 +1,116 @@
+<h3>Get Product</h3>
+
+<table id="getProductForm" class="ui-widget ui-widget-content">
+    <thead class="ui-widget-header">
+        <tr>
+            <th>GET</th>
+            <th>product/v10/{id}</th>
+        </tr>
+    </thead>
+    <tbody id="getProductBody">
+        <tr>
+            <td><label for="getProductId">id</label></td>
+            <td><input type="number" id="getProductId" name="getProductId" /></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><button id="getProductButton">Get Product</button></td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td><label for="getProductResponse">Response</label></td>
+            <td><pre id="getProductResponse"></pre></td>
+        </tr>
+    </tfoot>
+</table>
+
+
+<h3>Get Products</h3>
+
+<table id="getProductsForm" class="ui-widget ui-widget-content">
+    <thead class="ui-widget-header">
+        <tr>
+            <th>GET</th>
+            <th>product/v10</th>
+        </tr>
+    </thead>
+    <tbody id="getProductsBody">
+        <tr>
+            <td><label for="getProductsCursorKey">Cursor key</label></td>
+            <td><input type="text" id="getProductsCursorKey" name="getProductsCursorKey" /></td>
+        </tr>
+    </tbody>
+</table>
+<table id="getProductsTable">
+    <thead class="ui-widget-header">
+        <tr>
+            <th>id</th>
+            <th>extID</th>
+            <th>name</th>
+            <th>categoryName</th>
+            <th>description</th>
+            <th>imageUrl</th>
+        </tr>
+    </thead>
+    <tbody id="getProductsContents"></tbody>
+    <tfoot>
+        <tr>
+            <td colspan="4"><button id="getProductsMore" >More Products...</button></td>
+        </tr>
+    </tfoot>
+</table>
+
+<h3>Auto-Suggest Products</h3>
+
+<table id="autoCompleteProductsForm" class="ui-widget ui-widget-content">
+    <thead class="ui-widget-header">
+        <tr>
+            <th>GET</th>
+            <th>product/v10?prefix=prefix</th>
+        </tr>
+    </thead>
+    <tbody id="autoCompleteProductsBody">
+        <tr>
+            <td><label for="autoCompleteProductsPrefix">prefix</label></td>
+            <td><input type="text" id="autoCompleteProductsPrefix" name="autoCompleteProductsPrefix" 
+                       placeholder="Product name"
+                       onkeyup="autoSuggestProducts('#autoCompleteProductsContents', '#autoCompleteProductsCursorKey', this.value);"/></td>
+        </tr>
+        <tr>
+            <td><label for="autoCompleteProductsCursorKey">Cursor key</label></td>
+            <td><input type="text" id="autoCompleteProductsCursorKey" name="autoCompleteProductsCursorKey" readonly="readonly" /></td>
+        </tr>
+    </tbody>
+</table>
+<table id="autoCompleteProductsTable">
+    <thead class="ui-widget-header">
+        <tr>
+            <th>name</th>
+        </tr>
+    </thead>
+    <tbody id="autoCompleteProductsContents"></tbody>
+    <tfoot>
+        <tr>
+            <td colspan="4"><button id="autoCompleteProductsMore" >More Suggestions...</button></td>
+        </tr>
+    </tfoot>
+</table>
+
+<script type="text/javascript" src="/js/product.js"></script>
+<script type="text/javascript">
+
+$("#getProductButton").button().click(function() {
+    getProduct("#getProductResponse", "#getProductId");
+});
+
+$("#getProductsMore").button().click(function() {
+    getProductPage("#getProductsContents", "#getProductsCursorKey");
+});
+
+$("#autoCompleteProductsMore").button().click(function() {
+    var prefix = $("#autoCompleteProductsPrefix").val();
+    autoSuggestProducts("#autoCompleteProductsContents", "#autoCompleteProductsCursorKey", prefix);
+});
+
+</script>

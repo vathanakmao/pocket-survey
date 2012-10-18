@@ -1,0 +1,162 @@
+<h3>Get Location</h3>
+
+<table id="getLocationForm" class="ui-widget ui-widget-content">
+    <thead class="ui-widget-header">
+        <tr>
+            <th>GET</th>
+            <th>location/v10/{id}</th>
+        </tr>
+    </thead>
+    <tbody id="getLocationBody">
+        <tr>
+            <td><label for="getLocationId">id</label></td>
+            <td><input type="number" id="getLocationId" name="getLocationId" /></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><button id="getLocationButton">Get Location</button></td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td><label for="getLocationResponse">Response</label></td>
+            <td><pre id="getLocationResponse"></pre></td>
+        </tr>
+    </tfoot>
+</table>
+
+
+<h3>Get Locations</h3>
+
+<table id="getLocationsForm" class="ui-widget ui-widget-content">
+    <thead class="ui-widget-header">
+        <tr>
+            <th>GET</th>
+            <th>location/v10</th>
+        </tr>
+    </thead>
+    <tbody id="getLocationsBody">
+        <tr>
+            <td><label for="getLocationsCursorKey">Cursor key</label></td>
+            <td><input type="text" id="getLocationsCursorKey" name="getLocationsCursorKey" /></td>
+        </tr>
+    </tbody>
+</table>
+<table id="getLocationsTable">
+    <thead class="ui-widget-header">
+        <tr>
+            <th>id</th>
+            <th>description</th>
+            <th>extID</th>
+            <th>name</th>
+        </tr>
+    </thead>
+    <tbody id="getLocationsContents"></tbody>
+    <tfoot>
+        <tr>
+            <td colspan="4"><button id="getLocationsMore" >More Locations...</button></td>
+        </tr>
+    </tfoot>
+</table>
+
+
+<h3>Update Location</h3>
+
+<table id="updateLocationForm" class="ui-widget ui-widget-content">
+    <thead class="ui-widget-header">
+        <tr>
+            <th>POST</th>
+            <th>location/v10/{id}</th>
+        </tr>
+    </thead>
+    <tbody id="updateLocationBody">
+        <tr>
+            <td><label for="updateLocationId">id</label></td>
+            <td><input type="number" id="updateLocationId" name="updateLocationId" onchange="loadLocation(this.value);"/></td>
+        </tr>
+        <tr>
+            <td><label for="updateLocationDescription">Description</label></td>
+            <td><input type="text" id="updateLocationDescription" name="updateLocationDescription" /></td>
+        </tr>
+        <tr>
+            <td><label for="updateLocationLatitude">Latitude</label></td>
+            <td><input type="number" id="updateLocationLatitude" name="updateLocationLatitude" /></td>
+        </tr>
+        <tr>
+            <td><label for="updateLocationLongitude">Longitude</label></td>
+            <td><input type="number" id="updateLocationLongitude" name="updateLocationLongitude" /></td>
+        </tr>
+        <tr>
+            <td><label for="updateLocationResponse">Response</label></td>
+            <td><pre id="updateLocationResponse"></pre></td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td></td>
+            <td><button id="updateLocationButton">Update Location</button></td>
+        </tr>
+    </tfoot>
+</table>
+
+
+<h3>Create Location</h3>
+
+<table id="createLocationForm" class="ui-widget ui-widget-content">
+    <thead class="ui-widget-header">
+        <tr>
+            <th>POST</th>
+            <th>location/v10</th>
+        </tr>
+    </thead>
+    <tbody id="createLocationBody">
+        <tr>
+            <td><label for="createLocationDescription">Description</label></td>
+            <td><input type="text" id="createLocationDescription" name="createLocationDescription" /></td>
+        </tr>
+        <tr>
+            <td><label for="createLocationName">Name</label></td>
+            <td><input type="text" id="createLocationName" name="createLocationName" /></td>
+        </tr>
+        <tr>
+            <td><label for="createLocationLatitude">Latitude</label></td>
+            <td><input type="number" id="createLocationLatitude" name="createLocationLatitude" /></td>
+        </tr>
+        <tr>
+            <td><label for="createLocationLongitude">Longitude</label></td>
+            <td><input type="number" id="createLocationLongitude" name="createLocationLongitude" /></td>
+        </tr>
+        <tr>
+            <td><label for="createLocationResponse">Response</label></td>
+            <td><pre id="createLocationResponse"></pre></td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td></td>
+            <td><button id="createLocationButton">Create Location</button></td>
+        </tr>
+    </tfoot>
+</table>
+
+
+<script type="text/javascript" src="/js/location.js"></script>
+<script type="text/javascript">
+
+$("#getLocationButton").button().click(function() {
+    getLocation("#getLocationResponse", "#getLocationId");
+});
+
+$("#getLocationsMore").button().click(function() {
+    getLocationPage("#getLocationsContents", "#getLocationsCursorKey");
+});
+
+$("#updateLocationButton").button().click(function() {
+    updateLocation($("#updateLocationId").val());
+});
+
+$("#createLocationButton").button().click(function() {
+    createLocation();
+});
+
+</script>

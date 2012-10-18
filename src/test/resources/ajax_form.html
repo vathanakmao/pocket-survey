@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Edit Store</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <h1>Edit Store</h1>
+        <form method="POST">
+            <table id="table_sections">
+                <thead>
+                    <tr>
+                        <th>Property</th>
+                        <th>Value</th>
+                        <th>Required</th>
+                        <th>Example</th>
+                    </tr>
+                </thead>
+
+                <tbody id="body_sections">
+                    <tr id="tr_id">
+                        <td class="gen_label"><label for="id">ID</label></td>
+                        <td class="gen_value gen_readonly"><input id="id" name="id" type="number" value="45" readonly="readonly" /></td>
+                        <td class="gen_requried"></td>
+                        <td class="gen_example" title="1001"><img src="img/info.png" /><i>1001</i></td>
+                    </tr>
+
+                </tbody>
+
+                <tfoot>
+                    <tr>
+                        <td></td>
+                        <td colspan="2"><input class="gen_submit" type="submit" /></td>
+                        <td><input class="gen_reset" type="reset" /></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </form>
+        <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+        <script type="text/javascript" src="js/jquery-ui-1.8.19.custom.min.js"></script>
+        <!--        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+                <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.19/jquery-ui.min.js"></script>-->
+        <script type="text/javascript">
+$.ajaxSetup( {
+    cache: false,
+    data: null
+});
+
+//$("#loginButton").button().click(function() {
+//	 $("#f").submit();
+//});
+function loadForm(entityKind) {
+    $("#body_sections").empty();
+    $.getJSON(entityKind + '_domain.json')
+    .done(function(data, textStatus) {
+        $.map(data.sections, function(section) {
+            alert('Section ' + section.label);
+        });
+    });
+}
+
+$(function() {
+    loadForm('store');
+});
+        </script>
+    </body>
+</html>

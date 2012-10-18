@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<b:beans xmlns="http://www.springframework.org/schema/security"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns:b="http://www.springframework.org/schema/beans"
+	 xmlns:oauth="http://www.springframework.org/schema/security/oauth2" 
+         xmlns:s="http://www.springframework.org/schema/security"
+         xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+                http://www.springframework.org/schema/security/oauth2 http://www.springframework.org/schema/security/spring-security-oauth2-1.0.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+
+    <http pattern="/" security="none" />
+    <http pattern="/**.html" security="none" />
+
+    <http pattern="/api/monitor/**" security="none" />
+    <http pattern="/api/*/monitor/**" security="none" />
+    <http pattern="/api/endpoints" security="none" />
+    
+    <!-- admin security managed in web.xml / J2EE -->
+    <http pattern="/api/_admin/**" security="none" />
+
+    <!-- registering a federated token is done un-authenticated -->
+    <http pattern="/api/*/federated" security="none" />
+
+    <!-- for swagger -->
+    <http pattern="/api/*/apidoc/**" security="none" />
+
+    <http pattern="/_ah/upload/**" security="none" />
+    <http pattern="/_ah/admin/**" security="none" />
+    <http pattern="/_ah/resources/**" security="none" />
+
+    <http pattern="/api/*/product/v*" security="none" />
+
+    <!-- integrating GG-Signin-Service BEFORE below http namespace tag -->
+    <b:import resource="classpath:/signin-security.xml" />
+
+<!--          access-decision-manager-ref="accessDecisionManager"-->
+    <http realm="Warburtons" 
+          pattern="/**"
+          create-session="stateless" 
+          entry-point-ref="digestEntryPoint" 
+          authentication-manager-ref="apiAuthenticationManager"
+    >
+
+        <custom-filter position="BASIC_AUTH_FILTER" ref="digestFilter" />
+        <custom-filter ref="apiResourceServerFilter" before="EXCEPTION_TRANSLATION_FILTER" />
+        <access-denied-handler ref="oauthAccessDeniedHandler"/>
+        <logout logout-success-url="/index.html" />
+		
+        <intercept-url pattern="/api/*/blob/v*/*" access="ROLE_APP,ROLE_USER" />
+        <intercept-url pattern="/api/*/files/v*" access="IS_AUTHENTICATED_ANONYMOUSLY,ROLE_APP,ROLE_USER" />
+        <intercept-url pattern="/api/*/location/v*" access="ROLE_USER" />
+        <intercept-url pattern="/api/*/location/v*/*" access="ROLE_USER" />
+        <intercept-url pattern="/api/*/profile/v*" access="IS_AUTHENTICATED_ANONYMOUSLY,ROLE_APP,ROLE_USER" />
+        <intercept-url pattern="/api/*/spreadsheet/v*/*" access="ROLE_USER" />
+        <intercept-url pattern="/api/*/store/v*" access="ROLE_USER" />
+        <intercept-url pattern="/api/*/store/v*/*" access="ROLE_USER" />
+        <intercept-url pattern="/api/*/user/v10" access="ROLE_APP" />
+        <intercept-url pattern="/api/*/user/v*/status" access="ROLE_APP,ROLE_USER" />
+        <intercept-url pattern="/api/*/visit/v*" access="ROLE_USER" />
+        <intercept-url pattern="/api/*/visit/v*/*" access="ROLE_USER" />
+        <intercept-url pattern="/**" access="ROLE_ADMIN" />
+    </http>
+    
+    <b:bean id="digestFilter" class="org.springframework.security.web.authentication.www.DigestAuthenticationFilter">
+      <b:property name="userDetailsService" ref="digestUserDetailsService"/>
+      <b:property name="authenticationEntryPoint" ref="digestEntryPoint"/>
+<!--      <property name="userCache" ref="userCache"/>-->
+    </b:bean>
+
+    <b:bean id="digestEntryPoint" class=
+        "org.springframework.security.web.authentication.www.DigestAuthenticationEntryPoint">
+      <b:property name="realmName" value="Warburtons Digest Authentication"/>
+      <b:property name="key" value="acegi"/>
+      <b:property name="nonceValiditySeconds" value="60"/>
+    </b:bean>
+    
+    <authentication-manager id="apiAuthenticationManager">
+        <!-- this will deal with OAuth2 authenticated requests -->
+        <authentication-provider user-service-ref="userUserService">
+            <password-encoder ref="passwordEncoder" />
+        </authentication-provider>
+        
+        <!-- fallback is digest authenticated requests -->
+        <authentication-provider>
+            <user-service id="digestUserDetailsService">
+                <user name="consumerAppV10" password="QajbgGMbOZpb1HCG_OmAKBwOl" authorities="ROLE_APP" />
+            </user-service>
+        </authentication-provider>
+    </authentication-manager>
+
+    <oauth:resource-server id="apiResourceServerFilter" resource-id="GekkoUser" token-services-ref="apiTokenServices" />
+
+    <b:bean id="apiTokenServices" class="org.springframework.security.oauth2.provider.token.DefaultTokenServices">
+            <b:property name="tokenStore" ref="apiTokenStore" />
+            <b:property name="supportRefreshToken" value="true" />
+            <!--<property name="accessTokenValiditySeconds" value="45" />-->
+    </b:bean>
+
+    <b:bean id="apiTokenStore" class="com.goldengekko.users.oauth.DomainUsersTokenStore">
+        <b:property name="connectionDao" ref="duConnectionDataDao" />
+        <b:property name="userDao" ref="duUserDao" />
+    </b:bean>
+
+</b:beans>

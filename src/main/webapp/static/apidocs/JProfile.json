@@ -1,0 +1,21 @@
+{
+    "apiVersion": "0.2",
+    "swaggerVersion": "1.1",
+    "basePath": "http://localhost:8929/api/wbt/",
+    "apis": [
+
+        {
+            "path": "{domain}/profile/v10",
+            "description": "",
+            "operations": [
+
+                {
+                    "httpMethod": "GET",
+                    "nickname": "getProfilePage"
+                }
+            ]
+        }
+    ],
+    "models":{
+    }
+}

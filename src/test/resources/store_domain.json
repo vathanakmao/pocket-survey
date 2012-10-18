@@ -1,0 +1,107 @@
+{
+    "name": "store",
+    "title": "Edit Store",
+    "sections": [
+        {
+            "id": 3,
+            "order": 1,
+            "name": "address",
+            "label": "Address details"
+        },
+        {
+            "id": 2,
+            "order": 6,
+            "name": "images",
+            "label": "Images for this store"
+        }
+        
+    ],
+    "fields": [
+        {
+            "id": "id",
+            "type": 5,
+            "regexp": null,
+            "label": "ID",
+            "example": "1001",
+            "section": -1,
+            "order": -1,
+            "required": null,
+            "readonly": true
+        },
+        {
+            "id": "street_address",
+            "type": 8,
+            "regexp": "[^\"]{1,64}",
+            "label": "Street address",
+            "example": "42, Yellow Brick Road",
+            "sectionId": 3,
+            "order": 10,
+            "required": true,
+            "readonly": false
+        },
+        {
+            "id": "city",
+            "type": 8,
+            "regexp": "[^\\\"]{1,64}",
+            "label": "City",
+            "example": "Washington, D.C.",
+            "sectionId": 3,
+            "order": 30,
+            "required": true,
+            "readonly": false
+        },
+        {
+            "id": "list_image",
+            "type": 7,
+            "regexp": "[^\\S]{10,1024}",
+            "label": "List image",
+            "example": "http://host.domain.com/img/logo.png",
+            "sectionId": 2,
+            "order": 20,
+            "required": false,
+            "readonly": false
+        },
+        {
+            "id": "main_email",
+            "type": 6,
+            "regexp": "\\b[A-Z0-9._%-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}\\b",
+            "label": "Main email",
+            "example": "info@acme.com",
+            "sectionId": 3,
+            "order": 35,
+            "required": true,
+            "readonly": false
+        }
+    ],
+    "types":[
+        {
+            "id": 5,
+            "html": "number",
+            "regexp": "-?\\d{1,40}",
+            "internal": "Long",
+            "external": "Numeric"
+        },
+        {
+            "id": 6,
+            "html": "email",
+            "regexp": "\\b[A-Z0-9._%-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}\\b",
+            "internal": "String",
+            "external": "Email"
+        },
+        {
+            "id": 7,
+            "html": "href",
+            "regexp": "[\\S]{10,1024}",
+            "internal": "String",
+            "external": "URL"
+        },
+        {
+            "id": 8,
+            "html": "text",
+            "regexp": null,
+            "internal": "String",
+            "external": "Unformatted text"
+        }
+    ],
+    "lastModified": 1123484850
+}

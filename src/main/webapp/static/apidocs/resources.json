@@ -1,0 +1,19 @@
+{
+    "apiVersion": "0.2",
+    "swaggerVersion": "1.1",
+    "basePath": "http://localhost:8929/swagger/",
+    "apis": [
+        {
+            "path": "/JLocation.{format}",
+            "description": "com.goldengekko.wbt.json.JLocation "
+        }
+,        {
+            "path": "/JMeeting.{format}",
+            "description": "com.goldengekko.wbt.json.JMeeting "
+        }
+,        {
+            "path": "/JProfile.{format}",
+            "description": "com.goldengekko.wbt.json.JProfile "
+        }
+    ]
+}

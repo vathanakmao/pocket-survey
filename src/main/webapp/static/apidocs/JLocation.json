@@ -1,0 +1,37 @@
+{
+    "apiVersion": "0.2",
+    "swaggerVersion": "1.1",
+    "basePath": "http://localhost:8929/api/wbt/",
+    "apis": [
+
+        {
+            "path": "{domain}/location/v10",
+            "description": "",
+            "operations": [
+
+                {
+                    "httpMethod": "POST",
+                    "nickname": "create"
+                }
+,                {
+                    "httpMethod": "GET",
+                    "nickname": "getPage"
+                }
+            ]
+        }
+,
+        {
+            "path": "{domain}/location/v10/{id}",
+            "description": "",
+            "operations": [
+
+                {
+                    "httpMethod": "GET",
+                    "nickname": "get"
+                }
+            ]
+        }
+    ],
+    "models":{
+    }
+}

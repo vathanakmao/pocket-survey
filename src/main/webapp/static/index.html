@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Warburtons</title>
+    </head>
+    <body>
+        <div id="header" class="ui-widget">
+        </div>
+        
+        <div id="contents" class="ui-widget">
+            <h3>Redirecting...</h3>
+        </div>
+        
+        <div id="footer" class="ui-widget"></div>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+        <script type="text/javascript" src="/js/common.js"></script>
+        <script type="text/javascript">
+	        function updateApiUrl() {
+	            $.ajax("/api/endpoints", {
+	                dataType: 'json' 
+	            })
+	            .success(function(data) {
+	                setApiUrl(data.apiUrl);
+	                setOauthUrl(data.oauthUrl);
+	                setSigninUrl(data.signinUrl);
+	                document.location = data.oauthUrl + 'authorize?client_id=localhost.generic-app&redirect_uri=/wbt/home.html?providerId=gekko&response_type=token';	                    
+	            });
+	        }
+	        $(function(){
+	        	updateApiUrl();
+	        });
+        </script>
+        
+    </body>
+</html>

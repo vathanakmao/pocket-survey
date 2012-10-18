@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Sign up - Warburtons</title>
+        <link type="text/css" href="/css/blitzer/jquery-ui-1.8.17.custom.css" rel="stylesheet" />	
+    </head>
+    <body>
+        <div id="header" class="ui-widget">
+        </div>
+        
+        <div id="contents" class="ui-widget">
+            <h3>Gekko Sign up</h3>
+            <form id="signupForm" action="/oauth/wbt/signin/signup" method="POST">
+            <table id="signup" class="ui-widget ui-widget-content">
+                <thead class="ui-widget-header">
+                    <tr>
+                        <th>Warburtons</th>
+                        <th>account</th>
+                    </tr>
+                </thead>
+                <tbody id="signupBody">
+                    <tr>
+                        <td><label for="name">Name</label></td>
+                        <td><input id="name" name="name" value="" /></td>
+                    </tr>
+                    <tr>
+                        <td><label for="email">Email</label></td>
+                        <td><input id="email" name="email" value="" /></td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td></td>
+                        <td><input type="submit" value="Create Account" /></td>
+                    </tr>
+                </tfoot>
+            </table>
+            </form>
+        </div>
+        
+        <div id="footer" class="ui-widget"></div>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+        <script type="text/javascript">
+$.ajaxSetup( {
+    cache: false,
+    data: null
+});
+
+$(function() {
+    $("#name").val(getParameterByName('n'));
+    $("#email").val(getParameterByName('e'));
+});
+
+function getParameterByName(name) {
+
+    var match = RegExp('[?&]' + name + '=([^&]*)')
+                    .exec(window.location.search);
+
+    return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+
+}
+
+        </script>
+        
+    </body>
+</html>

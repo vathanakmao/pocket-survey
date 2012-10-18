@@ -1,0 +1,359 @@
+html { 
+	margin: 0;
+	padding: 0;
+}
+
+body { 
+	background: #FFF;
+	width: 1100px;
+	margin: auto;
+	height:100%;
+}
+
+header{
+	background-color:#919194;
+	padding:20px;
+	height: 60px;
+}
+
+header h1{
+	color:#FFFFFF;
+	width:88%;
+	float:left;
+	margin: 10px;
+	display:inline-block;
+	padding:0;
+}
+
+header button{
+	margin: 0px 0px 0px 0px;
+	float:right;
+}
+
+/* warbuton tab style */
+
+#nav{
+	clear: both;
+	height: 50px;
+}
+
+.tabs { 
+	list-style: none; 
+    	margin: 10px auto 0 -40px; 
+}
+
+.tabs li { 
+	float: left; 			
+	position: relative; 
+	margin-left: 10px;
+}
+
+.tabs a { 
+	float: left; 
+	padding: 10px 20px; 
+	text-decoration: none;
+	color:#919194;
+	background: #FFF;
+	border-bottom: 2px solid #ec843a;
+}
+
+.tabs .active a { 
+	/* Colors when tab is active */
+	background: white; 
+	color:#919194; 
+	border-bottom: 0;
+	border-top: 5px solid #ec843a;
+	padding: 5px 20px 10px 20px;
+	font-weight:bold;
+}
+
+/* General layout of warbuton backoffice */
+
+#topPageHeader{
+	clear:both;
+	margin-top:10px;
+	padding: 10px;
+	border-top: 1px solid #e3e3e4;
+}
+
+#topPageHeader h1 { 
+	width: 100px;
+	margin:0px;
+}
+
+#middlePageHeader{
+	clear:both;
+	margin: 10px 0px 10px 0px;
+	padding: 10px 5px;
+	border-top: 1px solid #e3e3e4;
+}
+
+#middlePageHeader input{
+	width:320px;
+}
+
+#middlePageHeader button{
+	margin-left: 50px;
+}
+
+#bottomPageHeader{
+	margin: 1px 0px 10px 0px;
+	padding:10px 5px;
+	border-top: 1px solid #e3e3e4;
+}
+
+#bottomPageHeader button{
+	margin-left: 50px;
+}
+
+#pageBody{
+	width: 100%;
+	display:inline-block;
+	border-top: 1px solid #e3e3e4;
+}
+
+#panelLeft{
+	width: 30%;
+	float:left;
+}
+
+#panelLeft ul{
+	list-style:none;	
+	padding: 0px;
+	margin: 0px;	
+}
+
+#panelLeft ul li:first-child{
+	color:#919194;
+	font-weight:bold;
+}
+
+#panelLeft ul li{
+	height: 30px;
+	line-height: 30px;
+	padding-left:5px;
+	color:#919194;
+	font-weight:bold;
+	cursor:pointer;
+}
+
+#panelLeft ul .active{
+	color:#ec843a;
+}
+/*
+#panelLeft ul li:hover{
+	color:#ec843a;
+	cursor:pointer;
+}
+*/
+.panelCenter{
+	width: 60%;
+	height: 100%;
+	float:left;
+	padding: 6px 0px 0px 10px;
+}
+
+.panelCenter label{
+	width: 20%;
+	display: inline-block;
+	padding: 0px 10px 0px 0px;
+}
+
+.panelCenter h3{
+	margin-left: 190px;
+}
+
+#panelRight{
+	float: right;
+	height: 100px;
+	width: 80px;
+	position: relative;
+	background: white;
+	margin: 10px 0px 0px 0px;
+}
+
+#pageContainer { 
+    	background: white; 
+    	min-height: 400px; 
+	margin-bottom: 20px;
+	padding-bottom: 10px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 15px;
+}
+
+.clickable{
+	color:#ec843a;
+	font-weight:bold;
+	cursor: pointer;
+}
+
+.simple-button{
+	background:#ec843a;
+	box-shadow: 3px 5px 8px #854b21;/*box-shadow: h-shadow v-shadow blur spread color inset;*/
+	-moz-box-shadow: 3px 5px 8px #854b21;
+	border:none;
+	padding:10px 20px;
+	color:#FFF;
+	font-weight:bold;
+}
+
+input[type=text],input[type=email]{
+	border-top:none;
+	border-right:none;
+	border-left:none;
+	border-bottom: 1px solid #b7b7b9;
+	outline:none;
+	padding:5px;
+	font-size: 12pt;
+	width: 65%;
+	margin-top:10px;
+	margin-bottom:10px;
+	line-height:20px;
+}
+
+select{
+	border: 1px solid #b7b7b9;
+	padding: 5px;
+	width: 280px;
+}
+
+.section-header{
+	color:#919194;
+	font-weight:bold;
+}
+
+.circlebutton-image{
+	/*background-image:url(images/cancel-small.png);*/
+	background-repeat: no-repeat;
+	background-position: center 10px;
+	border-top-left-radius: 50px;
+	border-top-right-radius: 50px;
+	border-bottom-left-radius: 50px;
+	border-bottom-right-radius: 50px;  
+	-webkit-border-top-left-radius:50px;
+	-webkit-border-top-right-radius:50px;
+	-webkit-border-bottom-left-radius:50px;
+	-webkit-border-bottom-right-radius:50px;
+	width:70px;
+	height:70px;
+	border:none;
+	line-height: 80px;
+	background-color:#ec843a;
+	color:#FFF;
+	font-weight:bold;
+	box-shadow: 0px 4px 12px #854b21;
+	-moz-box-shadow: 0px 4px 12px #854b21;
+}
+
+label{
+	color:#b7b7b9;
+}
+
+/* table style */
+table {padding: 0;margin: 0px;width:90%}
+th{font-size: 14pt;height:21px;color:#919194;text-align: left;padding: 10px 0px;}
+table tr:hover{color:#ec843a}
+table td {background: #fff;padding: 8px 0;color: #919194;font-weight:bold}
+
+.sort-decending{
+	background-image: url(images/arrow_down.png);
+	background-repeat: no-repeat;
+	height: 16px;
+	width: 16px;
+	display: inline-block;
+	padding-left: 7px;
+	padding-right: 7px;
+}
+
+.active-decending{
+	background-image: url(images/arrow_down_orange.png);
+}
+
+.sort-ascending{
+	background-image: url(images/arrow_up.png);
+	background-repeat: no-repeat;
+	height: 16px;
+	width: 16px;
+	display: inline-block;
+	padding-left: 7px;
+	padding-right: 7px;
+}
+
+.active-ascending{
+	background-image: url(images/arrow_up_orange.png);
+}
+
+.sort-section{
+	float:right;
+}
+/****************************************
+*				  	*
+*	Style of user page		*
+*					*
+*****************************************/
+
+/****************************************
+*				  	*
+*	Style of store page		*
+*					*
+*****************************************/
+#storePage #pageHeader input[type=text]{
+	width:28%;
+}
+#storePage #pageHeader button{
+	margin-left:30px;
+}
+
+#storePage .panelCenter img{
+	width: 65%;
+	height:100px;
+}
+
+/****************************************
+*				  	*
+*	Style of product page		*
+*					*
+*****************************************/
+
+#productPage #pageHeader input[type=text]{
+	width:28%;
+}
+
+#productPage #pageHeader button{
+	margin-left:70px;
+}
+
+#productPage .panelCenter{
+	padding:0;
+	margin:0;
+	width:90%;
+}
+
+/****************************************
+*				  	*
+*	Style of data page		*
+*					*
+*****************************************/
+#dataPage .circlebutton-image{
+	font-size:11px;
+}
+
+#dataPage table td:first-child{
+	width:80%;
+}
+
+#dataPage table td:last-child, #dataPage table th:last-child{
+	text-align:right;
+}
+
+#dataPage table tr td{
+	border-bottom: 1px solid  #E3E3E4;
+}
+
+#dataPage .panelCenter{
+	width:90%;
+}
+
+#dataPage .panelCenter table{
+	width:100%;
+}

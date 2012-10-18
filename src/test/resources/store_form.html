@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Edit Store</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <h1>Edit Store</h1>
+        <form>
+            
+            <div id="section_3" class="gen_section">
+                <h5>Address details</h5>
+                <table>
+                    <tbody>
+                        <tr id="tr_id">
+                            <td class="gen_label"><label for="id">ID</label></td>
+                            <td class="gen_value gen_readonly"><input id="id" name="id" type="number" value="45" readonly="readonly" /></td>
+                            <td class="gen_requried"></td>
+                            <td class="gen_example" title="1001"><img src="img/info.png" /><i>1001</i></td>
+                        </tr>
+                        <tr id="tr_street_address">
+                            <td class="gen_label"><label for="street_address">Street address</label></td>
+                            <td class="gen_value"><input id="street_address" name="street_address" type="text" value="#14, St 106" /></td>
+                            <td class="gen_requried">*</td>
+                            <td class="gen_example" title="42, Yellow Brick Road"><img src="img/info.png" /><i>42, Yellow Brick Road</i></td>
+                        </tr>
+                        <tr id="tr_city">
+                            <td class="gen_label"><label for="city">City</label></td>
+                            <td class="gen_value"><input id="city" name="city" type="text" value="Phnom Penh" /></td>
+                            <td class="gen_requried">*</td>
+                            <td class="gen_example" title="Washington, D.C."><img src="img/info.png" /><i>Washington, D.C.</i></td>
+                        </tr>
+                        <tr id="tr_main_email">
+                            <td class="gen_label"><label for="main_email">Main email</label></td>
+                            <td class="gen_value"><input id="main_email" name="main_email" type="email" value="phnompenh@goldengekko.com" /></td>
+                            <td class="gen_requried">*</td>
+                            <td class="gen_example" title="info@acme.com"><img src="img/info.png" /><i>info@acme.com</i></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div id="section_2" class="gen_section">
+                <h5>Images for this store</h5>
+                <table>
+                    <tbody>
+                        <tr id="tr_list_image">
+                            <td class="gen_label"><label for="list_image">List image</label></td>
+                            <td class="gen_value gen_readonly"><input id="list_image" name="list_image" type="url" value="http://www.acme.com/img/pp_list.png" /></td>
+                            <td class="gen_requried"></td>
+                            <td class="gen_example" title="http://host.domain.com/img/logo.png"><img src="img/info.png" /><i>http://host.domain.com/img/logo.png</i></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div id="div_submit">
+                <input class="gen_submit" type="submit" />
+                <input class="gen_reset" type="reset" />
+            </div>
+        </form>
+    </body>
+</html>

@@ -1,0 +1,750 @@
+<html>
+    <head>
+	<title>REST API documentation</title>
+        <link rel="stylesheet" href="api.css" type="text/css" />
+    </head>
+    <body>
+<!-- Table of Contents ---------------------------------------------------->
+    	<h1>Content</h1>
+    	<ul>
+            <li>
+<a href="api.html#com.goldengekko.wbt.web.LocationController" class="link">/{domain}/location</a>
+                <ul>
+                    <li><a href="api.html#com.goldengekko.wbt.web.LocationController.create" class="link">create()</a></li>
+                    <li><a href="api.html#com.goldengekko.wbt.web.LocationController.get" class="link">get()</a></li>
+                    <li><a href="api.html#com.goldengekko.wbt.web.LocationController.getPage" class="link">getPage()</a></li>
+                </ul>
+            </li>
+            <li>
+<a href="api.html#com.goldengekko.wbt.web.MeetingController" class="link">/{domain}/visit</a>
+                <ul>
+                    <li><a href="api.html#com.goldengekko.wbt.web.MeetingController.createVisit" class="link">createVisit()</a></li>
+                    <li><a href="api.html#com.goldengekko.wbt.web.MeetingController.getVisit" class="link">getVisit()</a></li>
+                </ul>
+            </li>
+            <li>
+<a href="api.html#com.goldengekko.wbt.web.ProfileController" class="link">/{domain}/profile</a>
+                <ul>
+                    <li><a href="api.html#com.goldengekko.wbt.web.ProfileController.getProfilePage" class="link">getProfilePage()</a></li>
+                </ul>
+            </li>
+            <li>JSON objects
+                <ul>
+                </ul>
+            </li>
+        </ul>
+<!-- Resource: /person ---------------------------------------------------->
+    <h1 class="resourceHeader">
+/{domain}/location
+    </h1>
+
+    <a name="com.goldengekko.wbt.web.LocationController" />
+
+    <p class="concreteClass">
+            <b>Description</b>: 
+    </p>
+
+    <p class="concreteClass">
+            <b>Concrete class</b>: com.goldengekko.wbt.web.LocationController
+    </p>
+
+<!-- Method: findByName() ---------------------------------------------------->		
+        <a name="com.goldengekko.wbt.web.LocationController.create" />
+
+        <h2 class="methodHeader">create()</h2>
+
+        <p>
+            <b>Description</b>:Creates an entity.
+        </p>
+
+        <p>
+            <b>Implementing Class</b>: com.goldengekko.wbt.web.LocationController
+        </p>
+
+        <p class="restPath">
+            <b>REST path</b>: POST&nbsp;
+    /{domain}/location/v10
+
+		<h3>Request parameters</h3>
+		<table>
+			<thead>
+	    		<td class="column1">Where</th>
+	    		<td class="column2">Name</th>
+	    		<td class="column3">Type</th>
+	    		<td class="columnAuto">Description</th>
+			</thead>
+			<tbody>
+                            <tr>
+                                <td>body (properties separately)</td><td>com.goldengekko.wbt.json.JLocation</td><td>{<div>&nbsp;&nbsp;&nbsp;<b>"appArg0"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"city"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"description"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"extCode"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"extID"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"id"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"latLong"</b>&nbsp;:&nbsp;{<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>"latitude"</b>&nbsp;:&nbsp;float,</div><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>"longitude"</b>&nbsp;:&nbsp;float,</div>&nbsp;&nbsp;&nbsp;},</div><div>&nbsp;&nbsp;&nbsp;<b>"name"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"phone"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"streetAddress"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"zipCode"</b>&nbsp;:&nbsp;String,</div>}</td><td></td>
+                            </tr>
+                            <tr>
+                                <td>body (properties separately)</td><td><a href="api.html#net.sf.mardao.core.geo.DLocation" class="link">net.sf.mardao.core.geo.DLocation</a></td><td>{<div>&nbsp;&nbsp;&nbsp;<b>"latitude"</b>&nbsp;:&nbsp;float,</div><div>&nbsp;&nbsp;&nbsp;<b>"longitude"</b>&nbsp;:&nbsp;float,</div>}</td><td></td>
+                            </tr>
+			</tbody>
+		</table>
+
+		<h3>Response Codes</h3>
+			<table>
+				<thead>
+	   				<td class="column1">HTTP Response Code</td>
+	   				<td class="column2">Message</td>
+	   				<td class="columnAuto">Description</td>
+				</thead>
+				<tbody>
+               <tr>
+                <td>302</td><td>OK</td><td colspan="2">A store was created</td>
+            </tr>
+				</tbody>
+			</table>
+
+			<p>
+                            <b>Response Type</b>: java.net.URL
+                        </p>
+
+		<h3>Response Example</h3>
+		<p class="code">
+			<pre>{<div>&nbsp;&nbsp;&nbsp;<b>"appArg0"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"city"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"description"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"extCode"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"extID"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"id"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"latLong"</b>&nbsp;:&nbsp;{<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>"latitude"</b>&nbsp;:&nbsp;float,</div><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>"longitude"</b>&nbsp;:&nbsp;float,</div>&nbsp;&nbsp;&nbsp;},</div><div>&nbsp;&nbsp;&nbsp;<b>"name"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"phone"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"streetAddress"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"zipCode"</b>&nbsp;:&nbsp;String,</div>}</pre>
+		</p>
+				
+<!-- Method: findByName() ---------------------------------------------------->		
+        <a name="com.goldengekko.wbt.web.LocationController.get" />
+
+        <h2 class="methodHeader">get()</h2>
+
+        <p>
+            <b>Description</b>:Loads the specified entity.
+        </p>
+
+        <p>
+            <b>Implementing Class</b>: com.goldengekko.wbt.web.LocationController
+        </p>
+
+        <p class="restPath">
+            <b>REST path</b>: GET&nbsp;
+    /{domain}/location/v10/{id}
+
+		<h3>Request parameters</h3>
+		<table>
+			<thead>
+	    		<td class="column1">Where</th>
+	    		<td class="column2">Name</th>
+	    		<td class="column3">Type</th>
+	    		<td class="columnAuto">Description</th>
+			</thead>
+			<tbody>
+                            <tr>
+                                <td>path</td><td>id</td><td>Long</td><td>the id of the entity to retrieve</td>
+                            </tr>
+			</tbody>
+		</table>
+
+		<h3>Response Codes</h3>
+			<table>
+				<thead>
+	   				<td class="column1">HTTP Response Code</td>
+	   				<td class="column2">Message</td>
+	   				<td class="columnAuto">Description</td>
+				</thead>
+				<tbody>
+               <tr>
+                <td>200</td><td>OK</td><td colspan="2">The entity was found</td>
+            </tr>
+               <tr>
+                <td>404</td><td>Not Found</td><td colspan="2">The entity was not found</td>
+            </tr>
+				</tbody>
+			</table>
+
+			<p>
+                            <b>Response Type</b>: <a href="api.html#com.goldengekko.wbt.json.JLocation" class="link">com.goldengekko.wbt.json.JLocation</a>
+                        </p>
+
+		<h3>Response Example</h3>
+		<p class="code">
+			<pre>{<div>&nbsp;&nbsp;&nbsp;<b>"appArg0"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"city"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"description"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"extCode"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"extID"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"id"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"latLong"</b>&nbsp;:&nbsp;{<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>"latitude"</b>&nbsp;:&nbsp;float,</div><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>"longitude"</b>&nbsp;:&nbsp;float,</div>&nbsp;&nbsp;&nbsp;},</div><div>&nbsp;&nbsp;&nbsp;<b>"name"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"phone"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"streetAddress"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"zipCode"</b>&nbsp;:&nbsp;String,</div>}</pre>
+		</p>
+				
+<!-- Method: findByName() ---------------------------------------------------->		
+        <a name="com.goldengekko.wbt.web.LocationController.getPage" />
+
+        <h2 class="methodHeader">getPage()</h2>
+
+        <p>
+            <b>Description</b>:Queries for a (next) page of profiles
+        </p>
+
+        <p>
+            <b>Implementing Class</b>: com.goldengekko.wbt.web.LocationController
+        </p>
+
+        <p class="restPath">
+            <b>REST path</b>: GET&nbsp;
+    /{domain}/location/v10
+
+		<h3>Request parameters</h3>
+		<table>
+			<thead>
+	    		<td class="column1">Where</th>
+	    		<td class="column2">Name</th>
+	    		<td class="column3">Type</th>
+	    		<td class="columnAuto">Description</th>
+			</thead>
+			<tbody>
+                            <tr>
+                                <td>query</td><td>pageSize</td><td>int</td><td>default is 10</td>
+                            </tr>
+                            <tr>
+                                <td>query</td><td>cursorKey</td><td>Serializable</td><td>null to get first page</td>
+                            </tr>
+			</tbody>
+		</table>
+
+		<h3>Response Codes</h3>
+			<table>
+				<thead>
+	   				<td class="column1">HTTP Response Code</td>
+	   				<td class="column2">Message</td>
+	   				<td class="columnAuto">Description</td>
+				</thead>
+				<tbody>
+               <tr>
+                <td>200</td><td>OK</td><td colspan="2">A CursorPage with JSON entities</td>
+            </tr>
+				</tbody>
+			</table>
+
+			<p>
+                            <b>Response Type</b>: com.goldengekko.wbt.json.JCursorPage
+                        </p>
+
+		<h3>Response Example</h3>
+		<p class="code">
+			<pre>{<div>&nbsp;&nbsp;&nbsp;<b>"appArg0"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"city"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"description"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"extCode"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"extID"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"id"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"latLong"</b>&nbsp;:&nbsp;{<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>"latitude"</b>&nbsp;:&nbsp;float,</div><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>"longitude"</b>&nbsp;:&nbsp;float,</div>&nbsp;&nbsp;&nbsp;},</div><div>&nbsp;&nbsp;&nbsp;<b>"name"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"phone"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"streetAddress"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"zipCode"</b>&nbsp;:&nbsp;String,</div>}</pre>
+		</p>
+				
+<!-- Resource: /person ---------------------------------------------------->
+    <h1 class="resourceHeader">
+/{domain}/visit
+    </h1>
+
+    <a name="com.goldengekko.wbt.web.MeetingController" />
+
+    <p class="concreteClass">
+            <b>Description</b>: 
+    </p>
+
+    <p class="concreteClass">
+            <b>Concrete class</b>: com.goldengekko.wbt.web.MeetingController
+    </p>
+
+<!-- Method: findByName() ---------------------------------------------------->		
+        <a name="com.goldengekko.wbt.web.MeetingController.createVisit" />
+
+        <h2 class="methodHeader">createVisit()</h2>
+
+        <p>
+            <b>Description</b>:Creates a visit.
+        </p>
+
+        <p>
+            <b>Implementing Class</b>: com.goldengekko.wbt.web.MeetingController
+        </p>
+
+        <p class="restPath">
+            <b>REST path</b>: POST&nbsp;
+    /{domain}/visit/v10
+
+		<h3>Request parameters</h3>
+		<table>
+			<thead>
+	    		<td class="column1">Where</th>
+	    		<td class="column2">Name</th>
+	    		<td class="column3">Type</th>
+	    		<td class="columnAuto">Description</th>
+			</thead>
+			<tbody>
+                            <tr>
+                                <td>query</td><td>storeId</td><td>Long</td><td>the id of the store where the visit will take place</td>
+                            </tr>
+			</tbody>
+		</table>
+
+		<h3>Response Codes</h3>
+			<table>
+				<thead>
+	   				<td class="column1">HTTP Response Code</td>
+	   				<td class="column2">Message</td>
+	   				<td class="columnAuto">Description</td>
+				</thead>
+				<tbody>
+               <tr>
+                <td>302</td><td>OK</td><td colspan="2">A visit was created</td>
+            </tr>
+				</tbody>
+			</table>
+
+			<p>
+                            <b>Response Type</b>: java.net.URL
+                        </p>
+
+		<h3>Response Example</h3>
+		<p class="code">
+			<pre>{<div>&nbsp;&nbsp;&nbsp;<b>"createdBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"id"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"locationId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedDate"</b>&nbsp;:&nbsp;Long,</div>}</pre>
+		</p>
+				
+<!-- Method: findByName() ---------------------------------------------------->		
+        <a name="com.goldengekko.wbt.web.MeetingController.getVisit" />
+
+        <h2 class="methodHeader">getVisit()</h2>
+
+        <p>
+            <b>Description</b>:Loads a visit.
+        </p>
+
+        <p>
+            <b>Implementing Class</b>: com.goldengekko.wbt.web.MeetingController
+        </p>
+
+        <p class="restPath">
+            <b>REST path</b>: GET&nbsp;
+    /{domain}/visit/v10/{id}
+
+		<h3>Request parameters</h3>
+		<table>
+			<thead>
+	    		<td class="column1">Where</th>
+	    		<td class="column2">Name</th>
+	    		<td class="column3">Type</th>
+	    		<td class="columnAuto">Description</th>
+			</thead>
+			<tbody>
+                            <tr>
+                                <td>path</td><td>id</td><td>Long</td><td>the id of the visit to retrieve</td>
+                            </tr>
+			</tbody>
+		</table>
+
+		<h3>Response Codes</h3>
+			<table>
+				<thead>
+	   				<td class="column1">HTTP Response Code</td>
+	   				<td class="column2">Message</td>
+	   				<td class="columnAuto">Description</td>
+				</thead>
+				<tbody>
+               <tr>
+                <td>200</td><td>OK</td><td colspan="2">The entity was found</td>
+            </tr>
+               <tr>
+                <td>404</td><td>Not Found</td><td colspan="2">The entity was not found</td>
+            </tr>
+				</tbody>
+			</table>
+
+			<p>
+                            <b>Response Type</b>: <a href="api.html#com.goldengekko.wbt.json.JMeeting" class="link">com.goldengekko.wbt.json.JMeeting</a>
+                        </p>
+
+		<h3>Response Example</h3>
+		<p class="code">
+			<pre>{<div>&nbsp;&nbsp;&nbsp;<b>"createdBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"id"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"locationId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedDate"</b>&nbsp;:&nbsp;Long,</div>}</pre>
+		</p>
+				
+<!-- Resource: /person ---------------------------------------------------->
+    <h1 class="resourceHeader">
+/{domain}/profile
+    </h1>
+
+    <a name="com.goldengekko.wbt.web.ProfileController" />
+
+    <p class="concreteClass">
+            <b>Description</b>: 
+    </p>
+
+    <p class="concreteClass">
+            <b>Concrete class</b>: com.goldengekko.wbt.web.ProfileController
+    </p>
+
+<!-- Method: findByName() ---------------------------------------------------->		
+        <a name="com.goldengekko.wbt.web.ProfileController.getProfilePage" />
+
+        <h2 class="methodHeader">getProfilePage()</h2>
+
+        <p>
+            <b>Description</b>:Queries for a (next) page of profiles
+        </p>
+
+        <p>
+            <b>Implementing Class</b>: com.goldengekko.wbt.web.ProfileController
+        </p>
+
+        <p class="restPath">
+            <b>REST path</b>: GET&nbsp;
+    /{domain}/profile/v10
+
+		<h3>Request parameters</h3>
+		<table>
+			<thead>
+	    		<td class="column1">Where</th>
+	    		<td class="column2">Name</th>
+	    		<td class="column3">Type</th>
+	    		<td class="columnAuto">Description</th>
+			</thead>
+			<tbody>
+                            <tr>
+                                <td>query</td><td>pageSize</td><td>int</td><td>default is 10</td>
+                            </tr>
+                            <tr>
+                                <td>query</td><td>cursorKey</td><td>Serializable</td><td>null to get first page</td>
+                            </tr>
+			</tbody>
+		</table>
+
+		<h3>Response Codes</h3>
+			<table>
+				<thead>
+	   				<td class="column1">HTTP Response Code</td>
+	   				<td class="column2">Message</td>
+	   				<td class="columnAuto">Description</td>
+				</thead>
+				<tbody>
+               <tr>
+                <td>200</td><td>OK</td><td colspan="2">A CursorPage with JProfiles</td>
+            </tr>
+				</tbody>
+			</table>
+
+			<p>
+                            <b>Response Type</b>: com.goldengekko.wbt.json.JCursorPage
+                        </p>
+
+		<h3>Response Example</h3>
+		<p class="code">
+			<pre>{<div>&nbsp;&nbsp;&nbsp;<b>"createdBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"directoryID"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"email"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"id"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"managerId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"managerName"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"name"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"userId"</b>&nbsp;:&nbsp;Long,</div>}</pre>
+		</p>
+				
+
+
+    <h1 class="resourceHeader">JSON Objects</h1>
+
+<!-- JSON object: com.goldengekko.users.json.JMonitor ---------------------------------------------------->		
+        <a name="com.goldengekko.users.json.JMonitor" />
+        <h2 class="methodHeader">com.goldengekko.users.json.JMonitor</h2>
+		<table>
+			<thead>
+	    		<td class="column1">Name</th>
+	    		<td class="column2">Type</th>
+	    		<td class="column3">Description</th>
+			</thead>
+			<tbody>
+ 
+                        <tr>
+                            <td>currentTimeMillis</td>
+                            <td><a href="api.html#java.lang.Long" class="link">java.lang.Long</a></td>
+                            <td>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>ipAddress</td>
+                            <td><a href="api.html#java.lang.String" class="link">java.lang.String</a></td>
+                            <td>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>namespace</td>
+                            <td><a href="api.html#java.lang.String" class="link">java.lang.String</a></td>
+                            <td>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>version</td>
+                            <td><a href="api.html#java.lang.String" class="link">java.lang.String</a></td>
+                            <td>
+
+                            </td>
+                        </tr>
+                        </tbody>
+               </table>
+<!-- JSON object: com.goldengekko.wbt.json.JLocation ---------------------------------------------------->		
+        <a name="com.goldengekko.wbt.json.JLocation" />
+        <h2 class="methodHeader">com.goldengekko.wbt.json.JLocation</h2>
+		<table>
+			<thead>
+	    		<td class="column1">Name</th>
+	    		<td class="column2">Type</th>
+	    		<td class="column3">Description</th>
+			</thead>
+			<tbody>
+ 
+                        <tr>
+                            <td>name</td>
+                            <td><a href="api.html#java.lang.String" class="link">java.lang.String</a></td>
+                            <td>
+The location name
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>latLong</td>
+                            <td><a href="api.html#net.sf.mardao.core.geo.DLocation" class="link">net.sf.mardao.core.geo.DLocation</a></td>
+                            <td>
+A lat/long for the location
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>appArg0</td>
+                            <td><a href="api.html#java.lang.String" class="link">java.lang.String</a></td>
+                            <td>
+Application-specific argument 0
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>city</td>
+                            <td><a href="api.html#java.lang.String" class="link">java.lang.String</a></td>
+                            <td>
+The city of this location
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>description</td>
+                            <td><a href="api.html#java.lang.String" class="link">java.lang.String</a></td>
+                            <td>
+The location description
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>extCode</td>
+                            <td><a href="api.html#java.lang.String" class="link">java.lang.String</a></td>
+                            <td>
+The external (customer) code of this location
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>extID</td>
+                            <td><a href="api.html#java.lang.String" class="link">java.lang.String</a></td>
+                            <td>
+The external (customer) ID of this location
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>phone</td>
+                            <td><a href="api.html#java.lang.String" class="link">java.lang.String</a></td>
+                            <td>
+The phone number of this location
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>streetAddress</td>
+                            <td><a href="api.html#java.lang.String" class="link">java.lang.String</a></td>
+                            <td>
+The street address of this location
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>zipCode</td>
+                            <td><a href="api.html#java.lang.String" class="link">java.lang.String</a></td>
+                            <td>
+The postal code of this location
+                            </td>
+                        </tr>
+                        </tbody>
+               </table>
+<!-- JSON object: com.goldengekko.wbt.json.JMeeting ---------------------------------------------------->		
+        <a name="com.goldengekko.wbt.json.JMeeting" />
+        <h2 class="methodHeader">com.goldengekko.wbt.json.JMeeting</h2>
+		<table>
+			<thead>
+	    		<td class="column1">Name</th>
+	    		<td class="column2">Type</th>
+	    		<td class="column3">Description</th>
+			</thead>
+			<tbody>
+ 
+                        <tr>
+                            <td>locationId</td>
+                            <td><a href="api.html#java.lang.Long" class="link">java.lang.Long</a></td>
+                            <td>
+References the location this meeting took place at
+                            </td>
+                        </tr>
+                        </tbody>
+               </table>
+<!-- JSON object: com.goldengekko.wbt.json.JProfile ---------------------------------------------------->		
+        <a name="com.goldengekko.wbt.json.JProfile" />
+        <h2 class="methodHeader">com.goldengekko.wbt.json.JProfile</h2>
+		<table>
+			<thead>
+	    		<td class="column1">Name</th>
+	    		<td class="column2">Type</th>
+	    		<td class="column3">Description</th>
+			</thead>
+			<tbody>
+ 
+                        <tr>
+                            <td>userId</td>
+                            <td><a href="api.html#java.lang.Long" class="link">java.lang.Long</a></td>
+                            <td>
+References the user this profile is attached to
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>name</td>
+                            <td><a href="api.html#java.lang.String" class="link">java.lang.String</a></td>
+                            <td>
+Name of the Employee, as stated in CSV
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>email</td>
+                            <td><a href="api.html#java.lang.String" class="link">java.lang.String</a></td>
+                            <td>
+Email address, as stated in CSV
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>directoryID</td>
+                            <td><a href="api.html#java.lang.String" class="link">java.lang.String</a></td>
+                            <td>
+Directory ID, as stated in CSV
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>managerName</td>
+                            <td><a href="api.html#java.lang.String" class="link">java.lang.String</a></td>
+                            <td>
+Temporary field to host manager directoryID
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>managerId</td>
+                            <td><a href="api.html#java.lang.Long" class="link">java.lang.Long</a></td>
+                            <td>
+This is the manager key
+                            </td>
+                        </tr>
+                        </tbody>
+               </table>
+<!-- JSON object: java.lang.Long ---------------------------------------------------->		
+        <a name="java.lang.Long" />
+        <h2 class="methodHeader">java.lang.Long</h2>
+		<table>
+			<thead>
+	    		<td class="column1">Name</th>
+	    		<td class="column2">Type</th>
+	    		<td class="column3">Description</th>
+			</thead>
+			<tbody>
+ 
+                        <tr>
+                            <td>chars</td>
+                            <td>void</td>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>long</td>
+                            <td><a href="api.html#java.lang.Long" class="link">java.lang.Long</a></td>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>long</td>
+                            <td><a href="api.html#java.lang.Long" class="link">java.lang.Long</a></td>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>long</td>
+                            <td><a href="api.html#java.lang.Long" class="link">java.lang.Long</a></td>
+                            <td>
+                            </td>
+                        </tr>
+                        </tbody>
+               </table>
+<!-- JSON object: java.lang.String ---------------------------------------------------->		
+        <a name="java.lang.String" />
+        <h2 class="methodHeader">java.lang.String</h2>
+		<table>
+			<thead>
+	    		<td class="column1">Name</th>
+	    		<td class="column2">Type</th>
+	    		<td class="column3">Description</th>
+			</thead>
+			<tbody>
+ 
+                        <tr>
+                            <td>empty</td>
+                            <td>boolean</td>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>chars</td>
+                            <td>void</td>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>chars</td>
+                            <td>void</td>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>bytes</td>
+                            <td>void</td>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>bytes</td>
+                            <td>byte</td>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>bytes</td>
+                            <td>byte</td>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>bytes</td>
+                            <td>byte</td>
+                            <td>
+                            </td>
+                        </tr>
+                        </tbody>
+               </table>
+<!-- JSON object: net.sf.mardao.core.geo.DLocation ---------------------------------------------------->		
+        <a name="net.sf.mardao.core.geo.DLocation" />
+        <h2 class="methodHeader">net.sf.mardao.core.geo.DLocation</h2>
+		<table>
+			<thead>
+	    		<td class="column1">Name</th>
+	    		<td class="column2">Type</th>
+	    		<td class="column3">Description</th>
+			</thead>
+			<tbody>
+ 
+                        <tr>
+                            <td>latitude</td>
+                            <td>float</td>
+                            <td>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>longitude</td>
+                            <td>float</td>
+                            <td>
+
+                            </td>
+                        </tr>
+                        </tbody>
+               </table>
+
+    </body>
+</html>
