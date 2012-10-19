@@ -33,6 +33,7 @@ import org.springframework.web.servlet.view.RedirectView;
 @RequestMapping("{domain}/survey")
 public class SurveyController {
     public static final int ERR_SURVEY_GET_NOT_FOUND = SurveyService.ERR_SURVEY + 1;
+    public static final int ERR_CREATE_CONFLICT = SurveyService.ERR_SURVEY + 2;
     
     public static final String NAME_LOCATION = "Location";
     public static final String NAME_X_REQUESTED_WITH = "X-Requested-With";

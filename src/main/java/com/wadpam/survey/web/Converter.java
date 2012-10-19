@@ -7,6 +7,7 @@ import com.wadpam.survey.domain.DQuestion;
 import com.wadpam.survey.domain.DResponse;
 import com.wadpam.survey.domain.DSurvey;
 import com.wadpam.survey.json.JAnswer;
+import com.wadpam.survey.json.JQuestion;
 import com.wadpam.survey.json.JResponse;
 import com.wadpam.survey.json.JSurvey;
 
@@ -59,7 +60,7 @@ public class Converter extends BaseConverter {
         to.setAnswer(from.getAnswer());
         if (null != from.getQuestionId()) {
             final DQuestion foreign = new DQuestion();
-            foreign.setId(from.getResponseId());
+            foreign.setId(from.getQuestionId());
             to.setQuestion(foreign);
         }
         if (null != from.getResponseId()) {
@@ -71,6 +72,44 @@ public class Converter extends BaseConverter {
             final DSurvey foreign = new DSurvey();
             foreign.setId(from.getSurveyId());
             to.setSurvey(foreign);
+        }
+        
+        return to;
+    }
+    
+    public static JQuestion convert(DQuestion from) {
+        if (null == from) {
+            return null;
+        }
+        
+        final JQuestion to = new JQuestion();
+        convert(from, to);
+
+        to.setOrder(from.getOrder());
+        to.setQuestion(from.getQuestion());
+        to.setRequired(from.getRequired());
+        to.setType(from.getType());
+        to.setSurveyId(null != from.getSurvey() ? from.getSurvey().getId() : null);
+        
+        return to;
+    }
+
+    public static DQuestion convert(JQuestion from) {
+        if (null == from) {
+            return null;
+        }
+        
+        final DQuestion to = new DQuestion();
+        convert(from, to);
+
+        to.setOrder(from.getOrder());
+        to.setQuestion(from.getQuestion());
+        to.setRequired(from.getRequired());
+        to.setType(from.getType());
+        if (null != from.getSurveyId()) {
+            final DSurvey survey = new DSurvey();
+            survey.setId(from.getSurveyId());
+            to.setSurvey(survey);
         }
         
         return to;

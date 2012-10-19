@@ -32,7 +32,9 @@ import org.springframework.web.servlet.view.RedirectView;
 @Controller
 @RequestMapping("{domain}/survey/v10/{surveyId}/response/v10/{responseId}/answer")
 public class AnswerController {
-    public static final int ERR_RESPONSE_GET_NOT_FOUND = SurveyService.ERR_RESPONSE + 1;
+    public static final int ERR_GET_NOT_FOUND = SurveyService.ERR_ANSWER + 1;
+    public static final int ERR_CREATE_NOT_FOUND = SurveyService.ERR_ANSWER + 2;
+    public static final int ERR_CREATE_CONFLICT = SurveyService.ERR_ANSWER + 3;
     
     public static final String NAME_LOCATION = "Location";
     public static final String NAME_X_REQUESTED_WITH = "X-Requested-With";
@@ -62,7 +64,11 @@ public class AnswerController {
             @RequestParam(required=false) String[] answers
             ) {
         
-        final DAnswer dEntity = service.createAnswer(surveyId, responseId, Converter.convert(jAnswer));
+        if (null == jAnswer.getQuestionId() || jAnswer.getQuestionId() < 1L) {
+            throw new IllegalArgumentException("Invalid questionId " + jAnswer.getQuestionId());
+        }
+        
+        final DAnswer dEntity = service.createAnswer(Converter.convert(jAnswer));
 
         // AJAX request? Respond with 201 Created + Location header.
         if (AnswerController.VALUE_X_REQUESTED_WITH_AJAX.equals(xRequestedWith)) {
@@ -92,7 +98,7 @@ public class AnswerController {
             @PathVariable Long id) {
         final DAnswer entity = service.getAnswer(id);
         if (null == entity) {
-            throw new NotFoundException(ERR_RESPONSE_GET_NOT_FOUND, 
+            throw new NotFoundException(ERR_GET_NOT_FOUND, 
                     "Not a server error, perhaps a client one",
                     null, 
                     String.format("There is no Entity with id %d", id));

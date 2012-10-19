@@ -20,6 +20,10 @@ public class DQuestion extends AbstractLongEntity {
     @Basic
     private String question;
     
+    /** Indicates if an answer is required: REQUIRED, OPTIONAL, REMINDER. */
+    @Basic
+    private Long required;
+    
     /** The answer type: TEXT, NUMBER, IMAGE, ... */
     @Basic
     private Long type;
@@ -58,6 +62,14 @@ public class DQuestion extends AbstractLongEntity {
 
     public void setType(Long type) {
         this.type = type;
+    }
+
+    public Long getRequired() {
+        return required;
+    }
+
+    public void setRequired(Long required) {
+        this.required = required;
     }
 
 }

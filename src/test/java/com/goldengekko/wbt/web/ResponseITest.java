@@ -15,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 /**
@@ -24,6 +25,7 @@ import org.springframework.web.client.RestTemplate;
 public class ResponseITest {
 
     static final String                  BASE_URL       = "http://localhost:8943/api/apidocs/survey/v10/4242/";
+    static final String                  BASE_URL_SURVEY       = "http://localhost:8943/api/apidocs/survey/v10";
 
     RestTemplate                         template;
     public ResponseITest() {
@@ -47,19 +49,40 @@ public class ResponseITest {
     }
 
     @Test
+    public void testCreateNotFound() {
+        
+        MultiValueMap<String, Object> requestEntity = new LinkedMultiValueMap<String, Object>();
+
+        try {
+            URI uri = template.postForLocation(BASE_URL + "response/v10", 
+                requestEntity);
+            fail("Expected 404 Not Found");
+        }
+        catch (HttpClientErrorException expected) {
+            assertEquals("404 Not Found", expected.getMessage());
+        }
+    }
+
+    @Test
     public void testCreate() {
         
         MultiValueMap<String, Object> requestEntity = new LinkedMultiValueMap<String, Object>();
-//        requestEntity.set("namespace", "MyNamespace");
+        requestEntity.add("title", "Survey Title");
         
-        URI uri = template.postForLocation(BASE_URL + "response/v10", 
+        // create a survey first
+        URI surveyURI = template.postForLocation(BASE_URL_SURVEY, requestEntity);
+        JSurvey survey = template.getForObject(surveyURI, JSurvey.class);
+        assertNotNull(survey);
+        
+        requestEntity.clear();
+        URI uri = template.postForLocation(BASE_URL_SURVEY + String.format("/%s/", survey.getId()) + "response/v10", 
                 requestEntity);
         assertNotNull("createResponse", uri);
         System.out.println("created response, URI is " + uri);
         
         JResponse actual = template.getForObject(uri, JResponse.class);
         assertNotNull("createdResponse", actual);
-        assertEquals("surveyId", Long.valueOf(4242), actual.getSurveyId());
+        assertEquals("surveyId", survey.getId(), actual.getSurveyId().toString());
     }
 
 }
