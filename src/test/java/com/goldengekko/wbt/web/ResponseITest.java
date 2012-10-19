@@ -21,12 +21,12 @@ import org.springframework.web.client.RestTemplate;
  *
  * @author os
  */
-public class SurveyITest {
+public class ResponseITest {
 
-    static final String                  BASE_URL       = "http://localhost:8943/api/apidocs/";
+    static final String                  BASE_URL       = "http://localhost:8943/api/apidocs/survey/v10/4242/";
 
     RestTemplate                         template;
-    public SurveyITest() {
+    public ResponseITest() {
     }
 
     @BeforeClass
@@ -50,16 +50,16 @@ public class SurveyITest {
     public void testCreate() {
         
         MultiValueMap<String, Object> requestEntity = new LinkedMultiValueMap<String, Object>();
-        requestEntity.set("title", "MyTitle");
+//        requestEntity.set("namespace", "MyNamespace");
         
-        URI uri = template.postForLocation(BASE_URL + "survey/v10", 
+        URI uri = template.postForLocation(BASE_URL + "response/v10", 
                 requestEntity);
-        assertNotNull("createSurvey", uri);
+        assertNotNull("createResponse", uri);
+        System.out.println("created response, URI is " + uri);
         
-        JSurvey actual = template.getForObject(uri, JSurvey.class);
-        assertNotNull("createdSurvey", actual);
-        assertEquals("survey.title", "MyTitle", actual.getTitle());
-        
+        JResponse actual = template.getForObject(uri, JResponse.class);
+        assertNotNull("createdResponse", actual);
+        assertEquals("surveyId", Long.valueOf(4242), actual.getSurveyId());
     }
 
 }

@@ -2,6 +2,7 @@ package com.wadpam.survey.domain;
 
 import javax.persistence.Basic;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import net.sf.mardao.core.domain.AbstractLongEntity;
 
 /**
@@ -9,16 +10,16 @@ import net.sf.mardao.core.domain.AbstractLongEntity;
  * @author os
  */
 @Entity
-public class DSurvey extends AbstractLongEntity {
+public class DResponse extends AbstractLongEntity {
     
-    /** Launched, In design, Closed, Deleted */
+    /** In progress, Closed, Deleted */
     @Basic
     private Long state;
-    
-    /** The title of this survey */
-    @Basic
-    private String title;
 
+    /** The survey this response is for */
+    @ManyToOne
+    private DSurvey survey;
+    
     public Long getState() {
         return state;
     }
@@ -27,13 +28,12 @@ public class DSurvey extends AbstractLongEntity {
         this.state = state;
     }
 
-    public String getTitle() {
-        return title;
+    public DSurvey getSurvey() {
+        return survey;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setSurvey(DSurvey survey) {
+        this.survey = survey;
     }
-    
-    
+
 }

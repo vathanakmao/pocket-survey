@@ -5,8 +5,8 @@ import com.wadpam.docrest.domain.RestCode;
 import com.wadpam.docrest.domain.RestReturn;
 import com.wadpam.open.json.JCursorPage;
 import com.wadpam.server.exceptions.NotFoundException;
-import com.wadpam.survey.domain.DSurvey;
-import com.wadpam.survey.json.JSurvey;
+import com.wadpam.survey.domain.DAnswer;
+import com.wadpam.survey.json.JAnswer;
 import java.io.Serializable;
 import java.net.URL;
 import javax.servlet.http.HttpServletResponse;
@@ -28,17 +28,17 @@ import org.springframework.web.servlet.view.RedirectView;
  *
  * @author os
  */
-@RestReturn(value=JSurvey.class)
+@RestReturn(value=JAnswer.class)
 @Controller
-@RequestMapping("{domain}/survey")
-public class SurveyController {
-    public static final int ERR_SURVEY_GET_NOT_FOUND = SurveyService.ERR_SURVEY + 1;
+@RequestMapping("{domain}/survey/v10/{surveyId}/response/v10/{responseId}/answer")
+public class AnswerController {
+    public static final int ERR_RESPONSE_GET_NOT_FOUND = SurveyService.ERR_RESPONSE + 1;
     
     public static final String NAME_LOCATION = "Location";
     public static final String NAME_X_REQUESTED_WITH = "X-Requested-With";
     public static final String VALUE_X_REQUESTED_WITH_AJAX = "XMLHttpRequest";
     
-    static final Logger LOG = LoggerFactory.getLogger(SurveyController.class);
+    static final Logger LOG = LoggerFactory.getLogger(AnswerController.class);
     
     static final Converter CONVERTER = new Converter();
     
@@ -53,19 +53,22 @@ public class SurveyController {
         @RestCode(code=302, description="The entity was created", message="OK")})
     @RequestMapping(value="v10", method= RequestMethod.POST)
     public RedirectView create(
-                        @RequestHeader(value=SurveyController.NAME_X_REQUESTED_WITH, required=false) String xRequestedWith,
+                        @RequestHeader(value=AnswerController.NAME_X_REQUESTED_WITH, required=false) String xRequestedWith,
             HttpServletResponse response,
             @PathVariable String domain,
-            @ModelAttribute JSurvey survey
+            @PathVariable Long surveyId,
+            @PathVariable Long responseId,
+            @ModelAttribute JAnswer jAnswer,
+            @RequestParam(required=false) String[] answers
             ) {
         
-        final DSurvey dEntity = service.createSurvey(Converter.convert(survey));
+        final DAnswer dEntity = service.createAnswer(surveyId, responseId, Converter.convert(jAnswer));
 
         // AJAX request? Respond with 201 Created + Location header.
-        if (SurveyController.VALUE_X_REQUESTED_WITH_AJAX.equals(xRequestedWith)) {
+        if (AnswerController.VALUE_X_REQUESTED_WITH_AJAX.equals(xRequestedWith)) {
             response.setStatus(HttpStatus.CREATED.value());
-            final String path = String.format("/api/%s/location/v10/%d", 
-                    domain, dEntity.getId());
+            final String path = String.format("v10/%d", 
+                    dEntity.getId());
             response.addHeader(NAME_LOCATION, path);
             return null;
         }
@@ -80,21 +83,21 @@ public class SurveyController {
      * @param id the id of the entity to retrieve
      * @return the loaded JSON object
      */
-    @RestReturn(value=JSurvey.class, code={
+    @RestReturn(value=JAnswer.class, code={
         @RestCode(code=200, description="The entity was found", message="OK"),
         @RestCode(code=404, description="The entity was not found", message="Not Found")})
     @RequestMapping(value="v10/{id}", method= RequestMethod.GET)
     @ResponseBody
-    public JSurvey get(
+    public JAnswer get(
             @PathVariable Long id) {
-        final DSurvey entity = service.getSurvey(id);
+        final DAnswer entity = service.getAnswer(id);
         if (null == entity) {
-            throw new NotFoundException(ERR_SURVEY_GET_NOT_FOUND, 
+            throw new NotFoundException(ERR_RESPONSE_GET_NOT_FOUND, 
                     "Not a server error, perhaps a client one",
                     null, 
                     String.format("There is no Entity with id %d", id));
         }
-        final JSurvey body = Converter.convert(entity);
+        final JAnswer body = Converter.convert(entity);
         
         return body;
     }
@@ -105,14 +108,14 @@ public class SurveyController {
      * @param cursorKey null to get first page
      * @return a page of entities
      */
-    @RestReturn(value=JCursorPage.class, entity=JSurvey.class, code={
+    @RestReturn(value=JCursorPage.class, entity=JAnswer.class, code={
         @RestCode(code=200, description="A CursorPage with JSON entities", message="OK")})
     @RequestMapping(value="v10", method= RequestMethod.GET)
     @ResponseBody
-    public JCursorPage<JSurvey> getPage(
+    public JCursorPage<JAnswer> getPage(
             @RequestParam(defaultValue="10") int pageSize, 
             @RequestParam(required=false) Serializable cursorKey) {
-        final CursorPage<DSurvey, Long> page = service.getSurveysPage(pageSize, cursorKey);
+        final CursorPage<DAnswer, Long> page = service.getAnswersPage(pageSize, cursorKey);
         final JCursorPage body = CONVERTER.convertPage(page);
 
         return body;
@@ -129,16 +132,16 @@ public class SurveyController {
         @RestCode(code=302, description="The entity was updated", message="OK")})
     @RequestMapping(value="v10/{id}", method= RequestMethod.POST)
     public RedirectView update(
-                        @RequestHeader(value=SurveyController.NAME_X_REQUESTED_WITH, required=false) String xRequestedWith,
+                                                                                                @RequestHeader(value=AnswerController.NAME_X_REQUESTED_WITH, required=false) String xRequestedWith,
             HttpServletResponse response,
             @PathVariable Long id,
-            @ModelAttribute JSurvey jEntity
+            @ModelAttribute JAnswer jEntity
             ) {
         
-        final DSurvey dEntity = service.updateSurvey(Converter.convert(jEntity));
+        final DAnswer dEntity = service.updateAnswer(Converter.convert(jEntity));
         
         // AJAX request? Respond with 204 No Content.
-        if (SurveyController.VALUE_X_REQUESTED_WITH_AJAX.equals(xRequestedWith)) {
+        if (AnswerController.VALUE_X_REQUESTED_WITH_AJAX.equals(xRequestedWith)) {
             response.setStatus(HttpStatus.NO_CONTENT.value());
             return null;
         }
