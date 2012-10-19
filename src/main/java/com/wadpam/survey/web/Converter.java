@@ -23,6 +23,9 @@ public class Converter extends BaseConverter {
         if (d instanceof DSurvey) {
             returnValue = convert((DSurvey) d);
         }
+        else if (d instanceof DQuestion) {
+            returnValue = convert((DQuestion) d);
+        }
         else if (d instanceof DResponse) {
             returnValue = convert((DResponse) d);
         }

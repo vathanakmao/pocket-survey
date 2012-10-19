@@ -116,6 +116,7 @@ public class QuestionController {
             @RequestParam(defaultValue="10") int pageSize, 
             @RequestParam(required=false) Serializable cursorKey) {
         final CursorPage<DQuestion, Long> page = service.getQuestionsPage(pageSize, cursorKey);
+        LOG.info("getQuestionsPage(queried {})", page.getItems().size());
         final JCursorPage body = CONVERTER.convertPage(page);
 
         return body;
