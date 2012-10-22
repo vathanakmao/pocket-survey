@@ -1,19 +1,23 @@
 {
     "apiVersion": "0.2",
     "swaggerVersion": "1.1",
-    "basePath": "http://localhost:8929/swagger/",
+    "basePath": "http://archive.goldengekko.com/archive/pocket-survey/apidocs/",
     "apis": [
         {
-            "path": "/JLocation.{format}",
-            "description": "com.goldengekko.wbt.json.JLocation "
+            "path": "/JAnswer.{format}",
+            "description": "com.wadpam.survey.json.JAnswer "
         }
 ,        {
-            "path": "/JMeeting.{format}",
-            "description": "com.goldengekko.wbt.json.JMeeting "
+            "path": "/JQuestion.{format}",
+            "description": "com.wadpam.survey.json.JQuestion "
         }
 ,        {
-            "path": "/JProfile.{format}",
-            "description": "com.goldengekko.wbt.json.JProfile "
+            "path": "/JResponse.{format}",
+            "description": "com.wadpam.survey.json.JResponse "
+        }
+,        {
+            "path": "/JSurvey.{format}",
+            "description": "com.wadpam.survey.json.JSurvey "
         }
     ]
 }

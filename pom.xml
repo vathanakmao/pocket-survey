@@ -26,7 +26,7 @@
         <mardao.version>2.0.2</mardao.version>
         <openserver.version>2-SNAPSHOT</openserver.version>
         <javadocExecutable>${java.home}/../bin/javadoc</javadocExecutable>
-        <docrest.version>1.17</docrest.version>
+        <docrest.version>1.19</docrest.version>
         <logging.level>ALL</logging.level>
         <endpoint.apiUrl>http://pocket-survey.appspot.com/api/apidocs/</endpoint.apiUrl>
         <swagger.basePath>http://localhost:8929/swagger/</swagger.basePath>
@@ -377,6 +377,13 @@
     </repositories>
 
     <profiles>
+        <profile>
+            <id>archive</id>
+            <properties>
+                <endpoint.apiUrl>http://pocket-survey.appspot.com/api/apidocs/</endpoint.apiUrl>
+                <swagger.basePath>http://archive.goldengekko.com/archive/pocket-survey/apidocs/</swagger.basePath>
+            </properties>
+        </profile>
         <profile>
             <id>javadoc</id>
             <build>

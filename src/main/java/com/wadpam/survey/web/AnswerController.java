@@ -86,6 +86,9 @@ public class AnswerController {
     
     /**
      * Loads the specified entity.
+     * @param domain the domain (used for Multi-tenancy)
+     * @param surveyId the survey's id
+     * @param responseId the response's id
      * @param id the id of the entity to retrieve
      * @return the loaded JSON object
      */
@@ -95,6 +98,9 @@ public class AnswerController {
     @RequestMapping(value="v10/{id}", method= RequestMethod.GET)
     @ResponseBody
     public JAnswer get(
+            @PathVariable String domain,
+            @PathVariable Long surveyId,
+            @PathVariable Long responseId,
             @PathVariable Long id) {
         final DAnswer entity = service.getAnswer(id);
         if (null == entity) {

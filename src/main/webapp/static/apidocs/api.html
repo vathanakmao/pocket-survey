@@ -8,48 +8,64 @@
     	<h1>Content</h1>
     	<ul>
             <li>
-<a href="api.html#com.goldengekko.wbt.web.LocationController" class="link">/{domain}/location</a>
+<a href="api.html#com.wadpam.survey.web.AnswerController" class="link">/{domain}/survey/v10/{surveyId}/response/v10/{responseId}/answer</a>
                 <ul>
-                    <li><a href="api.html#com.goldengekko.wbt.web.LocationController.create" class="link">create()</a></li>
-                    <li><a href="api.html#com.goldengekko.wbt.web.LocationController.get" class="link">get()</a></li>
-                    <li><a href="api.html#com.goldengekko.wbt.web.LocationController.getPage" class="link">getPage()</a></li>
+                    <li><a href="api.html#com.wadpam.survey.web.AnswerController.create" class="link">create()</a></li>
+                    <li><a href="api.html#com.wadpam.survey.web.AnswerController.get" class="link">get()</a></li>
+                    <li><a href="api.html#com.wadpam.survey.web.AnswerController.getPage" class="link">getPage()</a></li>
+                    <li><a href="api.html#com.wadpam.survey.web.AnswerController.update" class="link">update()</a></li>
                 </ul>
             </li>
             <li>
-<a href="api.html#com.goldengekko.wbt.web.MeetingController" class="link">/{domain}/visit</a>
+<a href="api.html#com.wadpam.survey.web.QuestionController" class="link">/{domain}/survey/v10/{surveyId}/question</a>
                 <ul>
-                    <li><a href="api.html#com.goldengekko.wbt.web.MeetingController.createVisit" class="link">createVisit()</a></li>
-                    <li><a href="api.html#com.goldengekko.wbt.web.MeetingController.getVisit" class="link">getVisit()</a></li>
+                    <li><a href="api.html#com.wadpam.survey.web.QuestionController.create" class="link">create()</a></li>
+                    <li><a href="api.html#com.wadpam.survey.web.QuestionController.get" class="link">get()</a></li>
+                    <li><a href="api.html#com.wadpam.survey.web.QuestionController.getPage" class="link">getPage()</a></li>
+                    <li><a href="api.html#com.wadpam.survey.web.QuestionController.update" class="link">update()</a></li>
                 </ul>
             </li>
             <li>
-<a href="api.html#com.goldengekko.wbt.web.ProfileController" class="link">/{domain}/profile</a>
+<a href="api.html#com.wadpam.survey.web.ResponseController" class="link">/{domain}/survey/v10/{surveyId}/response</a>
                 <ul>
-                    <li><a href="api.html#com.goldengekko.wbt.web.ProfileController.getProfilePage" class="link">getProfilePage()</a></li>
+                    <li><a href="api.html#com.wadpam.survey.web.ResponseController.create" class="link">create()</a></li>
+                    <li><a href="api.html#com.wadpam.survey.web.ResponseController.get" class="link">get()</a></li>
+                    <li><a href="api.html#com.wadpam.survey.web.ResponseController.getPage" class="link">getPage()</a></li>
+                    <li><a href="api.html#com.wadpam.survey.web.ResponseController.update" class="link">update()</a></li>
+                </ul>
+            </li>
+            <li>
+<a href="api.html#com.wadpam.survey.web.SurveyController" class="link">/{domain}/survey</a>
+                <ul>
+                    <li><a href="api.html#com.wadpam.survey.web.SurveyController.create" class="link">create()</a></li>
+                    <li><a href="api.html#com.wadpam.survey.web.SurveyController.get" class="link">get()</a></li>
+                    <li><a href="api.html#com.wadpam.survey.web.SurveyController.getPage" class="link">getPage()</a></li>
+                    <li><a href="api.html#com.wadpam.survey.web.SurveyController.update" class="link">update()</a></li>
                 </ul>
             </li>
             <li>JSON objects
                 <ul>
+                    <li><a href="api.html#java.lang.Object" class="link">java.lang.Object</a></li>
                 </ul>
             </li>
         </ul>
 <!-- Resource: /person ---------------------------------------------------->
     <h1 class="resourceHeader">
-/{domain}/location
+/{domain}/survey/v10/{surveyId}/response/v10/{responseId}/answer
     </h1>
 
-    <a name="com.goldengekko.wbt.web.LocationController" />
+    <a name="com.wadpam.survey.web.AnswerController" />
 
     <p class="concreteClass">
             <b>Description</b>: 
     </p>
 
     <p class="concreteClass">
-            <b>Concrete class</b>: com.goldengekko.wbt.web.LocationController
+            <b>Concrete class</b>: com.wadpam.survey.web.AnswerController
     </p>
 
 <!-- Method: findByName() ---------------------------------------------------->		
-        <a name="com.goldengekko.wbt.web.LocationController.create" />
+        <a name="com.wadpam.survey.web.AnswerController.create" />
 
         <h2 class="methodHeader">create()</h2>
 
@@ -58,12 +74,12 @@
         </p>
 
         <p>
-            <b>Implementing Class</b>: com.goldengekko.wbt.web.LocationController
+            <b>Implementing Class</b>: com.wadpam.survey.web.AnswerController
         </p>
 
         <p class="restPath">
             <b>REST path</b>: POST&nbsp;
-    /{domain}/location/v10
+    /{domain}/survey/v10/{surveyId}/response/v10/{responseId}/answer/v10
 
 		<h3>Request parameters</h3>
 		<table>
@@ -75,10 +91,19 @@
 			</thead>
 			<tbody>
                             <tr>
-                                <td>body (properties separately)</td><td>com.goldengekko.wbt.json.JLocation</td><td>{<div>&nbsp;&nbsp;&nbsp;<b>"appArg0"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"city"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"description"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"extCode"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"extID"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"id"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"latLong"</b>&nbsp;:&nbsp;{<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>"latitude"</b>&nbsp;:&nbsp;float,</div><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>"longitude"</b>&nbsp;:&nbsp;float,</div>&nbsp;&nbsp;&nbsp;},</div><div>&nbsp;&nbsp;&nbsp;<b>"name"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"phone"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"streetAddress"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"zipCode"</b>&nbsp;:&nbsp;String,</div>}</td><td></td>
+                                <td>path</td><td>domain</td><td>String</td><td></td>
                             </tr>
                             <tr>
-                                <td>body (properties separately)</td><td><a href="api.html#net.sf.mardao.core.geo.DLocation" class="link">net.sf.mardao.core.geo.DLocation</a></td><td>{<div>&nbsp;&nbsp;&nbsp;<b>"latitude"</b>&nbsp;:&nbsp;float,</div><div>&nbsp;&nbsp;&nbsp;<b>"longitude"</b>&nbsp;:&nbsp;float,</div>}</td><td></td>
+                                <td>path</td><td>surveyId</td><td>Long</td><td></td>
+                            </tr>
+                            <tr>
+                                <td>path</td><td>responseId</td><td>Long</td><td></td>
+                            </tr>
+                            <tr>
+                                <td>query</td><td>answers</td><td>java.lang.String[]</td><td></td>
+                            </tr>
+                            <tr>
+                                <td>body (properties separately)</td><td>com.wadpam.survey.json.JAnswer</td><td>{<div>&nbsp;&nbsp;&nbsp;<b>"answer"</b>&nbsp;:&nbsp;{&nbsp;&nbsp;&nbsp;},</div><div>&nbsp;&nbsp;&nbsp;<b>"createdBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"id"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"questionId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"responseId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"state"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"surveyId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedDate"</b>&nbsp;:&nbsp;Long,</div>}</td><td></td>
                             </tr>
 			</tbody>
 		</table>
@@ -92,7 +117,10 @@
 				</thead>
 				<tbody>
                <tr>
-                <td>302</td><td>OK</td><td colspan="2">A store was created</td>
+                <td>201</td><td>Created</td><td colspan="2">The entity was created by AJAX</td>
+            </tr>
+               <tr>
+                <td>302</td><td>OK</td><td colspan="2">The entity was created</td>
             </tr>
 				</tbody>
 			</table>
@@ -103,11 +131,11 @@
 
 		<h3>Response Example</h3>
 		<p class="code">
-			<pre>{<div>&nbsp;&nbsp;&nbsp;<b>"appArg0"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"city"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"description"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"extCode"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"extID"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"id"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"latLong"</b>&nbsp;:&nbsp;{<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>"latitude"</b>&nbsp;:&nbsp;float,</div><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>"longitude"</b>&nbsp;:&nbsp;float,</div>&nbsp;&nbsp;&nbsp;},</div><div>&nbsp;&nbsp;&nbsp;<b>"name"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"phone"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"streetAddress"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"zipCode"</b>&nbsp;:&nbsp;String,</div>}</pre>
+			<pre>{<div>&nbsp;&nbsp;&nbsp;<b>"answer"</b>&nbsp;:&nbsp;{&nbsp;&nbsp;&nbsp;},</div><div>&nbsp;&nbsp;&nbsp;<b>"createdBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"id"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"questionId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"responseId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"state"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"surveyId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedDate"</b>&nbsp;:&nbsp;Long,</div>}</pre>
 		</p>
 				
 <!-- Method: findByName() ---------------------------------------------------->		
-        <a name="com.goldengekko.wbt.web.LocationController.get" />
+        <a name="com.wadpam.survey.web.AnswerController.get" />
 
         <h2 class="methodHeader">get()</h2>
 
@@ -116,12 +144,12 @@
         </p>
 
         <p>
-            <b>Implementing Class</b>: com.goldengekko.wbt.web.LocationController
+            <b>Implementing Class</b>: com.wadpam.survey.web.AnswerController
         </p>
 
         <p class="restPath">
             <b>REST path</b>: GET&nbsp;
-    /{domain}/location/v10/{id}
+    /{domain}/survey/v10/{surveyId}/response/v10/{responseId}/answer/v10/{id}
 
 		<h3>Request parameters</h3>
 		<table>
@@ -132,6 +160,15 @@
 	    		<td class="columnAuto">Description</th>
 			</thead>
 			<tbody>
+                            <tr>
+                                <td>path</td><td>domain</td><td>String</td><td>the domain (used for Multi-tenancy)</td>
+                            </tr>
+                            <tr>
+                                <td>path</td><td>surveyId</td><td>Long</td><td>the survey's id</td>
+                            </tr>
+                            <tr>
+                                <td>path</td><td>responseId</td><td>Long</td><td>the response's id</td>
+                            </tr>
                             <tr>
                                 <td>path</td><td>id</td><td>Long</td><td>the id of the entity to retrieve</td>
                             </tr>
@@ -156,30 +193,30 @@
 			</table>
 
 			<p>
-                            <b>Response Type</b>: <a href="api.html#com.goldengekko.wbt.json.JLocation" class="link">com.goldengekko.wbt.json.JLocation</a>
+                            <b>Response Type</b>: <a href="api.html#com.wadpam.survey.json.JAnswer" class="link">com.wadpam.survey.json.JAnswer</a>
                         </p>
 
 		<h3>Response Example</h3>
 		<p class="code">
-			<pre>{<div>&nbsp;&nbsp;&nbsp;<b>"appArg0"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"city"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"description"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"extCode"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"extID"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"id"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"latLong"</b>&nbsp;:&nbsp;{<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>"latitude"</b>&nbsp;:&nbsp;float,</div><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>"longitude"</b>&nbsp;:&nbsp;float,</div>&nbsp;&nbsp;&nbsp;},</div><div>&nbsp;&nbsp;&nbsp;<b>"name"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"phone"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"streetAddress"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"zipCode"</b>&nbsp;:&nbsp;String,</div>}</pre>
+			<pre>{<div>&nbsp;&nbsp;&nbsp;<b>"answer"</b>&nbsp;:&nbsp;{&nbsp;&nbsp;&nbsp;},</div><div>&nbsp;&nbsp;&nbsp;<b>"createdBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"id"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"questionId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"responseId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"state"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"surveyId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedDate"</b>&nbsp;:&nbsp;Long,</div>}</pre>
 		</p>
 				
 <!-- Method: findByName() ---------------------------------------------------->		
-        <a name="com.goldengekko.wbt.web.LocationController.getPage" />
+        <a name="com.wadpam.survey.web.AnswerController.getPage" />
 
         <h2 class="methodHeader">getPage()</h2>
 
         <p>
-            <b>Description</b>:Queries for a (next) page of profiles
+            <b>Description</b>:Queries for a (next) page of entities
         </p>
 
         <p>
-            <b>Implementing Class</b>: com.goldengekko.wbt.web.LocationController
+            <b>Implementing Class</b>: com.wadpam.survey.web.AnswerController
         </p>
 
         <p class="restPath">
             <b>REST path</b>: GET&nbsp;
-    /{domain}/location/v10
+    /{domain}/survey/v10/{surveyId}/response/v10/{responseId}/answer/v10
 
 		<h3>Request parameters</h3>
 		<table>
@@ -214,45 +251,30 @@
 			</table>
 
 			<p>
-                            <b>Response Type</b>: com.goldengekko.wbt.json.JCursorPage
+                            <b>Response Type</b>: com.wadpam.open.json.JCursorPage
                         </p>
 
 		<h3>Response Example</h3>
 		<p class="code">
-			<pre>{<div>&nbsp;&nbsp;&nbsp;<b>"appArg0"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"city"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"description"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"extCode"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"extID"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"id"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"latLong"</b>&nbsp;:&nbsp;{<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>"latitude"</b>&nbsp;:&nbsp;float,</div><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>"longitude"</b>&nbsp;:&nbsp;float,</div>&nbsp;&nbsp;&nbsp;},</div><div>&nbsp;&nbsp;&nbsp;<b>"name"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"phone"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"streetAddress"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"zipCode"</b>&nbsp;:&nbsp;String,</div>}</pre>
+			<pre>{<div>&nbsp;&nbsp;&nbsp;<b>"answer"</b>&nbsp;:&nbsp;{&nbsp;&nbsp;&nbsp;},</div><div>&nbsp;&nbsp;&nbsp;<b>"createdBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"id"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"questionId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"responseId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"state"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"surveyId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedDate"</b>&nbsp;:&nbsp;Long,</div>}</pre>
 		</p>
 				
-<!-- Resource: /person ---------------------------------------------------->
-    <h1 class="resourceHeader">
-/{domain}/visit
-    </h1>
-
-    <a name="com.goldengekko.wbt.web.MeetingController" />
-
-    <p class="concreteClass">
-            <b>Description</b>: 
-    </p>
-
-    <p class="concreteClass">
-            <b>Concrete class</b>: com.goldengekko.wbt.web.MeetingController
-    </p>
-
 <!-- Method: findByName() ---------------------------------------------------->		
-        <a name="com.goldengekko.wbt.web.MeetingController.createVisit" />
+        <a name="com.wadpam.survey.web.AnswerController.update" />
 
-        <h2 class="methodHeader">createVisit()</h2>
+        <h2 class="methodHeader">update()</h2>
 
         <p>
-            <b>Description</b>:Creates a visit.
+            <b>Description</b>:Updates an entity.
         </p>
 
         <p>
-            <b>Implementing Class</b>: com.goldengekko.wbt.web.MeetingController
+            <b>Implementing Class</b>: com.wadpam.survey.web.AnswerController
         </p>
 
         <p class="restPath">
             <b>REST path</b>: POST&nbsp;
-    /{domain}/visit/v10
+    /{domain}/survey/v10/{surveyId}/response/v10/{responseId}/answer/v10/{id}
 
 		<h3>Request parameters</h3>
 		<table>
@@ -264,7 +286,10 @@
 			</thead>
 			<tbody>
                             <tr>
-                                <td>query</td><td>storeId</td><td>Long</td><td>the id of the store where the visit will take place</td>
+                                <td>path</td><td>id</td><td>Long</td><td>the id of the entity to update</td>
+                            </tr>
+                            <tr>
+                                <td>body (properties separately)</td><td><a href="api.html#com.wadpam.survey.json.JAnswer" class="link">com.wadpam.survey.json.JAnswer</a></td><td>{<div>&nbsp;&nbsp;&nbsp;<b>"answer"</b>&nbsp;:&nbsp;{&nbsp;&nbsp;&nbsp;},</div><div>&nbsp;&nbsp;&nbsp;<b>"createdBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"id"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"questionId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"responseId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"state"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"surveyId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedDate"</b>&nbsp;:&nbsp;Long,</div>}</td><td>the JSON object for this updated entity</td>
                             </tr>
 			</tbody>
 		</table>
@@ -278,7 +303,10 @@
 				</thead>
 				<tbody>
                <tr>
-                <td>302</td><td>OK</td><td colspan="2">A visit was created</td>
+                <td>204</td><td>No Content</td><td colspan="2">The entity was updated by AJAX</td>
+            </tr>
+               <tr>
+                <td>302</td><td>OK</td><td colspan="2">The entity was updated</td>
             </tr>
 				</tbody>
 			</table>
@@ -289,25 +317,40 @@
 
 		<h3>Response Example</h3>
 		<p class="code">
-			<pre>{<div>&nbsp;&nbsp;&nbsp;<b>"createdBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"id"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"locationId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedDate"</b>&nbsp;:&nbsp;Long,</div>}</pre>
+			<pre>{<div>&nbsp;&nbsp;&nbsp;<b>"answer"</b>&nbsp;:&nbsp;{&nbsp;&nbsp;&nbsp;},</div><div>&nbsp;&nbsp;&nbsp;<b>"createdBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"id"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"questionId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"responseId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"state"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"surveyId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedDate"</b>&nbsp;:&nbsp;Long,</div>}</pre>
 		</p>
 				
-<!-- Method: findByName() ---------------------------------------------------->		
-        <a name="com.goldengekko.wbt.web.MeetingController.getVisit" />
+<!-- Resource: /person ---------------------------------------------------->
+    <h1 class="resourceHeader">
+/{domain}/survey/v10/{surveyId}/question
+    </h1>
 
-        <h2 class="methodHeader">getVisit()</h2>
+    <a name="com.wadpam.survey.web.QuestionController" />
+
+    <p class="concreteClass">
+            <b>Description</b>: 
+    </p>
+
+    <p class="concreteClass">
+            <b>Concrete class</b>: com.wadpam.survey.web.QuestionController
+    </p>
+
+<!-- Method: findByName() ---------------------------------------------------->		
+        <a name="com.wadpam.survey.web.QuestionController.create" />
+
+        <h2 class="methodHeader">create()</h2>
 
         <p>
-            <b>Description</b>:Loads a visit.
+            <b>Description</b>:Creates an entity.
         </p>
 
         <p>
-            <b>Implementing Class</b>: com.goldengekko.wbt.web.MeetingController
+            <b>Implementing Class</b>: com.wadpam.survey.web.QuestionController
         </p>
 
         <p class="restPath">
-            <b>REST path</b>: GET&nbsp;
-    /{domain}/visit/v10/{id}
+            <b>REST path</b>: POST&nbsp;
+    /{domain}/survey/v10/{surveyId}/question/v10
 
 		<h3>Request parameters</h3>
 		<table>
@@ -319,7 +362,71 @@
 			</thead>
 			<tbody>
                             <tr>
-                                <td>path</td><td>id</td><td>Long</td><td>the id of the visit to retrieve</td>
+                                <td>path</td><td>domain</td><td>String</td><td></td>
+                            </tr>
+                            <tr>
+                                <td>path</td><td>surveyId</td><td>Long</td><td></td>
+                            </tr>
+                            <tr>
+                                <td>body (properties separately)</td><td>com.wadpam.survey.json.JQuestion</td><td>{<div>&nbsp;&nbsp;&nbsp;<b>"createdBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"id"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"order"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"question"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"required"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"state"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"surveyId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"type"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedDate"</b>&nbsp;:&nbsp;Long,</div>}</td><td></td>
+                            </tr>
+			</tbody>
+		</table>
+
+		<h3>Response Codes</h3>
+			<table>
+				<thead>
+	   				<td class="column1">HTTP Response Code</td>
+	   				<td class="column2">Message</td>
+	   				<td class="columnAuto">Description</td>
+				</thead>
+				<tbody>
+               <tr>
+                <td>201</td><td>Created</td><td colspan="2">The entity was created by AJAX</td>
+            </tr>
+               <tr>
+                <td>302</td><td>OK</td><td colspan="2">The entity was created</td>
+            </tr>
+				</tbody>
+			</table>
+
+			<p>
+                            <b>Response Type</b>: java.net.URL
+                        </p>
+
+		<h3>Response Example</h3>
+		<p class="code">
+			<pre>{<div>&nbsp;&nbsp;&nbsp;<b>"createdBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"id"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"order"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"question"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"required"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"state"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"surveyId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"type"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedDate"</b>&nbsp;:&nbsp;Long,</div>}</pre>
+		</p>
+				
+<!-- Method: findByName() ---------------------------------------------------->		
+        <a name="com.wadpam.survey.web.QuestionController.get" />
+
+        <h2 class="methodHeader">get()</h2>
+
+        <p>
+            <b>Description</b>:Loads the specified entity.
+        </p>
+
+        <p>
+            <b>Implementing Class</b>: com.wadpam.survey.web.QuestionController
+        </p>
+
+        <p class="restPath">
+            <b>REST path</b>: GET&nbsp;
+    /{domain}/survey/v10/{surveyId}/question/v10/{id}
+
+		<h3>Request parameters</h3>
+		<table>
+			<thead>
+	    		<td class="column1">Where</th>
+	    		<td class="column2">Name</th>
+	    		<td class="column3">Type</th>
+	    		<td class="columnAuto">Description</th>
+			</thead>
+			<tbody>
+                            <tr>
+                                <td>path</td><td>id</td><td>Long</td><td>the id of the entity to retrieve</td>
                             </tr>
 			</tbody>
 		</table>
@@ -342,45 +449,30 @@
 			</table>
 
 			<p>
-                            <b>Response Type</b>: <a href="api.html#com.goldengekko.wbt.json.JMeeting" class="link">com.goldengekko.wbt.json.JMeeting</a>
+                            <b>Response Type</b>: <a href="api.html#com.wadpam.survey.json.JQuestion" class="link">com.wadpam.survey.json.JQuestion</a>
                         </p>
 
 		<h3>Response Example</h3>
 		<p class="code">
-			<pre>{<div>&nbsp;&nbsp;&nbsp;<b>"createdBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"id"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"locationId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedDate"</b>&nbsp;:&nbsp;Long,</div>}</pre>
+			<pre>{<div>&nbsp;&nbsp;&nbsp;<b>"createdBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"id"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"order"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"question"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"required"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"state"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"surveyId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"type"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedDate"</b>&nbsp;:&nbsp;Long,</div>}</pre>
 		</p>
 				
-<!-- Resource: /person ---------------------------------------------------->
-    <h1 class="resourceHeader">
-/{domain}/profile
-    </h1>
-
-    <a name="com.goldengekko.wbt.web.ProfileController" />
-
-    <p class="concreteClass">
-            <b>Description</b>: 
-    </p>
-
-    <p class="concreteClass">
-            <b>Concrete class</b>: com.goldengekko.wbt.web.ProfileController
-    </p>
-
 <!-- Method: findByName() ---------------------------------------------------->		
-        <a name="com.goldengekko.wbt.web.ProfileController.getProfilePage" />
+        <a name="com.wadpam.survey.web.QuestionController.getPage" />
 
-        <h2 class="methodHeader">getProfilePage()</h2>
+        <h2 class="methodHeader">getPage()</h2>
 
         <p>
-            <b>Description</b>:Queries for a (next) page of profiles
+            <b>Description</b>:Queries for a (next) page of entities
         </p>
 
         <p>
-            <b>Implementing Class</b>: com.goldengekko.wbt.web.ProfileController
+            <b>Implementing Class</b>: com.wadpam.survey.web.QuestionController
         </p>
 
         <p class="restPath">
             <b>REST path</b>: GET&nbsp;
-    /{domain}/profile/v10
+    /{domain}/survey/v10/{surveyId}/question/v10
 
 		<h3>Request parameters</h3>
 		<table>
@@ -409,27 +501,600 @@
 				</thead>
 				<tbody>
                <tr>
-                <td>200</td><td>OK</td><td colspan="2">A CursorPage with JProfiles</td>
+                <td>200</td><td>OK</td><td colspan="2">A CursorPage with JSON entities</td>
             </tr>
 				</tbody>
 			</table>
 
 			<p>
-                            <b>Response Type</b>: com.goldengekko.wbt.json.JCursorPage
+                            <b>Response Type</b>: com.wadpam.open.json.JCursorPage
                         </p>
 
 		<h3>Response Example</h3>
 		<p class="code">
-			<pre>{<div>&nbsp;&nbsp;&nbsp;<b>"createdBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"directoryID"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"email"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"id"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"managerId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"managerName"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"name"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"userId"</b>&nbsp;:&nbsp;Long,</div>}</pre>
+			<pre>{<div>&nbsp;&nbsp;&nbsp;<b>"createdBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"id"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"order"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"question"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"required"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"state"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"surveyId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"type"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedDate"</b>&nbsp;:&nbsp;Long,</div>}</pre>
+		</p>
+				
+<!-- Method: findByName() ---------------------------------------------------->		
+        <a name="com.wadpam.survey.web.QuestionController.update" />
+
+        <h2 class="methodHeader">update()</h2>
+
+        <p>
+            <b>Description</b>:Updates an entity.
+        </p>
+
+        <p>
+            <b>Implementing Class</b>: com.wadpam.survey.web.QuestionController
+        </p>
+
+        <p class="restPath">
+            <b>REST path</b>: POST&nbsp;
+    /{domain}/survey/v10/{surveyId}/question/v10/{id}
+
+		<h3>Request parameters</h3>
+		<table>
+			<thead>
+	    		<td class="column1">Where</th>
+	    		<td class="column2">Name</th>
+	    		<td class="column3">Type</th>
+	    		<td class="columnAuto">Description</th>
+			</thead>
+			<tbody>
+                            <tr>
+                                <td>path</td><td>id</td><td>Long</td><td>the id of the entity to update</td>
+                            </tr>
+                            <tr>
+                                <td>body (properties separately)</td><td><a href="api.html#com.wadpam.survey.json.JQuestion" class="link">com.wadpam.survey.json.JQuestion</a></td><td>{<div>&nbsp;&nbsp;&nbsp;<b>"createdBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"id"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"order"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"question"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"required"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"state"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"surveyId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"type"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedDate"</b>&nbsp;:&nbsp;Long,</div>}</td><td>the JSON object for this updated entity</td>
+                            </tr>
+			</tbody>
+		</table>
+
+		<h3>Response Codes</h3>
+			<table>
+				<thead>
+	   				<td class="column1">HTTP Response Code</td>
+	   				<td class="column2">Message</td>
+	   				<td class="columnAuto">Description</td>
+				</thead>
+				<tbody>
+               <tr>
+                <td>204</td><td>No Content</td><td colspan="2">The entity was updated by AJAX</td>
+            </tr>
+               <tr>
+                <td>302</td><td>OK</td><td colspan="2">The entity was updated</td>
+            </tr>
+				</tbody>
+			</table>
+
+			<p>
+                            <b>Response Type</b>: java.net.URL
+                        </p>
+
+		<h3>Response Example</h3>
+		<p class="code">
+			<pre>{<div>&nbsp;&nbsp;&nbsp;<b>"createdBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"id"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"order"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"question"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"required"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"state"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"surveyId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"type"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedDate"</b>&nbsp;:&nbsp;Long,</div>}</pre>
+		</p>
+				
+<!-- Resource: /person ---------------------------------------------------->
+    <h1 class="resourceHeader">
+/{domain}/survey/v10/{surveyId}/response
+    </h1>
+
+    <a name="com.wadpam.survey.web.ResponseController" />
+
+    <p class="concreteClass">
+            <b>Description</b>: 
+    </p>
+
+    <p class="concreteClass">
+            <b>Concrete class</b>: com.wadpam.survey.web.ResponseController
+    </p>
+
+<!-- Method: findByName() ---------------------------------------------------->		
+        <a name="com.wadpam.survey.web.ResponseController.create" />
+
+        <h2 class="methodHeader">create()</h2>
+
+        <p>
+            <b>Description</b>:Creates an entity.
+        </p>
+
+        <p>
+            <b>Implementing Class</b>: com.wadpam.survey.web.ResponseController
+        </p>
+
+        <p class="restPath">
+            <b>REST path</b>: POST&nbsp;
+    /{domain}/survey/v10/{surveyId}/response/v10
+
+		<h3>Request parameters</h3>
+		<table>
+			<thead>
+	    		<td class="column1">Where</th>
+	    		<td class="column2">Name</th>
+	    		<td class="column3">Type</th>
+	    		<td class="columnAuto">Description</th>
+			</thead>
+			<tbody>
+                            <tr>
+                                <td>path</td><td>domain</td><td>String</td><td></td>
+                            </tr>
+                            <tr>
+                                <td>path</td><td>surveyId</td><td>Long</td><td></td>
+                            </tr>
+                            <tr>
+                                <td>query</td><td>answers</td><td>java.lang.String[]</td><td></td>
+                            </tr>
+                            <tr>
+                                <td>body (properties separately)</td><td>com.wadpam.survey.json.JResponse</td><td>{<div>&nbsp;&nbsp;&nbsp;<b>"createdBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"id"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"state"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"surveyId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedDate"</b>&nbsp;:&nbsp;Long,</div>}</td><td></td>
+                            </tr>
+			</tbody>
+		</table>
+
+		<h3>Response Codes</h3>
+			<table>
+				<thead>
+	   				<td class="column1">HTTP Response Code</td>
+	   				<td class="column2">Message</td>
+	   				<td class="columnAuto">Description</td>
+				</thead>
+				<tbody>
+               <tr>
+                <td>201</td><td>Created</td><td colspan="2">The entity was created by AJAX</td>
+            </tr>
+               <tr>
+                <td>302</td><td>OK</td><td colspan="2">The entity was created</td>
+            </tr>
+				</tbody>
+			</table>
+
+			<p>
+                            <b>Response Type</b>: java.net.URL
+                        </p>
+
+		<h3>Response Example</h3>
+		<p class="code">
+			<pre>{<div>&nbsp;&nbsp;&nbsp;<b>"createdBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"id"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"state"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"surveyId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedDate"</b>&nbsp;:&nbsp;Long,</div>}</pre>
+		</p>
+				
+<!-- Method: findByName() ---------------------------------------------------->		
+        <a name="com.wadpam.survey.web.ResponseController.get" />
+
+        <h2 class="methodHeader">get()</h2>
+
+        <p>
+            <b>Description</b>:Loads the specified entity.
+        </p>
+
+        <p>
+            <b>Implementing Class</b>: com.wadpam.survey.web.ResponseController
+        </p>
+
+        <p class="restPath">
+            <b>REST path</b>: GET&nbsp;
+    /{domain}/survey/v10/{surveyId}/response/v10/{id}
+
+		<h3>Request parameters</h3>
+		<table>
+			<thead>
+	    		<td class="column1">Where</th>
+	    		<td class="column2">Name</th>
+	    		<td class="column3">Type</th>
+	    		<td class="columnAuto">Description</th>
+			</thead>
+			<tbody>
+                            <tr>
+                                <td>path</td><td>id</td><td>Long</td><td>the id of the entity to retrieve</td>
+                            </tr>
+			</tbody>
+		</table>
+
+		<h3>Response Codes</h3>
+			<table>
+				<thead>
+	   				<td class="column1">HTTP Response Code</td>
+	   				<td class="column2">Message</td>
+	   				<td class="columnAuto">Description</td>
+				</thead>
+				<tbody>
+               <tr>
+                <td>200</td><td>OK</td><td colspan="2">The entity was found</td>
+            </tr>
+               <tr>
+                <td>404</td><td>Not Found</td><td colspan="2">The entity was not found</td>
+            </tr>
+				</tbody>
+			</table>
+
+			<p>
+                            <b>Response Type</b>: <a href="api.html#com.wadpam.survey.json.JResponse" class="link">com.wadpam.survey.json.JResponse</a>
+                        </p>
+
+		<h3>Response Example</h3>
+		<p class="code">
+			<pre>{<div>&nbsp;&nbsp;&nbsp;<b>"createdBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"id"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"state"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"surveyId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedDate"</b>&nbsp;:&nbsp;Long,</div>}</pre>
+		</p>
+				
+<!-- Method: findByName() ---------------------------------------------------->		
+        <a name="com.wadpam.survey.web.ResponseController.getPage" />
+
+        <h2 class="methodHeader">getPage()</h2>
+
+        <p>
+            <b>Description</b>:Queries for a (next) page of entities
+        </p>
+
+        <p>
+            <b>Implementing Class</b>: com.wadpam.survey.web.ResponseController
+        </p>
+
+        <p class="restPath">
+            <b>REST path</b>: GET&nbsp;
+    /{domain}/survey/v10/{surveyId}/response/v10
+
+		<h3>Request parameters</h3>
+		<table>
+			<thead>
+	    		<td class="column1">Where</th>
+	    		<td class="column2">Name</th>
+	    		<td class="column3">Type</th>
+	    		<td class="columnAuto">Description</th>
+			</thead>
+			<tbody>
+                            <tr>
+                                <td>query</td><td>pageSize</td><td>int</td><td>default is 10</td>
+                            </tr>
+                            <tr>
+                                <td>query</td><td>cursorKey</td><td>Serializable</td><td>null to get first page</td>
+                            </tr>
+			</tbody>
+		</table>
+
+		<h3>Response Codes</h3>
+			<table>
+				<thead>
+	   				<td class="column1">HTTP Response Code</td>
+	   				<td class="column2">Message</td>
+	   				<td class="columnAuto">Description</td>
+				</thead>
+				<tbody>
+               <tr>
+                <td>200</td><td>OK</td><td colspan="2">A CursorPage with JSON entities</td>
+            </tr>
+				</tbody>
+			</table>
+
+			<p>
+                            <b>Response Type</b>: com.wadpam.open.json.JCursorPage
+                        </p>
+
+		<h3>Response Example</h3>
+		<p class="code">
+			<pre>{<div>&nbsp;&nbsp;&nbsp;<b>"createdBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"id"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"state"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"surveyId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedDate"</b>&nbsp;:&nbsp;Long,</div>}</pre>
+		</p>
+				
+<!-- Method: findByName() ---------------------------------------------------->		
+        <a name="com.wadpam.survey.web.ResponseController.update" />
+
+        <h2 class="methodHeader">update()</h2>
+
+        <p>
+            <b>Description</b>:Updates an entity.
+        </p>
+
+        <p>
+            <b>Implementing Class</b>: com.wadpam.survey.web.ResponseController
+        </p>
+
+        <p class="restPath">
+            <b>REST path</b>: POST&nbsp;
+    /{domain}/survey/v10/{surveyId}/response/v10/{id}
+
+		<h3>Request parameters</h3>
+		<table>
+			<thead>
+	    		<td class="column1">Where</th>
+	    		<td class="column2">Name</th>
+	    		<td class="column3">Type</th>
+	    		<td class="columnAuto">Description</th>
+			</thead>
+			<tbody>
+                            <tr>
+                                <td>path</td><td>id</td><td>Long</td><td>the id of the entity to update</td>
+                            </tr>
+                            <tr>
+                                <td>body (properties separately)</td><td><a href="api.html#com.wadpam.survey.json.JResponse" class="link">com.wadpam.survey.json.JResponse</a></td><td>{<div>&nbsp;&nbsp;&nbsp;<b>"createdBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"id"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"state"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"surveyId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedDate"</b>&nbsp;:&nbsp;Long,</div>}</td><td>the JSON object for this updated entity</td>
+                            </tr>
+			</tbody>
+		</table>
+
+		<h3>Response Codes</h3>
+			<table>
+				<thead>
+	   				<td class="column1">HTTP Response Code</td>
+	   				<td class="column2">Message</td>
+	   				<td class="columnAuto">Description</td>
+				</thead>
+				<tbody>
+               <tr>
+                <td>204</td><td>No Content</td><td colspan="2">The entity was updated by AJAX</td>
+            </tr>
+               <tr>
+                <td>302</td><td>OK</td><td colspan="2">The entity was updated</td>
+            </tr>
+				</tbody>
+			</table>
+
+			<p>
+                            <b>Response Type</b>: java.net.URL
+                        </p>
+
+		<h3>Response Example</h3>
+		<p class="code">
+			<pre>{<div>&nbsp;&nbsp;&nbsp;<b>"createdBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"id"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"state"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"surveyId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedDate"</b>&nbsp;:&nbsp;Long,</div>}</pre>
+		</p>
+				
+<!-- Resource: /person ---------------------------------------------------->
+    <h1 class="resourceHeader">
+/{domain}/survey
+    </h1>
+
+    <a name="com.wadpam.survey.web.SurveyController" />
+
+    <p class="concreteClass">
+            <b>Description</b>: 
+    </p>
+
+    <p class="concreteClass">
+            <b>Concrete class</b>: com.wadpam.survey.web.SurveyController
+    </p>
+
+<!-- Method: findByName() ---------------------------------------------------->		
+        <a name="com.wadpam.survey.web.SurveyController.create" />
+
+        <h2 class="methodHeader">create()</h2>
+
+        <p>
+            <b>Description</b>:Creates an entity.
+        </p>
+
+        <p>
+            <b>Implementing Class</b>: com.wadpam.survey.web.SurveyController
+        </p>
+
+        <p class="restPath">
+            <b>REST path</b>: POST&nbsp;
+    /{domain}/survey/v10
+
+		<h3>Request parameters</h3>
+		<table>
+			<thead>
+	    		<td class="column1">Where</th>
+	    		<td class="column2">Name</th>
+	    		<td class="column3">Type</th>
+	    		<td class="columnAuto">Description</th>
+			</thead>
+			<tbody>
+                            <tr>
+                                <td>path</td><td>domain</td><td>String</td><td></td>
+                            </tr>
+                            <tr>
+                                <td>body (properties separately)</td><td>com.wadpam.survey.json.JSurvey</td><td>{<div>&nbsp;&nbsp;&nbsp;<b>"createdBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"id"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"state"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"title"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedDate"</b>&nbsp;:&nbsp;Long,</div>}</td><td></td>
+                            </tr>
+			</tbody>
+		</table>
+
+		<h3>Response Codes</h3>
+			<table>
+				<thead>
+	   				<td class="column1">HTTP Response Code</td>
+	   				<td class="column2">Message</td>
+	   				<td class="columnAuto">Description</td>
+				</thead>
+				<tbody>
+               <tr>
+                <td>201</td><td>Created</td><td colspan="2">The entity was created by AJAX</td>
+            </tr>
+               <tr>
+                <td>302</td><td>OK</td><td colspan="2">The entity was created</td>
+            </tr>
+				</tbody>
+			</table>
+
+			<p>
+                            <b>Response Type</b>: java.net.URL
+                        </p>
+
+		<h3>Response Example</h3>
+		<p class="code">
+			<pre>{<div>&nbsp;&nbsp;&nbsp;<b>"createdBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"id"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"state"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"title"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedDate"</b>&nbsp;:&nbsp;Long,</div>}</pre>
+		</p>
+				
+<!-- Method: findByName() ---------------------------------------------------->		
+        <a name="com.wadpam.survey.web.SurveyController.get" />
+
+        <h2 class="methodHeader">get()</h2>
+
+        <p>
+            <b>Description</b>:Loads the specified entity.
+        </p>
+
+        <p>
+            <b>Implementing Class</b>: com.wadpam.survey.web.SurveyController
+        </p>
+
+        <p class="restPath">
+            <b>REST path</b>: GET&nbsp;
+    /{domain}/survey/v10/{id}
+
+		<h3>Request parameters</h3>
+		<table>
+			<thead>
+	    		<td class="column1">Where</th>
+	    		<td class="column2">Name</th>
+	    		<td class="column3">Type</th>
+	    		<td class="columnAuto">Description</th>
+			</thead>
+			<tbody>
+                            <tr>
+                                <td>path</td><td>id</td><td>Long</td><td>the id of the entity to retrieve</td>
+                            </tr>
+			</tbody>
+		</table>
+
+		<h3>Response Codes</h3>
+			<table>
+				<thead>
+	   				<td class="column1">HTTP Response Code</td>
+	   				<td class="column2">Message</td>
+	   				<td class="columnAuto">Description</td>
+				</thead>
+				<tbody>
+               <tr>
+                <td>200</td><td>OK</td><td colspan="2">The entity was found</td>
+            </tr>
+               <tr>
+                <td>404</td><td>Not Found</td><td colspan="2">The entity was not found</td>
+            </tr>
+				</tbody>
+			</table>
+
+			<p>
+                            <b>Response Type</b>: <a href="api.html#com.wadpam.survey.json.JSurvey" class="link">com.wadpam.survey.json.JSurvey</a>
+                        </p>
+
+		<h3>Response Example</h3>
+		<p class="code">
+			<pre>{<div>&nbsp;&nbsp;&nbsp;<b>"createdBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"id"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"state"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"title"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedDate"</b>&nbsp;:&nbsp;Long,</div>}</pre>
+		</p>
+				
+<!-- Method: findByName() ---------------------------------------------------->		
+        <a name="com.wadpam.survey.web.SurveyController.getPage" />
+
+        <h2 class="methodHeader">getPage()</h2>
+
+        <p>
+            <b>Description</b>:Queries for a (next) page of entities
+        </p>
+
+        <p>
+            <b>Implementing Class</b>: com.wadpam.survey.web.SurveyController
+        </p>
+
+        <p class="restPath">
+            <b>REST path</b>: GET&nbsp;
+    /{domain}/survey/v10
+
+		<h3>Request parameters</h3>
+		<table>
+			<thead>
+	    		<td class="column1">Where</th>
+	    		<td class="column2">Name</th>
+	    		<td class="column3">Type</th>
+	    		<td class="columnAuto">Description</th>
+			</thead>
+			<tbody>
+                            <tr>
+                                <td>query</td><td>pageSize</td><td>int</td><td>default is 10</td>
+                            </tr>
+                            <tr>
+                                <td>query</td><td>cursorKey</td><td>Serializable</td><td>null to get first page</td>
+                            </tr>
+			</tbody>
+		</table>
+
+		<h3>Response Codes</h3>
+			<table>
+				<thead>
+	   				<td class="column1">HTTP Response Code</td>
+	   				<td class="column2">Message</td>
+	   				<td class="columnAuto">Description</td>
+				</thead>
+				<tbody>
+               <tr>
+                <td>200</td><td>OK</td><td colspan="2">A CursorPage with JSON entities</td>
+            </tr>
+				</tbody>
+			</table>
+
+			<p>
+                            <b>Response Type</b>: com.wadpam.open.json.JCursorPage
+                        </p>
+
+		<h3>Response Example</h3>
+		<p class="code">
+			<pre>{<div>&nbsp;&nbsp;&nbsp;<b>"createdBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"id"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"state"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"title"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedDate"</b>&nbsp;:&nbsp;Long,</div>}</pre>
+		</p>
+				
+<!-- Method: findByName() ---------------------------------------------------->		
+        <a name="com.wadpam.survey.web.SurveyController.update" />
+
+        <h2 class="methodHeader">update()</h2>
+
+        <p>
+            <b>Description</b>:Updates an entity.
+        </p>
+
+        <p>
+            <b>Implementing Class</b>: com.wadpam.survey.web.SurveyController
+        </p>
+
+        <p class="restPath">
+            <b>REST path</b>: POST&nbsp;
+    /{domain}/survey/v10/{id}
+
+		<h3>Request parameters</h3>
+		<table>
+			<thead>
+	    		<td class="column1">Where</th>
+	    		<td class="column2">Name</th>
+	    		<td class="column3">Type</th>
+	    		<td class="columnAuto">Description</th>
+			</thead>
+			<tbody>
+                            <tr>
+                                <td>path</td><td>id</td><td>Long</td><td>the id of the entity to update</td>
+                            </tr>
+                            <tr>
+                                <td>body (properties separately)</td><td><a href="api.html#com.wadpam.survey.json.JSurvey" class="link">com.wadpam.survey.json.JSurvey</a></td><td>{<div>&nbsp;&nbsp;&nbsp;<b>"createdBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"id"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"state"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"title"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedDate"</b>&nbsp;:&nbsp;Long,</div>}</td><td>the JSON object for this updated entity</td>
+                            </tr>
+			</tbody>
+		</table>
+
+		<h3>Response Codes</h3>
+			<table>
+				<thead>
+	   				<td class="column1">HTTP Response Code</td>
+	   				<td class="column2">Message</td>
+	   				<td class="columnAuto">Description</td>
+				</thead>
+				<tbody>
+               <tr>
+                <td>204</td><td>No Content</td><td colspan="2">The entity was updated by AJAX</td>
+            </tr>
+               <tr>
+                <td>302</td><td>OK</td><td colspan="2">The entity was updated</td>
+            </tr>
+				</tbody>
+			</table>
+
+			<p>
+                            <b>Response Type</b>: java.net.URL
+                        </p>
+
+		<h3>Response Example</h3>
+		<p class="code">
+			<pre>{<div>&nbsp;&nbsp;&nbsp;<b>"createdBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"id"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"state"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"title"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedDate"</b>&nbsp;:&nbsp;Long,</div>}</pre>
 		</p>
 				
 
 
     <h1 class="resourceHeader">JSON Objects</h1>
 
-<!-- JSON object: com.goldengekko.users.json.JMonitor ---------------------------------------------------->		
-        <a name="com.goldengekko.users.json.JMonitor" />
-        <h2 class="methodHeader">com.goldengekko.users.json.JMonitor</h2>
+<!-- JSON object: com.wadpam.survey.json.JAnswer ---------------------------------------------------->		
+        <a name="com.wadpam.survey.json.JAnswer" />
+        <h2 class="methodHeader">com.wadpam.survey.json.JAnswer</h2>
 		<table>
 			<thead>
 	    		<td class="column1">Name</th>
@@ -439,38 +1104,38 @@
 			<tbody>
  
                         <tr>
-                            <td>currentTimeMillis</td>
+                            <td>surveyId</td>
                             <td><a href="api.html#java.lang.Long" class="link">java.lang.Long</a></td>
                             <td>
-
+The survey this answer is for
                             </td>
                         </tr>
                         <tr>
-                            <td>ipAddress</td>
-                            <td><a href="api.html#java.lang.String" class="link">java.lang.String</a></td>
+                            <td>questionId</td>
+                            <td><a href="api.html#java.lang.Long" class="link">java.lang.Long</a></td>
                             <td>
-
+The question this answer is for
                             </td>
                         </tr>
                         <tr>
-                            <td>namespace</td>
-                            <td><a href="api.html#java.lang.String" class="link">java.lang.String</a></td>
+                            <td>responseId</td>
+                            <td><a href="api.html#java.lang.Long" class="link">java.lang.Long</a></td>
                             <td>
-
+The response this answer is for
                             </td>
                         </tr>
                         <tr>
-                            <td>version</td>
-                            <td><a href="api.html#java.lang.String" class="link">java.lang.String</a></td>
+                            <td>answer</td>
+                            <td><a href="api.html#java.lang.Object" class="link">java.lang.Object</a></td>
                             <td>
-
+The type of the answer is given by the question
                             </td>
                         </tr>
                         </tbody>
                </table>
-<!-- JSON object: com.goldengekko.wbt.json.JLocation ---------------------------------------------------->		
-        <a name="com.goldengekko.wbt.json.JLocation" />
-        <h2 class="methodHeader">com.goldengekko.wbt.json.JLocation</h2>
+<!-- JSON object: com.wadpam.survey.json.JQuestion ---------------------------------------------------->		
+        <a name="com.wadpam.survey.json.JQuestion" />
+        <h2 class="methodHeader">com.wadpam.survey.json.JQuestion</h2>
 		<table>
 			<thead>
 	    		<td class="column1">Name</th>
@@ -480,80 +1145,45 @@
 			<tbody>
  
                         <tr>
-                            <td>name</td>
-                            <td><a href="api.html#java.lang.String" class="link">java.lang.String</a></td>
+                            <td>surveyId</td>
+                            <td><a href="api.html#java.lang.Long" class="link">java.lang.Long</a></td>
                             <td>
-The location name
+The survey this answer is for
                             </td>
                         </tr>
                         <tr>
-                            <td>latLong</td>
-                            <td><a href="api.html#net.sf.mardao.core.geo.DLocation" class="link">net.sf.mardao.core.geo.DLocation</a></td>
+                            <td>order</td>
+                            <td><a href="api.html#java.lang.Long" class="link">java.lang.Long</a></td>
                             <td>
-A lat/long for the location
+The order of this question within the Survey
                             </td>
                         </tr>
                         <tr>
-                            <td>appArg0</td>
+                            <td>question</td>
                             <td><a href="api.html#java.lang.String" class="link">java.lang.String</a></td>
                             <td>
-Application-specific argument 0
+The default localization of the question
                             </td>
                         </tr>
                         <tr>
-                            <td>city</td>
-                            <td><a href="api.html#java.lang.String" class="link">java.lang.String</a></td>
+                            <td>required</td>
+                            <td><a href="api.html#java.lang.Long" class="link">java.lang.Long</a></td>
                             <td>
-The city of this location
+Indicates if an answer is required: REQUIRED, OPTIONAL, REMINDER.
                             </td>
                         </tr>
                         <tr>
-                            <td>description</td>
-                            <td><a href="api.html#java.lang.String" class="link">java.lang.String</a></td>
+                            <td>type</td>
+                            <td><a href="api.html#java.lang.Long" class="link">java.lang.Long</a></td>
                             <td>
-The location description
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>extCode</td>
-                            <td><a href="api.html#java.lang.String" class="link">java.lang.String</a></td>
-                            <td>
-The external (customer) code of this location
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>extID</td>
-                            <td><a href="api.html#java.lang.String" class="link">java.lang.String</a></td>
-                            <td>
-The external (customer) ID of this location
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>phone</td>
-                            <td><a href="api.html#java.lang.String" class="link">java.lang.String</a></td>
-                            <td>
-The phone number of this location
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>streetAddress</td>
-                            <td><a href="api.html#java.lang.String" class="link">java.lang.String</a></td>
-                            <td>
-The street address of this location
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>zipCode</td>
-                            <td><a href="api.html#java.lang.String" class="link">java.lang.String</a></td>
-                            <td>
-The postal code of this location
+The answer type: TEXT, NUMBER, IMAGE, ...
                             </td>
                         </tr>
                         </tbody>
                </table>
-<!-- JSON object: com.goldengekko.wbt.json.JMeeting ---------------------------------------------------->		
-        <a name="com.goldengekko.wbt.json.JMeeting" />
-        <h2 class="methodHeader">com.goldengekko.wbt.json.JMeeting</h2>
+<!-- JSON object: com.wadpam.survey.json.JResponse ---------------------------------------------------->		
+        <a name="com.wadpam.survey.json.JResponse" />
+        <h2 class="methodHeader">com.wadpam.survey.json.JResponse</h2>
 		<table>
 			<thead>
 	    		<td class="column1">Name</th>
@@ -563,17 +1193,17 @@ The postal code of this location
 			<tbody>
  
                         <tr>
-                            <td>locationId</td>
+                            <td>surveyId</td>
                             <td><a href="api.html#java.lang.Long" class="link">java.lang.Long</a></td>
                             <td>
-References the location this meeting took place at
+The survey this response is for
                             </td>
                         </tr>
                         </tbody>
                </table>
-<!-- JSON object: com.goldengekko.wbt.json.JProfile ---------------------------------------------------->		
-        <a name="com.goldengekko.wbt.json.JProfile" />
-        <h2 class="methodHeader">com.goldengekko.wbt.json.JProfile</h2>
+<!-- JSON object: com.wadpam.survey.json.JSurvey ---------------------------------------------------->		
+        <a name="com.wadpam.survey.json.JSurvey" />
+        <h2 class="methodHeader">com.wadpam.survey.json.JSurvey</h2>
 		<table>
 			<thead>
 	    		<td class="column1">Name</th>
@@ -583,45 +1213,10 @@ References the location this meeting took place at
 			<tbody>
  
                         <tr>
-                            <td>userId</td>
-                            <td><a href="api.html#java.lang.Long" class="link">java.lang.Long</a></td>
-                            <td>
-References the user this profile is attached to
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>name</td>
+                            <td>title</td>
                             <td><a href="api.html#java.lang.String" class="link">java.lang.String</a></td>
                             <td>
-Name of the Employee, as stated in CSV
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>email</td>
-                            <td><a href="api.html#java.lang.String" class="link">java.lang.String</a></td>
-                            <td>
-Email address, as stated in CSV
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>directoryID</td>
-                            <td><a href="api.html#java.lang.String" class="link">java.lang.String</a></td>
-                            <td>
-Directory ID, as stated in CSV
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>managerName</td>
-                            <td><a href="api.html#java.lang.String" class="link">java.lang.String</a></td>
-                            <td>
-Temporary field to host manager directoryID
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>managerId</td>
-                            <td><a href="api.html#java.lang.Long" class="link">java.lang.Long</a></td>
-                            <td>
-This is the manager key
+The title of this survey
                             </td>
                         </tr>
                         </tbody>
@@ -658,6 +1253,25 @@ This is the manager key
                         <tr>
                             <td>long</td>
                             <td><a href="api.html#java.lang.Long" class="link">java.lang.Long</a></td>
+                            <td>
+                            </td>
+                        </tr>
+                        </tbody>
+               </table>
+<!-- JSON object: java.lang.Object ---------------------------------------------------->		
+        <a name="java.lang.Object" />
+        <h2 class="methodHeader">java.lang.Object</h2>
+		<table>
+			<thead>
+	    		<td class="column1">Name</th>
+	    		<td class="column2">Type</th>
+	    		<td class="column3">Description</th>
+			</thead>
+			<tbody>
+ 
+                        <tr>
+                            <td>class</td>
+                            <td>java.lang.Class</td>
                             <td>
                             </td>
                         </tr>
@@ -714,33 +1328,6 @@ This is the manager key
                             <td>bytes</td>
                             <td>byte</td>
                             <td>
-                            </td>
-                        </tr>
-                        </tbody>
-               </table>
-<!-- JSON object: net.sf.mardao.core.geo.DLocation ---------------------------------------------------->		
-        <a name="net.sf.mardao.core.geo.DLocation" />
-        <h2 class="methodHeader">net.sf.mardao.core.geo.DLocation</h2>
-		<table>
-			<thead>
-	    		<td class="column1">Name</th>
-	    		<td class="column2">Type</th>
-	    		<td class="column3">Description</th>
-			</thead>
-			<tbody>
- 
-                        <tr>
-                            <td>latitude</td>
-                            <td>float</td>
-                            <td>
-
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>longitude</td>
-                            <td>float</td>
-                            <td>
-
                             </td>
                         </tr>
                         </tbody>
