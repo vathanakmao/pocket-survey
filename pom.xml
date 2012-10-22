@@ -376,6 +376,20 @@
         </repository>
     </repositories>
 
+    <developers>
+        <developer>
+            <id>sosandstrom</id>
+            <name>Ola Sandstrom</name>
+            <email>s.o.sandstrom@gmail.com</email>
+            <url>http://www.linkedin.com/in/sosandstrom</url>
+        </developer>
+    </developers>
+
+    <scm>
+        <url>https://github.com/sosandstrom/pocket-survey</url>
+        <developerConnection>scm:git:ssh://git@github.com/sosandstrom/pocket-survey.git</developerConnection>
+    </scm>
+
     <profiles>
         <profile>
             <id>archive</id>
