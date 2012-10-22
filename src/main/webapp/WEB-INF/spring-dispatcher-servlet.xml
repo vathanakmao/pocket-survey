@@ -40,7 +40,7 @@
     <!--           Controllers             -->
     
     <bean id="adminController" class="com.wadpam.survey.web.admin.AdminController">
-        <!--<property name="populator" ref="wbtPopulator" />-->
+        <property name="service" ref="surveyService" />
     </bean>
     
     <bean id="monitorController" class="com.wadpam.open.web.MonitorController">

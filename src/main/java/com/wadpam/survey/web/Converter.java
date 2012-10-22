@@ -3,10 +3,12 @@ package com.wadpam.survey.web;
 import com.wadpam.open.json.JBaseObject;
 import com.wadpam.open.web.BaseConverter;
 import com.wadpam.survey.domain.DAnswer;
+import com.wadpam.survey.domain.DOption;
 import com.wadpam.survey.domain.DQuestion;
 import com.wadpam.survey.domain.DResponse;
 import com.wadpam.survey.domain.DSurvey;
 import com.wadpam.survey.json.JAnswer;
+import com.wadpam.survey.json.JOption;
 import com.wadpam.survey.json.JQuestion;
 import com.wadpam.survey.json.JResponse;
 import com.wadpam.survey.json.JSurvey;
@@ -22,6 +24,9 @@ public class Converter extends BaseConverter {
         
         if (d instanceof DSurvey) {
             returnValue = convert((DSurvey) d);
+        }
+        else if (d instanceof DOption) {
+            returnValue = convert((DOption) d);
         }
         else if (d instanceof DQuestion) {
             returnValue = convert((DQuestion) d);
@@ -70,6 +75,44 @@ public class Converter extends BaseConverter {
             final DResponse foreign = new DResponse();
             foreign.setId(from.getResponseId());
             to.setResponse(foreign);
+        }
+        if (null != from.getSurveyId()) {
+            final DSurvey foreign = new DSurvey();
+            foreign.setId(from.getSurveyId());
+            to.setSurvey(foreign);
+        }
+        
+        return to;
+    }
+    
+    public static JOption convert(DOption from) {
+        if (null == from) {
+            return null;
+        }
+        
+        final JOption to = new JOption();
+        convert(from, to);
+        
+        to.setLabel(from.getLabel());
+        to.setQuestionId(null != from.getQuestion() ? from.getQuestion().getId() : null);
+        to.setSurveyId(null != from.getSurvey() ? from.getSurvey().getId() : null);
+        
+        return to;
+    }
+
+    public static DOption convert(JOption from) {
+        if (null == from) {
+            return null;
+        }
+        
+        final DOption to = new DOption();
+        convert(from, to);
+
+        to.setLabel(from.getLabel());
+        if (null != from.getQuestionId()) {
+            final DQuestion foreign = new DQuestion();
+            foreign.setId(from.getQuestionId());
+            to.setQuestion(foreign);
         }
         if (null != from.getSurveyId()) {
             final DSurvey foreign = new DSurvey();

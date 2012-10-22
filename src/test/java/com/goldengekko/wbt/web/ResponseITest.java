@@ -46,6 +46,7 @@ public class ResponseITest {
 
     @After
     public void tearDown() {
+        template.delete("http://localhost:8943/api/_admin/apidocs/deleteAllSurveyEntities");
     }
 
     @Test

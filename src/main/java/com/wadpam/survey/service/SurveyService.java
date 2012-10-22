@@ -3,16 +3,19 @@ package com.wadpam.survey.service;
 import com.wadpam.server.exceptions.ConflictException;
 import com.wadpam.server.exceptions.NotFoundException;
 import com.wadpam.survey.dao.DAnswerDao;
+import com.wadpam.survey.dao.DOptionDao;
 import com.wadpam.survey.dao.DQuestionDao;
 import com.wadpam.survey.dao.DSurveyDao;
 import com.wadpam.survey.dao.DResponseDao;
 import com.wadpam.survey.domain.DAnswer;
+import com.wadpam.survey.domain.DOption;
 import com.wadpam.survey.domain.DQuestion;
 import com.wadpam.survey.domain.DResponse;
 import com.wadpam.survey.domain.DSurvey;
 import com.wadpam.survey.json.JResponse;
 import com.wadpam.survey.json.JSurvey;
 import com.wadpam.survey.web.AnswerController;
+import com.wadpam.survey.web.OptionController;
 import com.wadpam.survey.web.QuestionController;
 import com.wadpam.survey.web.ResponseController;
 import com.wadpam.survey.web.SurveyController;
@@ -35,8 +38,11 @@ public class SurveyService {
     public static final int ERR_ANSWER = 103000;
     /** Base offset for question resource errors (104000) */
     public static final int ERR_QUESTION = 104000;
+    /** Base offset for option resource errors (105000) */
+    public static final int ERR_OPTION = 105000;
     
     private DAnswerDao answerDao;
+    private DOptionDao optionDao;
     private DQuestionDao questionDao;
     private DResponseDao responseDao;
     private DSurveyDao surveyDao;
@@ -57,13 +63,36 @@ public class SurveyService {
         // check that question exists
         final DQuestion question = questionDao.findByPrimaryKey(dEntity.getQuestion().getId());
         if (null == question) {
-            throw new NotFoundException(ResponseController.ERR_CREATE_NOT_FOUND, 
+            throw new NotFoundException(AnswerController.ERR_CREATE_NOT_FOUND, 
                     String.format("Question {} not found",  dEntity.getQuestion().getId()), 
                     null, 
                     "Cannot answer non-existing question");
         }
         
         answerDao.persist(dEntity);
+        return dEntity;
+    }
+    
+    public DOption createOption(DOption dEntity) {
+        
+        // id must be generated
+        if (null != dEntity.getId()) {
+            throw new ConflictException(OptionController.ERR_CREATE_CONFLICT,
+                    String.format("id {} must not be specified", dEntity.getId()),
+                    null,
+                    "id must be generated");
+        }
+        
+        // check that question exists
+        final DQuestion question = questionDao.findByPrimaryKey(dEntity.getQuestion().getId());
+        if (null == question) {
+            throw new NotFoundException(OptionController.ERR_CREATE_NOT_FOUND, 
+                    String.format("Question {} not found",  dEntity.getQuestion().getId()), 
+                    null, 
+                    "Cannot answer non-existing question");
+        }
+        
+        optionDao.persist(dEntity);
         return dEntity;
     }
     
@@ -139,6 +168,21 @@ public class SurveyService {
         return dEntity;
     }
     
+    public Integer deleteAll() {
+        Iterable<Long> simpleKeys = answerDao.queryAllKeys();
+        int count = answerDao.delete(null, simpleKeys);
+        simpleKeys = optionDao.queryAllKeys();
+        count += optionDao.delete(null, simpleKeys);
+        simpleKeys = responseDao.queryAllKeys();
+        count += responseDao.delete(null, simpleKeys);
+        simpleKeys = questionDao.queryAllKeys();
+        count += questionDao.delete(null, simpleKeys);
+        simpleKeys = surveyDao.queryAllKeys();
+        count += surveyDao.delete(null, simpleKeys);
+        
+        return count;
+    }
+
     public DAnswer getAnswer(Long id) {
         final DAnswer entity = answerDao.findByPrimaryKey(id);
         return entity;
@@ -146,6 +190,16 @@ public class SurveyService {
     
     public CursorPage<DAnswer, Long> getAnswersPage(int pageSize, Serializable cursorKey) {
         final CursorPage<DAnswer, Long> page = answerDao.queryPage(pageSize, cursorKey);
+        return page;
+    }
+    
+    public DOption getOption(Long id) {
+    final DOption entity = optionDao.findByPrimaryKey(id);
+        return entity;
+    }
+    
+    public CursorPage<DOption, Long> getOptionsPage(int pageSize, Serializable cursorKey) {
+        final CursorPage<DOption, Long> page = optionDao.queryPage(pageSize, cursorKey);
         return page;
     }
     
@@ -184,6 +238,11 @@ public class SurveyService {
         return dEntity;
     }
 
+    public DOption updateOption(DOption dEntity) {
+        optionDao.update(dEntity);
+        return dEntity;
+    }
+
     public DQuestion updateQuestion(DQuestion dEntity) {
         questionDao.update(dEntity);
         return dEntity;
@@ -201,6 +260,10 @@ public class SurveyService {
 
     public void setAnswerDao(DAnswerDao answerDao) {
         this.answerDao = answerDao;
+    }
+
+    public void setOptionDao(DOptionDao optionDao) {
+        this.optionDao = optionDao;
     }
 
     public void setQuestionDao(DQuestionDao questionDao) {

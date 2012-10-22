@@ -16,6 +16,7 @@
     <bean id="surveyService" class="com.wadpam.survey.service.SurveyService"
           init-method="init">
         <property name="answerDao" ref="dAnswerDao" />
+        <property name="optionDao" ref="dOptionDao" />
         <property name="questionDao" ref="dQuestionDao" />
         <property name="responseDao" ref="dResponseDao" />
         <property name="surveyDao" ref="dSurveyDao" />
@@ -24,6 +25,10 @@
     <!--           Controllers             -->
         
     <bean id="answerController" class="com.wadpam.survey.web.AnswerController">
+        <property name="service" ref="surveyService" />
+    </bean>
+    
+    <bean id="optionController" class="com.wadpam.survey.web.OptionController">
         <property name="service" ref="surveyService" />
     </bean>
     
