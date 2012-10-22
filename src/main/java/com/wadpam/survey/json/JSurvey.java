@@ -1,6 +1,7 @@
 package com.wadpam.survey.json;
 
 import com.wadpam.open.json.JBaseObject;
+import java.util.Collection;
 
 /**
  *
@@ -15,6 +16,9 @@ public class JSurvey extends JBaseObject {
     
     /** The title of this survey */
     private String title;
+    
+    /** The Questions configured for this survey */
+    private Collection<JQuestion> questions;
 
     public String getTitle() {
         return title;
@@ -27,6 +31,14 @@ public class JSurvey extends JBaseObject {
     @Override
     protected String subString() {
         return String.format("title:%s", title);
+    }
+
+    public Collection<JQuestion> getQuestions() {
+        return questions;
+    }
+
+    public void setQuestions(Collection<JQuestion> questions) {
+        this.questions = questions;
     }
 
 }

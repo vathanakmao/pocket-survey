@@ -5,10 +5,18 @@ import com.wadpam.docrest.domain.RestCode;
 import com.wadpam.docrest.domain.RestReturn;
 import com.wadpam.open.json.JCursorPage;
 import com.wadpam.server.exceptions.NotFoundException;
+import com.wadpam.survey.domain.DOption;
+import com.wadpam.survey.domain.DQuestion;
 import com.wadpam.survey.domain.DSurvey;
+import com.wadpam.survey.json.JOption;
+import com.wadpam.survey.json.JQuestion;
 import com.wadpam.survey.json.JSurvey;
 import java.io.Serializable;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 import javax.servlet.http.HttpServletResponse;
 import net.sf.mardao.core.CursorPage;
 import org.slf4j.Logger;
@@ -96,6 +104,33 @@ public class SurveyController {
                     String.format("There is no Entity with id %d", id));
         }
         final JSurvey body = Converter.convert(entity);
+        
+        // fetch all questions
+        final Iterable<DQuestion> questions = service.getQuestionsBySurvey(id);
+        final Collection<JQuestion> jQuestions = new ArrayList<JQuestion>();
+        body.setQuestions(jQuestions);
+        
+        // fetch all options
+        final Iterable<DOption> options = service.getOptionsBySurvey(id);
+        final Map<Long, Collection<JOption>> optMap = new HashMap<Long, Collection<JOption>>();
+        Collection<JOption> opts;
+        JOption jo;
+        for (DOption d : options) {
+            jo = Converter.convert(d);
+            opts = optMap.get(jo.getQuestionId());
+            if (null == opts) {
+                opts = new ArrayList<JOption>();
+                optMap.put(jo.getQuestionId(), opts);
+            }
+            opts.add(jo);
+        }
+        
+        JQuestion jq;
+        for (DQuestion d : questions) {
+            jq = Converter.convert(d);
+            jQuestions.add(jq);
+            jq.setOptions(optMap.get(d.getId()));
+        }
         
         return body;
     }

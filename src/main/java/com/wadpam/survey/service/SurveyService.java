@@ -198,6 +198,12 @@ public class SurveyService {
         return entity;
     }
     
+    public Iterable<DOption> getOptionsBySurvey(Long surveyId) {
+        DSurvey survey = new DSurvey();
+        survey.setId(surveyId);
+        return optionDao.queryBySurvey(survey);
+    }
+    
     public CursorPage<DOption, Long> getOptionsPage(int pageSize, Serializable cursorKey) {
         final CursorPage<DOption, Long> page = optionDao.queryPage(pageSize, cursorKey);
         return page;
@@ -206,6 +212,12 @@ public class SurveyService {
     public DQuestion getQuestion(Long id) {
     final DQuestion entity = questionDao.findByPrimaryKey(id);
         return entity;
+    }
+    
+    public Iterable<DQuestion> getQuestionsBySurvey(Long surveyId) {
+        DSurvey survey = new DSurvey();
+        survey.setId(surveyId);
+        return questionDao.queryBySurvey(survey);
     }
     
     public CursorPage<DQuestion, Long> getQuestionsPage(int pageSize, Serializable cursorKey) {

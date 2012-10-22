@@ -1,6 +1,7 @@
 package com.wadpam.survey.json;
 
 import com.wadpam.open.json.JBaseObject;
+import java.util.Collection;
 
 /**
  *
@@ -59,6 +60,9 @@ public class JQuestion extends JBaseObject {
     /** The answer type: TEXT, NUMBER, IMAGE, ... */
     private Long type;
     
+    /** The options configured for this question */
+    private Collection<JOption> options;
+    
     public Long getSurveyId() {
         return surveyId;
     }
@@ -97,6 +101,14 @@ public class JQuestion extends JBaseObject {
 
     public void setType(Long type) {
         this.type = type;
+    }
+
+    public Collection<JOption> getOptions() {
+        return options;
+    }
+
+    public void setOptions(Collection<JOption> options) {
+        this.options = options;
     }
 
     @Override
