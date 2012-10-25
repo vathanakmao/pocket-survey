@@ -3,6 +3,8 @@ package com.wadpam.survey.domain;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import net.sf.mardao.core.domain.AbstractLongEntity;
 
 /**
@@ -10,6 +12,7 @@ import net.sf.mardao.core.domain.AbstractLongEntity;
  * @author os
  */
 @Entity
+@Table(uniqueConstraints={@UniqueConstraint(columnNames={"question", "response"})})
 public class DAnswer extends AbstractLongEntity {
     
     /** The type of the answer is given by the question */

@@ -63,7 +63,7 @@ public class ResponseController {
             @RequestParam(required=false) String[] answers
             ) {
         
-        final DResponse dEntity = service.createResponse(Converter.convert(jResponse));
+        final DResponse dEntity = service.upsertResponse(jResponse);
 
         // AJAX request? Respond with 201 Created + Location header.
         if (ResponseController.VALUE_X_REQUESTED_WITH_AJAX.equals(xRequestedWith)) {
@@ -133,13 +133,13 @@ public class ResponseController {
         @RestCode(code=302, description="The entity was updated", message="OK")})
     @RequestMapping(value="v10/{id}", method= RequestMethod.POST)
     public RedirectView update(
-                                                @RequestHeader(value=ResponseController.NAME_X_REQUESTED_WITH, required=false) String xRequestedWith,
+            @RequestHeader(value=ResponseController.NAME_X_REQUESTED_WITH, required=false) String xRequestedWith,
             HttpServletResponse response,
             @PathVariable Long id,
             @ModelAttribute JResponse jEntity
             ) {
         
-        final DResponse dEntity = service.updateResponse(Converter.convert(jEntity));
+        final DResponse dEntity = service.upsertResponse(jEntity);
         
         // AJAX request? Respond with 204 No Content.
         if (ResponseController.VALUE_X_REQUESTED_WITH_AJAX.equals(xRequestedWith)) {

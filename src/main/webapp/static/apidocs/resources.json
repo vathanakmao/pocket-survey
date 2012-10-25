@@ -8,6 +8,10 @@
             "description": "com.wadpam.survey.json.JAnswer "
         }
 ,        {
+            "path": "/JOption.{format}",
+            "description": "com.wadpam.survey.json.JOption "
+        }
+,        {
             "path": "/JQuestion.{format}",
             "description": "com.wadpam.survey.json.JQuestion "
         }

@@ -353,7 +353,7 @@
                 <configuration>
                     <port>8943</port>
                     <monitorPort>8944</monitorPort>
-                    <serverId>appengine.google.com</serverId>
+                    <!-- <serverId>private.gmail</serverId> -->
                     <disableUpdateCheck>true</disableUpdateCheck>
                     <jvmFlags>
                         <jvmFlag>-Ddatastore.default_high_rep_job_policy_unapplied_job_pct=20</jvmFlag>

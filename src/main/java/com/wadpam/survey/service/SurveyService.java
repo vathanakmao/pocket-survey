@@ -12,9 +12,11 @@ import com.wadpam.survey.domain.DOption;
 import com.wadpam.survey.domain.DQuestion;
 import com.wadpam.survey.domain.DResponse;
 import com.wadpam.survey.domain.DSurvey;
+import com.wadpam.survey.json.JAnswer;
 import com.wadpam.survey.json.JResponse;
 import com.wadpam.survey.json.JSurvey;
 import com.wadpam.survey.web.AnswerController;
+import com.wadpam.survey.web.Converter;
 import com.wadpam.survey.web.OptionController;
 import com.wadpam.survey.web.QuestionController;
 import com.wadpam.survey.web.ResponseController;
@@ -120,35 +122,6 @@ public class SurveyService {
         return dEntity;
     }
     
-    public DResponse createResponse(DResponse dEntity) {
-        
-        // id must be generated
-        if (null != dEntity.getId()) {
-            throw new ConflictException(ResponseController.ERR_CREATE_CONFLICT,
-                    String.format("id {} must not be specified", dEntity.getId()),
-                    null,
-                    "id must be generated");
-        }
-        
-        
-        // check that survey exists
-        final DSurvey survey = surveyDao.findByPrimaryKey(dEntity.getSurvey().getId());
-        if (null == survey) {
-            throw new NotFoundException(ResponseController.ERR_CREATE_NOT_FOUND, 
-                    String.format("Survey {} not found",  dEntity.getSurvey().getId()), 
-                    null, 
-                    "Cannot respond to non-existing survey");
-        }
-        
-        // patch state if missing
-        if (null == dEntity.getState()) {
-            dEntity.setState(JResponse.STATE_ACTIVE);
-        }
-        
-        responseDao.persist(dEntity);
-        return dEntity;
-    }
-    
     public DSurvey createSurvey(DSurvey dEntity) {
         
         // id must be generated
@@ -245,11 +218,6 @@ public class SurveyService {
         return page;
     }
     
-    public DAnswer updateAnswer(DAnswer dEntity) {
-        answerDao.update(dEntity);
-        return dEntity;
-    }
-
     public DOption updateOption(DOption dEntity) {
         optionDao.update(dEntity);
         return dEntity;
@@ -260,13 +228,69 @@ public class SurveyService {
         return dEntity;
     }
 
-    public DResponse updateResponse(DResponse dEntity) {
-        responseDao.update(dEntity);
+    public DSurvey updateSurvey(DSurvey dEntity) {
+        surveyDao.update(dEntity);
         return dEntity;
     }
 
-    public DSurvey updateSurvey(DSurvey dEntity) {
-        surveyDao.update(dEntity);
+    public DAnswer upsertAnswer(DAnswer dEntity, Iterable<DAnswer> existing) {
+        boolean existed = null != dEntity.getId();
+        
+        // check if found by Question and Response
+        if (!existed && null != existing) {
+            for (DAnswer da : existing) {
+                if (dEntity.getQuestion().getId().equals(
+                        da.getQuestion().getId())) {
+                    da.setAnswer(dEntity.getAnswer());
+                    dEntity = da;
+                    existed = true;
+                    break;
+                }
+            }
+        }
+        
+        if (existed) {
+            answerDao.update(dEntity);
+        }
+        else {
+            answerDao.persist(dEntity);
+        }
+        return dEntity;
+    }
+
+    public DResponse upsertResponse(JResponse jResponse) {
+        final DResponse dEntity = Converter.convert(jResponse);
+        
+        // check that survey exists
+        final DSurvey survey = surveyDao.findByPrimaryKey(dEntity.getSurvey().getId());
+        if (null == survey) {
+            throw new NotFoundException(ResponseController.ERR_CREATE_NOT_FOUND, 
+                    String.format("Survey {} not found",  dEntity.getSurvey().getId()), 
+                    null, 
+                    "Cannot respond to non-existing survey");
+        }
+        
+        // patch state if missing
+        if (null == dEntity.getState()) {
+            dEntity.setState(JResponse.STATE_ACTIVE);
+        }
+        
+        final boolean existed = null != jResponse.getId();
+        if (existed) {
+            responseDao.update(dEntity);
+        }
+        else {
+            responseDao.persist(dEntity);
+        }
+
+        // inner Answers to this response?
+        if (null != jResponse.getAnswers()) {
+            final Iterable<DAnswer> existing = answerDao.queryByResponse(dEntity);
+            for (JAnswer answer : jResponse.getAnswers()) {
+                upsertAnswer(Converter.convert(answer), existing);
+            }
+        }
+        
         return dEntity;
     }
 

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Pocket-Survey Admin Forms</title>
+        <link type="text/css" href="/css/dot-luv/jquery.ui.theme.css" rel="stylesheet" />	
+        <link type="text/css" href="/css/dot-luv/jquery-ui.css" rel="stylesheet" />	
+    </head>
+    <body>
+        <div id="header" class="ui-widget">
+        </div>
+
+        <div id="contents" class="ui-widget">
+
+            <h3>Pocket-Survey Admin Forms</h3>
+
+            <hr/>
+
+
+        </div>
+
+        <div id="footer" class="ui-widget">
+            <hr/>
+            Admin forms for pocket-survey backend.
+        </div>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="/js/jquery.json-2.3.min.js"></script>
+        <script type="text/javascript" src="/js/jquery.jsonp-2.3.1.min.js"></script>
+        <script type="text/javascript">
+$.ajaxSetup( {
+    cache: false,
+    data: null
+});
+
+function getApiUrl() {
+    return $("#contents").data('apiUrl');
+}
+
+function getFragmentByName(name) {
+
+    var match = RegExp('[&#]' + name + '=([^&]*)')
+                    .exec(window.location.hash);
+
+    return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+}
+
+function getParameterByName(name) {
+
+    var match = RegExp('[?&]' + name + '=([^&]*)')
+                    .exec(window.location.search);
+
+    return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+}
+
+$(function() {
+});
+
+function loadDomains() {
+    var body = new Object();
+    body.access_token = getAccessToken();
+
+    $.getJSON(getApiUrl() + "product/v10/all", body)
+    .done(function(products) {
+    	$("#createLocationProductIds").addItems(products);
+    });
+
+    // data is jProduct
+    $.fn.addItems = function(data) {
+        return this.each(function() {
+            var list = this;
+            $.each(data, function(index, itemData) {
+                var option = new Option(itemData.name, itemData.id);
+                list.add(option);
+            });
+        });
+    }
+}
+        </script>
+
+    </body>
+</html>

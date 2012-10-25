@@ -144,13 +144,13 @@ public class AnswerController {
         @RestCode(code=302, description="The entity was updated", message="OK")})
     @RequestMapping(value="v10/{id}", method= RequestMethod.POST)
     public RedirectView update(
-                                                                                                @RequestHeader(value=AnswerController.NAME_X_REQUESTED_WITH, required=false) String xRequestedWith,
+            @RequestHeader(value=AnswerController.NAME_X_REQUESTED_WITH, required=false) String xRequestedWith,
             HttpServletResponse response,
             @PathVariable Long id,
             @ModelAttribute JAnswer jEntity
             ) {
         
-        final DAnswer dEntity = service.updateAnswer(Converter.convert(jEntity));
+        final DAnswer dEntity = service.upsertAnswer(Converter.convert(jEntity), null);
         
         // AJAX request? Respond with 204 No Content.
         if (AnswerController.VALUE_X_REQUESTED_WITH_AJAX.equals(xRequestedWith)) {

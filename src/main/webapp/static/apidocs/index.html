@@ -19,8 +19,13 @@
 </script>
 
 
+<script id="JOption" type="text/x-jquery-tmpl">
+<tr><td>${chars}</td><td>${long}</td><td>${long}</td><td>${long}</td><td>${chars}</td><td>${long}</td><td>${long}</td><td>${long}</td><td>${empty}</td><td>${chars}</td><td>${chars}</td><td>${bytes}</td><td>${bytes}</td><td>${bytes}</td><td>${bytes}</td></tr>
+</script>
+
+
 <script id="JQuestion" type="text/x-jquery-tmpl">
-<tr><td>${chars}</td><td>${long}</td><td>${long}</td><td>${long}</td><td>${chars}</td><td>${long}</td><td>${long}</td><td>${long}</td><td>${empty}</td><td>${chars}</td><td>${chars}</td><td>${bytes}</td><td>${bytes}</td><td>${bytes}</td><td>${bytes}</td><td>${chars}</td><td>${long}</td><td>${long}</td><td>${long}</td><td>${chars}</td><td>${long}</td><td>${long}</td><td>${long}</td></tr>
+<tr><td>${chars}</td><td>${long}</td><td>${long}</td><td>${long}</td><td>${chars}</td><td>${long}</td><td>${long}</td><td>${long}</td><td>${empty}</td><td>${chars}</td><td>${chars}</td><td>${bytes}</td><td>${bytes}</td><td>${bytes}</td><td>${bytes}</td><td>${chars}</td><td>${long}</td><td>${long}</td><td>${long}</td><td>${chars}</td><td>${long}</td><td>${long}</td><td>${long}</td><td>${empty}</td></tr>
 </script>
 
 
@@ -30,7 +35,7 @@
 
 
 <script id="JSurvey" type="text/x-jquery-tmpl">
-<tr><td>${empty}</td><td>${chars}</td><td>${chars}</td><td>${bytes}</td><td>${bytes}</td><td>${bytes}</td><td>${bytes}</td></tr>
+<tr><td>${empty}</td><td>${chars}</td><td>${chars}</td><td>${bytes}</td><td>${bytes}</td><td>${bytes}</td><td>${bytes}</td><td>${empty}</td></tr>
 </script>
 
 
@@ -46,6 +51,11 @@
 
 <script id="String" type="text/x-jquery-tmpl">
 <tr><td>${empty}</td><td>${chars}</td><td>${chars}</td><td>${bytes}</td><td>${bytes}</td><td>${bytes}</td><td>${bytes}</td></tr>
+</script>
+
+
+<script id="Collection" type="text/x-jquery-tmpl">
+<tr><td>${empty}</td></tr>
 </script>
 
 
@@ -87,10 +97,39 @@
 
 
 
+
+
+
 //backendAPI_admin_get();
 
 //TODO: create a form to call each function, if it requires data build inputs.
 //call function from project.backend.js
+
+
+
+
+
+
+
+
+
+//backendAPI_admin_getPage();
+
+//TODO: create a form to call each function, if it requires data build inputs.
+//call function from project.backend.js
+
+
+
+
+
+
+
+//backendAPI_admin_get();
+
+//TODO: create a form to call each function, if it requires data build inputs.
+//call function from project.backend.js
+
+
 
 
 
@@ -150,10 +189,12 @@
 		<section>
 			<header></header>
 			<article>
-<div class="input_form"><h2>get</h2><label for="domain">domain</label><input type="text" name="domain" id="domain" /><br /><label for="surveyId">surveyId</label><input type="text" name="surveyId" id="surveyId" /><br /><label for="responseId">responseId</label><input type="text" name="responseId" id="responseId" /><br /><label for="id">id</label><input type="text" name="id" id="id" /><br /><button onclick="backendAPI_admin_get();">Submit</button></div><div class="input_form"><h2>getPage</h2><label for="pageSize">pageSize</label><input type="text" name="pageSize" id="pageSize" /><br /><label for="cursorKey">cursorKey</label><input type="text" name="cursorKey" id="cursorKey" /><br /><button onclick="backendAPI_admin_getPage();">Submit</button></div><div class="input_form"><h2>get</h2><label for="id">id</label><input type="text" name="id" id="id" /><br /><button onclick="backendAPI_admin_get();">Submit</button></div><div class="input_form"><h2>getPage</h2><label for="pageSize">pageSize</label><input type="text" name="pageSize" id="pageSize" /><br /><label for="cursorKey">cursorKey</label><input type="text" name="cursorKey" id="cursorKey" /><br /><button onclick="backendAPI_admin_getPage();">Submit</button></div><div class="input_form"><h2>get</h2><label for="id">id</label><input type="text" name="id" id="id" /><br /><button onclick="backendAPI_admin_get();">Submit</button></div><div class="input_form"><h2>getPage</h2><label for="pageSize">pageSize</label><input type="text" name="pageSize" id="pageSize" /><br /><label for="cursorKey">cursorKey</label><input type="text" name="cursorKey" id="cursorKey" /><br /><button onclick="backendAPI_admin_getPage();">Submit</button></div><div class="input_form"><h2>get</h2><label for="id">id</label><input type="text" name="id" id="id" /><br /><button onclick="backendAPI_admin_get();">Submit</button></div><div class="input_form"><h2>getPage</h2><label for="pageSize">pageSize</label><input type="text" name="pageSize" id="pageSize" /><br /><label for="cursorKey">cursorKey</label><input type="text" name="cursorKey" id="cursorKey" /><br /><button onclick="backendAPI_admin_getPage();">Submit</button></div>
+<div class="input_form"><h2>get</h2><label for="domain">domain</label><input type="text" name="domain" id="domain" /><br /><label for="surveyId">surveyId</label><input type="text" name="surveyId" id="surveyId" /><br /><label for="responseId">responseId</label><input type="text" name="responseId" id="responseId" /><br /><label for="id">id</label><input type="text" name="id" id="id" /><br /><button onclick="backendAPI_admin_get();">Submit</button></div><div class="input_form"><h2>getPage</h2><label for="pageSize">pageSize</label><input type="text" name="pageSize" id="pageSize" /><br /><label for="cursorKey">cursorKey</label><input type="text" name="cursorKey" id="cursorKey" /><br /><button onclick="backendAPI_admin_getPage();">Submit</button></div><div class="input_form"><h2>get</h2><label for="domain">domain</label><input type="text" name="domain" id="domain" /><br /><label for="surveyId">surveyId</label><input type="text" name="surveyId" id="surveyId" /><br /><label for="questionId">questionId</label><input type="text" name="questionId" id="questionId" /><br /><label for="id">id</label><input type="text" name="id" id="id" /><br /><button onclick="backendAPI_admin_get();">Submit</button></div><div class="input_form"><h2>getPage</h2><label for="domain">domain</label><input type="text" name="domain" id="domain" /><br /><label for="surveyId">surveyId</label><input type="text" name="surveyId" id="surveyId" /><br /><label for="questionId">questionId</label><input type="text" name="questionId" id="questionId" /><br /><label for="pageSize">pageSize</label><input type="text" name="pageSize" id="pageSize" /><br /><label for="cursorKey">cursorKey</label><input type="text" name="cursorKey" id="cursorKey" /><br /><button onclick="backendAPI_admin_getPage();">Submit</button></div><div class="input_form"><h2>get</h2><label for="domain">domain</label><input type="text" name="domain" id="domain" /><br /><label for="surveyId">surveyId</label><input type="text" name="surveyId" id="surveyId" /><br /><label for="id">id</label><input type="text" name="id" id="id" /><br /><button onclick="backendAPI_admin_get();">Submit</button></div><div class="input_form"><h2>getPage</h2><label for="domain">domain</label><input type="text" name="domain" id="domain" /><br /><label for="surveyId">surveyId</label><input type="text" name="surveyId" id="surveyId" /><br /><label for="pageSize">pageSize</label><input type="text" name="pageSize" id="pageSize" /><br /><label for="cursorKey">cursorKey</label><input type="text" name="cursorKey" id="cursorKey" /><br /><button onclick="backendAPI_admin_getPage();">Submit</button></div><div class="input_form"><h2>get</h2><label for="id">id</label><input type="text" name="id" id="id" /><br /><button onclick="backendAPI_admin_get();">Submit</button></div><div class="input_form"><h2>getPage</h2><label for="pageSize">pageSize</label><input type="text" name="pageSize" id="pageSize" /><br /><label for="cursorKey">cursorKey</label><input type="text" name="cursorKey" id="cursorKey" /><br /><button onclick="backendAPI_admin_getPage();">Submit</button></div><div class="input_form"><h2>get</h2><label for="id">id</label><input type="text" name="id" id="id" /><br /><button onclick="backendAPI_admin_get();">Submit</button></div><div class="input_form"><h2>getPage</h2><label for="pageSize">pageSize</label><input type="text" name="pageSize" id="pageSize" /><br /><label for="cursorKey">cursorKey</label><input type="text" name="cursorKey" id="cursorKey" /><br /><button onclick="backendAPI_admin_getPage();">Submit</button></div>
 <br />
 <table id="get-JAnswer-output"></table>
 <table id="getPage-JAnswer-output"></table>
+<table id="get-JOption-output"></table>
+<table id="getPage-JOption-output"></table>
 <table id="get-JQuestion-output"></table>
 <table id="getPage-JQuestion-output"></table>
 <table id="get-JResponse-output"></table>

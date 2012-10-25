@@ -193,11 +193,176 @@ backendAPI.prototype.update = function(id) {
 /*
 variables
 		"name":"domain"
-			"description":""
+			"description":"the domain (used for Multi-tenancy)"
 			"dataType":"String"
 			"paramType":"path"
 		"name":"surveyId"
-			"description":""
+			"description":"the survey's id"
+			"dataType":"Long"
+			"paramType":"path"
+		"name":"questionId"
+			"description":"the question's id"
+			"dataType":"Long"
+			"paramType":"path"
+count = 3
+*/
+backendAPI.prototype.create = function(domain,surveyId,questionId) {
+	var type = "POST";
+	var data = {};
+
+
+
+
+
+
+
+
+
+	var url = "survey/v10/"+surveyId+"/question/v10/"+questionId+"/option/v10";
+	var dataType = "json";
+	//var errMsg = [];
+	//var response = this.makeRequest(type,url,dataType,data,errMsg);
+	var response = this.makeRequest(type,url,dataType,data);
+	return response;
+};
+
+/*
+variables
+		"name":"domain"
+			"description":"the domain (used for Multi-tenancy)"
+			"dataType":"String"
+			"paramType":"path"
+		"name":"surveyId"
+			"description":"the survey's id"
+			"dataType":"Long"
+			"paramType":"path"
+		"name":"questionId"
+			"description":"the question's id"
+			"dataType":"Long"
+			"paramType":"path"
+		"name":"id"
+			"description":"the id of the entity to retrieve"
+			"dataType":"Long"
+			"paramType":"path"
+count = 4
+*/
+backendAPI.prototype.get = function(domain,surveyId,questionId,id) {
+	var type = "GET";
+	var data = {};
+
+
+
+
+
+
+
+
+
+
+
+
+	var url = "survey/v10/"+surveyId+"/question/v10/"+questionId+"/option/v10/"+id;
+	var dataType = "json";
+	//var errMsg = [];
+	//var response = this.makeRequest(type,url,dataType,data,errMsg);
+	var response = this.makeRequest(type,url,dataType,data);
+	return response;
+};
+
+/*
+variables
+		"name":"domain"
+			"description":"the domain (used for Multi-tenancy)"
+			"dataType":"String"
+			"paramType":"path"
+		"name":"surveyId"
+			"description":"the survey's id"
+			"dataType":"Long"
+			"paramType":"path"
+		"name":"questionId"
+			"description":"the question's id"
+			"dataType":"Long"
+			"paramType":"path"
+		"name":"pageSize"
+			"description":"default is 10"
+			"dataType":"int"
+			"paramType":"query"
+		"name":"cursorKey"
+			"description":"null to get first page"
+			"dataType":"Serializable"
+			"paramType":"query"
+count = 5
+*/
+backendAPI.prototype.getPage = function(domain,surveyId,questionId,data) {
+	var type = "GET";
+
+
+
+
+
+
+
+
+
+	var url = "survey/v10/"+surveyId+"/question/v10/"+questionId+"/option/v10";
+	var dataType = "json";
+	//var errMsg = [];
+	//var response = this.makeRequest(type,url,dataType,data,errMsg);
+	var response = this.makeRequest(type,url,dataType,data);
+	return response;
+};
+
+/*
+variables
+		"name":"domain"
+			"description":"the domain (used for Multi-tenancy)"
+			"dataType":"String"
+			"paramType":"path"
+		"name":"surveyId"
+			"description":"the survey's id"
+			"dataType":"Long"
+			"paramType":"path"
+		"name":"questionId"
+			"description":"the question's id"
+			"dataType":"Long"
+			"paramType":"path"
+		"name":"id"
+			"description":"the id of the entity to update"
+			"dataType":"Long"
+			"paramType":"path"
+count = 4
+*/
+backendAPI.prototype.update = function(domain,surveyId,questionId,id) {
+	var type = "POST";
+	var data = {};
+
+
+
+
+
+
+
+
+
+
+
+
+	var url = "survey/v10/"+surveyId+"/question/v10/"+questionId+"/option/v10/"+id;
+	var dataType = "json";
+	//var errMsg = [];
+	//var response = this.makeRequest(type,url,dataType,data,errMsg);
+	var response = this.makeRequest(type,url,dataType,data);
+	return response;
+};
+
+/*
+variables
+		"name":"domain"
+			"description":"the domain (used for Multi-tenancy)"
+			"dataType":"String"
+			"paramType":"path"
+		"name":"surveyId"
+			"description":"the survey's id"
 			"dataType":"Long"
 			"paramType":"path"
 count = 2
@@ -221,19 +386,33 @@ backendAPI.prototype.create = function(domain,surveyId) {
 
 /*
 variables
+		"name":"domain"
+			"description":"the domain (used for Multi-tenancy)"
+			"dataType":"String"
+			"paramType":"path"
+		"name":"surveyId"
+			"description":"the survey's id"
+			"dataType":"Long"
+			"paramType":"path"
 		"name":"id"
 			"description":"the id of the entity to retrieve"
 			"dataType":"Long"
 			"paramType":"path"
-count = 1
+count = 3
 */
-backendAPI.prototype.get = function(id) {
+backendAPI.prototype.get = function(domain,surveyId,id) {
 	var type = "GET";
 	var data = {};
 
 
 
-	var url = "survey/v10/{surveyId}/question/v10/"+id;
+
+
+
+
+
+
+	var url = "survey/v10/"+surveyId+"/question/v10/"+id;
 	var dataType = "json";
 	//var errMsg = [];
 	//var response = this.makeRequest(type,url,dataType,data,errMsg);
@@ -243,6 +422,14 @@ backendAPI.prototype.get = function(id) {
 
 /*
 variables
+		"name":"domain"
+			"description":"the domain (used for Multi-tenancy)"
+			"dataType":"String"
+			"paramType":"path"
+		"name":"surveyId"
+			"description":"the survey's id"
+			"dataType":"Long"
+			"paramType":"path"
 		"name":"pageSize"
 			"description":"default is 10"
 			"dataType":"int"
@@ -251,11 +438,17 @@ variables
 			"description":"null to get first page"
 			"dataType":"Serializable"
 			"paramType":"query"
-count = 2
+count = 4
 */
-backendAPI.prototype.getPage = function(data) {
+backendAPI.prototype.getPage = function(domain,surveyId,data) {
 	var type = "GET";
-	var url = "survey/v10/{surveyId}/question/v10";
+
+
+
+
+
+
+	var url = "survey/v10/"+surveyId+"/question/v10";
 	var dataType = "json";
 	//var errMsg = [];
 	//var response = this.makeRequest(type,url,dataType,data,errMsg);
@@ -265,19 +458,33 @@ backendAPI.prototype.getPage = function(data) {
 
 /*
 variables
+		"name":"domain"
+			"description":"the domain (used for Multi-tenancy)"
+			"dataType":"String"
+			"paramType":"path"
+		"name":"surveyId"
+			"description":"the survey's id"
+			"dataType":"Long"
+			"paramType":"path"
 		"name":"id"
 			"description":"the id of the entity to update"
 			"dataType":"Long"
 			"paramType":"path"
-count = 1
+count = 3
 */
-backendAPI.prototype.update = function(id) {
+backendAPI.prototype.update = function(domain,surveyId,id) {
 	var type = "POST";
 	var data = {};
 
 
 
-	var url = "survey/v10/{surveyId}/question/v10/"+id;
+
+
+
+
+
+
+	var url = "survey/v10/"+surveyId+"/question/v10/"+id;
 	var dataType = "json";
 	//var errMsg = [];
 	//var response = this.makeRequest(type,url,dataType,data,errMsg);
