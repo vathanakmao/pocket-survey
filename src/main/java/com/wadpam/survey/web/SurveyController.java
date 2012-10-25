@@ -5,14 +5,19 @@ import com.wadpam.docrest.domain.RestCode;
 import com.wadpam.docrest.domain.RestReturn;
 import com.wadpam.open.json.JCursorPage;
 import com.wadpam.server.exceptions.NotFoundException;
+import com.wadpam.survey.domain.DAnswer;
 import com.wadpam.survey.domain.DOption;
 import com.wadpam.survey.domain.DQuestion;
 import com.wadpam.survey.domain.DSurvey;
+import com.wadpam.survey.json.JAnswer;
 import com.wadpam.survey.json.JOption;
 import com.wadpam.survey.json.JQuestion;
 import com.wadpam.survey.json.JSurvey;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.Serializable;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -141,6 +146,31 @@ public class SurveyController {
      * @param cursorKey null to get first page
      * @return a page of entities
      */
+    @RestReturn(value=JAnswer.class, entity=JAnswer.class, code={
+        @RestCode(code=200, description="A CSV with JSON entities", message="OK")})
+    @RequestMapping(value="v10/{surveyId}/csv", method= RequestMethod.GET)
+    public void getCsv(HttpServletResponse response,
+            @PathVariable String domain, 
+            @PathVariable Long surveyId) throws IOException {
+        // get the full JSurvey definition
+        final JSurvey jSurvey = get(surveyId);
+        
+        final Iterable<DAnswer> answers = service.getAnswersBySurvey(surveyId);
+        
+        response.setContentType("text/csv");
+        PrintWriter pw = response.getWriter();
+        
+        writeAnswersAsCsv(pw, answers, jSurvey);
+        
+        pw.close();
+    }
+    
+    /**
+     * Queries for a (next) page of entities
+     * @param pageSize default is 10
+     * @param cursorKey null to get first page
+     * @return a page of entities
+     */
     @RestReturn(value=JCursorPage.class, entity=JSurvey.class, code={
         @RestCode(code=200, description="A CursorPage with JSON entities", message="OK")})
     @RequestMapping(value="v10", method= RequestMethod.GET)
@@ -182,6 +212,37 @@ public class SurveyController {
         final String relative = String.format("%d", dEntity.getId());
         final RedirectView returnValue = new RedirectView(relative, true);
         return returnValue;
+    }
+
+    protected static void writeAnswersAsCsv(PrintWriter pw, Iterable<DAnswer> answers, JSurvey jSurvey) {
+        
+        final Map<String, JQuestion> questionsMap = new HashMap<String, JQuestion>();
+        final Map<String, JOption> optionsMap = new HashMap<String, JOption>();
+        for (JQuestion q : jSurvey.getQuestions()) {
+            questionsMap.put(q.getId(), q);
+            if (null != q.getOptions()) {
+                for (JOption o : q.getOptions()) {
+                    optionsMap.put(o.getId(), o);
+                }
+            }
+        }
+        
+        final SimpleDateFormat SDF = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        final String FORMAT = "%s,%s,%s,%s,%s,%s,%s,%s";
+        
+        pw.println(String.format(FORMAT, "surveyId", "responseId", "questionId", 
+                "user", "lastUpdated", "answerType", "answer", "label"));
+        
+        JQuestion q;
+        JOption o;
+        for (DAnswer a : answers) {
+            q = questionsMap.get(a.getQuestion().getId().toString());
+            o = optionsMap.get(a.getAnswer().toString());
+            pw.println(String.format(FORMAT, 
+                    a.getSurvey().getId(), a.getResponse().getId(), a.getQuestion().getId(),
+                    a.getUpdatedBy(), SDF.format(a.getUpdatedDate()), 
+                    q.getType(), a.getAnswer(), null != o ? o.getLabel() : ""));
+        }
     }
 
     public void setService(SurveyService service) {

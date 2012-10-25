@@ -6,6 +6,7 @@ import com.wadpam.docrest.domain.RestReturn;
 import com.wadpam.open.json.JCursorPage;
 import com.wadpam.server.exceptions.NotFoundException;
 import com.wadpam.survey.domain.DResponse;
+import com.wadpam.survey.json.JAnswer;
 import com.wadpam.survey.json.JResponse;
 import java.io.Serializable;
 import java.net.URL;

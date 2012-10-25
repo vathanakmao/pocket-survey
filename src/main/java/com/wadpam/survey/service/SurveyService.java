@@ -23,6 +23,8 @@ import com.wadpam.survey.web.ResponseController;
 import com.wadpam.survey.web.SurveyController;
 import java.io.Serializable;
 import net.sf.mardao.core.CursorPage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -42,6 +44,8 @@ public class SurveyService {
     public static final int ERR_QUESTION = 104000;
     /** Base offset for option resource errors (105000) */
     public static final int ERR_OPTION = 105000;
+    
+    static final Logger LOG = LoggerFactory.getLogger(SurveyService.class);
     
     private DAnswerDao answerDao;
     private DOptionDao optionDao;
@@ -161,6 +165,12 @@ public class SurveyService {
         return entity;
     }
     
+    public Iterable<DAnswer> getAnswersBySurvey(Long surveyId) {
+        final DSurvey survey = new DSurvey();
+        survey.setId(surveyId);
+        return answerDao.queryBySurvey(survey);
+    }
+
     public CursorPage<DAnswer, Long> getAnswersPage(int pageSize, Serializable cursorKey) {
         final CursorPage<DAnswer, Long> page = answerDao.queryPage(pageSize, cursorKey);
         return page;
@@ -283,6 +293,8 @@ public class SurveyService {
             responseDao.persist(dEntity);
         }
 
+        LOG.info("saved response {}, inner answers = {}", dEntity, jResponse.getAnswers());
+        
         // inner Answers to this response?
         if (null != jResponse.getAnswers()) {
             final Iterable<DAnswer> existing = answerDao.queryByResponse(dEntity);
