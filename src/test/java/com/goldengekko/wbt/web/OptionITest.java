@@ -2,8 +2,8 @@ package com.goldengekko.wbt.web;
 
 import com.wadpam.survey.json.JOption;
 import com.wadpam.survey.json.JQuestion;
-import com.wadpam.survey.json.JResponse;
 import com.wadpam.survey.json.JSurvey;
+import com.wadpam.survey.json.JVersion;
 import java.net.URI;
 import static org.junit.Assert.*;
 
@@ -23,7 +23,7 @@ import org.springframework.web.client.RestTemplate;
  */
 public class OptionITest {
 
-    static final String                  BASE_URL       = "http://localhost:8943/api/apidocs/survey/v10/4242/question/v10/49548/";
+    static final String                  BASE_URL       = "http://localhost:8943/api/apidocs/survey/v10/4242/version/v10/5252/question/v10/49548/";
     static final String                  BASE_URL_SURVEY       = "http://localhost:8943/api/apidocs/survey/v10";
 
     RestTemplate                         template;
@@ -75,13 +75,14 @@ public class OptionITest {
         URI surveyURI = template.postForLocation(BASE_URL_SURVEY, requestEntity);
         JSurvey survey = template.getForObject(surveyURI, JSurvey.class);
         assertNotNull(survey);
+        JVersion version = survey.getVersions().iterator().next();
         
         // now, POST an option
-        requestEntity.set("questionId", "1938424");
+//        requestEntity.set("questionId", "1938424");
         requestEntity.set("answer", "MyAnswer");
         try {
-            URI uri = template.postForLocation(String.format("%s/question/v10/1938424/option/v10", surveyURI),
-                requestEntity);
+            URI uri = template.postForLocation(String.format("%s/version/v10/{versionId}/question/v10/1938424/option/v10", surveyURI),
+                requestEntity, version.getId());
             fail("Expected 404 Not Found");
         }
         catch (HttpClientErrorException expected) {
@@ -99,13 +100,15 @@ public class OptionITest {
         URI surveyURI = template.postForLocation(BASE_URL_SURVEY, requestEntity);
         JSurvey survey = template.getForObject(surveyURI, JSurvey.class);
         assertNotNull(survey);
+        JVersion version = survey.getVersions().iterator().next();
         
         // create a question
         requestEntity.clear();
-        String baseUrlQuestion = BASE_URL_SURVEY + String.format("/%s/question/v10", survey.getId());
+        requestEntity.set("question", "What is the correct answer?");
         URI questionURI = template.postForLocation(
-                baseUrlQuestion,
-                requestEntity);
+                BASE_URL_SURVEY + "/{surveyId}/version/v10/{versionId}/question/v10",
+                requestEntity,
+                survey.getId(), version.getId());
         JQuestion question = template.getForObject(questionURI, JQuestion.class);
 
         // now, POST an option

@@ -14,7 +14,7 @@ public class DQuestion extends AbstractLongEntity {
     
     /** The order of this question within the Survey */
     @Basic
-    private Long order;
+    private Long ordering;
 
     /** The default localization of the question */
     @Basic
@@ -28,16 +28,20 @@ public class DQuestion extends AbstractLongEntity {
     @Basic
     private Long type;
 
-    /** The survey this response is for */
+    /** The survey this question is for */
     @ManyToOne
     private DSurvey survey;
     
-    public Long getOrder() {
-        return order;
+    /** The survey version this question is for */
+    @ManyToOne
+    private DVersion version;
+    
+    public Long getOrdering() {
+        return ordering;
     }
 
-    public void setOrder(Long order) {
-        this.order = order;
+    public void setOrdering(Long order) {
+        this.ordering = order;
     }
     
     public DSurvey getSurvey() {
@@ -72,4 +76,11 @@ public class DQuestion extends AbstractLongEntity {
         this.required = required;
     }
 
+    public DVersion getVersion() {
+        return version;
+    }
+
+    public void setVersion(DVersion version) {
+        this.version = version;
+    }
 }

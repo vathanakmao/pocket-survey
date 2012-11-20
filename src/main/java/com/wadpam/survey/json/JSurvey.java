@@ -17,8 +17,8 @@ public class JSurvey extends JBaseObject {
     /** The title of this survey */
     private String title;
     
-    /** The Questions configured for this survey */
-    private Collection<JQuestion> questions;
+    /** The Versions configured for this survey */
+    private Collection<JVersion> versions;
 
     public String getTitle() {
         return title;
@@ -33,12 +33,12 @@ public class JSurvey extends JBaseObject {
         return String.format("title:%s", title);
     }
 
-    public Collection<JQuestion> getQuestions() {
-        return questions;
+    public Collection<JVersion> getVersions() {
+        return versions;
     }
 
-    public void setQuestions(Collection<JQuestion> questions) {
-        this.questions = questions;
+    public void setVersions(Collection<JVersion> versions) {
+        this.versions = versions;
     }
 
 }

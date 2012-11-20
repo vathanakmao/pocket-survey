@@ -30,7 +30,7 @@ import org.springframework.web.servlet.view.RedirectView;
  */
 @RestReturn(value=JAnswer.class)
 @Controller
-@RequestMapping("{domain}/survey/v10/{surveyId}/response/v10/{responseId}/answer")
+@RequestMapping("{domain}/survey/v10/{surveyId}/version/v10/{versionId}/response/v10/{responseId}/answer")
 public class AnswerController {
     public static final int ERR_GET_NOT_FOUND = SurveyService.ERR_ANSWER + 1;
     public static final int ERR_CREATE_NOT_FOUND = SurveyService.ERR_ANSWER + 2;
@@ -59,6 +59,7 @@ public class AnswerController {
             HttpServletResponse response,
             @PathVariable String domain,
             @PathVariable Long surveyId,
+            @PathVariable Long versionId,
             @PathVariable Long responseId,
             @ModelAttribute JAnswer jAnswer,
             @RequestParam(required=false) String[] answers
@@ -100,6 +101,7 @@ public class AnswerController {
     public JAnswer get(
             @PathVariable String domain,
             @PathVariable Long surveyId,
+            @PathVariable Long versionId,
             @PathVariable Long responseId,
             @PathVariable Long id) {
         final DAnswer entity = service.getAnswer(id);

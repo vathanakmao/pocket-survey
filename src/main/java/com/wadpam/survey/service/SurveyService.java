@@ -7,14 +7,17 @@ import com.wadpam.survey.dao.DOptionDao;
 import com.wadpam.survey.dao.DQuestionDao;
 import com.wadpam.survey.dao.DSurveyDao;
 import com.wadpam.survey.dao.DResponseDao;
+import com.wadpam.survey.dao.DVersionDao;
 import com.wadpam.survey.domain.DAnswer;
 import com.wadpam.survey.domain.DOption;
 import com.wadpam.survey.domain.DQuestion;
 import com.wadpam.survey.domain.DResponse;
 import com.wadpam.survey.domain.DSurvey;
+import com.wadpam.survey.domain.DVersion;
 import com.wadpam.survey.json.JAnswer;
 import com.wadpam.survey.json.JResponse;
 import com.wadpam.survey.json.JSurvey;
+import com.wadpam.survey.json.JVersion;
 import com.wadpam.survey.web.AnswerController;
 import com.wadpam.survey.web.Converter;
 import com.wadpam.survey.web.OptionController;
@@ -44,6 +47,10 @@ public class SurveyService {
     public static final int ERR_QUESTION = 104000;
     /** Base offset for option resource errors (105000) */
     public static final int ERR_OPTION = 105000;
+    /** Base offset for version resource errors (106010) */
+    public static final int ERR_VERSION = 106010;
+    
+    public static final int ERR_VERSION_CREATE_NOT_FOUND = 106001;
     
     static final Logger LOG = LoggerFactory.getLogger(SurveyService.class);
     
@@ -52,8 +59,58 @@ public class SurveyService {
     private DQuestionDao questionDao;
     private DResponseDao responseDao;
     private DSurveyDao surveyDao;
+    private DVersionDao versionDao;
     
     public void init() {
+    }
+    
+    public DOption cloneOption(DQuestion question, DOption from) {
+        final DOption to = new DOption();
+        to.setLabel(from.getLabel());
+        to.setQuestion(question);
+        to.setSurvey(from.getSurvey());
+        to.setVersion(from.getVersion());
+        
+        optionDao.persist(to);
+        
+        return to;
+    }
+    
+    public DQuestion cloneQuestion(DVersion version, DQuestion from) {
+        final DQuestion to = new DQuestion();
+        to.setOrdering(from.getOrdering());
+        to.setQuestion(from.getQuestion());
+        to.setRequired(from.getRequired());
+        to.setSurvey(from.getSurvey());
+        to.setType(from.getType());
+        to.setVersion(version);
+        
+        questionDao.persist(to);
+        
+        for (DOption fo : optionDao.queryByQuestion(from)) {
+            cloneOption(to, fo);
+        }
+        
+        return to;
+    }
+    
+    public DVersion cloneVersion(DSurvey survey, DVersion from, String description) {
+        final DVersion to = new DVersion();
+        to.setDescription(description);
+        to.setState(JVersion.STATE_DRAFT);
+        to.setSurvey(survey);
+
+        versionDao.persist(to);
+        
+        // clone version
+        if (null != from) {
+            for (DQuestion fq : questionDao.queryByVersion(from)) {
+                cloneQuestion(to, fq);
+            }
+        }
+        
+        return to;
+
     }
     
     public DAnswer createAnswer(DAnswer dEntity) {
@@ -142,7 +199,27 @@ public class SurveyService {
         }
         
         surveyDao.persist(dEntity);
+        
+        // create the first version
+        cloneVersion(dEntity, null, "0.1");
+        
         return dEntity;
+    }
+    
+    public DVersion createVersion(Long surveyId, Long fromVersionId, String description) {
+        final DSurvey survey = surveyDao.findByPrimaryKey(surveyId);
+        if (null == survey) {
+            throw new NotFoundException(ERR_VERSION_CREATE_NOT_FOUND, null, null, 
+                    String.format("Cannot find survey with id %d", surveyId));
+        }
+        
+        final DVersion fromVersion = versionDao.findByPrimaryKey(fromVersionId);
+        if (null == fromVersion) {
+            throw new NotFoundException(ERR_VERSION_CREATE_NOT_FOUND, null, null, 
+                    String.format("Cannot find from-version with id %d", fromVersionId));
+        }
+        
+        return cloneVersion(survey, fromVersion, description);
     }
     
     public Integer deleteAll() {
@@ -165,10 +242,10 @@ public class SurveyService {
         return entity;
     }
     
-    public Iterable<DAnswer> getAnswersBySurvey(Long surveyId) {
-        final DSurvey survey = new DSurvey();
-        survey.setId(surveyId);
-        return answerDao.queryBySurvey(survey);
+    public Iterable<DAnswer> getAnswersByVersion(Long versionId) {
+        final DVersion version = new DVersion();
+        version.setId(versionId);
+        return answerDao.queryByVersion(version);
     }
 
     public CursorPage<DAnswer, Long> getAnswersPage(int pageSize, Serializable cursorKey) {
@@ -187,6 +264,12 @@ public class SurveyService {
         return optionDao.queryBySurvey(survey);
     }
     
+    public Iterable<DOption> getOptionsByVersion(Long versionId) {
+        DVersion version = new DVersion();
+        version.setId(versionId);
+        return optionDao.queryByVersion(version);
+    }
+    
     public CursorPage<DOption, Long> getOptionsPage(int pageSize, Serializable cursorKey) {
         final CursorPage<DOption, Long> page = optionDao.queryPage(pageSize, cursorKey);
         return page;
@@ -197,10 +280,22 @@ public class SurveyService {
         return entity;
     }
     
+    public Iterable<DVersion> getVersionsBySurvey(Long surveyId) {
+        DSurvey survey = new DSurvey();
+        survey.setId(surveyId);
+        return versionDao.queryBySurvey(survey);
+    }
+    
     public Iterable<DQuestion> getQuestionsBySurvey(Long surveyId) {
         DSurvey survey = new DSurvey();
         survey.setId(surveyId);
         return questionDao.queryBySurvey(survey);
+    }
+    
+    public Iterable<DQuestion> getQuestionsByVersion(Long versionId) {
+        DVersion version = new DVersion();
+        version.setId(versionId);
+        return questionDao.queryByVersion(version);
     }
     
     public CursorPage<DQuestion, Long> getQuestionsPage(int pageSize, Serializable cursorKey) {
@@ -228,6 +323,16 @@ public class SurveyService {
         return page;
     }
     
+    public DVersion getVersion(Long id) {
+        final DVersion entity = versionDao.findByPrimaryKey(id);
+        return entity;
+    }
+    
+    public CursorPage<DVersion, Long> getVersionsPage(int pageSize, Serializable cursorKey) {
+        final CursorPage<DVersion, Long> page = versionDao.queryPage(pageSize, cursorKey);
+        return page;
+    }
+    
     public DOption updateOption(DOption dEntity) {
         optionDao.update(dEntity);
         return dEntity;
@@ -240,6 +345,11 @@ public class SurveyService {
 
     public DSurvey updateSurvey(DSurvey dEntity) {
         surveyDao.update(dEntity);
+        return dEntity;
+    }
+
+    public DVersion updateVersion(DVersion dEntity) {
+        versionDao.update(dEntity);
         return dEntity;
     }
 
@@ -324,6 +434,10 @@ public class SurveyService {
 
     public void setSurveyDao(DSurveyDao surveyDao) {
         this.surveyDao = surveyDao;
+    }
+
+    public void setVersionDao(DVersionDao versionDao) {
+        this.versionDao = versionDao;
     }
 
 }

@@ -1,8 +1,8 @@
 package com.goldengekko.wbt.web;
 
-import com.wadpam.open.json.JMonitor;
 import com.wadpam.survey.json.JResponse;
 import com.wadpam.survey.json.JSurvey;
+import com.wadpam.survey.json.JVersion;
 import java.net.URI;
 import static org.junit.Assert.*;
 
@@ -11,8 +11,6 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.HttpClientErrorException;
@@ -24,7 +22,7 @@ import org.springframework.web.client.RestTemplate;
  */
 public class ResponseITest {
 
-    static final String                  BASE_URL       = "http://localhost:8943/api/apidocs/survey/v10/4242/";
+    static final String                  BASE_URL       = "http://localhost:8943/api/apidocs/survey/v10/4242/version/v10/5454/";
     static final String                  BASE_URL_SURVEY       = "http://localhost:8943/api/apidocs/survey/v10";
 
     RestTemplate                         template;
@@ -74,10 +72,11 @@ public class ResponseITest {
         URI surveyURI = template.postForLocation(BASE_URL_SURVEY, requestEntity);
         JSurvey survey = template.getForObject(surveyURI, JSurvey.class);
         assertNotNull(survey);
+        JVersion version = survey.getVersions().iterator().next();
         
         requestEntity.clear();
-        URI uri = template.postForLocation(BASE_URL_SURVEY + String.format("/%s/", survey.getId()) + "response/v10", 
-                requestEntity);
+        URI uri = template.postForLocation(BASE_URL_SURVEY + "/{surveyId}/version/v10/{versionId}/response/v10", 
+                requestEntity, survey.getId(), version.getId());
         assertNotNull("createResponse", uri);
         System.out.println("created response, URI is " + uri);
         

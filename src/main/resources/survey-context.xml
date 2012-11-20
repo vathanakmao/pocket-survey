@@ -20,6 +20,7 @@
         <property name="questionDao" ref="dQuestionDao" />
         <property name="responseDao" ref="dResponseDao" />
         <property name="surveyDao" ref="dSurveyDao" />
+        <property name="versionDao" ref="dVersionDao" />
     </bean>
     
     <!--           Controllers             -->

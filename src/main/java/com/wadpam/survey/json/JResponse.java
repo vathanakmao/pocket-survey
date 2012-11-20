@@ -16,6 +16,9 @@ public class JResponse extends JBaseObject {
     /** The survey this response is for */
     private Long surveyId;
     
+    /** The survey version this response is for */
+    private Long versionId;
+    
     /** The answers for this response */
     private List<JAnswer> answers;
 
@@ -38,6 +41,14 @@ public class JResponse extends JBaseObject {
 
     public void setAnswers(List<JAnswer> answers) {
         this.answers = answers;
+    }
+
+    public Long getVersionId() {
+        return versionId;
+    }
+
+    public void setVersionId(Long versionId) {
+        this.versionId = versionId;
     }
 
 }

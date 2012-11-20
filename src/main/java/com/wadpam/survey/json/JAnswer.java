@@ -17,6 +17,9 @@ public class JAnswer extends JBaseObject {
     /** The survey this answer is for */
     private Long surveyId;
 
+    /** The survey version this answer is for */
+    private Long versionId;
+
     /** The type of the answer is given by the question */
     private Object answer;
     
@@ -50,6 +53,14 @@ public class JAnswer extends JBaseObject {
 
     public void setAnswer(Object answer) {
         this.answer = answer;
+    }
+
+    public Long getVersionId() {
+        return versionId;
+    }
+
+    public void setVersionId(Long versionId) {
+        this.versionId = versionId;
     }
     
     @Override

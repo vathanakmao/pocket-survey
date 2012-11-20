@@ -24,6 +24,10 @@ public class DOption extends AbstractLongEntity {
     @ManyToOne
     private DSurvey survey;
 
+    /** The survey version this option is related to */
+    @ManyToOne
+    private DVersion version;
+
     public String getLabel() {
         return label;
     }
@@ -46,6 +50,14 @@ public class DOption extends AbstractLongEntity {
 
     public void setQuestion(DQuestion question) {
         this.question = question;
+    }
+
+    public DVersion getVersion() {
+        return version;
+    }
+
+    public void setVersion(DVersion version) {
+        this.version = version;
     }
 
 }

@@ -30,7 +30,7 @@ import org.springframework.web.servlet.view.RedirectView;
  */
 @RestReturn(value=JQuestion.class)
 @Controller
-@RequestMapping("{domain}/survey/v10/{surveyId}/question")
+@RequestMapping("{domain}/survey/v10/{surveyId}/version/v10/{versionId}/question")
 public class QuestionController {
     public static final int ERR_GET_NOT_FOUND = SurveyService.ERR_QUESTION + 1;
     public static final int ERR_CREATE_NOT_FOUND = SurveyService.ERR_QUESTION + 2;
@@ -61,6 +61,7 @@ public class QuestionController {
             HttpServletResponse response,
             @PathVariable String domain,
             @PathVariable Long surveyId,
+            @PathVariable Long versionId,
             @ModelAttribute JQuestion jEntity
             ) {
         
@@ -95,6 +96,7 @@ public class QuestionController {
     public JQuestion get(
             @PathVariable String domain,
             @PathVariable Long surveyId,
+            @PathVariable Long versionId,
             @PathVariable Long id) {
         final DQuestion entity = service.getQuestion(id);
         if (null == entity) {
@@ -123,6 +125,7 @@ public class QuestionController {
     public JCursorPage<JQuestion> getPage(
             @PathVariable String domain,
             @PathVariable Long surveyId,
+            @PathVariable Long versionId,
             @RequestParam(defaultValue="10") int pageSize, 
             @RequestParam(required=false) Serializable cursorKey) {
         final CursorPage<DQuestion, Long> page = service.getQuestionsPage(pageSize, cursorKey);
@@ -149,6 +152,7 @@ public class QuestionController {
             HttpServletResponse response,
             @PathVariable String domain,
             @PathVariable Long surveyId,
+            @PathVariable Long versionId,
             @PathVariable Long id,
             @ModelAttribute JQuestion jEntity
             ) {

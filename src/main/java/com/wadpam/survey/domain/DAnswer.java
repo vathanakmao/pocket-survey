@@ -31,6 +31,10 @@ public class DAnswer extends AbstractLongEntity {
     @ManyToOne
     private DSurvey survey;
     
+    /** The survey version this answer is related to */
+    @ManyToOne
+    private DVersion version;
+    
     public DResponse getResponse() {
         return response;
     }
@@ -61,6 +65,14 @@ public class DAnswer extends AbstractLongEntity {
 
     public void setQuestion(DQuestion question) {
         this.question = question;
+    }
+
+    public DVersion getVersion() {
+        return version;
+    }
+
+    public void setVersion(DVersion version) {
+        this.version = version;
     }
 
 }

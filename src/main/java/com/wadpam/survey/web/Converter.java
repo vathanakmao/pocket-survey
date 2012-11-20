@@ -7,11 +7,13 @@ import com.wadpam.survey.domain.DOption;
 import com.wadpam.survey.domain.DQuestion;
 import com.wadpam.survey.domain.DResponse;
 import com.wadpam.survey.domain.DSurvey;
+import com.wadpam.survey.domain.DVersion;
 import com.wadpam.survey.json.JAnswer;
 import com.wadpam.survey.json.JOption;
 import com.wadpam.survey.json.JQuestion;
 import com.wadpam.survey.json.JResponse;
 import com.wadpam.survey.json.JSurvey;
+import com.wadpam.survey.json.JVersion;
 
 /**
  *
@@ -37,6 +39,9 @@ public class Converter extends BaseConverter {
         else if (d instanceof DAnswer) {
             returnValue = convert((DAnswer) d);
         }
+        else if (d instanceof DVersion) {
+            returnValue = convert((DVersion) d);
+        }
         
         return returnValue;
     }
@@ -53,6 +58,7 @@ public class Converter extends BaseConverter {
         to.setQuestionId(null != from.getQuestion() ? from.getQuestion().getId() : null);
         to.setResponseId(null != from.getResponse() ? from.getResponse().getId() : null);
         to.setSurveyId(null != from.getSurvey() ? from.getSurvey().getId() : null);
+        to.setVersionId(null != from.getVersion() ? from.getVersion().getId() : null);
         
         return to;
     }
@@ -81,6 +87,11 @@ public class Converter extends BaseConverter {
             foreign.setId(from.getSurveyId());
             to.setSurvey(foreign);
         }
+        if (null != from.getVersionId()) {
+            final DVersion version = new DVersion();
+            version.setId(from.getVersionId());
+            to.setVersion(version);
+        }
         
         return to;
     }
@@ -96,6 +107,7 @@ public class Converter extends BaseConverter {
         to.setLabel(from.getLabel());
         to.setQuestionId(null != from.getQuestion() ? from.getQuestion().getId() : null);
         to.setSurveyId(null != from.getSurvey() ? from.getSurvey().getId() : null);
+        to.setVersionId(null != from.getVersion() ? from.getVersion().getId() : null);
         
         return to;
     }
@@ -119,6 +131,11 @@ public class Converter extends BaseConverter {
             foreign.setId(from.getSurveyId());
             to.setSurvey(foreign);
         }
+        if (null != from.getVersionId()) {
+            final DVersion version = new DVersion();
+            version.setId(from.getVersionId());
+            to.setVersion(version);
+        }
         
         return to;
     }
@@ -131,11 +148,12 @@ public class Converter extends BaseConverter {
         final JQuestion to = new JQuestion();
         convert(from, to);
 
-        to.setOrder(from.getOrder());
+        to.setOrdering(from.getOrdering());
         to.setQuestion(from.getQuestion());
         to.setRequired(from.getRequired());
         to.setType(from.getType());
         to.setSurveyId(null != from.getSurvey() ? from.getSurvey().getId() : null);
+        to.setVersionId(null != from.getVersion() ? from.getVersion().getId() : null);
         
         return to;
     }
@@ -148,7 +166,7 @@ public class Converter extends BaseConverter {
         final DQuestion to = new DQuestion();
         convert(from, to);
 
-        to.setOrder(from.getOrder());
+        to.setOrdering(from.getOrdering());
         to.setQuestion(from.getQuestion());
         to.setRequired(from.getRequired());
         to.setType(from.getType());
@@ -156,6 +174,11 @@ public class Converter extends BaseConverter {
             final DSurvey survey = new DSurvey();
             survey.setId(from.getSurveyId());
             to.setSurvey(survey);
+        }
+        if (null != from.getVersionId()) {
+            final DVersion version = new DVersion();
+            version.setId(from.getVersionId());
+            to.setVersion(version);
         }
         
         return to;
@@ -221,4 +244,38 @@ public class Converter extends BaseConverter {
         return to;
     }
 
+    public static JVersion convert(DVersion from) {
+        if (null == from) {
+            return null;
+        }
+        
+        final JVersion to = new JVersion();
+        convert(from, to);
+
+        to.setDescription(from.getDescription());
+        to.setState(from.getState());
+        to.setSurveyId(null != from.getSurvey() ? from.getSurvey().getId() : null);
+        
+        return to;
+    }
+
+    public static DVersion convert(JVersion from) {
+        if (null == from) {
+            return null;
+        }
+        
+        final DVersion to = new DVersion();
+        convert(from, to);
+
+        to.setDescription(from.getDescription());
+        to.setState(from.getState());
+        if (null != from.getSurveyId()) {
+            final DSurvey survey = new DSurvey();
+            survey.setId(from.getSurveyId());
+            to.setSurvey(survey);
+        }
+        
+        return to;
+    }
+    
 }

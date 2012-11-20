@@ -45,11 +45,17 @@ public class JQuestion extends JBaseObject {
     /** Drop-down select input */
     public static final long TYPE_DROPDOWN = 9;
     
-    /** The survey this answer is for */
+    /** Date (and time) input */
+    public static final long TYPE_DATE = 10;
+    
+    /** The survey this question is for */
     private Long surveyId;
 
+    /** The version this question is for */
+    private Long versionId;
+
     /** The order of this question within the Survey */
-    private Long order;
+    private Long ordering;
 
     /** The default localization of the question */
     private String question;
@@ -71,12 +77,12 @@ public class JQuestion extends JBaseObject {
         this.surveyId = surveyId;
     }
 
-    public Long getOrder() {
-        return order;
+    public Long getOrdering() {
+        return ordering;
     }
 
-    public void setOrder(Long order) {
-        this.order = order;
+    public void setOrdering(Long order) {
+        this.ordering = order;
     }
 
     public String getQuestion() {
@@ -113,7 +119,16 @@ public class JQuestion extends JBaseObject {
 
     @Override
     protected String subString() {
-        return String.format("surveyId:%d, order:%d, type:%d, question:%s", surveyId, order, type, question);
+        return String.format("surveyId:%d, versionId:%d, order:%d, type:%d, question:%s", 
+                surveyId, versionId, ordering, type, question);
+    }
+
+    public Long getVersionId() {
+        return versionId;
+    }
+
+    public void setVersionId(Long versionId) {
+        this.versionId = versionId;
     }
 
 }

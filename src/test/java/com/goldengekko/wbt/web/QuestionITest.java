@@ -1,8 +1,8 @@
 package com.goldengekko.wbt.web;
 
-import com.wadpam.open.json.JMonitor;
 import com.wadpam.survey.json.JResponse;
 import com.wadpam.survey.json.JSurvey;
+import com.wadpam.survey.json.JVersion;
 import java.net.URI;
 import static org.junit.Assert.*;
 
@@ -11,8 +11,6 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.HttpClientErrorException;
@@ -55,7 +53,7 @@ public class QuestionITest {
         MultiValueMap<String, Object> requestEntity = new LinkedMultiValueMap<String, Object>();
 
         try {
-            URI uri = template.postForLocation(BASE_URL + "question/v10", 
+            URI uri = template.postForLocation(BASE_URL + "version/v10/5353/question/v10", 
                 requestEntity);
             fail("Expected 404 Not Found");
         }
@@ -74,10 +72,12 @@ public class QuestionITest {
         URI surveyURI = template.postForLocation(BASE_URL_SURVEY, requestEntity);
         JSurvey survey = template.getForObject(surveyURI, JSurvey.class);
         assertNotNull(survey);
+        final JVersion first = survey.getVersions().iterator().next();
         
         requestEntity.clear();
-        URI uri = template.postForLocation(BASE_URL_SURVEY + String.format("/%s/", survey.getId()) + "question/v10", 
-                requestEntity);
+        URI uri = template.postForLocation(BASE_URL_SURVEY + 
+                "/{surveyId}/version/v10/{versionId}/question/v10", 
+                requestEntity, survey.getId(), first.getId());
         assertNotNull("createQuestion", uri);
         System.out.println("created question, URI is " + uri);
         

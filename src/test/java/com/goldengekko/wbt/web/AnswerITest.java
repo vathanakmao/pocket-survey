@@ -4,6 +4,7 @@ import com.wadpam.survey.json.JAnswer;
 import com.wadpam.survey.json.JQuestion;
 import com.wadpam.survey.json.JResponse;
 import com.wadpam.survey.json.JSurvey;
+import com.wadpam.survey.json.JVersion;
 import java.net.URI;
 import static org.junit.Assert.*;
 
@@ -23,7 +24,7 @@ import org.springframework.web.client.RestTemplate;
  */
 public class AnswerITest {
 
-    static final String                  BASE_URL       = "http://localhost:8943/api/apidocs/survey/v10/4242/response/v10/49548/";
+    static final String                  BASE_URL       = "http://localhost:8943/api/apidocs/survey/v10/4242/version/v10/5656/response/v10/49548/";
     static final String                  BASE_URL_SURVEY       = "http://localhost:8943/api/apidocs/survey/v10";
 
     RestTemplate                         template;
@@ -75,29 +76,33 @@ public class AnswerITest {
         URI surveyURI = template.postForLocation(BASE_URL_SURVEY, requestEntity);
         JSurvey survey = template.getForObject(surveyURI, JSurvey.class);
         assertNotNull(survey);
+        final JVersion version = survey.getVersions().iterator().next();
         
         // and create a response
         requestEntity.clear();
-        String baseUrlSurvey = BASE_URL_SURVEY + String.format("/%s/response/v10", survey.getId());
         URI responseURI = template.postForLocation(
-                baseUrlSurvey,
-                requestEntity);
+                BASE_URL_SURVEY + "/{surveyId}/version/v10/{versionId}/response/v10", 
+                requestEntity,
+                survey.getId(), version.getId()
+                );
         JResponse response = template.getForObject(responseURI, JResponse.class);
 
         // finally, create a question
         requestEntity.clear();
-        String baseUrlQuestion = BASE_URL_SURVEY + String.format("/%s/question/v10", survey.getId());
         URI questionURI = template.postForLocation(
-                baseUrlQuestion,
-                requestEntity);
+                BASE_URL_SURVEY + "/{surveyId}/version/v10/{versionId}/question/v10", 
+                requestEntity,
+                survey.getId(), version.getId()
+                );
         JQuestion question = template.getForObject(questionURI, JQuestion.class);
 
         // now, POST an answer
         requestEntity.set("questionId", question.getId());
         requestEntity.set("answer", "MyAnswer");
-        URI uri = template.postForLocation(baseUrlSurvey + 
-                String.format("/%s/answer/v10", response.getId()),
-                requestEntity);
+        URI uri = template.postForLocation(
+                BASE_URL_SURVEY + "/{surveyId}/version/v10/{versionId}/response/v10/{responseId}/answer/v10",
+                requestEntity,
+                survey.getId(), version.getId(), response.getId());
         assertNotNull("createAnswer", uri);
         System.out.println("created answer URI is " + uri);
         
@@ -118,22 +123,24 @@ public class AnswerITest {
         URI surveyURI = template.postForLocation(BASE_URL_SURVEY, requestEntity);
         JSurvey survey = template.getForObject(surveyURI, JSurvey.class);
         assertNotNull(survey);
+        final JVersion version = survey.getVersions().iterator().next();
         
         // and create a response
         requestEntity.clear();
-        String baseUrlSurvey = BASE_URL_SURVEY + String.format("/%s/response/v10", survey.getId());
         URI responseURI = template.postForLocation(
-                baseUrlSurvey,
-                requestEntity);
+                BASE_URL_SURVEY + "/{surveyId}/version/v10/{versionId}/response/v10",
+                requestEntity,
+                survey.getId(), version.getId());
         JResponse response = template.getForObject(responseURI, JResponse.class);
 
         // now, POST an answer
         requestEntity.set("questionId", "1938424");
         requestEntity.set("answer", "MyAnswer");
         try {
-            URI uri = template.postForLocation(baseUrlSurvey + 
-                String.format("/%s/answer/v10", response.getId()),
-                requestEntity);
+            URI uri = template.postForLocation(
+                    responseURI + "/answer/v10",
+                requestEntity,
+                response.getId());
             fail();
         }
         catch (HttpClientErrorException expected) {

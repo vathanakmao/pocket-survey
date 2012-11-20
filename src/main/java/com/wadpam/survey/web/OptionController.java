@@ -30,7 +30,7 @@ import org.springframework.web.servlet.view.RedirectView;
  */
 @RestReturn(value=JOption.class)
 @Controller
-@RequestMapping("{domain}/survey/v10/{surveyId}/question/v10/{questionId}/option")
+@RequestMapping("{domain}/survey/v10/{surveyId}/version/v10/{versionId}/question/v10/{questionId}/option")
 public class OptionController {
     public static final int ERR_GET_NOT_FOUND = SurveyService.ERR_OPTION + 1;
     public static final int ERR_CREATE_NOT_FOUND = SurveyService.ERR_OPTION + 2;
@@ -62,6 +62,7 @@ public class OptionController {
             HttpServletResponse response,
             @PathVariable String domain,
             @PathVariable Long surveyId,
+            @PathVariable Long versionId,
             @PathVariable Long questionId,
             @ModelAttribute JOption jEntity
             ) {
@@ -98,6 +99,7 @@ public class OptionController {
     public JOption get(
             @PathVariable String domain,
             @PathVariable Long surveyId,
+            @PathVariable Long versionId,
             @PathVariable Long questionId,
             @PathVariable Long id) {
         final DOption entity = service.getOption(id);
@@ -128,6 +130,7 @@ public class OptionController {
     public JCursorPage<JOption> getPage(
             @PathVariable String domain,
             @PathVariable Long surveyId,
+            @PathVariable Long versionId,
             @PathVariable Long questionId,
             @RequestParam(defaultValue="10") int pageSize, 
             @RequestParam(required=false) Serializable cursorKey) {
@@ -156,6 +159,7 @@ public class OptionController {
             HttpServletResponse response,
             @PathVariable String domain,
             @PathVariable Long surveyId,
+            @PathVariable Long versionId,
             @PathVariable Long questionId,
             @PathVariable Long id,
             @ModelAttribute JOption jEntity

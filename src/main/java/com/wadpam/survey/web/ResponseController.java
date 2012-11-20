@@ -6,7 +6,6 @@ import com.wadpam.docrest.domain.RestReturn;
 import com.wadpam.open.json.JCursorPage;
 import com.wadpam.server.exceptions.NotFoundException;
 import com.wadpam.survey.domain.DResponse;
-import com.wadpam.survey.json.JAnswer;
 import com.wadpam.survey.json.JResponse;
 import java.io.Serializable;
 import java.net.URL;
@@ -31,7 +30,7 @@ import org.springframework.web.servlet.view.RedirectView;
  */
 @RestReturn(value=JResponse.class)
 @Controller
-@RequestMapping("{domain}/survey/v10/{surveyId}/response")
+@RequestMapping("{domain}/survey/v10/{surveyId}/version/v10/{versionId}/response")
 public class ResponseController {
     public static final int ERR_RESPONSE_GET_NOT_FOUND = SurveyService.ERR_RESPONSE + 1;
     public static final int ERR_CREATE_NOT_FOUND = SurveyService.ERR_RESPONSE + 2;
@@ -60,6 +59,7 @@ public class ResponseController {
             HttpServletResponse response,
             @PathVariable String domain,
             @PathVariable Long surveyId,
+            @PathVariable Long versionId,
             @ModelAttribute JResponse jResponse,
             @RequestParam(required=false) String[] answers
             ) {

@@ -14,6 +14,9 @@ public class JOption extends JBaseObject {
     /** The survey this answer is for */
     private Long surveyId;
 
+    /** The survey version this answer is for */
+    private Long versionId;
+
     /** The text label for this option*/
     private String label;
     
@@ -39,6 +42,14 @@ public class JOption extends JBaseObject {
 
     public void setLabel(String label) {
         this.label = label;
+    }
+
+    public Long getVersionId() {
+        return versionId;
+    }
+
+    public void setVersionId(Long versionId) {
+        this.versionId = versionId;
     }
     
     @Override
