@@ -3,7 +3,7 @@ package com.wadpam.survey.web;
 import com.wadpam.docrest.domain.RestCode;
 import com.wadpam.docrest.domain.RestReturn;
 import com.wadpam.open.json.JCursorPage;
-import com.wadpam.server.exceptions.NotFoundException;
+import com.wadpam.open.exceptions.NotFoundException;
 import com.wadpam.survey.domain.DAnswer;
 import com.wadpam.survey.domain.DOption;
 import com.wadpam.survey.domain.DQuestion;

@@ -4,7 +4,7 @@ import com.wadpam.survey.service.SurveyService;
 import com.wadpam.docrest.domain.RestCode;
 import com.wadpam.docrest.domain.RestReturn;
 import com.wadpam.open.json.JCursorPage;
-import com.wadpam.server.exceptions.NotFoundException;
+import com.wadpam.open.exceptions.NotFoundException;
 import com.wadpam.survey.domain.DQuestion;
 import com.wadpam.survey.json.JQuestion;
 import java.io.Serializable;

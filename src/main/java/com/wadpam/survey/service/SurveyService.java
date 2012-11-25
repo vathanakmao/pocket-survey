@@ -1,7 +1,7 @@
 package com.wadpam.survey.service;
 
-import com.wadpam.server.exceptions.ConflictException;
-import com.wadpam.server.exceptions.NotFoundException;
+import com.wadpam.open.exceptions.ConflictException;
+import com.wadpam.open.exceptions.NotFoundException;
 import com.wadpam.survey.dao.DAnswerDao;
 import com.wadpam.survey.dao.DOptionDao;
 import com.wadpam.survey.dao.DQuestionDao;

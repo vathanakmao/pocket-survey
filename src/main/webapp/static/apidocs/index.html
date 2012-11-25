@@ -15,27 +15,32 @@
 
 
 <script id="JAnswer" type="text/x-jquery-tmpl">
-<tr><td>${chars}</td><td>${long}</td><td>${long}</td><td>${long}</td><td>${chars}</td><td>${long}</td><td>${long}</td><td>${long}</td><td>${chars}</td><td>${long}</td><td>${long}</td><td>${long}</td><td>${class}</td></tr>
+<tr><td>${chars}</td><td>${long}</td><td>${long}</td><td>${long}</td><td>${chars}</td><td>${long}</td><td>${long}</td><td>${long}</td><td>${chars}</td><td>${long}</td><td>${long}</td><td>${long}</td><td>${class}</td><td>${chars}</td><td>${long}</td><td>${long}</td><td>${long}</td></tr>
 </script>
 
 
 <script id="JOption" type="text/x-jquery-tmpl">
-<tr><td>${chars}</td><td>${long}</td><td>${long}</td><td>${long}</td><td>${chars}</td><td>${long}</td><td>${long}</td><td>${long}</td><td>${empty}</td><td>${chars}</td><td>${chars}</td><td>${bytes}</td><td>${bytes}</td><td>${bytes}</td><td>${bytes}</td></tr>
+<tr><td>${chars}</td><td>${long}</td><td>${long}</td><td>${long}</td><td>${chars}</td><td>${long}</td><td>${long}</td><td>${long}</td><td>${empty}</td><td>${chars}</td><td>${chars}</td><td>${bytes}</td><td>${bytes}</td><td>${bytes}</td><td>${bytes}</td><td>${chars}</td><td>${long}</td><td>${long}</td><td>${long}</td></tr>
 </script>
 
 
 <script id="JQuestion" type="text/x-jquery-tmpl">
-<tr><td>${chars}</td><td>${long}</td><td>${long}</td><td>${long}</td><td>${chars}</td><td>${long}</td><td>${long}</td><td>${long}</td><td>${empty}</td><td>${chars}</td><td>${chars}</td><td>${bytes}</td><td>${bytes}</td><td>${bytes}</td><td>${bytes}</td><td>${chars}</td><td>${long}</td><td>${long}</td><td>${long}</td><td>${chars}</td><td>${long}</td><td>${long}</td><td>${long}</td><td>${empty}</td></tr>
+<tr><td>${chars}</td><td>${long}</td><td>${long}</td><td>${long}</td><td>${chars}</td><td>${long}</td><td>${long}</td><td>${long}</td><td>${empty}</td><td>${chars}</td><td>${chars}</td><td>${bytes}</td><td>${bytes}</td><td>${bytes}</td><td>${bytes}</td><td>${chars}</td><td>${long}</td><td>${long}</td><td>${long}</td><td>${chars}</td><td>${long}</td><td>${long}</td><td>${long}</td><td>${empty}</td><td>${chars}</td><td>${long}</td><td>${long}</td><td>${long}</td></tr>
 </script>
 
 
 <script id="JResponse" type="text/x-jquery-tmpl">
-<tr><td>${chars}</td><td>${long}</td><td>${long}</td><td>${long}</td></tr>
+<tr><td>${chars}</td><td>${long}</td><td>${long}</td><td>${long}</td><td>${empty}</td><td>${}</td><td>${chars}</td><td>${long}</td><td>${long}</td><td>${long}</td></tr>
 </script>
 
 
 <script id="JSurvey" type="text/x-jquery-tmpl">
 <tr><td>${empty}</td><td>${chars}</td><td>${chars}</td><td>${bytes}</td><td>${bytes}</td><td>${bytes}</td><td>${bytes}</td><td>${empty}</td></tr>
+</script>
+
+
+<script id="JVersion" type="text/x-jquery-tmpl">
+<tr><td>${empty}</td><td>${chars}</td><td>${chars}</td><td>${bytes}</td><td>${bytes}</td><td>${bytes}</td><td>${bytes}</td><td>${chars}</td><td>${long}</td><td>${long}</td><td>${long}</td><td>${empty}</td></tr>
 </script>
 
 
@@ -59,6 +64,11 @@
 </script>
 
 
+<script id="List" type="text/x-jquery-tmpl">
+<tr><td>${empty}</td><td>${class}</td></tr>
+</script>
+
+
 
 
 
@@ -78,10 +88,38 @@
 
 
 
+
 //backendAPI_admin_get();
 
 //TODO: create a form to call each function, if it requires data build inputs.
 //call function from project.backend.js
+
+
+
+
+
+
+//backendAPI_admin_getPage();
+
+//TODO: create a form to call each function, if it requires data build inputs.
+//call function from project.backend.js
+
+
+
+
+
+
+
+
+
+//backendAPI_admin_get();
+
+//TODO: create a form to call each function, if it requires data build inputs.
+//call function from project.backend.js
+
+
+
+
 
 
 
@@ -122,14 +160,29 @@
 
 
 
-
-
 //backendAPI_admin_get();
 
 //TODO: create a form to call each function, if it requires data build inputs.
 //call function from project.backend.js
 
 
+
+
+
+
+//backendAPI_admin_getPage();
+
+//TODO: create a form to call each function, if it requires data build inputs.
+//call function from project.backend.js
+
+
+
+
+
+//backendAPI_admin_get();
+
+//TODO: create a form to call each function, if it requires data build inputs.
+//call function from project.backend.js
 
 
 
@@ -155,16 +208,7 @@
 
 
 
-//backendAPI_admin_getPage();
-
-//TODO: create a form to call each function, if it requires data build inputs.
-//call function from project.backend.js
-
-
-
-
-
-//backendAPI_admin_get();
+//backendAPI_admin_getCsv();
 
 //TODO: create a form to call each function, if it requires data build inputs.
 //call function from project.backend.js
@@ -189,7 +233,7 @@
 		<section>
 			<header></header>
 			<article>
-<div class="input_form"><h2>get</h2><label for="domain">domain</label><input type="text" name="domain" id="domain" /><br /><label for="surveyId">surveyId</label><input type="text" name="surveyId" id="surveyId" /><br /><label for="responseId">responseId</label><input type="text" name="responseId" id="responseId" /><br /><label for="id">id</label><input type="text" name="id" id="id" /><br /><button onclick="backendAPI_admin_get();">Submit</button></div><div class="input_form"><h2>getPage</h2><label for="pageSize">pageSize</label><input type="text" name="pageSize" id="pageSize" /><br /><label for="cursorKey">cursorKey</label><input type="text" name="cursorKey" id="cursorKey" /><br /><button onclick="backendAPI_admin_getPage();">Submit</button></div><div class="input_form"><h2>get</h2><label for="domain">domain</label><input type="text" name="domain" id="domain" /><br /><label for="surveyId">surveyId</label><input type="text" name="surveyId" id="surveyId" /><br /><label for="questionId">questionId</label><input type="text" name="questionId" id="questionId" /><br /><label for="id">id</label><input type="text" name="id" id="id" /><br /><button onclick="backendAPI_admin_get();">Submit</button></div><div class="input_form"><h2>getPage</h2><label for="domain">domain</label><input type="text" name="domain" id="domain" /><br /><label for="surveyId">surveyId</label><input type="text" name="surveyId" id="surveyId" /><br /><label for="questionId">questionId</label><input type="text" name="questionId" id="questionId" /><br /><label for="pageSize">pageSize</label><input type="text" name="pageSize" id="pageSize" /><br /><label for="cursorKey">cursorKey</label><input type="text" name="cursorKey" id="cursorKey" /><br /><button onclick="backendAPI_admin_getPage();">Submit</button></div><div class="input_form"><h2>get</h2><label for="domain">domain</label><input type="text" name="domain" id="domain" /><br /><label for="surveyId">surveyId</label><input type="text" name="surveyId" id="surveyId" /><br /><label for="id">id</label><input type="text" name="id" id="id" /><br /><button onclick="backendAPI_admin_get();">Submit</button></div><div class="input_form"><h2>getPage</h2><label for="domain">domain</label><input type="text" name="domain" id="domain" /><br /><label for="surveyId">surveyId</label><input type="text" name="surveyId" id="surveyId" /><br /><label for="pageSize">pageSize</label><input type="text" name="pageSize" id="pageSize" /><br /><label for="cursorKey">cursorKey</label><input type="text" name="cursorKey" id="cursorKey" /><br /><button onclick="backendAPI_admin_getPage();">Submit</button></div><div class="input_form"><h2>get</h2><label for="id">id</label><input type="text" name="id" id="id" /><br /><button onclick="backendAPI_admin_get();">Submit</button></div><div class="input_form"><h2>getPage</h2><label for="pageSize">pageSize</label><input type="text" name="pageSize" id="pageSize" /><br /><label for="cursorKey">cursorKey</label><input type="text" name="cursorKey" id="cursorKey" /><br /><button onclick="backendAPI_admin_getPage();">Submit</button></div><div class="input_form"><h2>get</h2><label for="id">id</label><input type="text" name="id" id="id" /><br /><button onclick="backendAPI_admin_get();">Submit</button></div><div class="input_form"><h2>getPage</h2><label for="pageSize">pageSize</label><input type="text" name="pageSize" id="pageSize" /><br /><label for="cursorKey">cursorKey</label><input type="text" name="cursorKey" id="cursorKey" /><br /><button onclick="backendAPI_admin_getPage();">Submit</button></div>
+<div class="input_form"><h2>get</h2><label for="domain">domain</label><input type="text" name="domain" id="domain" /><br /><label for="surveyId">surveyId</label><input type="text" name="surveyId" id="surveyId" /><br /><label for="versionId">versionId</label><input type="text" name="versionId" id="versionId" /><br /><label for="responseId">responseId</label><input type="text" name="responseId" id="responseId" /><br /><label for="id">id</label><input type="text" name="id" id="id" /><br /><button onclick="backendAPI_admin_get();">Submit</button></div><div class="input_form"><h2>getPage</h2><label for="pageSize">pageSize</label><input type="text" name="pageSize" id="pageSize" /><br /><label for="cursorKey">cursorKey</label><input type="text" name="cursorKey" id="cursorKey" /><br /><button onclick="backendAPI_admin_getPage();">Submit</button></div><div class="input_form"><h2>get</h2><label for="domain">domain</label><input type="text" name="domain" id="domain" /><br /><label for="surveyId">surveyId</label><input type="text" name="surveyId" id="surveyId" /><br /><label for="versionId">versionId</label><input type="text" name="versionId" id="versionId" /><br /><label for="questionId">questionId</label><input type="text" name="questionId" id="questionId" /><br /><label for="id">id</label><input type="text" name="id" id="id" /><br /><button onclick="backendAPI_admin_get();">Submit</button></div><div class="input_form"><h2>getPage</h2><label for="domain">domain</label><input type="text" name="domain" id="domain" /><br /><label for="surveyId">surveyId</label><input type="text" name="surveyId" id="surveyId" /><br /><label for="versionId">versionId</label><input type="text" name="versionId" id="versionId" /><br /><label for="questionId">questionId</label><input type="text" name="questionId" id="questionId" /><br /><label for="pageSize">pageSize</label><input type="text" name="pageSize" id="pageSize" /><br /><label for="cursorKey">cursorKey</label><input type="text" name="cursorKey" id="cursorKey" /><br /><button onclick="backendAPI_admin_getPage();">Submit</button></div><div class="input_form"><h2>get</h2><label for="domain">domain</label><input type="text" name="domain" id="domain" /><br /><label for="surveyId">surveyId</label><input type="text" name="surveyId" id="surveyId" /><br /><label for="versionId">versionId</label><input type="text" name="versionId" id="versionId" /><br /><label for="id">id</label><input type="text" name="id" id="id" /><br /><button onclick="backendAPI_admin_get();">Submit</button></div><div class="input_form"><h2>getPage</h2><label for="domain">domain</label><input type="text" name="domain" id="domain" /><br /><label for="surveyId">surveyId</label><input type="text" name="surveyId" id="surveyId" /><br /><label for="versionId">versionId</label><input type="text" name="versionId" id="versionId" /><br /><label for="pageSize">pageSize</label><input type="text" name="pageSize" id="pageSize" /><br /><label for="cursorKey">cursorKey</label><input type="text" name="cursorKey" id="cursorKey" /><br /><button onclick="backendAPI_admin_getPage();">Submit</button></div><div class="input_form"><h2>get</h2><label for="id">id</label><input type="text" name="id" id="id" /><br /><button onclick="backendAPI_admin_get();">Submit</button></div><div class="input_form"><h2>getPage</h2><label for="pageSize">pageSize</label><input type="text" name="pageSize" id="pageSize" /><br /><label for="cursorKey">cursorKey</label><input type="text" name="cursorKey" id="cursorKey" /><br /><button onclick="backendAPI_admin_getPage();">Submit</button></div><div class="input_form"><h2>get</h2><label for="id">id</label><input type="text" name="id" id="id" /><br /><button onclick="backendAPI_admin_get();">Submit</button></div><div class="input_form"><h2>getPage</h2><label for="pageSize">pageSize</label><input type="text" name="pageSize" id="pageSize" /><br /><label for="cursorKey">cursorKey</label><input type="text" name="cursorKey" id="cursorKey" /><br /><button onclick="backendAPI_admin_getPage();">Submit</button></div><div class="input_form"><h2>get</h2><label for="id">id</label><input type="text" name="id" id="id" /><br /><button onclick="backendAPI_admin_get();">Submit</button></div><div class="input_form"><h2>getCsv</h2><label for="domain">domain</label><input type="text" name="domain" id="domain" /><br /><label for="versionId">versionId</label><input type="text" name="versionId" id="versionId" /><br /><button onclick="backendAPI_admin_getCsv();">Submit</button></div><div class="input_form"><h2>getPage</h2><label for="pageSize">pageSize</label><input type="text" name="pageSize" id="pageSize" /><br /><label for="cursorKey">cursorKey</label><input type="text" name="cursorKey" id="cursorKey" /><br /><button onclick="backendAPI_admin_getPage();">Submit</button></div>
 <br />
 <table id="get-JAnswer-output"></table>
 <table id="getPage-JAnswer-output"></table>
@@ -201,6 +245,9 @@
 <table id="getPage-JResponse-output"></table>
 <table id="get-JSurvey-output"></table>
 <table id="getPage-JSurvey-output"></table>
+<table id="get-JVersion-output"></table>
+<table id="getCsv-JAnswer-output"></table>
+<table id="getPage-JVersion-output"></table>
 
 			</article>
 			<footer></footer>
