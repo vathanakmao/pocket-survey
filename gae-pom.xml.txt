@@ -10,7 +10,7 @@
 
     <!-- Specify hard-coded project properties here -->
     <properties>
-        <spring.profiles.active>mysql</spring.profiles.active>
+        <spring.profiles.active>gae</spring.profiles.active>
         <gae.version>1.7.0</gae.version>
         <gae.application.version>lab</gae.application.version>
         <gae.application.id>pocket-survey</gae.application.id>
@@ -24,8 +24,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <itest.include>**/*ITest.java</itest.include>
         <surefire.default.skip>true</surefire.default.skip>
-        <mardao.version>2.1.1-SNAPSHOT</mardao.version>
-        <openserver.version>4</openserver.version>
+        <mardao.version>2.1.2</mardao.version>
+        <openserver.version>5</openserver.version>
         <javadocExecutable>${java.home}/../bin/javadoc</javadocExecutable>
         <docrest.version>1.17</docrest.version>
         <logging.level>ALL</logging.level>
@@ -66,6 +66,11 @@
             <artifactId>servlet-api</artifactId>
             <version>2.5</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.appengine</groupId>
+            <artifactId>appengine-api-1.0-sdk</artifactId>
+            <version>${gae.version}</version>
         </dependency>
 
         <dependency>
