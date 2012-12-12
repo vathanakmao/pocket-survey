@@ -10,7 +10,8 @@
 
     <modules>
         <module>./pom.xml</module>
-        <module>./war-pom.xml.txt</module>
+        <module>./gae-pom.xml.txt</module>
+        <module>./mysql-pom.xml.txt</module>
     </modules>
     
     <properties>

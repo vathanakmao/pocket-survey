@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE Configure PUBLIC "-//Mort Bay Consulting//DTD Configure 1.1//EN"    
+ "http://jetty.mortbay.org/configure_1_2.dtd">
+<Configure class="org.mortbay.jetty.webapp.WebAppContext">
+  <Get name="securityHandler">
+    <Set name="userRealm">
+      <New class="org.mortbay.jetty.security.HashUserRealm">
+        <Set name="name">MyRealm</Set>
+        <Call name="addUserToRole">
+          <Arg>dfa</Arg>
+          <Arg>*</Arg> <!-- * is a "builtin" realm for GAE -->
+        </Call>
+        <Call name="put">
+          <Arg>dfa</Arg>
+          <Arg>secret</Arg>
+        </Call>
+      </New>
+    </Set>
+  </Get>
+</Configure>

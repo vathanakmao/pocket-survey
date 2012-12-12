@@ -1,7 +1,5 @@
 package com.goldengekko.wbt.web;
 
-import com.wadpam.open.json.JMonitor;
-import com.wadpam.survey.json.JResponse;
 import com.wadpam.survey.json.JSurvey;
 import java.net.URI;
 import static org.junit.Assert.*;
@@ -11,8 +9,6 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;

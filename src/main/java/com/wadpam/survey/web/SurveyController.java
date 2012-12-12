@@ -3,23 +3,19 @@ package com.wadpam.survey.web;
 import com.wadpam.survey.service.SurveyService;
 import com.wadpam.docrest.domain.RestCode;
 import com.wadpam.docrest.domain.RestReturn;
+import com.wadpam.open.exceptions.BadRequestException;
 import com.wadpam.open.json.JCursorPage;
 import com.wadpam.open.exceptions.NotFoundException;
-import com.wadpam.survey.domain.DAnswer;
 import com.wadpam.survey.domain.DOption;
 import com.wadpam.survey.domain.DQuestion;
 import com.wadpam.survey.domain.DSurvey;
 import com.wadpam.survey.domain.DVersion;
-import com.wadpam.survey.json.JAnswer;
 import com.wadpam.survey.json.JOption;
 import com.wadpam.survey.json.JQuestion;
 import com.wadpam.survey.json.JSurvey;
 import com.wadpam.survey.json.JVersion;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.io.Serializable;
 import java.net.URL;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -170,10 +166,16 @@ public class SurveyController {
     public JCursorPage<JSurvey> getPage(
             @RequestParam(defaultValue="10") int pageSize, 
             @RequestParam(required=false) Serializable cursorKey) {
+        try {
         final CursorPage<DSurvey, Long> page = service.getSurveysPage(pageSize, cursorKey);
         final JCursorPage body = CONVERTER.convertPage(page);
 
         return body;
+        }
+        catch (Exception e) {
+            LOG.error("This is it", e);
+        }
+        throw new BadRequestException(-1, "getPage");
     }
     
     /**

@@ -8,6 +8,7 @@ import com.wadpam.survey.dao.DQuestionDao;
 import com.wadpam.survey.dao.DSurveyDao;
 import com.wadpam.survey.dao.DResponseDao;
 import com.wadpam.survey.dao.DVersionDao;
+import com.wadpam.survey.dao.Di18nDao;
 import com.wadpam.survey.domain.DAnswer;
 import com.wadpam.survey.domain.DOption;
 import com.wadpam.survey.domain.DQuestion;
@@ -26,6 +27,7 @@ import com.wadpam.survey.web.ResponseController;
 import com.wadpam.survey.web.SurveyController;
 import java.io.Serializable;
 import net.sf.mardao.core.CursorPage;
+import net.sf.mardao.core.dao.DaoImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -55,6 +57,7 @@ public class SurveyService {
     static final Logger LOG = LoggerFactory.getLogger(SurveyService.class);
     
     private DAnswerDao answerDao;
+    private Di18nDao i18nDao;
     private DOptionDao optionDao;
     private DQuestionDao questionDao;
     private DResponseDao responseDao;
@@ -223,16 +226,22 @@ public class SurveyService {
     }
     
     public Integer deleteAll() {
-        Iterable<Long> simpleKeys = answerDao.queryAllKeys();
-        int count = answerDao.delete(null, simpleKeys);
-        simpleKeys = optionDao.queryAllKeys();
-        count += optionDao.delete(null, simpleKeys);
-        simpleKeys = responseDao.queryAllKeys();
-        count += responseDao.delete(null, simpleKeys);
-        simpleKeys = questionDao.queryAllKeys();
-        count += questionDao.delete(null, simpleKeys);
-        simpleKeys = surveyDao.queryAllKeys();
-        count += surveyDao.delete(null, simpleKeys);
+        int count = answerDao.deleteAll();
+        count += i18nDao.deleteAll();
+        count += optionDao.deleteAll();
+        count += responseDao.deleteAll();
+        count += questionDao.deleteAll();
+        count += versionDao.deleteAll();
+        count += surveyDao.deleteAll();
+        
+        // for GAE, will do nothing
+        ((DaoImpl) answerDao).dropTable();
+        ((DaoImpl) i18nDao).dropTable();
+        ((DaoImpl) optionDao).dropTable();
+        ((DaoImpl) responseDao).dropTable();
+        ((DaoImpl) questionDao).dropTable();
+        ((DaoImpl) versionDao).dropTable();
+        ((DaoImpl) surveyDao).dropTable();
         
         return count;
     }
@@ -418,6 +427,10 @@ public class SurveyService {
 
     public void setAnswerDao(DAnswerDao answerDao) {
         this.answerDao = answerDao;
+    }
+
+    public void setI18nDao(Di18nDao i18nDao) {
+        this.i18nDao = i18nDao;
     }
 
     public void setOptionDao(DOptionDao optionDao) {

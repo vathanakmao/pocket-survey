@@ -19,6 +19,18 @@ public class JResponse extends JBaseObject {
     /** The survey version this response is for */
     private Long versionId;
     
+    /** ID of related location (external system) */
+    private String extLocationId;
+    
+    /** ID of related meeting (external system) */
+    private String extMeetingId;
+    
+    /** ID of related product (external system) */
+    private String extProductId;
+    
+    /** ID of related user (external system) */
+    private String extUserId;
+    
     /** The answers for this response */
     private List<JAnswer> answers;
 
@@ -49,6 +61,38 @@ public class JResponse extends JBaseObject {
 
     public void setVersionId(Long versionId) {
         this.versionId = versionId;
+    }
+
+    public String getExtLocationId() {
+        return extLocationId;
+    }
+
+    public void setExtLocationId(String extLocationId) {
+        this.extLocationId = extLocationId;
+    }
+
+    public String getExtMeetingId() {
+        return extMeetingId;
+    }
+
+    public void setExtMeetingId(String extMeetingId) {
+        this.extMeetingId = extMeetingId;
+    }
+
+    public String getExtProductId() {
+        return extProductId;
+    }
+
+    public void setExtProductId(String extProductId) {
+        this.extProductId = extProductId;
+    }
+
+    public String getExtUserId() {
+        return extUserId;
+    }
+
+    public void setExtUserId(String extUserId) {
+        this.extUserId = extUserId;
     }
 
 }

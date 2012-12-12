@@ -8,7 +8,9 @@
                 http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd" 
        xmlns:cache="http://www.springframework.org/schema/cache">
-                    
+    
+    <context:annotation-config />
+
     <!-- for JSON mapping without null properties -->
     <bean id="jsonObjectMapper" class="com.wadpam.open.json.SkipNullObjectMapper" init-method="init" />
     <mvc:annotation-driven>
@@ -22,7 +24,7 @@
     <mvc:resources mapping="/**/*.html" location="/static/, classpath:/META-INF/local-offers/" />
 
     <mvc:default-servlet-handler />
-    
+
     <context:property-placeholder location="classpath:/application.properties" />
     
     <mvc:interceptors>
@@ -49,26 +51,14 @@
     
     <!--           View stuff             -->
     
-    <bean id="restExceptionResolver" class="com.wadpam.server.web.RestJsonExceptionResolver">
+    <bean id="restExceptionResolver" class="com.wadpam.open.web.RestJsonExceptionResolver">
         <property name="order" value="100" />
     </bean>
         
     <!--           For deployment             -->
      
     <beans profile="mysql">
-        <context:property-placeholder location="classpath:/pocket-survey-mysql.properties" />
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-		<property name="driverClassName" value="${dao.driver.classname}" />
-		<property name="url" value="${dao.connection.url}" />
-		<property name="username" value="${dao.connection.username}" />
-		<property name="password" value="${dao.connection.password}" />
-		<property name="validationQuery" value="${dao.connection.validationQuery}" />
-	</bean>
-	<bean id="daoIncrementerMYSQL" class="org.springframework.jdbc.support.incrementer.MySQLMaxValueIncrementer">
-		<property name="dataSource" ref="dataSource" />
-		<property name="incrementerName" value="id_sequence" />
-		<property name="columnName" value="highest" />
-	</bean>
+        <import resource="classpath:/mysql-context.xml" />
     </beans>
     
     <!--           For itests             -->

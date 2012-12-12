@@ -1,0 +1,1080 @@
+{
+    "apiVersion": "0.2",
+    "swaggerVersion": "1.1",
+    "basePath": "http://pocket-survey.appspot.com/api/apidocs/",
+    "apis": [
+			{
+	         "path": "/{domain}/survey/v10/{surveyId}/version/v10/{versionId}/response/v10/{responseId}/answer/v10",
+	         "description": "com.wadpam.survey.web.AnswerController",
+	         "operations": [
+	             {
+	                 "httpMethod": "POST",
+	                 "nickname": "create",
+							"notes": "Creates an entity.<br /><h4>Response Example</h4><pre>{<div>&nbsp;&nbsp;&nbsp;<b>&#34;answer&#34;</b>&nbsp;:&nbsp;{&nbsp;&nbsp;&nbsp;},</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;id&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;questionId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;responseId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;state&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;surveyId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;versionId&#34;</b>&nbsp;:&nbsp;Long,</div>}</pre>",
+							"summary":"Creates an entity.()",
+							"parameters":[
+{
+		"name":"domain"
+		,"description":""
+		,"required":true,"dataType":"String"
+		,"allowMultiple":false,"paramType":"path"
+}
+,{
+		"name":"surveyId"
+		,"description":""
+		,"required":true,"dataType":"Long"
+		,"allowMultiple":false,"paramType":"path"
+}
+,{
+		"name":"versionId"
+		,"description":""
+		,"required":true,"dataType":"Long"
+		,"allowMultiple":false,"paramType":"path"
+}
+,{
+		"name":"responseId"
+		,"description":""
+		,"required":true,"dataType":"Long"
+		,"allowMultiple":false,"paramType":"path"
+}
+
+,
+{
+		"name":"answers"
+		,"description":""
+		,"required":true,"dataType":"java.lang.String[]"
+		,"allowMultiple":false,"paramType":"query"
+}
+							],
+							"errorResponses":[
+   								{"reason":"Created"
+								,"code":201}
+   								,{"reason":"OK"
+								,"code":302}
+							],
+"responseTypeInternal":"com.wadpam.survey.json.JAnswer"
+	             }
+	         ]
+			}
+,			{
+	         "path": "/{domain}/survey/v10/{surveyId}/version/v10/{versionId}/response/v10/{responseId}/answer/v10/{id}",
+	         "description": "com.wadpam.survey.web.AnswerController",
+	         "operations": [
+	             {
+	                 "httpMethod": "GET",
+	                 "nickname": "get",
+							"notes": "Loads the specified entity.<br /><h4>Response Example</h4><pre>{<div>&nbsp;&nbsp;&nbsp;<b>&#34;answer&#34;</b>&nbsp;:&nbsp;{&nbsp;&nbsp;&nbsp;},</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;id&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;questionId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;responseId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;state&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;surveyId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;versionId&#34;</b>&nbsp;:&nbsp;Long,</div>}</pre>",
+							"summary":"Loads the specified entity.()",
+							"parameters":[
+{
+		"name":"domain"
+		,"description":"the domain (used for Multi-tenancy)"
+		,"required":true,"dataType":"String"
+		,"allowMultiple":false,"paramType":"path"
+}
+,{
+		"name":"surveyId"
+		,"description":"the survey's id"
+		,"required":true,"dataType":"Long"
+		,"allowMultiple":false,"paramType":"path"
+}
+,{
+		"name":"versionId"
+		,"description":""
+		,"required":true,"dataType":"Long"
+		,"allowMultiple":false,"paramType":"path"
+}
+,{
+		"name":"responseId"
+		,"description":"the response's id"
+		,"required":true,"dataType":"Long"
+		,"allowMultiple":false,"paramType":"path"
+}
+,{
+		"name":"id"
+		,"description":"the id of the entity to retrieve"
+		,"required":true,"dataType":"Long"
+		,"allowMultiple":false,"paramType":"path"
+}
+
+							],
+							"errorResponses":[
+   								{"reason":"OK"
+								,"code":200}
+   								,{"reason":"Not Found"
+								,"code":404}
+							],
+"responseTypeInternal":"com.wadpam.survey.json.JAnswer"
+ 	             }
+	         ]
+			}
+,			{
+	         "path": "/{domain}/survey/v10/{surveyId}/version/v10/{versionId}/response/v10/{responseId}/answer/v10",
+	         "description": "com.wadpam.survey.web.AnswerController",
+	         "operations": [
+	             {
+	                 "httpMethod": "GET",
+	                 "nickname": "getPage",
+							"notes": "Queries for a (next) page of entities<br /><h4>Response Example</h4><pre>{<div>&nbsp;&nbsp;&nbsp;<b>&#34;answer&#34;</b>&nbsp;:&nbsp;{&nbsp;&nbsp;&nbsp;},</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;id&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;questionId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;responseId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;state&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;surveyId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;versionId&#34;</b>&nbsp;:&nbsp;Long,</div>}</pre>",
+							"summary":"Queries for a (next) page of entities()",
+							"parameters":[
+
+
+{
+		"name":"pageSize"
+		,"description":"default is 10"
+		,"required":true,"dataType":"int"
+		,"allowMultiple":false,"paramType":"query"
+}
+,
+{
+		"name":"cursorKey"
+		,"description":"null to get first page"
+		,"required":true,"dataType":"Serializable"
+		,"allowMultiple":false,"paramType":"query"
+}
+							],
+							"errorResponses":[
+   								{"reason":"OK"
+								,"code":200}
+							],
+"responseTypeInternal":"com.wadpam.survey.json.JAnswer"
+	             }
+	         ]
+			}
+,			{
+	         "path": "/{domain}/survey/v10/{surveyId}/version/v10/{versionId}/response/v10/{responseId}/answer/v10/{id}",
+	         "description": "com.wadpam.survey.web.AnswerController",
+	         "operations": [
+	             {
+	                 "httpMethod": "POST",
+	                 "nickname": "update",
+							"notes": "Updates an entity.<br /><h4>Response Example</h4><pre>{<div>&nbsp;&nbsp;&nbsp;<b>&#34;answer&#34;</b>&nbsp;:&nbsp;{&nbsp;&nbsp;&nbsp;},</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;id&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;questionId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;responseId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;state&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;surveyId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;versionId&#34;</b>&nbsp;:&nbsp;Long,</div>}</pre>",
+							"summary":"Updates an entity.()",
+							"parameters":[
+{
+		"name":"id"
+		,"description":"the id of the entity to update"
+		,"required":true,"dataType":"Long"
+		,"allowMultiple":false,"paramType":"path"
+}
+
+							],
+							"errorResponses":[
+   								{"reason":"No Content"
+								,"code":204}
+   								,{"reason":"OK"
+								,"code":302}
+							],
+"responseTypeInternal":"com.wadpam.survey.json.JAnswer"
+	             }
+	         ]
+			}
+,			{
+	         "path": "/{domain}/survey/v10/{surveyId}/version/v10/{versionId}/question/v10/{questionId}/option/v10",
+	         "description": "com.wadpam.survey.web.OptionController",
+	         "operations": [
+	             {
+	                 "httpMethod": "POST",
+	                 "nickname": "create",
+							"notes": "Creates an entity.<br /><h4>Response Example</h4><pre>{<div>&nbsp;&nbsp;&nbsp;<b>&#34;createdBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;id&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;label&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;questionId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;state&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;surveyId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;versionId&#34;</b>&nbsp;:&nbsp;Long,</div>}</pre>",
+							"summary":"Creates an entity.()",
+							"parameters":[
+{
+		"name":"domain"
+		,"description":"the domain (used for Multi-tenancy)"
+		,"required":true,"dataType":"String"
+		,"allowMultiple":false,"paramType":"path"
+}
+,{
+		"name":"surveyId"
+		,"description":"the survey's id"
+		,"required":true,"dataType":"Long"
+		,"allowMultiple":false,"paramType":"path"
+}
+,{
+		"name":"versionId"
+		,"description":""
+		,"required":true,"dataType":"Long"
+		,"allowMultiple":false,"paramType":"path"
+}
+,{
+		"name":"questionId"
+		,"description":"the question's id"
+		,"required":true,"dataType":"Long"
+		,"allowMultiple":false,"paramType":"path"
+}
+
+							],
+							"errorResponses":[
+   								{"reason":"Created"
+								,"code":201}
+   								,{"reason":"OK"
+								,"code":302}
+							],
+"responseTypeInternal":"com.wadpam.survey.json.JOption"
+	             }
+	         ]
+			}
+,			{
+	         "path": "/{domain}/survey/v10/{surveyId}/version/v10/{versionId}/question/v10/{questionId}/option/v10/{id}",
+	         "description": "com.wadpam.survey.web.OptionController",
+	         "operations": [
+	             {
+	                 "httpMethod": "GET",
+	                 "nickname": "get",
+							"notes": "Loads the specified entity.<br /><h4>Response Example</h4><pre>{<div>&nbsp;&nbsp;&nbsp;<b>&#34;createdBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;id&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;label&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;questionId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;state&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;surveyId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;versionId&#34;</b>&nbsp;:&nbsp;Long,</div>}</pre>",
+							"summary":"Loads the specified entity.()",
+							"parameters":[
+{
+		"name":"domain"
+		,"description":"the domain (used for Multi-tenancy)"
+		,"required":true,"dataType":"String"
+		,"allowMultiple":false,"paramType":"path"
+}
+,{
+		"name":"surveyId"
+		,"description":"the survey's id"
+		,"required":true,"dataType":"Long"
+		,"allowMultiple":false,"paramType":"path"
+}
+,{
+		"name":"versionId"
+		,"description":""
+		,"required":true,"dataType":"Long"
+		,"allowMultiple":false,"paramType":"path"
+}
+,{
+		"name":"questionId"
+		,"description":"the question's id"
+		,"required":true,"dataType":"Long"
+		,"allowMultiple":false,"paramType":"path"
+}
+,{
+		"name":"id"
+		,"description":"the id of the entity to retrieve"
+		,"required":true,"dataType":"Long"
+		,"allowMultiple":false,"paramType":"path"
+}
+
+							],
+							"errorResponses":[
+   								{"reason":"OK"
+								,"code":200}
+   								,{"reason":"Not Found"
+								,"code":404}
+							],
+"responseTypeInternal":"com.wadpam.survey.json.JOption"
+ 	             }
+	         ]
+			}
+,			{
+	         "path": "/{domain}/survey/v10/{surveyId}/version/v10/{versionId}/question/v10/{questionId}/option/v10",
+	         "description": "com.wadpam.survey.web.OptionController",
+	         "operations": [
+	             {
+	                 "httpMethod": "GET",
+	                 "nickname": "getPage",
+							"notes": "Queries for a (next) page of entities<br /><h4>Response Example</h4><pre>{<div>&nbsp;&nbsp;&nbsp;<b>&#34;createdBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;id&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;label&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;questionId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;state&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;surveyId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;versionId&#34;</b>&nbsp;:&nbsp;Long,</div>}</pre>",
+							"summary":"Queries for a (next) page of entities()",
+							"parameters":[
+{
+		"name":"domain"
+		,"description":"the domain (used for Multi-tenancy)"
+		,"required":true,"dataType":"String"
+		,"allowMultiple":false,"paramType":"path"
+}
+,{
+		"name":"surveyId"
+		,"description":"the survey's id"
+		,"required":true,"dataType":"Long"
+		,"allowMultiple":false,"paramType":"path"
+}
+,{
+		"name":"versionId"
+		,"description":""
+		,"required":true,"dataType":"Long"
+		,"allowMultiple":false,"paramType":"path"
+}
+,{
+		"name":"questionId"
+		,"description":"the question's id"
+		,"required":true,"dataType":"Long"
+		,"allowMultiple":false,"paramType":"path"
+}
+
+,
+{
+		"name":"pageSize"
+		,"description":"default is 10"
+		,"required":true,"dataType":"int"
+		,"allowMultiple":false,"paramType":"query"
+}
+,
+{
+		"name":"cursorKey"
+		,"description":"null to get first page"
+		,"required":true,"dataType":"Serializable"
+		,"allowMultiple":false,"paramType":"query"
+}
+							],
+							"errorResponses":[
+   								{"reason":"OK"
+								,"code":200}
+							],
+"responseTypeInternal":"com.wadpam.survey.json.JOption"
+	             }
+	         ]
+			}
+,			{
+	         "path": "/{domain}/survey/v10/{surveyId}/version/v10/{versionId}/question/v10/{questionId}/option/v10/{id}",
+	         "description": "com.wadpam.survey.web.OptionController",
+	         "operations": [
+	             {
+	                 "httpMethod": "POST",
+	                 "nickname": "update",
+							"notes": "Updates an entity.<br /><h4>Response Example</h4><pre>{<div>&nbsp;&nbsp;&nbsp;<b>&#34;createdBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;id&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;label&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;questionId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;state&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;surveyId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;versionId&#34;</b>&nbsp;:&nbsp;Long,</div>}</pre>",
+							"summary":"Updates an entity.()",
+							"parameters":[
+{
+		"name":"domain"
+		,"description":"the domain (used for Multi-tenancy)"
+		,"required":true,"dataType":"String"
+		,"allowMultiple":false,"paramType":"path"
+}
+,{
+		"name":"surveyId"
+		,"description":"the survey's id"
+		,"required":true,"dataType":"Long"
+		,"allowMultiple":false,"paramType":"path"
+}
+,{
+		"name":"versionId"
+		,"description":""
+		,"required":true,"dataType":"Long"
+		,"allowMultiple":false,"paramType":"path"
+}
+,{
+		"name":"questionId"
+		,"description":"the question's id"
+		,"required":true,"dataType":"Long"
+		,"allowMultiple":false,"paramType":"path"
+}
+,{
+		"name":"id"
+		,"description":"the id of the entity to update"
+		,"required":true,"dataType":"Long"
+		,"allowMultiple":false,"paramType":"path"
+}
+
+							],
+							"errorResponses":[
+   								{"reason":"No Content"
+								,"code":204}
+   								,{"reason":"OK"
+								,"code":302}
+							],
+"responseTypeInternal":"com.wadpam.survey.json.JOption"
+	             }
+	         ]
+			}
+,			{
+	         "path": "/{domain}/survey/v10/{surveyId}/version/v10/{versionId}/question/v10",
+	         "description": "com.wadpam.survey.web.QuestionController",
+	         "operations": [
+	             {
+	                 "httpMethod": "POST",
+	                 "nickname": "create",
+							"notes": "Creates an entity.<br /><h4>Response Example</h4><pre>{<div>&nbsp;&nbsp;&nbsp;<b>&#34;createdBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;id&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;options&#34;</b>&nbsp;:&nbsp;{&nbsp;&nbsp;&nbsp;},</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;ordering&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;question&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;required&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;state&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;surveyId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;type&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;versionId&#34;</b>&nbsp;:&nbsp;Long,</div>}</pre>",
+							"summary":"Creates an entity.()",
+							"parameters":[
+{
+		"name":"domain"
+		,"description":"the domain (used for Multi-tenancy)"
+		,"required":true,"dataType":"String"
+		,"allowMultiple":false,"paramType":"path"
+}
+,{
+		"name":"surveyId"
+		,"description":"the survey's id"
+		,"required":true,"dataType":"Long"
+		,"allowMultiple":false,"paramType":"path"
+}
+,{
+		"name":"versionId"
+		,"description":""
+		,"required":true,"dataType":"Long"
+		,"allowMultiple":false,"paramType":"path"
+}
+
+							],
+							"errorResponses":[
+   								{"reason":"Created"
+								,"code":201}
+   								,{"reason":"OK"
+								,"code":302}
+							],
+"responseTypeInternal":"com.wadpam.survey.json.JQuestion"
+	             }
+	         ]
+			}
+,			{
+	         "path": "/{domain}/survey/v10/{surveyId}/version/v10/{versionId}/question/v10/{id}",
+	         "description": "com.wadpam.survey.web.QuestionController",
+	         "operations": [
+	             {
+	                 "httpMethod": "GET",
+	                 "nickname": "get",
+							"notes": "Loads the specified entity.<br /><h4>Response Example</h4><pre>{<div>&nbsp;&nbsp;&nbsp;<b>&#34;createdBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;id&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;options&#34;</b>&nbsp;:&nbsp;{&nbsp;&nbsp;&nbsp;},</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;ordering&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;question&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;required&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;state&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;surveyId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;type&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;versionId&#34;</b>&nbsp;:&nbsp;Long,</div>}</pre>",
+							"summary":"Loads the specified entity.()",
+							"parameters":[
+{
+		"name":"domain"
+		,"description":"the domain (used for Multi-tenancy)"
+		,"required":true,"dataType":"String"
+		,"allowMultiple":false,"paramType":"path"
+}
+,{
+		"name":"surveyId"
+		,"description":"the survey's id"
+		,"required":true,"dataType":"Long"
+		,"allowMultiple":false,"paramType":"path"
+}
+,{
+		"name":"versionId"
+		,"description":""
+		,"required":true,"dataType":"Long"
+		,"allowMultiple":false,"paramType":"path"
+}
+,{
+		"name":"id"
+		,"description":"the id of the entity to retrieve"
+		,"required":true,"dataType":"Long"
+		,"allowMultiple":false,"paramType":"path"
+}
+
+							],
+							"errorResponses":[
+   								{"reason":"OK"
+								,"code":200}
+   								,{"reason":"Not Found"
+								,"code":404}
+							],
+"responseTypeInternal":"com.wadpam.survey.json.JQuestion"
+ 	             }
+	         ]
+			}
+,			{
+	         "path": "/{domain}/survey/v10/{surveyId}/version/v10/{versionId}/question/v10",
+	         "description": "com.wadpam.survey.web.QuestionController",
+	         "operations": [
+	             {
+	                 "httpMethod": "GET",
+	                 "nickname": "getPage",
+							"notes": "Queries for a (next) page of entities<br /><h4>Response Example</h4><pre>{<div>&nbsp;&nbsp;&nbsp;<b>&#34;createdBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;id&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;options&#34;</b>&nbsp;:&nbsp;{&nbsp;&nbsp;&nbsp;},</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;ordering&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;question&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;required&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;state&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;surveyId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;type&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;versionId&#34;</b>&nbsp;:&nbsp;Long,</div>}</pre>",
+							"summary":"Queries for a (next) page of entities()",
+							"parameters":[
+{
+		"name":"domain"
+		,"description":"the domain (used for Multi-tenancy)"
+		,"required":true,"dataType":"String"
+		,"allowMultiple":false,"paramType":"path"
+}
+,{
+		"name":"surveyId"
+		,"description":"the survey's id"
+		,"required":true,"dataType":"Long"
+		,"allowMultiple":false,"paramType":"path"
+}
+,{
+		"name":"versionId"
+		,"description":""
+		,"required":true,"dataType":"Long"
+		,"allowMultiple":false,"paramType":"path"
+}
+
+,
+{
+		"name":"pageSize"
+		,"description":"default is 10"
+		,"required":true,"dataType":"int"
+		,"allowMultiple":false,"paramType":"query"
+}
+,
+{
+		"name":"cursorKey"
+		,"description":"null to get first page"
+		,"required":true,"dataType":"Serializable"
+		,"allowMultiple":false,"paramType":"query"
+}
+							],
+							"errorResponses":[
+   								{"reason":"OK"
+								,"code":200}
+							],
+"responseTypeInternal":"com.wadpam.survey.json.JQuestion"
+	             }
+	         ]
+			}
+,			{
+	         "path": "/{domain}/survey/v10/{surveyId}/version/v10/{versionId}/question/v10/{id}",
+	         "description": "com.wadpam.survey.web.QuestionController",
+	         "operations": [
+	             {
+	                 "httpMethod": "POST",
+	                 "nickname": "update",
+							"notes": "Updates an entity.<br /><h4>Response Example</h4><pre>{<div>&nbsp;&nbsp;&nbsp;<b>&#34;createdBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;id&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;options&#34;</b>&nbsp;:&nbsp;{&nbsp;&nbsp;&nbsp;},</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;ordering&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;question&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;required&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;state&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;surveyId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;type&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;versionId&#34;</b>&nbsp;:&nbsp;Long,</div>}</pre>",
+							"summary":"Updates an entity.()",
+							"parameters":[
+{
+		"name":"domain"
+		,"description":"the domain (used for Multi-tenancy)"
+		,"required":true,"dataType":"String"
+		,"allowMultiple":false,"paramType":"path"
+}
+,{
+		"name":"surveyId"
+		,"description":"the survey's id"
+		,"required":true,"dataType":"Long"
+		,"allowMultiple":false,"paramType":"path"
+}
+,{
+		"name":"versionId"
+		,"description":""
+		,"required":true,"dataType":"Long"
+		,"allowMultiple":false,"paramType":"path"
+}
+,{
+		"name":"id"
+		,"description":"the id of the entity to update"
+		,"required":true,"dataType":"Long"
+		,"allowMultiple":false,"paramType":"path"
+}
+
+							],
+							"errorResponses":[
+   								{"reason":"No Content"
+								,"code":204}
+   								,{"reason":"OK"
+								,"code":302}
+							],
+"responseTypeInternal":"com.wadpam.survey.json.JQuestion"
+	             }
+	         ]
+			}
+,			{
+	         "path": "/{domain}/survey/v10/{surveyId}/version/v10/{versionId}/response/v10",
+	         "description": "com.wadpam.survey.web.ResponseController",
+	         "operations": [
+	             {
+	                 "httpMethod": "POST",
+	                 "nickname": "create",
+							"notes": "Creates an entity.<br /><h4>Response Example</h4><pre>{<div>&nbsp;&nbsp;&nbsp;<b>&#34;answers&#34;</b>&nbsp;:&nbsp;[{&nbsp;&nbsp;&nbsp;},<div>&nbsp;&nbsp;&nbsp;...</div>&nbsp;&nbsp;&nbsp;],</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;id&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;state&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;surveyId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;versionId&#34;</b>&nbsp;:&nbsp;Long,</div>}</pre>",
+							"summary":"Creates an entity.()",
+							"parameters":[
+{
+		"name":"domain"
+		,"description":""
+		,"required":true,"dataType":"String"
+		,"allowMultiple":false,"paramType":"path"
+}
+,{
+		"name":"surveyId"
+		,"description":""
+		,"required":true,"dataType":"Long"
+		,"allowMultiple":false,"paramType":"path"
+}
+,{
+		"name":"versionId"
+		,"description":""
+		,"required":true,"dataType":"Long"
+		,"allowMultiple":false,"paramType":"path"
+}
+
+,
+{
+		"name":"answers"
+		,"description":""
+		,"required":true,"dataType":"java.lang.String[]"
+		,"allowMultiple":false,"paramType":"query"
+}
+							],
+							"errorResponses":[
+   								{"reason":"Created"
+								,"code":201}
+   								,{"reason":"OK"
+								,"code":302}
+							],
+"responseTypeInternal":"com.wadpam.survey.json.JResponse"
+	             }
+	         ]
+			}
+,			{
+	         "path": "/{domain}/survey/v10/{surveyId}/version/v10/{versionId}/response/v10/{id}",
+	         "description": "com.wadpam.survey.web.ResponseController",
+	         "operations": [
+	             {
+	                 "httpMethod": "GET",
+	                 "nickname": "get",
+							"notes": "Loads the specified entity.<br /><h4>Response Example</h4><pre>{<div>&nbsp;&nbsp;&nbsp;<b>&#34;answers&#34;</b>&nbsp;:&nbsp;[{&nbsp;&nbsp;&nbsp;},<div>&nbsp;&nbsp;&nbsp;...</div>&nbsp;&nbsp;&nbsp;],</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;id&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;state&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;surveyId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;versionId&#34;</b>&nbsp;:&nbsp;Long,</div>}</pre>",
+							"summary":"Loads the specified entity.()",
+							"parameters":[
+{
+		"name":"id"
+		,"description":"the id of the entity to retrieve"
+		,"required":true,"dataType":"Long"
+		,"allowMultiple":false,"paramType":"path"
+}
+
+							],
+							"errorResponses":[
+   								{"reason":"OK"
+								,"code":200}
+   								,{"reason":"Not Found"
+								,"code":404}
+							],
+"responseTypeInternal":"com.wadpam.survey.json.JResponse"
+ 	             }
+	         ]
+			}
+,			{
+	         "path": "/{domain}/survey/v10/{surveyId}/version/v10/{versionId}/response/v10",
+	         "description": "com.wadpam.survey.web.ResponseController",
+	         "operations": [
+	             {
+	                 "httpMethod": "GET",
+	                 "nickname": "getPage",
+							"notes": "Queries for a (next) page of entities<br /><h4>Response Example</h4><pre>{<div>&nbsp;&nbsp;&nbsp;<b>&#34;answers&#34;</b>&nbsp;:&nbsp;[{&nbsp;&nbsp;&nbsp;},<div>&nbsp;&nbsp;&nbsp;...</div>&nbsp;&nbsp;&nbsp;],</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;id&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;state&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;surveyId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;versionId&#34;</b>&nbsp;:&nbsp;Long,</div>}</pre>",
+							"summary":"Queries for a (next) page of entities()",
+							"parameters":[
+
+
+{
+		"name":"pageSize"
+		,"description":"default is 10"
+		,"required":true,"dataType":"int"
+		,"allowMultiple":false,"paramType":"query"
+}
+,
+{
+		"name":"cursorKey"
+		,"description":"null to get first page"
+		,"required":true,"dataType":"Serializable"
+		,"allowMultiple":false,"paramType":"query"
+}
+							],
+							"errorResponses":[
+   								{"reason":"OK"
+								,"code":200}
+							],
+"responseTypeInternal":"com.wadpam.survey.json.JResponse"
+	             }
+	         ]
+			}
+,			{
+	         "path": "/{domain}/survey/v10/{surveyId}/version/v10/{versionId}/response/v10/{id}",
+	         "description": "com.wadpam.survey.web.ResponseController",
+	         "operations": [
+	             {
+	                 "httpMethod": "POST",
+	                 "nickname": "update",
+							"notes": "Updates an entity.<br /><h4>Response Example</h4><pre>{<div>&nbsp;&nbsp;&nbsp;<b>&#34;answers&#34;</b>&nbsp;:&nbsp;[{&nbsp;&nbsp;&nbsp;},<div>&nbsp;&nbsp;&nbsp;...</div>&nbsp;&nbsp;&nbsp;],</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;id&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;state&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;surveyId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;versionId&#34;</b>&nbsp;:&nbsp;Long,</div>}</pre>",
+							"summary":"Updates an entity.()",
+							"parameters":[
+{
+		"name":"id"
+		,"description":"the id of the entity to update"
+		,"required":true,"dataType":"Long"
+		,"allowMultiple":false,"paramType":"path"
+}
+
+							],
+							"errorResponses":[
+   								{"reason":"No Content"
+								,"code":204}
+   								,{"reason":"OK"
+								,"code":302}
+							],
+"responseTypeInternal":"com.wadpam.survey.json.JResponse"
+	             }
+	         ]
+			}
+,			{
+	         "path": "/{domain}/survey/v10",
+	         "description": "com.wadpam.survey.web.SurveyController",
+	         "operations": [
+	             {
+	                 "httpMethod": "POST",
+	                 "nickname": "create",
+							"notes": "Creates an entity.<br /><h4>Response Example</h4><pre>{<div>&nbsp;&nbsp;&nbsp;<b>&#34;createdBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;id&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;state&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;title&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;versions&#34;</b>&nbsp;:&nbsp;{&nbsp;&nbsp;&nbsp;},</div>}</pre>",
+							"summary":"Creates an entity.()",
+							"parameters":[
+{
+		"name":"domain"
+		,"description":""
+		,"required":true,"dataType":"String"
+		,"allowMultiple":false,"paramType":"path"
+}
+
+							],
+							"errorResponses":[
+   								{"reason":"Created"
+								,"code":201}
+   								,{"reason":"OK"
+								,"code":302}
+							],
+"responseTypeInternal":"com.wadpam.survey.json.JSurvey"
+	             }
+	         ]
+			}
+,			{
+	         "path": "/{domain}/survey/v10/{id}",
+	         "description": "com.wadpam.survey.web.SurveyController",
+	         "operations": [
+	             {
+	                 "httpMethod": "GET",
+	                 "nickname": "get",
+							"notes": "Loads the specified entity.<br /><h4>Response Example</h4><pre>{<div>&nbsp;&nbsp;&nbsp;<b>&#34;createdBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;id&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;state&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;title&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;versions&#34;</b>&nbsp;:&nbsp;{&nbsp;&nbsp;&nbsp;},</div>}</pre>",
+							"summary":"Loads the specified entity.()",
+							"parameters":[
+{
+		"name":"id"
+		,"description":"the id of the entity to retrieve"
+		,"required":true,"dataType":"Long"
+		,"allowMultiple":false,"paramType":"path"
+}
+
+							],
+							"errorResponses":[
+   								{"reason":"OK"
+								,"code":200}
+   								,{"reason":"Not Found"
+								,"code":404}
+							],
+"responseTypeInternal":"com.wadpam.survey.json.JSurvey"
+ 	             }
+	         ]
+			}
+,			{
+	         "path": "/{domain}/survey/v10",
+	         "description": "com.wadpam.survey.web.SurveyController",
+	         "operations": [
+	             {
+	                 "httpMethod": "GET",
+	                 "nickname": "getPage",
+							"notes": "Queries for a (next) page of entities<br /><h4>Response Example</h4><pre>{<div>&nbsp;&nbsp;&nbsp;<b>&#34;createdBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;id&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;state&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;title&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;versions&#34;</b>&nbsp;:&nbsp;{&nbsp;&nbsp;&nbsp;},</div>}</pre>",
+							"summary":"Queries for a (next) page of entities()",
+							"parameters":[
+
+
+{
+		"name":"pageSize"
+		,"description":"default is 10"
+		,"required":true,"dataType":"int"
+		,"allowMultiple":false,"paramType":"query"
+}
+,
+{
+		"name":"cursorKey"
+		,"description":"null to get first page"
+		,"required":true,"dataType":"Serializable"
+		,"allowMultiple":false,"paramType":"query"
+}
+							],
+							"errorResponses":[
+   								{"reason":"OK"
+								,"code":200}
+							],
+"responseTypeInternal":"com.wadpam.survey.json.JSurvey"
+	             }
+	         ]
+			}
+,			{
+	         "path": "/{domain}/survey/v10/{id}",
+	         "description": "com.wadpam.survey.web.SurveyController",
+	         "operations": [
+	             {
+	                 "httpMethod": "POST",
+	                 "nickname": "update",
+							"notes": "Updates an entity.<br /><h4>Response Example</h4><pre>{<div>&nbsp;&nbsp;&nbsp;<b>&#34;createdBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;id&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;state&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;title&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;versions&#34;</b>&nbsp;:&nbsp;{&nbsp;&nbsp;&nbsp;},</div>}</pre>",
+							"summary":"Updates an entity.()",
+							"parameters":[
+{
+		"name":"id"
+		,"description":"the id of the entity to update"
+		,"required":true,"dataType":"Long"
+		,"allowMultiple":false,"paramType":"path"
+}
+
+							],
+							"errorResponses":[
+   								{"reason":"No Content"
+								,"code":204}
+   								,{"reason":"OK"
+								,"code":302}
+							],
+"responseTypeInternal":"com.wadpam.survey.json.JSurvey"
+	             }
+	         ]
+			}
+,			{
+	         "path": "/{domain}/survey/v10/{surveyId}/version/v10",
+	         "description": "com.wadpam.survey.web.VersionController",
+	         "operations": [
+	             {
+	                 "httpMethod": "POST",
+	                 "nickname": "create",
+							"notes": "Creates an entity.<br /><h4>Response Example</h4><pre>{<div>&nbsp;&nbsp;&nbsp;<b>&#34;createdBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;description&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;id&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;questions&#34;</b>&nbsp;:&nbsp;{&nbsp;&nbsp;&nbsp;},</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;state&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;surveyId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedDate&#34;</b>&nbsp;:&nbsp;Long,</div>}</pre>",
+							"summary":"Creates an entity.()",
+							"parameters":[
+{
+		"name":"domain"
+		,"description":""
+		,"required":true,"dataType":"String"
+		,"allowMultiple":false,"paramType":"path"
+}
+,{
+		"name":"surveyId"
+		,"description":""
+		,"required":true,"dataType":"Long"
+		,"allowMultiple":false,"paramType":"path"
+}
+
+,
+{
+		"name":"fromVersionId"
+		,"description":""
+		,"required":true,"dataType":"Long"
+		,"allowMultiple":false,"paramType":"query"
+}
+,
+{
+		"name":"description"
+		,"description":""
+		,"required":true,"dataType":"String"
+		,"allowMultiple":false,"paramType":"query"
+}
+							],
+							"errorResponses":[
+   								{"reason":"Created"
+								,"code":201}
+   								,{"reason":"OK"
+								,"code":302}
+							],
+"responseTypeInternal":"com.wadpam.survey.json.JVersion"
+	             }
+	         ]
+			}
+,			{
+	         "path": "/{domain}/survey/v10/{surveyId}/version/v10/{id}",
+	         "description": "com.wadpam.survey.web.VersionController",
+	         "operations": [
+	             {
+	                 "httpMethod": "GET",
+	                 "nickname": "get",
+							"notes": "Loads the specified entity.<br /><h4>Response Example</h4><pre>{<div>&nbsp;&nbsp;&nbsp;<b>&#34;createdBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;description&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;id&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;questions&#34;</b>&nbsp;:&nbsp;{&nbsp;&nbsp;&nbsp;},</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;state&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;surveyId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedDate&#34;</b>&nbsp;:&nbsp;Long,</div>}</pre>",
+							"summary":"Loads the specified entity.()",
+							"parameters":[
+{
+		"name":"id"
+		,"description":"the id of the entity to retrieve"
+		,"required":true,"dataType":"Long"
+		,"allowMultiple":false,"paramType":"path"
+}
+
+							],
+							"errorResponses":[
+   								{"reason":"OK"
+								,"code":200}
+   								,{"reason":"Not Found"
+								,"code":404}
+							],
+"responseTypeInternal":"com.wadpam.survey.json.JVersion"
+ 	             }
+	         ]
+			}
+,			{
+	         "path": "/{domain}/survey/v10/{surveyId}/version/v10/{versionId}/csv",
+	         "description": "com.wadpam.survey.web.VersionController",
+	         "operations": [
+	             {
+	                 "httpMethod": "GET",
+	                 "nickname": "getCsv",
+							"notes": "Queries for a (next) page of entities<br /><h4>Response Example</h4><pre>{<div>&nbsp;&nbsp;&nbsp;<b>&#34;answer&#34;</b>&nbsp;:&nbsp;{&nbsp;&nbsp;&nbsp;},</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;id&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;questionId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;responseId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;state&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;surveyId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;versionId&#34;</b>&nbsp;:&nbsp;Long,</div>}</pre>",
+							"summary":"Queries for a (next) page of entities()",
+							"parameters":[
+{
+		"name":"domain"
+		,"description":""
+		,"required":true,"dataType":"String"
+		,"allowMultiple":false,"paramType":"path"
+}
+,{
+		"name":"versionId"
+		,"description":""
+		,"required":true,"dataType":"Long"
+		,"allowMultiple":false,"paramType":"path"
+}
+
+							],
+							"errorResponses":[
+   								{"reason":"OK"
+								,"code":200}
+							],
+"responseTypeInternal":"com.wadpam.survey.json.JAnswer"
+ 	             }
+	         ]
+			}
+,			{
+	         "path": "/{domain}/survey/v10/{surveyId}/version/v10",
+	         "description": "com.wadpam.survey.web.VersionController",
+	         "operations": [
+	             {
+	                 "httpMethod": "GET",
+	                 "nickname": "getPage",
+							"notes": "Queries for a (next) page of entities<br /><h4>Response Example</h4><pre>{<div>&nbsp;&nbsp;&nbsp;<b>&#34;createdBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;description&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;id&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;questions&#34;</b>&nbsp;:&nbsp;{&nbsp;&nbsp;&nbsp;},</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;state&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;surveyId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedDate&#34;</b>&nbsp;:&nbsp;Long,</div>}</pre>",
+							"summary":"Queries for a (next) page of entities()",
+							"parameters":[
+
+
+{
+		"name":"pageSize"
+		,"description":"default is 10"
+		,"required":true,"dataType":"int"
+		,"allowMultiple":false,"paramType":"query"
+}
+,
+{
+		"name":"cursorKey"
+		,"description":"null to get first page"
+		,"required":true,"dataType":"Serializable"
+		,"allowMultiple":false,"paramType":"query"
+}
+							],
+							"errorResponses":[
+   								{"reason":"OK"
+								,"code":200}
+							],
+"responseTypeInternal":"com.wadpam.survey.json.JVersion"
+	             }
+	         ]
+			}
+,			{
+	         "path": "/{domain}/survey/v10/{surveyId}/version/v10/{id}",
+	         "description": "com.wadpam.survey.web.VersionController",
+	         "operations": [
+	             {
+	                 "httpMethod": "POST",
+	                 "nickname": "update",
+							"notes": "Updates an entity.<br /><h4>Response Example</h4><pre>{<div>&nbsp;&nbsp;&nbsp;<b>&#34;createdBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;description&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;id&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;questions&#34;</b>&nbsp;:&nbsp;{&nbsp;&nbsp;&nbsp;},</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;state&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;surveyId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedDate&#34;</b>&nbsp;:&nbsp;Long,</div>}</pre>",
+							"summary":"Updates an entity.()",
+							"parameters":[
+{
+		"name":"id"
+		,"description":"the id of the entity to update"
+		,"required":true,"dataType":"Long"
+		,"allowMultiple":false,"paramType":"path"
+}
+
+							],
+							"errorResponses":[
+   								{"reason":"No Content"
+								,"code":204}
+   								,{"reason":"OK"
+								,"code":302}
+							],
+"responseTypeInternal":"com.wadpam.survey.json.JVersion"
+	             }
+	         ]
+			}
+
+    ],
+    "models":{
+"com.wadpam.survey.json.JAnswer":{
+	"properties":{
+    "surveyId":{"type":"java.lang.Long"}
+    ,"questionId":{"type":"java.lang.Long"}
+    ,"responseId":{"type":"java.lang.Long"}
+    ,"answer":{"type":"java.lang.Object"}
+    ,"versionId":{"type":"java.lang.Long"}
+	}
+}
+,"com.wadpam.survey.json.JOption":{
+	"properties":{
+    "surveyId":{"type":"java.lang.Long"}
+    ,"questionId":{"type":"java.lang.Long"}
+    ,"label":{"type":"java.lang.String"}
+    ,"versionId":{"type":"java.lang.Long"}
+	}
+}
+,"com.wadpam.survey.json.JQuestion":{
+	"properties":{
+    "surveyId":{"type":"java.lang.Long"}
+    ,"ordering":{"type":"java.lang.Long"}
+    ,"question":{"type":"java.lang.String"}
+    ,"required":{"type":"java.lang.Long"}
+    ,"type":{"type":"java.lang.Long"}
+    ,"options":{"type":"java.util.Collection"}
+    ,"versionId":{"type":"java.lang.Long"}
+	}
+}
+,"com.wadpam.survey.json.JResponse":{
+	"properties":{
+    "surveyId":{"type":"java.lang.Long"}
+    ,"answers":{"type":"java.util.List"}
+    ,"versionId":{"type":"java.lang.Long"}
+	}
+}
+,"com.wadpam.survey.json.JSurvey":{
+	"properties":{
+    "title":{"type":"java.lang.String"}
+    ,"versions":{"type":"java.util.Collection"}
+	}
+}
+,"com.wadpam.survey.json.JVersion":{
+	"properties":{
+    "description":{"type":"java.lang.String"}
+    ,"surveyId":{"type":"java.lang.Long"}
+    ,"questions":{"type":"java.util.Collection"}
+	}
+}
+,"java.lang.Long":{
+	"properties":{
+    "chars":{"type":"void"}
+    ,"long":{"type":"java.lang.Long"}
+    ,"long":{"type":"java.lang.Long"}
+    ,"long":{"type":"java.lang.Long"}
+	}
+}
+,"java.lang.Object":{
+	"properties":{
+    "class":{"type":"java.lang.Class"}
+	}
+}
+,"java.lang.String":{
+	"properties":{
+    "empty":{"type":"boolean"}
+    ,"chars":{"type":"void"}
+    ,"chars":{"type":"void"}
+    ,"bytes":{"type":"void"}
+    ,"bytes":{"type":"byte"}
+    ,"bytes":{"type":"byte"}
+    ,"bytes":{"type":"byte"}
+	}
+}
+,"java.util.Collection":{
+	"properties":{
+    "empty":{"type":"boolean"}
+	}
+}
+,"java.util.List":{
+	"properties":{
+    "empty":{"type":"boolean"}
+    ,"":{"type":"java.lang.Object"}
+	}
+}
+
+
+
+    }
+}
