@@ -578,7 +578,7 @@
             <id>stage</id>
             <properties>
                 <gae.application.version>${project.version}</gae.application.version>
-                <gae.application.id>warburtons-stage</gae.application.id>
+                <gae.application.id>pocket-survey-stage</gae.application.id>
                 <!-- endpoints -->
                 <endpoint.apiUrl>http://warburtons-stage.appspot.com/api/wbt/</endpoint.apiUrl>
                 <endpoint.signinUrl>https://warburtons-stage.appspot.com/signin/wbt/</endpoint.signinUrl>
@@ -592,9 +592,8 @@
         <profile>
             <id>prod</id>
             <properties>
-                <!--                <gae.application.version>${project.version}</gae.application.version>-->
-                <gae.application.version>lab</gae.application.version>
-                <gae.application.id>warburtons-prod</gae.application.id>
+                <gae.application.version>${project.version}</gae.application.version>
+                <gae.application.id>pocket-survey-prod</gae.application.id>
                 <!-- endpoints -->
                 <endpoint.apiUrl>http://warburtons-prod.appspot.com/api/wbt/</endpoint.apiUrl>
                 <endpoint.signinUrl>https://warburtons-prod.appspot.com/signin/wbt/</endpoint.signinUrl>

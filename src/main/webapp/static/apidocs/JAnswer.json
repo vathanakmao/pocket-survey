@@ -569,7 +569,7 @@
 	             {
 	                 "httpMethod": "POST",
 	                 "nickname": "create",
-							"notes": "Creates an entity.<br /><h4>Response Example</h4><pre>{<div>&nbsp;&nbsp;&nbsp;<b>&#34;answers&#34;</b>&nbsp;:&nbsp;[{&nbsp;&nbsp;&nbsp;},<div>&nbsp;&nbsp;&nbsp;...</div>&nbsp;&nbsp;&nbsp;],</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;id&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;state&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;surveyId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;versionId&#34;</b>&nbsp;:&nbsp;Long,</div>}</pre>",
+							"notes": "Creates an entity.<br /><h4>Response Example</h4><pre>{<div>&nbsp;&nbsp;&nbsp;<b>&#34;answers&#34;</b>&nbsp;:&nbsp;[{&nbsp;&nbsp;&nbsp;},<div>&nbsp;&nbsp;&nbsp;...</div>&nbsp;&nbsp;&nbsp;],</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;extLocationId&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;extMeetingId&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;extProductId&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;extUserId&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;id&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;state&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;surveyId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;versionId&#34;</b>&nbsp;:&nbsp;Long,</div>}</pre>",
 							"summary":"Creates an entity.()",
 							"parameters":[
 {
@@ -616,7 +616,7 @@
 	             {
 	                 "httpMethod": "GET",
 	                 "nickname": "get",
-							"notes": "Loads the specified entity.<br /><h4>Response Example</h4><pre>{<div>&nbsp;&nbsp;&nbsp;<b>&#34;answers&#34;</b>&nbsp;:&nbsp;[{&nbsp;&nbsp;&nbsp;},<div>&nbsp;&nbsp;&nbsp;...</div>&nbsp;&nbsp;&nbsp;],</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;id&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;state&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;surveyId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;versionId&#34;</b>&nbsp;:&nbsp;Long,</div>}</pre>",
+							"notes": "Loads the specified entity.<br /><h4>Response Example</h4><pre>{<div>&nbsp;&nbsp;&nbsp;<b>&#34;answers&#34;</b>&nbsp;:&nbsp;[{&nbsp;&nbsp;&nbsp;},<div>&nbsp;&nbsp;&nbsp;...</div>&nbsp;&nbsp;&nbsp;],</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;extLocationId&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;extMeetingId&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;extProductId&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;extUserId&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;id&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;state&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;surveyId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;versionId&#34;</b>&nbsp;:&nbsp;Long,</div>}</pre>",
 							"summary":"Loads the specified entity.()",
 							"parameters":[
 {
@@ -644,7 +644,7 @@
 	             {
 	                 "httpMethod": "GET",
 	                 "nickname": "getPage",
-							"notes": "Queries for a (next) page of entities<br /><h4>Response Example</h4><pre>{<div>&nbsp;&nbsp;&nbsp;<b>&#34;answers&#34;</b>&nbsp;:&nbsp;[{&nbsp;&nbsp;&nbsp;},<div>&nbsp;&nbsp;&nbsp;...</div>&nbsp;&nbsp;&nbsp;],</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;id&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;state&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;surveyId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;versionId&#34;</b>&nbsp;:&nbsp;Long,</div>}</pre>",
+							"notes": "Queries for a (next) page of entities<br /><h4>Response Example</h4><pre>{<div>&nbsp;&nbsp;&nbsp;<b>&#34;answers&#34;</b>&nbsp;:&nbsp;[{&nbsp;&nbsp;&nbsp;},<div>&nbsp;&nbsp;&nbsp;...</div>&nbsp;&nbsp;&nbsp;],</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;extLocationId&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;extMeetingId&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;extProductId&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;extUserId&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;id&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;state&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;surveyId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;versionId&#34;</b>&nbsp;:&nbsp;Long,</div>}</pre>",
 							"summary":"Queries for a (next) page of entities()",
 							"parameters":[
 
@@ -678,7 +678,7 @@
 	             {
 	                 "httpMethod": "POST",
 	                 "nickname": "update",
-							"notes": "Updates an entity.<br /><h4>Response Example</h4><pre>{<div>&nbsp;&nbsp;&nbsp;<b>&#34;answers&#34;</b>&nbsp;:&nbsp;[{&nbsp;&nbsp;&nbsp;},<div>&nbsp;&nbsp;&nbsp;...</div>&nbsp;&nbsp;&nbsp;],</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;id&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;state&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;surveyId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;versionId&#34;</b>&nbsp;:&nbsp;Long,</div>}</pre>",
+							"notes": "Updates an entity.<br /><h4>Response Example</h4><pre>{<div>&nbsp;&nbsp;&nbsp;<b>&#34;answers&#34;</b>&nbsp;:&nbsp;[{&nbsp;&nbsp;&nbsp;},<div>&nbsp;&nbsp;&nbsp;...</div>&nbsp;&nbsp;&nbsp;],</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;extLocationId&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;extMeetingId&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;extProductId&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;extUserId&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;id&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;state&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;surveyId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;versionId&#34;</b>&nbsp;:&nbsp;Long,</div>}</pre>",
 							"summary":"Updates an entity.()",
 							"parameters":[
 {
@@ -1023,6 +1023,10 @@
     "surveyId":{"type":"java.lang.Long"}
     ,"answers":{"type":"java.util.List"}
     ,"versionId":{"type":"java.lang.Long"}
+    ,"extLocationId":{"type":"java.lang.String"}
+    ,"extMeetingId":{"type":"java.lang.String"}
+    ,"extProductId":{"type":"java.lang.String"}
+    ,"extUserId":{"type":"java.lang.String"}
 	}
 }
 ,"com.wadpam.survey.json.JSurvey":{
