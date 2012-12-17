@@ -1,4 +1,4 @@
-package com.goldengekko.wbt.web;
+package com.wadpam.survey.web;
 
 import com.wadpam.survey.json.JOption;
 import com.wadpam.survey.json.JQuestion;

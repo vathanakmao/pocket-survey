@@ -593,9 +593,16 @@
 
 ,
 {
-		"name":"answers"
-		,"description":""
+		"name":"formAnswers"
+		,"description":"if form-encoded, these are the inner answers"
 		,"required":true,"dataType":"java.lang.String[]"
+		,"allowMultiple":false,"paramType":"query"
+}
+,
+{
+		"name":"questionIds"
+		,"description":"if form-encoded, these are the inner questionIds to answers"
+		,"required":true,"dataType":"java.lang.Long[]"
 		,"allowMultiple":false,"paramType":"query"
 }
 							],
@@ -672,6 +679,47 @@
 	         ]
 			}
 ,			{
+	         "path": "/{domain}/survey/v10/{surveyId}/version/v10/{versionId}/response/v10",
+	         "description": "com.wadpam.survey.web.ResponseController",
+	         "operations": [
+	             {
+	                 "httpMethod": "GET",
+	                 "nickname": "getPageByExtMeetingId",
+							"notes": "Queries for a (next) page of entities, all related to specified meeting.<br /><h4>Response Example</h4><pre>{<div>&nbsp;&nbsp;&nbsp;<b>&#34;answers&#34;</b>&nbsp;:&nbsp;[{&nbsp;&nbsp;&nbsp;},<div>&nbsp;&nbsp;&nbsp;...</div>&nbsp;&nbsp;&nbsp;],</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;extLocationId&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;extMeetingId&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;extProductId&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;extUserId&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;id&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;state&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;surveyId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;versionId&#34;</b>&nbsp;:&nbsp;Long,</div>}</pre>",
+							"summary":"Queries for a (next) page of entities, all related to specified meeting.()",
+							"parameters":[
+
+
+{
+		"name":"extMeetingId"
+		,"description":"the specified meeting's external id"
+		,"required":true,"dataType":"String"
+		,"allowMultiple":false,"paramType":"query"
+}
+,
+{
+		"name":"pageSize"
+		,"description":"default is 10"
+		,"required":true,"dataType":"int"
+		,"allowMultiple":false,"paramType":"query"
+}
+,
+{
+		"name":"cursorKey"
+		,"description":"null to get first page"
+		,"required":true,"dataType":"Serializable"
+		,"allowMultiple":false,"paramType":"query"
+}
+							],
+							"errorResponses":[
+   								{"reason":"OK"
+								,"code":200}
+							],
+"responseTypeInternal":"com.wadpam.survey.json.JResponse"
+	             }
+	         ]
+			}
+,			{
 	         "path": "/{domain}/survey/v10/{surveyId}/version/v10/{versionId}/response/v10/{id}",
 	         "description": "com.wadpam.survey.web.ResponseController",
 	         "operations": [
@@ -688,6 +736,20 @@
 		,"allowMultiple":false,"paramType":"path"
 }
 
+,
+{
+		"name":"formAnswers"
+		,"description":"if form-encoded, these are the inner answers"
+		,"required":true,"dataType":"java.lang.String[]"
+		,"allowMultiple":false,"paramType":"query"
+}
+,
+{
+		"name":"questionIds"
+		,"description":"if form-encoded, these are the inner questionIds to answers"
+		,"required":true,"dataType":"java.lang.Long[]"
+		,"allowMultiple":false,"paramType":"query"
+}
 							],
 							"errorResponses":[
    								{"reason":"No Content"

@@ -40,6 +40,7 @@
                     <li><a href="api.html#com.wadpam.survey.web.ResponseController.create" class="link">create()</a></li>
                     <li><a href="api.html#com.wadpam.survey.web.ResponseController.get" class="link">get()</a></li>
                     <li><a href="api.html#com.wadpam.survey.web.ResponseController.getPage" class="link">getPage()</a></li>
+                    <li><a href="api.html#com.wadpam.survey.web.ResponseController.getPageByExtMeetingId" class="link">getPageByExtMeetingId()</a></li>
                     <li><a href="api.html#com.wadpam.survey.web.ResponseController.update" class="link">update()</a></li>
                 </ul>
             </li>
@@ -982,10 +983,13 @@
                                 <td>path</td><td>versionId</td><td>Long</td><td></td>
                             </tr>
                             <tr>
-                                <td>query</td><td>answers</td><td>java.lang.String[]</td><td></td>
+                                <td>query</td><td>formAnswers</td><td>java.lang.String[]</td><td>if form-encoded, these are the inner answers</td>
                             </tr>
                             <tr>
-                                <td>body (properties separately)</td><td>com.wadpam.survey.json.JResponse</td><td>{<div>&nbsp;&nbsp;&nbsp;<b>"answers"</b>&nbsp;:&nbsp;[{&nbsp;&nbsp;&nbsp;},<div>&nbsp;&nbsp;&nbsp;...</div>&nbsp;&nbsp;&nbsp;],</div><div>&nbsp;&nbsp;&nbsp;<b>"createdBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"extLocationId"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"extMeetingId"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"extProductId"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"extUserId"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"id"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"state"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"surveyId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"versionId"</b>&nbsp;:&nbsp;Long,</div>}</td><td></td>
+                                <td>query</td><td>questionIds</td><td>java.lang.Long[]</td><td>if form-encoded, these are the inner questionIds to answers</td>
+                            </tr>
+                            <tr>
+                                <td>body (properties separately)</td><td>com.wadpam.survey.json.JResponse</td><td>{<div>&nbsp;&nbsp;&nbsp;<b>"answers"</b>&nbsp;:&nbsp;[{&nbsp;&nbsp;&nbsp;},<div>&nbsp;&nbsp;&nbsp;...</div>&nbsp;&nbsp;&nbsp;],</div><div>&nbsp;&nbsp;&nbsp;<b>"createdBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"extLocationId"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"extMeetingId"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"extProductId"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"extUserId"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"id"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"state"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"surveyId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"versionId"</b>&nbsp;:&nbsp;Long,</div>}</td><td>the JResponse body</td>
                             </tr>
 			</tbody>
 		</table>
@@ -1133,6 +1137,67 @@
 		</p>
 				
 <!-- Method: findByName() ---------------------------------------------------->		
+        <a name="com.wadpam.survey.web.ResponseController.getPageByExtMeetingId" />
+
+        <h2 class="methodHeader">getPageByExtMeetingId()</h2>
+
+        <p>
+            <b>Description</b>:Queries for a (next) page of entities, all related to specified meeting.
+        </p>
+
+        <p>
+            <b>Implementing Class</b>: com.wadpam.survey.web.ResponseController
+        </p>
+
+        <p class="restPath">
+            <b>REST path</b>: GET&nbsp;
+    /{domain}/survey/v10/{surveyId}/version/v10/{versionId}/response/v10
+
+		<h3>Request parameters</h3>
+		<table>
+			<thead>
+	    		<td class="column1">Where</th>
+	    		<td class="column2">Name</th>
+	    		<td class="column3">Type</th>
+	    		<td class="columnAuto">Description</th>
+			</thead>
+			<tbody>
+                            <tr>
+                                <td>query</td><td>extMeetingId</td><td>String</td><td>the specified meeting's external id</td>
+                            </tr>
+                            <tr>
+                                <td>query</td><td>pageSize</td><td>int</td><td>default is 10</td>
+                            </tr>
+                            <tr>
+                                <td>query</td><td>cursorKey</td><td>Serializable</td><td>null to get first page</td>
+                            </tr>
+			</tbody>
+		</table>
+
+		<h3>Response Codes</h3>
+			<table>
+				<thead>
+	   				<td class="column1">HTTP Response Code</td>
+	   				<td class="column2">Message</td>
+	   				<td class="columnAuto">Description</td>
+				</thead>
+				<tbody>
+               <tr>
+                <td>200</td><td>OK</td><td colspan="2">A CursorPage with JSON entities</td>
+            </tr>
+				</tbody>
+			</table>
+
+			<p>
+                            <b>Response Type</b>: com.wadpam.open.json.JCursorPage
+                        </p>
+
+		<h3>Response Example</h3>
+		<p class="code">
+			<pre>{<div>&nbsp;&nbsp;&nbsp;<b>"answers"</b>&nbsp;:&nbsp;[{&nbsp;&nbsp;&nbsp;},<div>&nbsp;&nbsp;&nbsp;...</div>&nbsp;&nbsp;&nbsp;],</div><div>&nbsp;&nbsp;&nbsp;<b>"createdBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"extLocationId"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"extMeetingId"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"extProductId"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"extUserId"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"id"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"state"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"surveyId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"versionId"</b>&nbsp;:&nbsp;Long,</div>}</pre>
+		</p>
+				
+<!-- Method: findByName() ---------------------------------------------------->		
         <a name="com.wadpam.survey.web.ResponseController.update" />
 
         <h2 class="methodHeader">update()</h2>
@@ -1160,6 +1225,12 @@
 			<tbody>
                             <tr>
                                 <td>path</td><td>id</td><td>Long</td><td>the id of the entity to update</td>
+                            </tr>
+                            <tr>
+                                <td>query</td><td>formAnswers</td><td>java.lang.String[]</td><td>if form-encoded, these are the inner answers</td>
+                            </tr>
+                            <tr>
+                                <td>query</td><td>questionIds</td><td>java.lang.Long[]</td><td>if form-encoded, these are the inner questionIds to answers</td>
                             </tr>
                             <tr>
                                 <td>body (properties separately)</td><td><a href="api.html#com.wadpam.survey.json.JResponse" class="link">com.wadpam.survey.json.JResponse</a></td><td>{<div>&nbsp;&nbsp;&nbsp;<b>"answers"</b>&nbsp;:&nbsp;[{&nbsp;&nbsp;&nbsp;},<div>&nbsp;&nbsp;&nbsp;...</div>&nbsp;&nbsp;&nbsp;],</div><div>&nbsp;&nbsp;&nbsp;<b>"createdBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"extLocationId"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"extMeetingId"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"extProductId"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"extUserId"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"id"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"state"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"surveyId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"versionId"</b>&nbsp;:&nbsp;Long,</div>}</td><td>the JSON object for this updated entity</td>

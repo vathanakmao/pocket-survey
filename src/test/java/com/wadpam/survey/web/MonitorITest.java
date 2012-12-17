@@ -1,4 +1,4 @@
-package com.goldengekko.wbt.web;
+package com.wadpam.survey.web;
 
 import com.wadpam.open.json.JMonitor;
 import static org.junit.Assert.*;

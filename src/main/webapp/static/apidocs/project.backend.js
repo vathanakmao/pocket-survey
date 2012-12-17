@@ -80,6 +80,18 @@ function backendAPI_admin_getPage(){
 }
 
 //Get data
+function backendAPI_admin_getPageByExtMeetingId(){
+	//getData
+	var data = {};
+	data.extMeetingId = $("#extMeetingId").val();
+	data.pageSize = $("#pageSize").val();
+	data.cursorKey = $("#cursorKey").val();
+	data = projectAPI.getPageByExtMeetingId(data);
+	//add data to table
+	$("#JResponse").tmpl(data).appendTo("#getPageByExtMeetingId-JResponse-output");
+}
+
+//Get data
 function backendAPI_admin_get(id){
 	//getData
 	var data = projectAPI.get(id);

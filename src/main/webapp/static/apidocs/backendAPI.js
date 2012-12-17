@@ -576,11 +576,15 @@ variables
 			"description":""
 			"dataType":"Long"
 			"paramType":"path"
-		"name":"answers"
-			"description":""
+		"name":"formAnswers"
+			"description":"if form-encoded, these are the inner answers"
 			"dataType":"java.lang.String[]"
 			"paramType":"query"
-count = 4
+		"name":"questionIds"
+			"description":"if form-encoded, these are the inner questionIds to answers"
+			"dataType":"java.lang.Long[]"
+			"paramType":"query"
+count = 5
 */
 backendAPI.prototype.create = function(domain,surveyId,versionId,data) {
 	var type = "POST";
@@ -647,15 +651,48 @@ backendAPI.prototype.getPage = function(data) {
 
 /*
 variables
+		"name":"extMeetingId"
+			"description":"the specified meeting's external id"
+			"dataType":"String"
+			"paramType":"query"
+		"name":"pageSize"
+			"description":"default is 10"
+			"dataType":"int"
+			"paramType":"query"
+		"name":"cursorKey"
+			"description":"null to get first page"
+			"dataType":"Serializable"
+			"paramType":"query"
+count = 3
+*/
+backendAPI.prototype.getPageByExtMeetingId = function(data) {
+	var type = "GET";
+	var url = "survey/v10/{surveyId}/version/v10/{versionId}/response/v10";
+	var dataType = "json";
+	//var errMsg = [];
+	//var response = this.makeRequest(type,url,dataType,data,errMsg);
+	var response = this.makeRequest(type,url,dataType,data);
+	return response;
+};
+
+/*
+variables
 		"name":"id"
 			"description":"the id of the entity to update"
 			"dataType":"Long"
 			"paramType":"path"
-count = 1
+		"name":"formAnswers"
+			"description":"if form-encoded, these are the inner answers"
+			"dataType":"java.lang.String[]"
+			"paramType":"query"
+		"name":"questionIds"
+			"description":"if form-encoded, these are the inner questionIds to answers"
+			"dataType":"java.lang.Long[]"
+			"paramType":"query"
+count = 3
 */
-backendAPI.prototype.update = function(id) {
+backendAPI.prototype.update = function(id,data) {
 	var type = "POST";
-	var data = {};
 
 
 
