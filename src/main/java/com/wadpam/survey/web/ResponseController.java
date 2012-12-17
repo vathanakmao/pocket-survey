@@ -139,6 +139,28 @@ public class ResponseController {
         return body;
     }
     
+    /**
+     * Queries for a (next) page of entities, all related to specified meeting.
+     * @param extMeetingId the specified meeting's external id
+     * @param pageSize default is 10
+     * @param cursorKey null to get first page
+     * @return a page of entities
+     */
+    @RestReturn(value=JCursorPage.class, entity=JResponse.class, code={
+        @RestCode(code=200, description="A CursorPage with JSON entities", message="OK")})
+    @RequestMapping(value="v10", method= RequestMethod.GET, params="meetingId")
+    @ResponseBody
+    public JCursorPage<JResponse> getPageByExtMeetingId(
+            @RequestParam String extMeetingId,
+            @RequestParam(defaultValue="10") int pageSize, 
+            @RequestParam(required=false) Serializable cursorKey) {
+        final CursorPage<DResponse, Long> page = service.getResponsesPageByExtMeetingId(
+                extMeetingId, pageSize, cursorKey);
+        final JCursorPage body = CONVERTER.convertPage(page);
+
+        return body;
+    }
+    
     protected void patchJResponse(JResponse jResponse, String[] formAnswers, Long[] questionIds) {
         if (null == jResponse.getAnswers() && null != formAnswers && null != questionIds) {
             ArrayList<JAnswer> answers = new ArrayList<JAnswer>();
