@@ -1,5 +1,6 @@
 package com.goldengekko.wbt.web;
 
+import com.wadpam.survey.json.JQuestion;
 import com.wadpam.survey.json.JResponse;
 import com.wadpam.survey.json.JSurvey;
 import com.wadpam.survey.json.JVersion;
@@ -75,6 +76,7 @@ public class ResponseITest {
         JVersion version = survey.getVersions().iterator().next();
         
         requestEntity.clear();
+        
         URI uri = template.postForLocation(BASE_URL_SURVEY + "/{surveyId}/version/v10/{versionId}/response/v10", 
                 requestEntity, survey.getId(), version.getId());
         assertNotNull("createResponse", uri);
@@ -83,6 +85,41 @@ public class ResponseITest {
         JResponse actual = template.getForObject(uri, JResponse.class);
         assertNotNull("createdResponse", actual);
         assertEquals("surveyId", survey.getId(), actual.getSurveyId().toString());
+    }
+
+    @Test
+    public void testCreateWithAnswers() {
+        
+        MultiValueMap<String, Object> requestEntity = new LinkedMultiValueMap<String, Object>();
+        requestEntity.add("title", "Survey Title");
+        
+        // create a survey first
+        URI surveyURI = template.postForLocation(BASE_URL_SURVEY, requestEntity);
+        JSurvey survey = template.getForObject(surveyURI, JSurvey.class);
+        assertNotNull(survey);
+        JVersion version = survey.getVersions().iterator().next();
+        
+        // and, create a question
+        requestEntity.clear();
+        URI questionURI = template.postForLocation(
+                BASE_URL_SURVEY + "/{surveyId}/version/v10/{versionId}/question/v10", 
+                requestEntity,
+                survey.getId(), version.getId()
+                );
+        JQuestion question = template.getForObject(questionURI, JQuestion.class);
+
+        requestEntity.clear();
+        requestEntity.add("questionIds", question.getId());
+        requestEntity.add("formAnswers", "MyInnerAnswer");
+        URI uri = template.postForLocation(BASE_URL_SURVEY + "/{surveyId}/version/v10/{versionId}/response/v10", 
+                requestEntity, survey.getId(), version.getId());
+        assertNotNull("createResponse", uri);
+        System.out.println("created response, URI is " + uri);
+        
+        JResponse actual = template.getForObject(uri, JResponse.class);
+        assertNotNull("createdResponse", actual);
+        assertEquals("surveyId", survey.getId(), actual.getSurveyId().toString());
+        assertNotNull("createdInnerAnswers", actual.getAnswers());
     }
 
 }

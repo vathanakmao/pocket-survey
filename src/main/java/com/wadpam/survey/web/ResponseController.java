@@ -5,10 +5,14 @@ import com.wadpam.docrest.domain.RestCode;
 import com.wadpam.docrest.domain.RestReturn;
 import com.wadpam.open.json.JCursorPage;
 import com.wadpam.open.exceptions.NotFoundException;
+import com.wadpam.survey.domain.DAnswer;
 import com.wadpam.survey.domain.DResponse;
+import com.wadpam.survey.json.JAnswer;
 import com.wadpam.survey.json.JResponse;
 import java.io.Serializable;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 import net.sf.mardao.core.CursorPage;
 import org.slf4j.Logger;
@@ -48,6 +52,9 @@ public class ResponseController {
     
     /**
      * Creates an entity.
+     * @param jResponse the JResponse body 
+     * @param formAnswers if form-encoded, these are the inner answers
+     * @param questionIds if form-encoded, these are the inner questionIds to answers
      * @return a redirect to the created entity
      */
     @RestReturn(value=URL.class, code={
@@ -61,8 +68,10 @@ public class ResponseController {
             @PathVariable Long surveyId,
             @PathVariable Long versionId,
             @ModelAttribute JResponse jResponse,
-            @RequestParam(required=false) String[] answers
+            @RequestParam(required=false) String[] formAnswers,
+            @RequestParam(required=false) Long[] questionIds
             ) {
+        patchJResponse(jResponse, formAnswers, questionIds);
         
         final DResponse dEntity = service.upsertResponse(jResponse);
 
@@ -101,6 +110,13 @@ public class ResponseController {
         }
         final JResponse body = Converter.convert(entity);
         
+        // inner answers to include?
+        if (null != body) {
+            Iterable<DAnswer> dAnswers = service.getAnswersByResponse(id);
+            List<JAnswer> jAnswers = (List<JAnswer>) CONVERTER.convert(dAnswers);
+            body.setAnswers(jAnswers);
+        }
+        
         return body;
     }
     
@@ -123,10 +139,32 @@ public class ResponseController {
         return body;
     }
     
+    protected void patchJResponse(JResponse jResponse, String[] formAnswers, Long[] questionIds) {
+        if (null == jResponse.getAnswers() && null != formAnswers && null != questionIds) {
+            ArrayList<JAnswer> answers = new ArrayList<JAnswer>();
+            int i = 0;
+            for (Long id : questionIds) {
+                JAnswer a = new JAnswer();
+                a.setAnswer(formAnswers[i]);
+                a.setQuestionId(id);
+                a.setSurveyId(jResponse.getSurveyId());
+                a.setVersionId(jResponse.getVersionId());
+                
+                answers.add(a);
+                
+                i++;
+            }
+            
+            jResponse.setAnswers(answers);
+        }
+    }
+
     /**
      * Updates an entity.
      * @param id the id of the entity to update
      * @param jEntity the JSON object for this updated entity
+     * @param formAnswers if form-encoded, these are the inner answers
+     * @param questionIds if form-encoded, these are the inner questionIds to answers
      * @return a redirect to the updated entity
      */
     @RestReturn(value=URL.class, code={
@@ -137,8 +175,11 @@ public class ResponseController {
             @RequestHeader(value=ResponseController.NAME_X_REQUESTED_WITH, required=false) String xRequestedWith,
             HttpServletResponse response,
             @PathVariable Long id,
-            @ModelAttribute JResponse jEntity
+            @ModelAttribute JResponse jEntity,
+            @RequestParam(required=false) String[] formAnswers,
+            @RequestParam(required=false) Long[] questionIds
             ) {
+        patchJResponse(jEntity, formAnswers, questionIds);
         
         final DResponse dEntity = service.upsertResponse(jEntity);
         

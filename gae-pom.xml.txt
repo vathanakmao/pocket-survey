@@ -439,67 +439,7 @@
 
     <profiles>
         <profile>
-            <id>mysql</id>
-            <properties>
-                <spring.profiles.active>mysql</spring.profiles.active>
-            </properties>
-            <dependencies>
-                <dependency>
-                    <groupId>net.sf.mardao</groupId>
-                    <artifactId>mardao-mysql</artifactId>
-                    <version>${mardao.version}</version>
-                    <scope>compile</scope>
-                </dependency>
-            </dependencies>
-        </profile>
-        <profile>
-            <id>itest-sql</id>
-            <properties>
-                <spring.profiles.active>itest-sql</spring.profiles.active>
-            </properties>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-jetty-plugin</artifactId>
-                        <version />
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>surefire-itest</id>
-                                <phase>integration-test</phase>
-                                <goals>
-                                    <goal>test</goal>
-                                </goals>
-                                <configuration>
-                                    <skip>false</skip>
-                                    <includes>
-                                        <include>${itest.include}</include>
-                                    </includes>
-                                    <systemPropertyVariables>
-                                        <catalina.home>${project.basedir}/target/test</catalina.home>
-                                    </systemPropertyVariables>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-            <dependencies>
-                <dependency>
-                    <groupId>net.sf.mardao</groupId>
-                    <artifactId>mardao-mysql</artifactId>
-                    <version>${mardao.version}</version>
-                    <scope>compile</scope>
-                </dependency>
-            </dependencies>
-        </profile>
-
-        <profile>
-            <id>itest-gae</id>
+            <id>itest</id>
             <build>
                 <plugins>
                     <plugin>

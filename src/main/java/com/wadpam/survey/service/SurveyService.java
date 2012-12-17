@@ -251,6 +251,12 @@ public class SurveyService {
         return entity;
     }
     
+    public Iterable<DAnswer> getAnswersByResponse(Long id) {
+        final DResponse response = new DResponse();
+        response.setId(id);
+        return answerDao.queryByResponse(response);
+    }
+
     public Iterable<DAnswer> getAnswersByVersion(Long versionId) {
         final DVersion version = new DVersion();
         version.setId(versionId);
@@ -418,6 +424,8 @@ public class SurveyService {
         if (null != jResponse.getAnswers()) {
             final Iterable<DAnswer> existing = answerDao.queryByResponse(dEntity);
             for (JAnswer answer : jResponse.getAnswers()) {
+                // if ID generated above, populate on inner answers
+                answer.setResponseId(dEntity.getId());
                 upsertAnswer(Converter.convert(answer), existing);
             }
         }
