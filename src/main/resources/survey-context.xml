@@ -47,4 +47,8 @@
         <property name="service" ref="surveyService" />
     </bean>
     
+    <bean id="versionController" class="com.wadpam.survey.web.VersionController">
+        <property name="service" ref="surveyService" />
+    </bean>
+    
 </beans>
