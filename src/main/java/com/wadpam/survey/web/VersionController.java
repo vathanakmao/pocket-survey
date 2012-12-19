@@ -7,6 +7,7 @@ import com.wadpam.open.exceptions.NotFoundException;
 import com.wadpam.survey.domain.DAnswer;
 import com.wadpam.survey.domain.DOption;
 import com.wadpam.survey.domain.DQuestion;
+import com.wadpam.survey.domain.DSurvey;
 import com.wadpam.survey.domain.DVersion;
 import com.wadpam.survey.json.JAnswer;
 import com.wadpam.survey.json.JOption;
@@ -152,14 +153,20 @@ public class VersionController {
         @RestCode(code=200, description="A CSV with JSON entities", message="OK")})
     @RequestMapping(value="v10/{versionId}/csv", method= RequestMethod.GET)
     public void getCsv(HttpServletResponse response,
-            @PathVariable String domain, 
+            @PathVariable String domain,
+            @PathVariable Long surveyId,
             @PathVariable Long versionId) throws IOException {
+        // get the full JSurvey
+        final DSurvey survey = service.getSurvey(surveyId);
+        
         // get the full JVersion definition
         final JVersion jVersion = get(versionId);
-        
+
         final Iterable<DAnswer> answers = service.getAnswersByVersion(versionId);
         
         response.setContentType("text/csv");
+        final String contentDisposition = String.format("attachment;filename=%s.csv", survey.getTitle().replaceAll("\\s", "_"));
+        response.setHeader("Content-Disposition", contentDisposition);
         PrintWriter pw = response.getWriter();
         
         writeAnswersAsCsv(pw, answers, jVersion);
