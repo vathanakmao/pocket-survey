@@ -17,7 +17,7 @@ public class DAnswer extends AbstractLongEntity {
     
     /** The type of the answer is given by the question */
     @Basic
-    private Object answer;
+    private String answer;
 
     /** The question this answer is for */
     @ManyToOne
@@ -43,11 +43,11 @@ public class DAnswer extends AbstractLongEntity {
         this.response = response;
     }
 
-    public Object getAnswer() {
+    public String getAnswer() {
         return answer;
     }
 
-    public void setAnswer(Object answer) {
+    public void setAnswer(String answer) {
         this.answer = answer;
     }
     

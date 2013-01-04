@@ -20,6 +20,10 @@ public class DResponse extends AbstractLongEntity {
     @ManyToOne
     private DSurvey survey;
     
+    /** The survey this response is for */
+    @ManyToOne
+    private DVersion version;
+    
     /** ID of related location (external system) */
     @Basic
     private String extLocationId;
@@ -83,4 +87,13 @@ public class DResponse extends AbstractLongEntity {
     public void setExtUserId(String extUserId) {
         this.extUserId = extUserId;
     }
+
+    public DVersion getVersion() {
+        return version;
+    }
+
+    public void setVersion(DVersion version) {
+        this.version = version;
+    }
+
 }

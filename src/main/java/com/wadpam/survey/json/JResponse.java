@@ -44,7 +44,8 @@ public class JResponse extends JBaseObject {
     
     @Override
     protected String subString() {
-        return String.format("surveyId:%d", surveyId);
+        return String.format("surveyId:%d, versionId:%d, answers:%s, extProductId:%s", 
+                surveyId, versionId, answers, extProductId);
     }
 
     public List<JAnswer> getAnswers() {

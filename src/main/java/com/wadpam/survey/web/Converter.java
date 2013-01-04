@@ -194,6 +194,7 @@ public class Converter extends BaseConverter {
         
         to.setState(from.getState());
         to.setSurveyId(null != from.getSurvey() ? from.getSurvey().getId() : null);
+        to.setVersionId(null != from.getVersion() ? from.getVersion().getId() : null);
         to.setExtLocationId(from.getExtLocationId());
         to.setExtMeetingId(from.getExtMeetingId());
         to.setExtProductId(from.getExtProductId());
@@ -215,6 +216,11 @@ public class Converter extends BaseConverter {
             final DSurvey survey = new DSurvey();
             survey.setId(from.getSurveyId());
             to.setSurvey(survey);
+        }
+        if (null != from.getVersionId()) {
+            final DVersion version = new DVersion();
+            version.setId(from.getVersionId());
+            to.setVersion(version);
         }
         to.setExtLocationId(from.getExtLocationId());
         to.setExtMeetingId(from.getExtMeetingId());

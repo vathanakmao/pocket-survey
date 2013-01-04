@@ -1,10 +1,14 @@
 package com.wadpam.survey.web;
 
+import com.wadpam.survey.json.JAnswer;
 import com.wadpam.survey.json.JQuestion;
 import com.wadpam.survey.json.JResponse;
 import com.wadpam.survey.json.JSurvey;
 import com.wadpam.survey.json.JVersion;
+import java.io.IOException;
 import java.net.URI;
+import java.util.Arrays;
+import org.codehaus.jackson.map.ObjectMapper;
 import static org.junit.Assert.*;
 
 import org.junit.After;
@@ -12,6 +16,9 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.HttpClientErrorException;
@@ -119,7 +126,56 @@ public class ResponseITest {
         JResponse actual = template.getForObject(uri, JResponse.class);
         assertNotNull("createdResponse", actual);
         assertEquals("surveyId", survey.getId(), actual.getSurveyId().toString());
+        assertEquals("versionId", version.getId(), actual.getVersionId().toString());
         assertNotNull("createdInnerAnswers", actual.getAnswers());
+        assertEquals("createdInnerAnswers", 1, actual.getAnswers().size());
+    }
+
+    @Test
+    public void testCreateWithAnswersJSON() throws IOException {
+        
+        MultiValueMap<String, Object> requestEntity = new LinkedMultiValueMap<String, Object>();
+        requestEntity.add("title", "Survey Title");
+        
+        // create a survey first
+        URI surveyURI = template.postForLocation(BASE_URL_SURVEY, requestEntity);
+        JSurvey survey = template.getForObject(surveyURI, JSurvey.class);
+        assertNotNull(survey);
+        JVersion version = survey.getVersions().iterator().next();
+        
+        // and, create a question
+        requestEntity.clear();
+        URI questionURI = template.postForLocation(
+                BASE_URL_SURVEY + "/{surveyId}/version/v10/{versionId}/question/v10", 
+                requestEntity,
+                survey.getId(), version.getId()
+                );
+        JQuestion question = template.getForObject(questionURI, JQuestion.class);
+
+        JResponse body = new JResponse();
+        body.setExtProductId("myProduct");
+        JAnswer answer = new JAnswer();
+        answer.setQuestionId(Long.parseLong(question.getId()));
+        answer.setAnswer("MyInnerAnswerJSON");
+        body.setAnswers(Arrays.asList(answer));
+        ObjectMapper mapper = new ObjectMapper();
+        System.out.println("JResponse is " + mapper.writeValueAsString(body));
+        
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        
+        HttpEntity<JResponse> requestBody = new HttpEntity<JResponse>(body, headers);
+        URI uri = template.postForLocation(BASE_URL_SURVEY + "/{surveyId}/version/v10/{versionId}/response/v10", 
+                requestBody, survey.getId(), version.getId());
+        assertNotNull("createResponse", uri);
+        System.out.println("created response, URI is " + uri);
+        
+        JResponse actual = template.getForObject(uri, JResponse.class);
+        assertNotNull("createdResponse", actual);
+        assertEquals("surveyId", survey.getId(), actual.getSurveyId().toString());
+        assertEquals("versionId", version.getId(), actual.getVersionId().toString());
+        assertNotNull("createdInnerAnswers", actual.getAnswers());
+        assertEquals("createdInnerAnswers", 1, actual.getAnswers().size());
     }
 
 }

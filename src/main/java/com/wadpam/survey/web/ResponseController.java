@@ -21,6 +21,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -51,7 +52,7 @@ public class ResponseController {
     private SurveyService service;
     
     /**
-     * Creates an entity.
+     * Creates an entity, from a form-encoded POST
      * @param jResponse the JResponse body 
      * @param formAnswers if form-encoded, these are the inner answers
      * @param questionIds if form-encoded, these are the inner questionIds to answers
@@ -60,8 +61,8 @@ public class ResponseController {
     @RestReturn(value=URL.class, code={
         @RestCode(code=201, description="The entity was created by AJAX", message="Created"),
         @RestCode(code=302, description="The entity was created", message="OK")})
-    @RequestMapping(value="v10", method= RequestMethod.POST)
-    public RedirectView create(
+    @RequestMapping(value="v10", method= RequestMethod.POST, consumes="application/x-www-form-urlencoded")
+    public RedirectView createFromForm(
             @RequestHeader(value=ResponseController.NAME_X_REQUESTED_WITH, required=false) String xRequestedWith,
             HttpServletResponse response,
             @PathVariable String domain,
@@ -71,7 +72,40 @@ public class ResponseController {
             @RequestParam(required=false) String[] formAnswers,
             @RequestParam(required=false) Long[] questionIds
             ) {
-        patchJResponse(jResponse, formAnswers, questionIds);
+        return create(xRequestedWith, response, domain, surveyId, versionId, jResponse, formAnswers, questionIds);
+    }
+        
+    /**
+     * Creates an entity, from a json POST
+     * @param jResponse the JResponse body 
+     * @return a redirect to the created entity
+     */
+    @RestReturn(value=URL.class, code={
+        @RestCode(code=201, description="The entity was created by AJAX", message="Created"),
+        @RestCode(code=302, description="The entity was created", message="OK")})
+    @RequestMapping(value="v10", method= RequestMethod.POST, consumes="application/json")
+    public RedirectView createFromJSON(
+            @RequestHeader(value=ResponseController.NAME_X_REQUESTED_WITH, required=false) String xRequestedWith,
+            HttpServletResponse response,
+            @PathVariable String domain,
+            @PathVariable Long surveyId,
+            @PathVariable Long versionId,
+            @RequestBody JResponse jResponse
+            ) {
+        return create(xRequestedWith, response, domain, surveyId, versionId, jResponse, null, null);
+    }
+        
+    protected RedirectView create(
+            String xRequestedWith,
+            HttpServletResponse response,
+            String domain,
+            Long surveyId,
+            Long versionId,
+            JResponse jResponse,
+            String[] formAnswers,
+            Long[] questionIds
+            ) {
+        patchJResponse(jResponse, surveyId, versionId, formAnswers, questionIds);
         
         final DResponse dEntity = service.upsertResponse(jResponse);
 
@@ -161,7 +195,14 @@ public class ResponseController {
         return body;
     }
     
-    protected void patchJResponse(JResponse jResponse, String[] formAnswers, Long[] questionIds) {
+    protected void patchJResponse(JResponse jResponse, Long surveyId, Long versionId,
+            String[] formAnswers, Long[] questionIds) {
+        if (null == jResponse.getSurveyId() && null != surveyId) {
+            jResponse.setSurveyId(surveyId);
+        }
+        if (null == jResponse.getVersionId() && null != versionId) {
+            jResponse.setVersionId(versionId);
+        }
         if (null == jResponse.getAnswers() && null != formAnswers && null != questionIds) {
             ArrayList<JAnswer> answers = new ArrayList<JAnswer>();
             int i = 0;
@@ -196,12 +237,14 @@ public class ResponseController {
     public RedirectView update(
             @RequestHeader(value=ResponseController.NAME_X_REQUESTED_WITH, required=false) String xRequestedWith,
             HttpServletResponse response,
+            @PathVariable Long surveyId,
+            @PathVariable Long versionId,
             @PathVariable Long id,
             @ModelAttribute JResponse jEntity,
             @RequestParam(required=false) String[] formAnswers,
             @RequestParam(required=false) Long[] questionIds
             ) {
-        patchJResponse(jEntity, formAnswers, questionIds);
+        patchJResponse(jEntity, surveyId, versionId, formAnswers, questionIds);
         
         final DResponse dEntity = service.upsertResponse(jEntity);
         

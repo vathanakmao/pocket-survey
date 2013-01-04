@@ -1,12 +1,13 @@
 package com.wadpam.survey.json;
 
 import com.wadpam.open.json.JBaseObject;
+import java.io.Serializable;
 
 /**
  *
  * @author os
  */
-public class JAnswer extends JBaseObject {
+public class JAnswer extends JBaseObject implements Serializable {
     
     /** The question this answer is for */
     private Long questionId;
@@ -21,7 +22,7 @@ public class JAnswer extends JBaseObject {
     private Long versionId;
 
     /** The type of the answer is given by the question */
-    private Object answer;
+    private String answer;
     
     public Long getSurveyId() {
         return surveyId;
@@ -47,11 +48,11 @@ public class JAnswer extends JBaseObject {
         this.responseId = responseId;
     }
 
-    public Object getAnswer() {
+    public String getAnswer() {
         return answer;
     }
 
-    public void setAnswer(Object answer) {
+    public void setAnswer(String answer) {
         this.answer = answer;
     }
 
