@@ -184,7 +184,7 @@ public class ResponseController {
      */
     @RestReturn(value=JCursorPage.class, entity=JResponse.class, code={
         @RestCode(code=200, description="A CursorPage with JSON entities", message="OK")})
-    @RequestMapping(value="v10", method= RequestMethod.GET, params="meetingId")
+    @RequestMapping(value="v10", method= RequestMethod.GET, params="extMeetingId")
     @ResponseBody
     public JCursorPage<JResponse> getPageByExtMeetingId(
             @RequestParam String extMeetingId,
