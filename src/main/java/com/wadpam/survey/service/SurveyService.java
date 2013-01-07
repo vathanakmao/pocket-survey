@@ -26,6 +26,7 @@ import com.wadpam.survey.web.QuestionController;
 import com.wadpam.survey.web.ResponseController;
 import com.wadpam.survey.web.SurveyController;
 import java.io.Serializable;
+import java.util.Collection;
 import net.sf.mardao.core.CursorPage;
 import net.sf.mardao.core.dao.DaoImpl;
 import org.slf4j.Logger;
@@ -255,6 +256,10 @@ public class SurveyService {
         final DResponse response = new DResponse();
         response.setId(id);
         return answerDao.queryByResponse(response);
+    }
+
+    public Iterable<DAnswer> getAnswersByResponseIds(Collection<Long> ids) {
+        return answerDao.queryByResponseIds(ids);
     }
 
     public Iterable<DAnswer> getAnswersByVersion(Long versionId) {

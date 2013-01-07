@@ -12,6 +12,7 @@ import com.wadpam.survey.json.JResponse;
 import java.io.Serializable;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 import net.sf.mardao.core.CursorPage;
@@ -176,6 +177,7 @@ public class ResponseController {
     /**
      * Queries for a (next) page of entities, all related to specified meeting.
      * @param extMeetingId the specified meeting's external id
+     * @param answers set to true to get inner answers
      * @param pageSize default is 10
      * @param cursorKey null to get first page
      * @return a page of entities
@@ -186,12 +188,39 @@ public class ResponseController {
     @ResponseBody
     public JCursorPage<JResponse> getPageByExtMeetingId(
             @RequestParam String extMeetingId,
+            @RequestParam(defaultValue="false") boolean answers, 
             @RequestParam(defaultValue="10") int pageSize, 
             @RequestParam(required=false) Serializable cursorKey) {
         final CursorPage<DResponse, Long> page = service.getResponsesPageByExtMeetingId(
                 extMeetingId, pageSize, cursorKey);
-        final JCursorPage body = CONVERTER.convertPage(page);
+        final JCursorPage<JResponse> body = (JCursorPage<JResponse>) CONVERTER.convertPage(page);
 
+        // inner answers to include?
+        if (answers) {
+            HashMap<Long, JResponse> ids = new HashMap<Long, JResponse>();
+            for (JResponse j : body.getItems()) {
+                ids.put(Long.parseLong(j.getId()), j);
+            }
+            
+            if (!ids.isEmpty()) {
+                Iterable<DAnswer> dAnswers = service.getAnswersByResponseIds(ids.keySet());
+                List<JAnswer> jAnswers = (List<JAnswer>) CONVERTER.convert(dAnswers);
+                
+                // distribute all answers to correct JResponse
+                JResponse jResponse;
+                List<JAnswer> inner;
+                for (JAnswer da : jAnswers) {
+                    jResponse = ids.get(da.getResponseId());
+                    inner = jResponse.getAnswers();
+                    if (null == inner) {
+                        inner = new ArrayList<JAnswer>();
+                        jResponse.setAnswers(inner);
+                    }
+                    inner.add(da);
+                }
+            }
+        }
+        
         return body;
     }
     
