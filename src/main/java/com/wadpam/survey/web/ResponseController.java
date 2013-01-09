@@ -73,7 +73,22 @@ public class ResponseController {
             @RequestParam(required=false) String[] formAnswers,
             @RequestParam(required=false) Long[] questionIds
             ) {
-        return create(xRequestedWith, response, domain, surveyId, versionId, jResponse, formAnswers, questionIds);
+        patchJResponse(jResponse, surveyId, versionId, formAnswers, questionIds);
+        
+        final DResponse dEntity = service.upsertResponse(jResponse);
+
+        // AJAX request? Respond with 201 Created + Location header.
+        if (ResponseController.VALUE_X_REQUESTED_WITH_AJAX.equals(xRequestedWith)) {
+            response.setStatus(HttpStatus.CREATED.value());
+            final String path = String.format("v10/%d", 
+                    dEntity.getId());
+            response.addHeader(NAME_LOCATION, path);
+            return null;
+        }
+        
+        final String relative = String.format("v10/%d", dEntity.getId());
+        final RedirectView returnValue = new RedirectView(relative, true);
+        return returnValue;
     }
         
     /**
@@ -93,37 +108,9 @@ public class ResponseController {
             @PathVariable Long versionId,
             @RequestBody JResponse jResponse
             ) {
-        return create(xRequestedWith, response, domain, surveyId, versionId, jResponse, null, null);
+        return createFromForm(xRequestedWith, response, domain, surveyId, versionId, jResponse, null, null);
     }
         
-    protected RedirectView create(
-            String xRequestedWith,
-            HttpServletResponse response,
-            String domain,
-            Long surveyId,
-            Long versionId,
-            JResponse jResponse,
-            String[] formAnswers,
-            Long[] questionIds
-            ) {
-        patchJResponse(jResponse, surveyId, versionId, formAnswers, questionIds);
-        
-        final DResponse dEntity = service.upsertResponse(jResponse);
-
-        // AJAX request? Respond with 201 Created + Location header.
-        if (ResponseController.VALUE_X_REQUESTED_WITH_AJAX.equals(xRequestedWith)) {
-            response.setStatus(HttpStatus.CREATED.value());
-            final String path = String.format("v10/%d", 
-                    dEntity.getId());
-            response.addHeader(NAME_LOCATION, path);
-            return null;
-        }
-        
-        final String relative = String.format("v10/%d", dEntity.getId());
-        final RedirectView returnValue = new RedirectView(relative, true);
-        return returnValue;
-    }
-    
     /**
      * Loads the specified entity.
      * @param id the id of the entity to retrieve
@@ -253,7 +240,7 @@ public class ResponseController {
 
     /**
      * Updates an entity.
-     * @param id the id of the entity to update
+     * @param id the id of the entity to updateFromForm
      * @param jEntity the JSON object for this updated entity
      * @param formAnswers if form-encoded, these are the inner answers
      * @param questionIds if form-encoded, these are the inner questionIds to answers
@@ -262,8 +249,8 @@ public class ResponseController {
     @RestReturn(value=URL.class, code={
         @RestCode(code=204, description="The entity was updated by AJAX", message="No Content"),
         @RestCode(code=302, description="The entity was updated", message="OK")})
-    @RequestMapping(value="v10/{id}", method= RequestMethod.POST)
-    public RedirectView update(
+    @RequestMapping(value="v10/{id}", method= RequestMethod.POST, consumes="application/x-www-form-urlencoded")
+    public RedirectView updateFromForm(
             @RequestHeader(value=ResponseController.NAME_X_REQUESTED_WITH, required=false) String xRequestedWith,
             HttpServletResponse response,
             @PathVariable Long surveyId,
@@ -286,6 +273,29 @@ public class ResponseController {
         final String relative = String.format("%d", dEntity.getId());
         final RedirectView returnValue = new RedirectView(relative, true);
         return returnValue;
+    }
+
+    /**
+     * Updates an entity.
+     * @param id the id of the entity to updateFromForm
+     * @param jEntity the JSON object for this updated entity
+     * @param formAnswers if form-encoded, these are the inner answers
+     * @param questionIds if form-encoded, these are the inner questionIds to answers
+     * @return a redirect to the updated entity
+     */
+    @RestReturn(value=URL.class, code={
+        @RestCode(code=204, description="The entity was updated by AJAX", message="No Content"),
+        @RestCode(code=302, description="The entity was updated", message="OK")})
+    @RequestMapping(value="v10/{id}", method= RequestMethod.POST, consumes="application/json")
+    public RedirectView updateFromJSON(
+            @RequestHeader(value=ResponseController.NAME_X_REQUESTED_WITH, required=false) String xRequestedWith,
+            HttpServletResponse response,
+            @PathVariable Long surveyId,
+            @PathVariable Long versionId,
+            @PathVariable Long id,
+            @RequestBody JResponse jEntity
+            ) {
+        return updateFromForm(xRequestedWith, response, surveyId, versionId, id, jEntity, null, null);
     }
 
     public void setService(SurveyService service) {
