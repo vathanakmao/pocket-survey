@@ -61,6 +61,14 @@ function backendAPI_admin_getPage(domain,surveyId,versionId){
 }
 
 //Get data
+function backendAPI_admin_deleteJsonp(id){
+	//getData
+	var data = projectAPI.deleteJsonp(id);
+	//add data to table
+	$("#JResponse").tmpl(data).appendTo("#deleteJsonp-JResponse-output");
+}
+
+//Get data
 function backendAPI_admin_get(id){
 	//getData
 	var data = projectAPI.get(id);
@@ -84,11 +92,20 @@ function backendAPI_admin_getPageByExtMeetingId(){
 	//getData
 	var data = {};
 	data.extMeetingId = $("#extMeetingId").val();
+	data.answers = $("#answers").val();
 	data.pageSize = $("#pageSize").val();
 	data.cursorKey = $("#cursorKey").val();
 	data = projectAPI.getPageByExtMeetingId(data);
 	//add data to table
 	$("#JResponse").tmpl(data).appendTo("#getPageByExtMeetingId-JResponse-output");
+}
+
+//Get data
+function backendAPI_admin_deleteJsonp(id){
+	//getData
+	var data = projectAPI.deleteJsonp(id);
+	//add data to table
+	$("#JSurvey").tmpl(data).appendTo("#deleteJsonp-JSurvey-output");
 }
 
 //Get data
@@ -119,9 +136,9 @@ function backendAPI_admin_get(id){
 }
 
 //Get data
-function backendAPI_admin_getCsv(domain,versionId){
+function backendAPI_admin_getCsv(domain,surveyId,versionId){
 	//getData
-	var data = projectAPI.getCsv(domain,versionId);
+	var data = projectAPI.getCsv(domain,surveyId,versionId);
 	//add data to table
 	$("#JAnswer").tmpl(data).appendTo("#getCsv-JAnswer-output");
 }

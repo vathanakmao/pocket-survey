@@ -25,6 +25,7 @@ import net.sf.mardao.core.CursorPage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -85,6 +86,34 @@ public class SurveyController {
         final String relative = String.format("v10/%d", dEntity.getId());
         final RedirectView returnValue = new RedirectView(relative, true);
         return returnValue;
+    }
+
+    /**
+     * Deletes an entity (cross-domain)
+     * @param id
+     * @return No Content, only the HTTP response code
+     */
+    @RestReturn(value=JSurvey.class, code={
+        @RestCode(code=200, description="The entity was found", message="OK"),
+        @RestCode(code=404, description="The entity was not found", message="Not Found")})
+    @RequestMapping(value="v10/{id}", method= RequestMethod.DELETE)
+    public ResponseEntity delete(@PathVariable Long id) {
+        service.deleteSurvey(id);
+        
+        return new ResponseEntity(HttpStatus.OK);
+    }
+    
+    /**
+     * Deletes an entity (jsonp)
+     * @param id
+     * @return No Content, only the HTTP response code
+     */
+    @RestReturn(value=JSurvey.class, code={
+        @RestCode(code=200, description="The entity was found", message="OK"),
+        @RestCode(code=404, description="The entity was not found", message="Not Found")})
+    @RequestMapping(value="v10/{id}", method= RequestMethod.GET, params={"_method=DELETE"})
+    public ResponseEntity deleteJsonp(@PathVariable Long id) {
+        return delete(id);
     }
     
     /**

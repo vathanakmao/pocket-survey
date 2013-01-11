@@ -37,17 +37,23 @@
             <li>
 <a href="api.html#com.wadpam.survey.web.ResponseController" class="link">/{domain}/survey/v10/{surveyId}/version/v10/{versionId}/response</a>
                 <ul>
-                    <li><a href="api.html#com.wadpam.survey.web.ResponseController.create" class="link">create()</a></li>
+                    <li><a href="api.html#com.wadpam.survey.web.ResponseController.createFromForm" class="link">createFromForm()</a></li>
+                    <li><a href="api.html#com.wadpam.survey.web.ResponseController.createFromJSON" class="link">createFromJSON()</a></li>
+                    <li><a href="api.html#com.wadpam.survey.web.ResponseController.delete" class="link">delete()</a></li>
+                    <li><a href="api.html#com.wadpam.survey.web.ResponseController.deleteJsonp" class="link">deleteJsonp()</a></li>
                     <li><a href="api.html#com.wadpam.survey.web.ResponseController.get" class="link">get()</a></li>
                     <li><a href="api.html#com.wadpam.survey.web.ResponseController.getPage" class="link">getPage()</a></li>
                     <li><a href="api.html#com.wadpam.survey.web.ResponseController.getPageByExtMeetingId" class="link">getPageByExtMeetingId()</a></li>
-                    <li><a href="api.html#com.wadpam.survey.web.ResponseController.update" class="link">update()</a></li>
+                    <li><a href="api.html#com.wadpam.survey.web.ResponseController.updateFromForm" class="link">updateFromForm()</a></li>
+                    <li><a href="api.html#com.wadpam.survey.web.ResponseController.updateFromJSON" class="link">updateFromJSON()</a></li>
                 </ul>
             </li>
             <li>
 <a href="api.html#com.wadpam.survey.web.SurveyController" class="link">/{domain}/survey</a>
                 <ul>
                     <li><a href="api.html#com.wadpam.survey.web.SurveyController.create" class="link">create()</a></li>
+                    <li><a href="api.html#com.wadpam.survey.web.SurveyController.delete" class="link">delete()</a></li>
+                    <li><a href="api.html#com.wadpam.survey.web.SurveyController.deleteJsonp" class="link">deleteJsonp()</a></li>
                     <li><a href="api.html#com.wadpam.survey.web.SurveyController.get" class="link">get()</a></li>
                     <li><a href="api.html#com.wadpam.survey.web.SurveyController.getPage" class="link">getPage()</a></li>
                     <li><a href="api.html#com.wadpam.survey.web.SurveyController.update" class="link">update()</a></li>
@@ -65,7 +71,6 @@
             </li>
             <li>JSON objects
                 <ul>
-                    <li><a href="api.html#java.lang.Object" class="link">java.lang.Object</a></li>
                     <li><a href="api.html#java.util.Collection" class="link">java.util.Collection</a></li>
                     <li><a href="api.html#java.util.List" class="link">java.util.List</a></li>
                 </ul>
@@ -128,7 +133,7 @@
                                 <td>query</td><td>answers</td><td>java.lang.String[]</td><td></td>
                             </tr>
                             <tr>
-                                <td>body (properties separately)</td><td><a href="api.html#com.wadpam.survey.json.JAnswer" class="link">com.wadpam.survey.json.JAnswer</a></td><td>{<div>&nbsp;&nbsp;&nbsp;<b>"answer"</b>&nbsp;:&nbsp;{&nbsp;&nbsp;&nbsp;},</div><div>&nbsp;&nbsp;&nbsp;<b>"createdBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"id"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"questionId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"responseId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"state"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"surveyId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"versionId"</b>&nbsp;:&nbsp;Long,</div>}</td><td></td>
+                                <td>body (properties separately)</td><td><a href="api.html#com.wadpam.survey.json.JAnswer" class="link">com.wadpam.survey.json.JAnswer</a></td><td>{<div>&nbsp;&nbsp;&nbsp;<b>"answer"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"id"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"questionId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"responseId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"state"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"surveyId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"versionId"</b>&nbsp;:&nbsp;Long,</div>}</td><td></td>
                             </tr>
 			</tbody>
 		</table>
@@ -156,7 +161,7 @@
 
 		<h3>Response Example</h3>
 		<p class="code">
-			<pre>{<div>&nbsp;&nbsp;&nbsp;<b>"answer"</b>&nbsp;:&nbsp;{&nbsp;&nbsp;&nbsp;},</div><div>&nbsp;&nbsp;&nbsp;<b>"createdBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"id"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"questionId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"responseId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"state"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"surveyId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"versionId"</b>&nbsp;:&nbsp;Long,</div>}</pre>
+			<pre>{<div>&nbsp;&nbsp;&nbsp;<b>"answer"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"id"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"questionId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"responseId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"state"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"surveyId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"versionId"</b>&nbsp;:&nbsp;Long,</div>}</pre>
 		</p>
 				
 <!-- Method: findByName() ---------------------------------------------------->		
@@ -226,7 +231,7 @@
 
 		<h3>Response Example</h3>
 		<p class="code">
-			<pre>{<div>&nbsp;&nbsp;&nbsp;<b>"answer"</b>&nbsp;:&nbsp;{&nbsp;&nbsp;&nbsp;},</div><div>&nbsp;&nbsp;&nbsp;<b>"createdBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"id"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"questionId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"responseId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"state"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"surveyId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"versionId"</b>&nbsp;:&nbsp;Long,</div>}</pre>
+			<pre>{<div>&nbsp;&nbsp;&nbsp;<b>"answer"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"id"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"questionId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"responseId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"state"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"surveyId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"versionId"</b>&nbsp;:&nbsp;Long,</div>}</pre>
 		</p>
 				
 <!-- Method: findByName() ---------------------------------------------------->		
@@ -284,7 +289,7 @@
 
 		<h3>Response Example</h3>
 		<p class="code">
-			<pre>{<div>&nbsp;&nbsp;&nbsp;<b>"answer"</b>&nbsp;:&nbsp;{&nbsp;&nbsp;&nbsp;},</div><div>&nbsp;&nbsp;&nbsp;<b>"createdBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"id"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"questionId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"responseId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"state"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"surveyId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"versionId"</b>&nbsp;:&nbsp;Long,</div>}</pre>
+			<pre>{<div>&nbsp;&nbsp;&nbsp;<b>"answer"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"id"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"questionId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"responseId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"state"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"surveyId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"versionId"</b>&nbsp;:&nbsp;Long,</div>}</pre>
 		</p>
 				
 <!-- Method: findByName() ---------------------------------------------------->		
@@ -317,7 +322,7 @@
                                 <td>path</td><td>id</td><td>Long</td><td>the id of the entity to update</td>
                             </tr>
                             <tr>
-                                <td>body (properties separately)</td><td><a href="api.html#com.wadpam.survey.json.JAnswer" class="link">com.wadpam.survey.json.JAnswer</a></td><td>{<div>&nbsp;&nbsp;&nbsp;<b>"answer"</b>&nbsp;:&nbsp;{&nbsp;&nbsp;&nbsp;},</div><div>&nbsp;&nbsp;&nbsp;<b>"createdBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"id"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"questionId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"responseId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"state"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"surveyId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"versionId"</b>&nbsp;:&nbsp;Long,</div>}</td><td>the JSON object for this updated entity</td>
+                                <td>body (properties separately)</td><td><a href="api.html#com.wadpam.survey.json.JAnswer" class="link">com.wadpam.survey.json.JAnswer</a></td><td>{<div>&nbsp;&nbsp;&nbsp;<b>"answer"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"id"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"questionId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"responseId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"state"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"surveyId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"versionId"</b>&nbsp;:&nbsp;Long,</div>}</td><td>the JSON object for this updated entity</td>
                             </tr>
 			</tbody>
 		</table>
@@ -345,7 +350,7 @@
 
 		<h3>Response Example</h3>
 		<p class="code">
-			<pre>{<div>&nbsp;&nbsp;&nbsp;<b>"answer"</b>&nbsp;:&nbsp;{&nbsp;&nbsp;&nbsp;},</div><div>&nbsp;&nbsp;&nbsp;<b>"createdBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"id"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"questionId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"responseId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"state"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"surveyId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"versionId"</b>&nbsp;:&nbsp;Long,</div>}</pre>
+			<pre>{<div>&nbsp;&nbsp;&nbsp;<b>"answer"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"id"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"questionId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"responseId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"state"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"surveyId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"versionId"</b>&nbsp;:&nbsp;Long,</div>}</pre>
 		</p>
 				
 <!-- Resource: /person ---------------------------------------------------->
@@ -948,12 +953,12 @@
     </p>
 
 <!-- Method: findByName() ---------------------------------------------------->		
-        <a name="com.wadpam.survey.web.ResponseController.create" />
+        <a name="com.wadpam.survey.web.ResponseController.createFromForm" />
 
-        <h2 class="methodHeader">create()</h2>
+        <h2 class="methodHeader">createFromForm()</h2>
 
         <p>
-            <b>Description</b>:Creates an entity.
+            <b>Description</b>:Creates an entity, from a form-encoded POST
         </p>
 
         <p>
@@ -1013,6 +1018,189 @@
 
 			<p>
                             <b>Response Type</b>: java.net.URL
+                        </p>
+
+		<h3>Response Example</h3>
+		<p class="code">
+			<pre>{<div>&nbsp;&nbsp;&nbsp;<b>"answers"</b>&nbsp;:&nbsp;[{&nbsp;&nbsp;&nbsp;},<div>&nbsp;&nbsp;&nbsp;...</div>&nbsp;&nbsp;&nbsp;],</div><div>&nbsp;&nbsp;&nbsp;<b>"createdBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"extLocationId"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"extMeetingId"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"extProductId"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"extUserId"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"id"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"state"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"surveyId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"versionId"</b>&nbsp;:&nbsp;Long,</div>}</pre>
+		</p>
+				
+<!-- Method: findByName() ---------------------------------------------------->		
+        <a name="com.wadpam.survey.web.ResponseController.createFromJSON" />
+
+        <h2 class="methodHeader">createFromJSON()</h2>
+
+        <p>
+            <b>Description</b>:Creates an entity, from a json POST
+        </p>
+
+        <p>
+            <b>Implementing Class</b>: com.wadpam.survey.web.ResponseController
+        </p>
+
+        <p class="restPath">
+            <b>REST path</b>: POST&nbsp;
+    /{domain}/survey/v10/{surveyId}/version/v10/{versionId}/response/v10
+
+		<h3>Request parameters</h3>
+		<table>
+			<thead>
+	    		<td class="column1">Where</th>
+	    		<td class="column2">Name</th>
+	    		<td class="column3">Type</th>
+	    		<td class="columnAuto">Description</th>
+			</thead>
+			<tbody>
+                            <tr>
+                                <td>path</td><td>domain</td><td>String</td><td></td>
+                            </tr>
+                            <tr>
+                                <td>path</td><td>surveyId</td><td>Long</td><td></td>
+                            </tr>
+                            <tr>
+                                <td>path</td><td>versionId</td><td>Long</td><td></td>
+                            </tr>
+                            <tr>
+                                <td>body</td><td>jResponse</td><td>JResponse</td><td>the JResponse body</td>
+                            </tr>
+			</tbody>
+		</table>
+
+		<h3>Response Codes</h3>
+			<table>
+				<thead>
+	   				<td class="column1">HTTP Response Code</td>
+	   				<td class="column2">Message</td>
+	   				<td class="columnAuto">Description</td>
+				</thead>
+				<tbody>
+               <tr>
+                <td>201</td><td>Created</td><td colspan="2">The entity was created by AJAX</td>
+            </tr>
+               <tr>
+                <td>302</td><td>OK</td><td colspan="2">The entity was created</td>
+            </tr>
+				</tbody>
+			</table>
+
+			<p>
+                            <b>Response Type</b>: java.net.URL
+                        </p>
+
+		<h3>Response Example</h3>
+		<p class="code">
+			<pre>{<div>&nbsp;&nbsp;&nbsp;<b>"answers"</b>&nbsp;:&nbsp;[{&nbsp;&nbsp;&nbsp;},<div>&nbsp;&nbsp;&nbsp;...</div>&nbsp;&nbsp;&nbsp;],</div><div>&nbsp;&nbsp;&nbsp;<b>"createdBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"extLocationId"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"extMeetingId"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"extProductId"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"extUserId"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"id"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"state"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"surveyId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"versionId"</b>&nbsp;:&nbsp;Long,</div>}</pre>
+		</p>
+				
+<!-- Method: findByName() ---------------------------------------------------->		
+        <a name="com.wadpam.survey.web.ResponseController.delete" />
+
+        <h2 class="methodHeader">delete()</h2>
+
+        <p>
+            <b>Description</b>:Deletes an entity (cross-domain)
+        </p>
+
+        <p>
+            <b>Implementing Class</b>: com.wadpam.survey.web.ResponseController
+        </p>
+
+        <p class="restPath">
+            <b>REST path</b>: DELETE&nbsp;
+    /{domain}/survey/v10/{surveyId}/version/v10/{versionId}/response/v10/{id}
+
+		<h3>Request parameters</h3>
+		<table>
+			<thead>
+	    		<td class="column1">Where</th>
+	    		<td class="column2">Name</th>
+	    		<td class="column3">Type</th>
+	    		<td class="columnAuto">Description</th>
+			</thead>
+			<tbody>
+                            <tr>
+                                <td>path</td><td>id</td><td>Long</td><td></td>
+                            </tr>
+			</tbody>
+		</table>
+
+		<h3>Response Codes</h3>
+			<table>
+				<thead>
+	   				<td class="column1">HTTP Response Code</td>
+	   				<td class="column2">Message</td>
+	   				<td class="columnAuto">Description</td>
+				</thead>
+				<tbody>
+               <tr>
+                <td>200</td><td>OK</td><td colspan="2">The entity was found</td>
+            </tr>
+               <tr>
+                <td>404</td><td>Not Found</td><td colspan="2">The entity was not found</td>
+            </tr>
+				</tbody>
+			</table>
+
+			<p>
+                            <b>Response Type</b>: <a href="api.html#com.wadpam.survey.json.JSurvey" class="link">com.wadpam.survey.json.JSurvey</a>
+                        </p>
+
+		<h3>Response Example</h3>
+		<p class="code">
+			<pre>{<div>&nbsp;&nbsp;&nbsp;<b>"answers"</b>&nbsp;:&nbsp;[{&nbsp;&nbsp;&nbsp;},<div>&nbsp;&nbsp;&nbsp;...</div>&nbsp;&nbsp;&nbsp;],</div><div>&nbsp;&nbsp;&nbsp;<b>"createdBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"extLocationId"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"extMeetingId"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"extProductId"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"extUserId"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"id"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"state"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"surveyId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"versionId"</b>&nbsp;:&nbsp;Long,</div>}</pre>
+		</p>
+				
+<!-- Method: findByName() ---------------------------------------------------->		
+        <a name="com.wadpam.survey.web.ResponseController.deleteJsonp" />
+
+        <h2 class="methodHeader">deleteJsonp()</h2>
+
+        <p>
+            <b>Description</b>:Deletes an entity (jsonp)
+        </p>
+
+        <p>
+            <b>Implementing Class</b>: com.wadpam.survey.web.ResponseController
+        </p>
+
+        <p class="restPath">
+            <b>REST path</b>: GET&nbsp;
+    /{domain}/survey/v10/{surveyId}/version/v10/{versionId}/response/v10/{id}
+
+		<h3>Request parameters</h3>
+		<table>
+			<thead>
+	    		<td class="column1">Where</th>
+	    		<td class="column2">Name</th>
+	    		<td class="column3">Type</th>
+	    		<td class="columnAuto">Description</th>
+			</thead>
+			<tbody>
+                            <tr>
+                                <td>path</td><td>id</td><td>Long</td><td></td>
+                            </tr>
+			</tbody>
+		</table>
+
+		<h3>Response Codes</h3>
+			<table>
+				<thead>
+	   				<td class="column1">HTTP Response Code</td>
+	   				<td class="column2">Message</td>
+	   				<td class="columnAuto">Description</td>
+				</thead>
+				<tbody>
+               <tr>
+                <td>200</td><td>OK</td><td colspan="2">The entity was found</td>
+            </tr>
+               <tr>
+                <td>404</td><td>Not Found</td><td colspan="2">The entity was not found</td>
+            </tr>
+				</tbody>
+			</table>
+
+			<p>
+                            <b>Response Type</b>: <a href="api.html#com.wadpam.survey.json.JSurvey" class="link">com.wadpam.survey.json.JSurvey</a>
                         </p>
 
 		<h3>Response Example</h3>
@@ -1166,6 +1354,9 @@
                                 <td>query</td><td>extMeetingId</td><td>String</td><td>the specified meeting's external id</td>
                             </tr>
                             <tr>
+                                <td>query</td><td>answers</td><td>boolean</td><td>set to true to get inner answers</td>
+                            </tr>
+                            <tr>
                                 <td>query</td><td>pageSize</td><td>int</td><td>default is 10</td>
                             </tr>
                             <tr>
@@ -1198,9 +1389,9 @@
 		</p>
 				
 <!-- Method: findByName() ---------------------------------------------------->		
-        <a name="com.wadpam.survey.web.ResponseController.update" />
+        <a name="com.wadpam.survey.web.ResponseController.updateFromForm" />
 
-        <h2 class="methodHeader">update()</h2>
+        <h2 class="methodHeader">updateFromForm()</h2>
 
         <p>
             <b>Description</b>:Updates an entity.
@@ -1224,7 +1415,13 @@
 			</thead>
 			<tbody>
                             <tr>
-                                <td>path</td><td>id</td><td>Long</td><td>the id of the entity to update</td>
+                                <td>path</td><td>surveyId</td><td>Long</td><td></td>
+                            </tr>
+                            <tr>
+                                <td>path</td><td>versionId</td><td>Long</td><td></td>
+                            </tr>
+                            <tr>
+                                <td>path</td><td>id</td><td>Long</td><td>the id of the entity to updateFromForm</td>
                             </tr>
                             <tr>
                                 <td>query</td><td>formAnswers</td><td>java.lang.String[]</td><td>if form-encoded, these are the inner answers</td>
@@ -1234,6 +1431,73 @@
                             </tr>
                             <tr>
                                 <td>body (properties separately)</td><td><a href="api.html#com.wadpam.survey.json.JResponse" class="link">com.wadpam.survey.json.JResponse</a></td><td>{<div>&nbsp;&nbsp;&nbsp;<b>"answers"</b>&nbsp;:&nbsp;[{&nbsp;&nbsp;&nbsp;},<div>&nbsp;&nbsp;&nbsp;...</div>&nbsp;&nbsp;&nbsp;],</div><div>&nbsp;&nbsp;&nbsp;<b>"createdBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"extLocationId"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"extMeetingId"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"extProductId"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"extUserId"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"id"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"state"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"surveyId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"versionId"</b>&nbsp;:&nbsp;Long,</div>}</td><td>the JSON object for this updated entity</td>
+                            </tr>
+			</tbody>
+		</table>
+
+		<h3>Response Codes</h3>
+			<table>
+				<thead>
+	   				<td class="column1">HTTP Response Code</td>
+	   				<td class="column2">Message</td>
+	   				<td class="columnAuto">Description</td>
+				</thead>
+				<tbody>
+               <tr>
+                <td>204</td><td>No Content</td><td colspan="2">The entity was updated by AJAX</td>
+            </tr>
+               <tr>
+                <td>302</td><td>OK</td><td colspan="2">The entity was updated</td>
+            </tr>
+				</tbody>
+			</table>
+
+			<p>
+                            <b>Response Type</b>: java.net.URL
+                        </p>
+
+		<h3>Response Example</h3>
+		<p class="code">
+			<pre>{<div>&nbsp;&nbsp;&nbsp;<b>"answers"</b>&nbsp;:&nbsp;[{&nbsp;&nbsp;&nbsp;},<div>&nbsp;&nbsp;&nbsp;...</div>&nbsp;&nbsp;&nbsp;],</div><div>&nbsp;&nbsp;&nbsp;<b>"createdBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"extLocationId"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"extMeetingId"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"extProductId"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"extUserId"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"id"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"state"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"surveyId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"versionId"</b>&nbsp;:&nbsp;Long,</div>}</pre>
+		</p>
+				
+<!-- Method: findByName() ---------------------------------------------------->		
+        <a name="com.wadpam.survey.web.ResponseController.updateFromJSON" />
+
+        <h2 class="methodHeader">updateFromJSON()</h2>
+
+        <p>
+            <b>Description</b>:Updates an entity.
+        </p>
+
+        <p>
+            <b>Implementing Class</b>: com.wadpam.survey.web.ResponseController
+        </p>
+
+        <p class="restPath">
+            <b>REST path</b>: POST&nbsp;
+    /{domain}/survey/v10/{surveyId}/version/v10/{versionId}/response/v10/{id}
+
+		<h3>Request parameters</h3>
+		<table>
+			<thead>
+	    		<td class="column1">Where</th>
+	    		<td class="column2">Name</th>
+	    		<td class="column3">Type</th>
+	    		<td class="columnAuto">Description</th>
+			</thead>
+			<tbody>
+                            <tr>
+                                <td>path</td><td>surveyId</td><td>Long</td><td></td>
+                            </tr>
+                            <tr>
+                                <td>path</td><td>versionId</td><td>Long</td><td></td>
+                            </tr>
+                            <tr>
+                                <td>path</td><td>id</td><td>Long</td><td>the id of the entity to updateFromForm</td>
+                            </tr>
+                            <tr>
+                                <td>body</td><td>jEntity</td><td>JResponse</td><td>the JSON object for this updated entity</td>
                             </tr>
 			</tbody>
 		</table>
@@ -1333,6 +1597,122 @@
 
 			<p>
                             <b>Response Type</b>: java.net.URL
+                        </p>
+
+		<h3>Response Example</h3>
+		<p class="code">
+			<pre>{<div>&nbsp;&nbsp;&nbsp;<b>"createdBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"id"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"state"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"title"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"versions"</b>&nbsp;:&nbsp;{&nbsp;&nbsp;&nbsp;},</div>}</pre>
+		</p>
+				
+<!-- Method: findByName() ---------------------------------------------------->		
+        <a name="com.wadpam.survey.web.SurveyController.delete" />
+
+        <h2 class="methodHeader">delete()</h2>
+
+        <p>
+            <b>Description</b>:Deletes an entity (cross-domain)
+        </p>
+
+        <p>
+            <b>Implementing Class</b>: com.wadpam.survey.web.SurveyController
+        </p>
+
+        <p class="restPath">
+            <b>REST path</b>: DELETE&nbsp;
+    /{domain}/survey/v10/{id}
+
+		<h3>Request parameters</h3>
+		<table>
+			<thead>
+	    		<td class="column1">Where</th>
+	    		<td class="column2">Name</th>
+	    		<td class="column3">Type</th>
+	    		<td class="columnAuto">Description</th>
+			</thead>
+			<tbody>
+                            <tr>
+                                <td>path</td><td>id</td><td>Long</td><td></td>
+                            </tr>
+			</tbody>
+		</table>
+
+		<h3>Response Codes</h3>
+			<table>
+				<thead>
+	   				<td class="column1">HTTP Response Code</td>
+	   				<td class="column2">Message</td>
+	   				<td class="columnAuto">Description</td>
+				</thead>
+				<tbody>
+               <tr>
+                <td>200</td><td>OK</td><td colspan="2">The entity was found</td>
+            </tr>
+               <tr>
+                <td>404</td><td>Not Found</td><td colspan="2">The entity was not found</td>
+            </tr>
+				</tbody>
+			</table>
+
+			<p>
+                            <b>Response Type</b>: <a href="api.html#com.wadpam.survey.json.JSurvey" class="link">com.wadpam.survey.json.JSurvey</a>
+                        </p>
+
+		<h3>Response Example</h3>
+		<p class="code">
+			<pre>{<div>&nbsp;&nbsp;&nbsp;<b>"createdBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"id"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"state"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"title"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"versions"</b>&nbsp;:&nbsp;{&nbsp;&nbsp;&nbsp;},</div>}</pre>
+		</p>
+				
+<!-- Method: findByName() ---------------------------------------------------->		
+        <a name="com.wadpam.survey.web.SurveyController.deleteJsonp" />
+
+        <h2 class="methodHeader">deleteJsonp()</h2>
+
+        <p>
+            <b>Description</b>:Deletes an entity (jsonp)
+        </p>
+
+        <p>
+            <b>Implementing Class</b>: com.wadpam.survey.web.SurveyController
+        </p>
+
+        <p class="restPath">
+            <b>REST path</b>: GET&nbsp;
+    /{domain}/survey/v10/{id}
+
+		<h3>Request parameters</h3>
+		<table>
+			<thead>
+	    		<td class="column1">Where</th>
+	    		<td class="column2">Name</th>
+	    		<td class="column3">Type</th>
+	    		<td class="columnAuto">Description</th>
+			</thead>
+			<tbody>
+                            <tr>
+                                <td>path</td><td>id</td><td>Long</td><td></td>
+                            </tr>
+			</tbody>
+		</table>
+
+		<h3>Response Codes</h3>
+			<table>
+				<thead>
+	   				<td class="column1">HTTP Response Code</td>
+	   				<td class="column2">Message</td>
+	   				<td class="columnAuto">Description</td>
+				</thead>
+				<tbody>
+               <tr>
+                <td>200</td><td>OK</td><td colspan="2">The entity was found</td>
+            </tr>
+               <tr>
+                <td>404</td><td>Not Found</td><td colspan="2">The entity was not found</td>
+            </tr>
+				</tbody>
+			</table>
+
+			<p>
+                            <b>Response Type</b>: <a href="api.html#com.wadpam.survey.json.JSurvey" class="link">com.wadpam.survey.json.JSurvey</a>
                         </p>
 
 		<h3>Response Example</h3>
@@ -1687,6 +2067,9 @@
                                 <td>path</td><td>domain</td><td>String</td><td></td>
                             </tr>
                             <tr>
+                                <td>path</td><td>surveyId</td><td>Long</td><td></td>
+                            </tr>
+                            <tr>
                                 <td>path</td><td>versionId</td><td>Long</td><td></td>
                             </tr>
 			</tbody>
@@ -1712,7 +2095,7 @@
 
 		<h3>Response Example</h3>
 		<p class="code">
-			<pre>{<div>&nbsp;&nbsp;&nbsp;<b>"answer"</b>&nbsp;:&nbsp;{&nbsp;&nbsp;&nbsp;},</div><div>&nbsp;&nbsp;&nbsp;<b>"createdBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"id"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"questionId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"responseId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"state"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"surveyId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"versionId"</b>&nbsp;:&nbsp;Long,</div>}</pre>
+			<pre>{<div>&nbsp;&nbsp;&nbsp;<b>"answer"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"createdDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"id"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"questionId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"responseId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"state"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"surveyId"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedBy"</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>"updatedDate"</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>"versionId"</b>&nbsp;:&nbsp;Long,</div>}</pre>
 		</p>
 				
 <!-- Method: findByName() ---------------------------------------------------->		
@@ -1872,7 +2255,7 @@ The response this answer is for
                         </tr>
                         <tr>
                             <td>answer</td>
-                            <td><a href="api.html#java.lang.Object" class="link">java.lang.Object</a></td>
+                            <td><a href="api.html#java.lang.String" class="link">java.lang.String</a></td>
                             <td>
 The type of the answer is given by the question
                             </td>
@@ -2149,25 +2532,6 @@ The Questions configured for this survey
                         </tr>
                         </tbody>
                </table>
-<!-- JSON object: java.lang.Object ---------------------------------------------------->		
-        <a name="java.lang.Object" />
-        <h2 class="methodHeader">java.lang.Object</h2>
-		<table>
-			<thead>
-	    		<td class="column1">Name</th>
-	    		<td class="column2">Type</th>
-	    		<td class="column3">Description</th>
-			</thead>
-			<tbody>
- 
-                        <tr>
-                            <td>class</td>
-                            <td>java.lang.Class</td>
-                            <td>
-                            </td>
-                        </tr>
-                        </tbody>
-               </table>
 <!-- JSON object: java.lang.String ---------------------------------------------------->		
         <a name="java.lang.String" />
         <h2 class="methodHeader">java.lang.String</h2>
@@ -2261,7 +2625,7 @@ The Questions configured for this survey
                         </tr>
                         <tr>
                             <td></td>
-                            <td><a href="api.html#java.lang.Object" class="link">java.lang.Object</a></td>
+                            <td>java.lang.Object</td>
                             <td>
                             </td>
                         </tr>

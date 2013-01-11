@@ -30,6 +30,14 @@
     </listener>
 
     <filter>
+        <filter-name>options</filter-name>
+        <filter-class>com.wadpam.open.jsonp.AccessControlAllowFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>options</filter-name>
+        <url-pattern>/api/*</url-pattern>
+    </filter-mapping>
+    <filter>
         <filter-name>domainFilter</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy
         </filter-class>

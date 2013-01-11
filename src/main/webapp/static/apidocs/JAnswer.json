@@ -10,7 +10,7 @@
 	             {
 	                 "httpMethod": "POST",
 	                 "nickname": "create",
-							"notes": "Creates an entity.<br /><h4>Response Example</h4><pre>{<div>&nbsp;&nbsp;&nbsp;<b>&#34;answer&#34;</b>&nbsp;:&nbsp;{&nbsp;&nbsp;&nbsp;},</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;id&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;questionId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;responseId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;state&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;surveyId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;versionId&#34;</b>&nbsp;:&nbsp;Long,</div>}</pre>",
+							"notes": "Creates an entity.<br /><h4>Response Example</h4><pre>{<div>&nbsp;&nbsp;&nbsp;<b>&#34;answer&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;id&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;questionId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;responseId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;state&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;surveyId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;versionId&#34;</b>&nbsp;:&nbsp;Long,</div>}</pre>",
 							"summary":"Creates an entity.()",
 							"parameters":[
 {
@@ -63,7 +63,7 @@
 	             {
 	                 "httpMethod": "GET",
 	                 "nickname": "get",
-							"notes": "Loads the specified entity.<br /><h4>Response Example</h4><pre>{<div>&nbsp;&nbsp;&nbsp;<b>&#34;answer&#34;</b>&nbsp;:&nbsp;{&nbsp;&nbsp;&nbsp;},</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;id&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;questionId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;responseId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;state&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;surveyId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;versionId&#34;</b>&nbsp;:&nbsp;Long,</div>}</pre>",
+							"notes": "Loads the specified entity.<br /><h4>Response Example</h4><pre>{<div>&nbsp;&nbsp;&nbsp;<b>&#34;answer&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;id&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;questionId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;responseId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;state&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;surveyId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;versionId&#34;</b>&nbsp;:&nbsp;Long,</div>}</pre>",
 							"summary":"Loads the specified entity.()",
 							"parameters":[
 {
@@ -115,7 +115,7 @@
 	             {
 	                 "httpMethod": "GET",
 	                 "nickname": "getPage",
-							"notes": "Queries for a (next) page of entities<br /><h4>Response Example</h4><pre>{<div>&nbsp;&nbsp;&nbsp;<b>&#34;answer&#34;</b>&nbsp;:&nbsp;{&nbsp;&nbsp;&nbsp;},</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;id&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;questionId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;responseId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;state&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;surveyId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;versionId&#34;</b>&nbsp;:&nbsp;Long,</div>}</pre>",
+							"notes": "Queries for a (next) page of entities<br /><h4>Response Example</h4><pre>{<div>&nbsp;&nbsp;&nbsp;<b>&#34;answer&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;id&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;questionId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;responseId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;state&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;surveyId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;versionId&#34;</b>&nbsp;:&nbsp;Long,</div>}</pre>",
 							"summary":"Queries for a (next) page of entities()",
 							"parameters":[
 
@@ -149,7 +149,7 @@
 	             {
 	                 "httpMethod": "POST",
 	                 "nickname": "update",
-							"notes": "Updates an entity.<br /><h4>Response Example</h4><pre>{<div>&nbsp;&nbsp;&nbsp;<b>&#34;answer&#34;</b>&nbsp;:&nbsp;{&nbsp;&nbsp;&nbsp;},</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;id&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;questionId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;responseId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;state&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;surveyId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;versionId&#34;</b>&nbsp;:&nbsp;Long,</div>}</pre>",
+							"notes": "Updates an entity.<br /><h4>Response Example</h4><pre>{<div>&nbsp;&nbsp;&nbsp;<b>&#34;answer&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;id&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;questionId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;responseId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;state&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;surveyId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;versionId&#34;</b>&nbsp;:&nbsp;Long,</div>}</pre>",
 							"summary":"Updates an entity.()",
 							"parameters":[
 {
@@ -568,9 +568,9 @@
 	         "operations": [
 	             {
 	                 "httpMethod": "POST",
-	                 "nickname": "create",
-							"notes": "Creates an entity.<br /><h4>Response Example</h4><pre>{<div>&nbsp;&nbsp;&nbsp;<b>&#34;answers&#34;</b>&nbsp;:&nbsp;[{&nbsp;&nbsp;&nbsp;},<div>&nbsp;&nbsp;&nbsp;...</div>&nbsp;&nbsp;&nbsp;],</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;extLocationId&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;extMeetingId&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;extProductId&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;extUserId&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;id&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;state&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;surveyId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;versionId&#34;</b>&nbsp;:&nbsp;Long,</div>}</pre>",
-							"summary":"Creates an entity.()",
+	                 "nickname": "createFromForm",
+							"notes": "Creates an entity, from a form-encoded POST<br /><h4>Response Example</h4><pre>{<div>&nbsp;&nbsp;&nbsp;<b>&#34;answers&#34;</b>&nbsp;:&nbsp;[{&nbsp;&nbsp;&nbsp;},<div>&nbsp;&nbsp;&nbsp;...</div>&nbsp;&nbsp;&nbsp;],</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;extLocationId&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;extMeetingId&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;extProductId&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;extUserId&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;id&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;state&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;surveyId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;versionId&#34;</b>&nbsp;:&nbsp;Long,</div>}</pre>",
+							"summary":"Creates an entity, from a form-encoded POST()",
 							"parameters":[
 {
 		"name":"domain"
@@ -611,6 +611,102 @@
 								,"code":201}
    								,{"reason":"OK"
 								,"code":302}
+							],
+"responseTypeInternal":"com.wadpam.survey.json.JResponse"
+	             }
+	         ]
+			}
+,			{
+	         "path": "/{domain}/survey/v10/{surveyId}/version/v10/{versionId}/response/v10",
+	         "description": "com.wadpam.survey.web.ResponseController",
+	         "operations": [
+	             {
+	                 "httpMethod": "POST",
+	                 "nickname": "createFromJSON",
+							"notes": "Creates an entity, from a json POST<br /><h4>Response Example</h4><pre>{<div>&nbsp;&nbsp;&nbsp;<b>&#34;answers&#34;</b>&nbsp;:&nbsp;[{&nbsp;&nbsp;&nbsp;},<div>&nbsp;&nbsp;&nbsp;...</div>&nbsp;&nbsp;&nbsp;],</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;extLocationId&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;extMeetingId&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;extProductId&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;extUserId&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;id&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;state&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;surveyId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;versionId&#34;</b>&nbsp;:&nbsp;Long,</div>}</pre>",
+							"summary":"Creates an entity, from a json POST()",
+							"parameters":[
+{
+		"name":"domain"
+		,"description":""
+		,"required":true,"dataType":"String"
+		,"allowMultiple":false,"paramType":"path"
+}
+,{
+		"name":"surveyId"
+		,"description":""
+		,"required":true,"dataType":"Long"
+		,"allowMultiple":false,"paramType":"path"
+}
+,{
+		"name":"versionId"
+		,"description":""
+		,"required":true,"dataType":"Long"
+		,"allowMultiple":false,"paramType":"path"
+}
+
+							],
+							"errorResponses":[
+   								{"reason":"Created"
+								,"code":201}
+   								,{"reason":"OK"
+								,"code":302}
+							],
+"responseTypeInternal":"com.wadpam.survey.json.JResponse"
+	             }
+	         ]
+			}
+,			{
+	         "path": "/{domain}/survey/v10/{surveyId}/version/v10/{versionId}/response/v10/{id}",
+	         "description": "com.wadpam.survey.web.ResponseController",
+	         "operations": [
+	             {
+	                 "httpMethod": "DELETE",
+	                 "nickname": "delete",
+							"notes": "Deletes an entity (cross-domain)<br /><h4>Response Example</h4><pre>{<div>&nbsp;&nbsp;&nbsp;<b>&#34;answers&#34;</b>&nbsp;:&nbsp;[{&nbsp;&nbsp;&nbsp;},<div>&nbsp;&nbsp;&nbsp;...</div>&nbsp;&nbsp;&nbsp;],</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;extLocationId&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;extMeetingId&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;extProductId&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;extUserId&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;id&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;state&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;surveyId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;versionId&#34;</b>&nbsp;:&nbsp;Long,</div>}</pre>",
+							"summary":"Deletes an entity (cross-domain)()",
+							"parameters":[
+{
+		"name":"id"
+		,"description":""
+		,"required":true,"dataType":"Long"
+		,"allowMultiple":false,"paramType":"path"
+}
+
+							],
+							"errorResponses":[
+   								{"reason":"OK"
+								,"code":200}
+   								,{"reason":"Not Found"
+								,"code":404}
+							],
+"responseTypeInternal":"com.wadpam.survey.json.JResponse"
+	             }
+	         ]
+			}
+,			{
+	         "path": "/{domain}/survey/v10/{surveyId}/version/v10/{versionId}/response/v10/{id}",
+	         "description": "com.wadpam.survey.web.ResponseController",
+	         "operations": [
+	             {
+	                 "httpMethod": "GET",
+	                 "nickname": "deleteJsonp",
+							"notes": "Deletes an entity (jsonp)<br /><h4>Response Example</h4><pre>{<div>&nbsp;&nbsp;&nbsp;<b>&#34;answers&#34;</b>&nbsp;:&nbsp;[{&nbsp;&nbsp;&nbsp;},<div>&nbsp;&nbsp;&nbsp;...</div>&nbsp;&nbsp;&nbsp;],</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;extLocationId&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;extMeetingId&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;extProductId&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;extUserId&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;id&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;state&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;surveyId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;versionId&#34;</b>&nbsp;:&nbsp;Long,</div>}</pre>",
+							"summary":"Deletes an entity (jsonp)()",
+							"parameters":[
+{
+		"name":"id"
+		,"description":""
+		,"required":true,"dataType":"Long"
+		,"allowMultiple":false,"paramType":"path"
+}
+
+							],
+							"errorResponses":[
+   								{"reason":"OK"
+								,"code":200}
+   								,{"reason":"Not Found"
+								,"code":404}
 							],
 "responseTypeInternal":"com.wadpam.survey.json.JResponse"
 	             }
@@ -698,6 +794,13 @@
 }
 ,
 {
+		"name":"answers"
+		,"description":"set to true to get inner answers"
+		,"required":true,"dataType":"boolean"
+		,"allowMultiple":false,"paramType":"query"
+}
+,
+{
 		"name":"pageSize"
 		,"description":"default is 10"
 		,"required":true,"dataType":"int"
@@ -725,13 +828,25 @@
 	         "operations": [
 	             {
 	                 "httpMethod": "POST",
-	                 "nickname": "update",
+	                 "nickname": "updateFromForm",
 							"notes": "Updates an entity.<br /><h4>Response Example</h4><pre>{<div>&nbsp;&nbsp;&nbsp;<b>&#34;answers&#34;</b>&nbsp;:&nbsp;[{&nbsp;&nbsp;&nbsp;},<div>&nbsp;&nbsp;&nbsp;...</div>&nbsp;&nbsp;&nbsp;],</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;extLocationId&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;extMeetingId&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;extProductId&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;extUserId&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;id&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;state&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;surveyId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;versionId&#34;</b>&nbsp;:&nbsp;Long,</div>}</pre>",
 							"summary":"Updates an entity.()",
 							"parameters":[
 {
+		"name":"surveyId"
+		,"description":""
+		,"required":true,"dataType":"Long"
+		,"allowMultiple":false,"paramType":"path"
+}
+,{
+		"name":"versionId"
+		,"description":""
+		,"required":true,"dataType":"Long"
+		,"allowMultiple":false,"paramType":"path"
+}
+,{
 		"name":"id"
-		,"description":"the id of the entity to update"
+		,"description":"the id of the entity to updateFromForm"
 		,"required":true,"dataType":"Long"
 		,"allowMultiple":false,"paramType":"path"
 }
@@ -750,6 +865,46 @@
 		,"required":true,"dataType":"java.lang.Long[]"
 		,"allowMultiple":false,"paramType":"query"
 }
+							],
+							"errorResponses":[
+   								{"reason":"No Content"
+								,"code":204}
+   								,{"reason":"OK"
+								,"code":302}
+							],
+"responseTypeInternal":"com.wadpam.survey.json.JResponse"
+	             }
+	         ]
+			}
+,			{
+	         "path": "/{domain}/survey/v10/{surveyId}/version/v10/{versionId}/response/v10/{id}",
+	         "description": "com.wadpam.survey.web.ResponseController",
+	         "operations": [
+	             {
+	                 "httpMethod": "POST",
+	                 "nickname": "updateFromJSON",
+							"notes": "Updates an entity.<br /><h4>Response Example</h4><pre>{<div>&nbsp;&nbsp;&nbsp;<b>&#34;answers&#34;</b>&nbsp;:&nbsp;[{&nbsp;&nbsp;&nbsp;},<div>&nbsp;&nbsp;&nbsp;...</div>&nbsp;&nbsp;&nbsp;],</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;extLocationId&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;extMeetingId&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;extProductId&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;extUserId&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;id&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;state&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;surveyId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;versionId&#34;</b>&nbsp;:&nbsp;Long,</div>}</pre>",
+							"summary":"Updates an entity.()",
+							"parameters":[
+{
+		"name":"surveyId"
+		,"description":""
+		,"required":true,"dataType":"Long"
+		,"allowMultiple":false,"paramType":"path"
+}
+,{
+		"name":"versionId"
+		,"description":""
+		,"required":true,"dataType":"Long"
+		,"allowMultiple":false,"paramType":"path"
+}
+,{
+		"name":"id"
+		,"description":"the id of the entity to updateFromForm"
+		,"required":true,"dataType":"Long"
+		,"allowMultiple":false,"paramType":"path"
+}
+
 							],
 							"errorResponses":[
    								{"reason":"No Content"
@@ -787,6 +942,62 @@
 							],
 "responseTypeInternal":"com.wadpam.survey.json.JSurvey"
 	             }
+	         ]
+			}
+,			{
+	         "path": "/{domain}/survey/v10/{id}",
+	         "description": "com.wadpam.survey.web.SurveyController",
+	         "operations": [
+	             {
+	                 "httpMethod": "DELETE",
+	                 "nickname": "delete",
+							"notes": "Deletes an entity (cross-domain)<br /><h4>Response Example</h4><pre>{<div>&nbsp;&nbsp;&nbsp;<b>&#34;createdBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;id&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;state&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;title&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;versions&#34;</b>&nbsp;:&nbsp;{&nbsp;&nbsp;&nbsp;},</div>}</pre>",
+							"summary":"Deletes an entity (cross-domain)()",
+							"parameters":[
+{
+		"name":"id"
+		,"description":""
+		,"required":true,"dataType":"Long"
+		,"allowMultiple":false,"paramType":"path"
+}
+
+							],
+							"errorResponses":[
+   								{"reason":"OK"
+								,"code":200}
+   								,{"reason":"Not Found"
+								,"code":404}
+							],
+"responseTypeInternal":"com.wadpam.survey.json.JSurvey"
+ 	             }
+	         ]
+			}
+,			{
+	         "path": "/{domain}/survey/v10/{id}",
+	         "description": "com.wadpam.survey.web.SurveyController",
+	         "operations": [
+	             {
+	                 "httpMethod": "GET",
+	                 "nickname": "deleteJsonp",
+							"notes": "Deletes an entity (jsonp)<br /><h4>Response Example</h4><pre>{<div>&nbsp;&nbsp;&nbsp;<b>&#34;createdBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;id&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;state&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;title&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;versions&#34;</b>&nbsp;:&nbsp;{&nbsp;&nbsp;&nbsp;},</div>}</pre>",
+							"summary":"Deletes an entity (jsonp)()",
+							"parameters":[
+{
+		"name":"id"
+		,"description":""
+		,"required":true,"dataType":"Long"
+		,"allowMultiple":false,"paramType":"path"
+}
+
+							],
+							"errorResponses":[
+   								{"reason":"OK"
+								,"code":200}
+   								,{"reason":"Not Found"
+								,"code":404}
+							],
+"responseTypeInternal":"com.wadpam.survey.json.JSurvey"
+ 	             }
 	         ]
 			}
 ,			{
@@ -962,13 +1173,19 @@
 	             {
 	                 "httpMethod": "GET",
 	                 "nickname": "getCsv",
-							"notes": "Queries for a (next) page of entities<br /><h4>Response Example</h4><pre>{<div>&nbsp;&nbsp;&nbsp;<b>&#34;answer&#34;</b>&nbsp;:&nbsp;{&nbsp;&nbsp;&nbsp;},</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;id&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;questionId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;responseId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;state&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;surveyId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;versionId&#34;</b>&nbsp;:&nbsp;Long,</div>}</pre>",
+							"notes": "Queries for a (next) page of entities<br /><h4>Response Example</h4><pre>{<div>&nbsp;&nbsp;&nbsp;<b>&#34;answer&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;createdDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;id&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;questionId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;responseId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;state&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;surveyId&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedBy&#34;</b>&nbsp;:&nbsp;String,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;updatedDate&#34;</b>&nbsp;:&nbsp;Long,</div><div>&nbsp;&nbsp;&nbsp;<b>&#34;versionId&#34;</b>&nbsp;:&nbsp;Long,</div>}</pre>",
 							"summary":"Queries for a (next) page of entities()",
 							"parameters":[
 {
 		"name":"domain"
 		,"description":""
 		,"required":true,"dataType":"String"
+		,"allowMultiple":false,"paramType":"path"
+}
+,{
+		"name":"surveyId"
+		,"description":""
+		,"required":true,"dataType":"Long"
 		,"allowMultiple":false,"paramType":"path"
 }
 ,{
@@ -1057,7 +1274,7 @@
     "surveyId":{"type":"java.lang.Long"}
     ,"questionId":{"type":"java.lang.Long"}
     ,"responseId":{"type":"java.lang.Long"}
-    ,"answer":{"type":"java.lang.Object"}
+    ,"answer":{"type":"java.lang.String"}
     ,"versionId":{"type":"java.lang.Long"}
 	}
 }
@@ -1110,11 +1327,6 @@
     ,"long":{"type":"java.lang.Long"}
     ,"long":{"type":"java.lang.Long"}
     ,"long":{"type":"java.lang.Long"}
-	}
-}
-,"java.lang.Object":{
-	"properties":{
-    "class":{"type":"java.lang.Class"}
 	}
 }
 ,"java.lang.String":{

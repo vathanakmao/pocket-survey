@@ -246,6 +246,16 @@ public class SurveyService {
         
         return count;
     }
+    
+    public void deleteResponse(Long id) {
+        // TODO: cascade
+        responseDao.delete(id);
+    }
+    
+    public void deleteSurvey(Long id) {
+        // TODO: cascade
+        surveyDao.delete(id);
+    }
 
     public DAnswer getAnswer(Long id) {
         final DAnswer entity = answerDao.findByPrimaryKey(id);
