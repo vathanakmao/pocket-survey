@@ -183,9 +183,11 @@ public class ResponseController {
     @RequestMapping(value="v10", method= RequestMethod.GET)
     @ResponseBody
     public JCursorPage<JResponse> getPage(
+            @PathVariable Long surveyId,
+            @PathVariable Long versionId,
             @RequestParam(defaultValue="10") int pageSize, 
             @RequestParam(required=false) Serializable cursorKey) {
-        final CursorPage<DResponse, Long> page = service.getResponsesPage(pageSize, cursorKey);
+        final CursorPage<DResponse, Long> page = service.getResponsesPage(versionId, pageSize, cursorKey);
         final JCursorPage body = CONVERTER.convertPage(page);
 
         return body;

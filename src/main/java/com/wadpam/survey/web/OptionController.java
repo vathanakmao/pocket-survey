@@ -134,7 +134,7 @@ public class OptionController {
             @PathVariable Long questionId,
             @RequestParam(defaultValue="10") int pageSize, 
             @RequestParam(required=false) Serializable cursorKey) {
-        final CursorPage<DOption, Long> page = service.getOptionsPage(pageSize, cursorKey);
+        final CursorPage<DOption, Long> page = service.getOptionsPage(questionId, pageSize, cursorKey);
         LOG.info("getOptionsPage(queried {})", page.getItems().size());
         final JCursorPage body = CONVERTER.convertPage(page);
 

@@ -85,6 +85,7 @@ public class QuestionController {
      * Loads the specified entity.
      * @param domain the domain (used for Multi-tenancy)
      * @param surveyId the survey's id
+     * @param versionId the version's id
      * @param id the id of the entity to retrieve
      * @return the loaded JSON object
      */
@@ -114,6 +115,7 @@ public class QuestionController {
      * Queries for a (next) page of entities
      * @param domain the domain (used for Multi-tenancy)
      * @param surveyId the survey's id
+     * @param versionId the version's id
      * @param pageSize default is 10
      * @param cursorKey null to get first page
      * @return a page of entities
@@ -128,7 +130,8 @@ public class QuestionController {
             @PathVariable Long versionId,
             @RequestParam(defaultValue="10") int pageSize, 
             @RequestParam(required=false) Serializable cursorKey) {
-        final CursorPage<DQuestion, Long> page = service.getQuestionsPage(pageSize, cursorKey);
+        final CursorPage<DQuestion, Long> page = service.getQuestionsPage( 
+                versionId, pageSize, cursorKey);
         LOG.info("getQuestionsPage(queried {})", page.getItems().size());
         final JCursorPage body = CONVERTER.convertPage(page);
 
@@ -139,6 +142,7 @@ public class QuestionController {
      * Updates an entity.
      * @param domain the domain (used for Multi-tenancy)
      * @param surveyId the survey's id
+     * @param versionId the version's id
      * @param id the id of the entity to update
      * @param jEntity the JSON object for this updated entity
      * @return a redirect to the updated entity

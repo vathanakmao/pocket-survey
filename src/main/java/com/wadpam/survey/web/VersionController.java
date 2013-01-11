@@ -185,9 +185,10 @@ public class VersionController {
     @RequestMapping(value="v10", method= RequestMethod.GET)
     @ResponseBody
     public JCursorPage<JVersion> getPage(
+            @PathVariable Long surveyId,
             @RequestParam(defaultValue="10") int pageSize, 
             @RequestParam(required=false) Serializable cursorKey) {
-        final CursorPage<DVersion, Long> page = service.getVersionsPage(pageSize, cursorKey);
+        final CursorPage<DVersion, Long> page = service.getVersionsPage(surveyId, pageSize, cursorKey);
         final JCursorPage body = CONVERTER.convertPage(page);
 
         return body;

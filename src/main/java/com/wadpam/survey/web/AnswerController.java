@@ -127,9 +127,12 @@ public class AnswerController {
     @RequestMapping(value="v10", method= RequestMethod.GET)
     @ResponseBody
     public JCursorPage<JAnswer> getPage(
+            @PathVariable Long surveyId,
+            @PathVariable Long versionId,
+            @PathVariable Long responseId,
             @RequestParam(defaultValue="10") int pageSize, 
             @RequestParam(required=false) Serializable cursorKey) {
-        final CursorPage<DAnswer, Long> page = service.getAnswersPage(pageSize, cursorKey);
+        final CursorPage<DAnswer, Long> page = service.getAnswersPage(responseId, pageSize, cursorKey);
         final JCursorPage body = CONVERTER.convertPage(page);
 
         return body;
