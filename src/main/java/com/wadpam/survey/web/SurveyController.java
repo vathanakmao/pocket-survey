@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author os
  */
 @Controller
-@RequestMapping("{domain}/crudsurvey")
+@RequestMapping("{domain}/survey")
 public class SurveyController extends CrudController<JSurvey, DSurvey, Long, SurveyCrudService> {
     
     public static final String NAME_INNER_VERSIONS = "versions";
@@ -28,11 +28,13 @@ public class SurveyController extends CrudController<JSurvey, DSurvey, Long, Sur
 
     @Override
     public JSurvey addInnerObjects(HttpServletRequest request, JSurvey jSurvey) {
+        LOG.debug("addInnerObjects for {}...", jSurvey);
         if (null != jSurvey && 
                 (null != request.getParameter(NAME_INNER_VERSIONS) || 
                  null != request.getAttribute(NAME_INNER_VERSIONS))) {
             // add versions
             final JCursorPage<JVersion> versions = versionController.getPage(5, null);
+            LOG.debug("found versions {}", versions.getItems());
             jSurvey.setVersions(versions.getItems());
         }
         
