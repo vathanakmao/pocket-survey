@@ -39,6 +39,10 @@ public class OptionController {
     public static final String NAME_LOCATION = "Location";
     public static final String NAME_X_REQUESTED_WITH = "X-Requested-With";
     public static final String VALUE_X_REQUESTED_WITH_AJAX = "XMLHttpRequest";
+    public static final String NAME_EXPECTS_STATUS = "_expects";
+    public static final Integer EXPECTS_OK = 200;
+    public static final Integer EXPECTS_CREATED = 201;
+    public static final Integer EXPECTS_REDIRECT = 302;
     
     static final Logger LOG = LoggerFactory.getLogger(OptionController.class);
     
@@ -64,21 +68,22 @@ public class OptionController {
             @PathVariable Long surveyId,
             @PathVariable Long versionId,
             @PathVariable Long questionId,
+            @RequestParam(value="_expects", defaultValue="302") Integer expects,
             @ModelAttribute JOption jEntity
             ) {
         
         final DOption dEntity = service.createOption(Converter.convert(jEntity));
+        
+        final String relative = String.format("v10/%d", dEntity.getId());
 
         // AJAX request? Respond with 201 Created + Location header.
-        if (OptionController.VALUE_X_REQUESTED_WITH_AJAX.equals(xRequestedWith)) {
+        if (OptionController.VALUE_X_REQUESTED_WITH_AJAX.equals(xRequestedWith) ||
+                OptionController.EXPECTS_CREATED.equals(expects)) {
             response.setStatus(HttpStatus.CREATED.value());
-            final String path = String.format("v10/%d", 
-                    dEntity.getId());
-            response.addHeader(NAME_LOCATION, path);
+            response.addHeader(NAME_LOCATION, relative);
             return null;
         }
         
-        final String relative = String.format("v10/%d", dEntity.getId());
         final RedirectView returnValue = new RedirectView(relative, true);
         return returnValue;
     }

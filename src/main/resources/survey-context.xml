@@ -25,6 +25,9 @@
         <property name="versionDao" ref="dVersionDao" />
     </bean>
     
+    <bean id="surveyCrudService" class="com.wadpam.survey.service.SurveyCrudService" />
+    <bean id="versionService" class="com.wadpam.survey.service.VersionService" />
+    
     <!--           Controllers             -->
         
     <bean id="answerController" class="com.wadpam.survey.web.AnswerController">
@@ -44,11 +47,13 @@
     </bean>
     
     <bean id="surveyController" class="com.wadpam.survey.web.SurveyController">
-        <property name="service" ref="surveyService" />
+        <property name="surveyCrudService" ref="surveyCrudService" />
     </bean>
     
     <bean id="versionController" class="com.wadpam.survey.web.VersionController">
         <property name="service" ref="surveyService" />
     </bean>
     
+<!--    <bean id="surveyCrudController" class="com.wadpam.survey.web.SurveyCrudController" />-->
+    <bean id="versionCrudController" class="com.wadpam.survey.web.VersionCrudController" />
 </beans>

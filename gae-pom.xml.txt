@@ -25,7 +25,7 @@
         <itest.include>**/*ITest.java</itest.include>
         <surefire.default.skip>true</surefire.default.skip>
         <mardao.version>2.1.4</mardao.version>
-        <openserver.version>7-SNAPSHOT</openserver.version>
+        <openserver.version>8-SNAPSHOT</openserver.version>
         <javadocExecutable>${java.home}/../bin/javadoc</javadocExecutable>
         <docrest.version>1.17</docrest.version>
         <logging.level>ALL</logging.level>
@@ -43,7 +43,7 @@
         <dependency>
             <groupId>com.wadpam.openserver</groupId>
             <artifactId>domain</artifactId>
-            <version>${openserver.version}</version>
+            <version>6</version>
         </dependency>
         <dependency>
             <groupId>com.wadpam.openserver</groupId>
@@ -53,6 +53,11 @@
         <dependency>
             <groupId>com.wadpam.openserver</groupId>
             <artifactId>jsonp</artifactId>
+            <version>${openserver.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.wadpam.openserver</groupId>
+            <artifactId>mvc-boiler</artifactId>
             <version>${openserver.version}</version>
         </dependency>
         <dependency>

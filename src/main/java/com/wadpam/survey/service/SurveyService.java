@@ -24,7 +24,7 @@ import com.wadpam.survey.web.Converter;
 import com.wadpam.survey.web.OptionController;
 import com.wadpam.survey.web.QuestionController;
 import com.wadpam.survey.web.ResponseController;
-import com.wadpam.survey.web.SurveyController;
+import com.wadpam.survey.web.OldSurveyController;
 import java.io.Serializable;
 import java.util.Collection;
 import net.sf.mardao.core.CursorPage;
@@ -191,7 +191,7 @@ public class SurveyService {
         
         // id must be generated
         if (null != dEntity.getId()) {
-            throw new ConflictException(SurveyController.ERR_CREATE_CONFLICT,
+            throw new ConflictException(OldSurveyController.ERR_CREATE_CONFLICT,
                     String.format("id {} must not be specified", dEntity.getId()),
                     null,
                     "id must be generated");
