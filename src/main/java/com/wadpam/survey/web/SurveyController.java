@@ -24,7 +24,7 @@ public class SurveyController extends CrudController<JSurvey, DSurvey, Long, Sur
     public static final String NAME_INNER_VERSIONS = "versions";
     
     @Autowired
-    private VersionCrudController versionController;
+    private VersionController versionController;
 
     @Override
     public JSurvey addInnerObjects(HttpServletRequest request, JSurvey jSurvey) {
@@ -33,7 +33,8 @@ public class SurveyController extends CrudController<JSurvey, DSurvey, Long, Sur
                 (null != request.getParameter(NAME_INNER_VERSIONS) || 
                  null != request.getAttribute(NAME_INNER_VERSIONS))) {
             // add versions
-            final JCursorPage<JVersion> versions = versionController.getPage(5, null);
+            Long surveyId = Long.parseLong(jSurvey.getId());
+            final JCursorPage<JVersion> versions = versionController.getPage(request, "", surveyId, 5, null);
             LOG.debug("found versions {}", versions.getItems());
             jSurvey.setVersions(versions.getItems());
         }

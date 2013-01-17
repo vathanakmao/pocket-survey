@@ -1,21 +1,24 @@
 package com.wadpam.survey.web;
 
-import com.wadpam.survey.service.SurveyService;
 import com.wadpam.docrest.domain.RestCode;
 import com.wadpam.docrest.domain.RestReturn;
-import com.wadpam.open.exceptions.BadRequestException;
 import com.wadpam.open.json.JCursorPage;
 import com.wadpam.open.exceptions.NotFoundException;
+import com.wadpam.survey.domain.DAnswer;
 import com.wadpam.survey.domain.DOption;
 import com.wadpam.survey.domain.DQuestion;
 import com.wadpam.survey.domain.DSurvey;
 import com.wadpam.survey.domain.DVersion;
+import com.wadpam.survey.json.JAnswer;
 import com.wadpam.survey.json.JOption;
 import com.wadpam.survey.json.JQuestion;
-import com.wadpam.survey.json.JSurvey;
 import com.wadpam.survey.json.JVersion;
+import com.wadpam.survey.service.SurveyService;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.Serializable;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -25,7 +28,6 @@ import net.sf.mardao.core.CursorPage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,10 +42,10 @@ import org.springframework.web.servlet.view.RedirectView;
  *
  * @author os
  */
-@RestReturn(value=JSurvey.class)
+@RestReturn(value=JVersion.class)
 @Controller
-@RequestMapping("{domain}/oldsurvey")
-public class OldSurveyController {
+@RequestMapping("{domain}/survey/v10/{surveyId}/oldversion")
+public class OldVersionController {
     public static final int ERR_SURVEY_GET_NOT_FOUND = SurveyService.ERR_SURVEY + 1;
     public static final int ERR_CREATE_CONFLICT = SurveyService.ERR_SURVEY + 2;
     
@@ -51,7 +53,7 @@ public class OldSurveyController {
     public static final String NAME_X_REQUESTED_WITH = "X-Requested-With";
     public static final String VALUE_X_REQUESTED_WITH_AJAX = "XMLHttpRequest";
     
-    static final Logger LOG = LoggerFactory.getLogger(OldSurveyController.class);
+    static final Logger LOG = LoggerFactory.getLogger(OldVersionController.class);
     
     static final Converter CONVERTER = new Converter();
     
@@ -66,19 +68,21 @@ public class OldSurveyController {
         @RestCode(code=302, description="The entity was created", message="OK")})
     @RequestMapping(value="v10", method= RequestMethod.POST)
     public RedirectView create(
-                                                @RequestHeader(value=OldSurveyController.NAME_X_REQUESTED_WITH, required=false) String xRequestedWith,
+                        @RequestHeader(value=OldVersionController.NAME_X_REQUESTED_WITH, required=false) String xRequestedWith,
             HttpServletResponse response,
             @PathVariable String domain,
-            @ModelAttribute JSurvey survey
+            @PathVariable Long surveyId,
+            @RequestParam Long fromVersionId,
+            @RequestParam String description
             ) {
         
-        final DSurvey dEntity = service.createSurvey(Converter.convert(survey));
+        final DVersion dEntity = service.createVersion(surveyId, fromVersionId, description);
 
         // AJAX request? Respond with 201 Created + Location header.
-        if (OldSurveyController.VALUE_X_REQUESTED_WITH_AJAX.equals(xRequestedWith)) {
+        if (OldVersionController.VALUE_X_REQUESTED_WITH_AJAX.equals(xRequestedWith)) {
             response.setStatus(HttpStatus.CREATED.value());
-            final String path = String.format("/api/%s/location/v10/%d", 
-                    domain, dEntity.getId());
+            final String path = String.format("/api/%s/survey/v10/%d/version/v10/%d", 
+                    domain, surveyId, dEntity.getId());
             response.addHeader(NAME_LOCATION, path);
             return null;
         }
@@ -87,61 +91,38 @@ public class OldSurveyController {
         final RedirectView returnValue = new RedirectView(relative, true);
         return returnValue;
     }
-
-    /**
-     * Deletes an entity (cross-domain)
-     * @param id
-     * @return No Content, only the HTTP response code
-     */
-    @RestReturn(value=JSurvey.class, code={
-        @RestCode(code=200, description="The entity was found", message="OK"),
-        @RestCode(code=404, description="The entity was not found", message="Not Found")})
-    @RequestMapping(value="v10/{id}", method= RequestMethod.DELETE)
-    public ResponseEntity delete(@PathVariable Long id) {
-        service.deleteSurvey(id);
-        
-        return new ResponseEntity(HttpStatus.OK);
-    }
-    
-    /**
-     * Deletes an entity (jsonp)
-     * @param id
-     * @return No Content, only the HTTP response code
-     */
-    @RestReturn(value=JSurvey.class, code={
-        @RestCode(code=200, description="The entity was found", message="OK"),
-        @RestCode(code=404, description="The entity was not found", message="Not Found")})
-    @RequestMapping(value="v10/{id}", method= RequestMethod.GET, params={"_method=DELETE"})
-    public ResponseEntity deleteJsonp(@PathVariable Long id) {
-        return delete(id);
-    }
     
     /**
      * Loads the specified entity.
      * @param id the id of the entity to retrieve
      * @return the loaded JSON object
      */
-    @RestReturn(value=JSurvey.class, code={
+    @RestReturn(value=JVersion.class, code={
         @RestCode(code=200, description="The entity was found", message="OK"),
         @RestCode(code=404, description="The entity was not found", message="Not Found")})
     @RequestMapping(value="v10/{id}", method= RequestMethod.GET)
     @ResponseBody
-    public JSurvey get(
+    public JVersion get(
             @PathVariable Long id) {
-        final DSurvey entity = service.getSurvey(id);
+        final DVersion entity = service.getVersion(id);
         if (null == entity) {
             throw new NotFoundException(ERR_SURVEY_GET_NOT_FOUND, 
                     "Not a server error, perhaps a client one",
                     null, 
                     String.format("There is no Entity with id %d", id));
         }
-        final JSurvey body = Converter.convert(entity);
+        final JVersion body = Converter.convert(entity);
         
-        // fetch all options, map QuestionId -> jOption
+        // fetch all questions
+        final Iterable<DQuestion> questions = service.getQuestionsByVersion(id);
+        final Collection<JQuestion> jQuestions = new ArrayList<JQuestion>();
+        body.setQuestions(jQuestions);
+        
+        // fetch all options
+        final Iterable<DOption> options = service.getOptionsByVersion(id);
         final Map<Long, Collection<JOption>> optMap = new HashMap<Long, Collection<JOption>>();
         Collection<JOption> opts;
         JOption jo;
-        final Iterable<DOption> options = service.getOptionsBySurvey(id);
         for (DOption d : options) {
             jo = Converter.convert(d);
             opts = optMap.get(jo.getQuestionId());
@@ -152,32 +133,12 @@ public class OldSurveyController {
             opts.add(jo);
         }
         
-        // fetch all questions, map VersionId -> jQuestion
-        final Map<Long, Collection<JQuestion>> questMap = new HashMap<Long, Collection<JQuestion>>();
-        Collection<JQuestion> quests;
         JQuestion jq;
-        final Iterable<DQuestion> questions = service.getQuestionsBySurvey(id);
-        for (DQuestion q : questions) {
-            jq = Converter.convert(q);
-            jq.setOptions(optMap.get(jq.getId()));
-            quests = questMap.get(jq.getVersionId());
-            if (null == quests) {
-                quests = new ArrayList<JQuestion>();
-                questMap.put(jq.getVersionId(), quests);
-            }
-            quests.add(jq);
+        for (DQuestion d : questions) {
+            jq = Converter.convert(d);
+            jQuestions.add(jq);
+            jq.setOptions(optMap.get(d.getId()));
         }
-        
-        final Collection<JVersion> jVersions = new ArrayList<JVersion>();
-        JVersion jv;
-        final Iterable<DVersion> versions = service.getVersionsBySurvey(id);
-        for (DVersion d : versions) {
-            jv = Converter.convert(d);
-            // pick up the mapped questions for this version
-            jv.setQuestions(questMap.get(d.getId()));
-            jVersions.add(jv);
-        }
-        body.setVersions(jVersions);
         
         return body;
     }
@@ -188,23 +149,49 @@ public class OldSurveyController {
      * @param cursorKey null to get first page
      * @return a page of entities
      */
-    @RestReturn(value=JCursorPage.class, entity=JSurvey.class, code={
+    @RestReturn(value=JAnswer.class, entity=JAnswer.class, code={
+        @RestCode(code=200, description="A CSV with JSON entities", message="OK")})
+    @RequestMapping(value="v10/{versionId}/csv", method= RequestMethod.GET)
+    public void getCsv(HttpServletResponse response,
+            @PathVariable String domain,
+            @PathVariable Long surveyId,
+            @PathVariable Long versionId) throws IOException {
+        // get the full JSurvey
+        final DSurvey survey = service.getSurvey(surveyId);
+        
+        // get the full JVersion definition
+        final JVersion jVersion = get(versionId);
+
+        final Iterable<DAnswer> answers = service.getAnswersByVersion(versionId);
+        
+        response.setContentType("text/csv");
+        final String contentDisposition = String.format("attachment;filename=%s.csv", survey.getTitle().replaceAll("\\s", "_"));
+        response.setHeader("Content-Disposition", contentDisposition);
+        PrintWriter pw = response.getWriter();
+        
+        writeAnswersAsCsv(pw, answers, jVersion);
+        
+        pw.close();
+    }
+    
+    /**
+     * Queries for a (next) page of entities
+     * @param pageSize default is 10
+     * @param cursorKey null to get first page
+     * @return a page of entities
+     */
+    @RestReturn(value=JCursorPage.class, entity=JVersion.class, code={
         @RestCode(code=200, description="A CursorPage with JSON entities", message="OK")})
     @RequestMapping(value="v10", method= RequestMethod.GET)
     @ResponseBody
-    public JCursorPage<JSurvey> getPage(
+    public JCursorPage<JVersion> getPage(
+            @PathVariable Long surveyId,
             @RequestParam(defaultValue="10") int pageSize, 
             @RequestParam(required=false) Serializable cursorKey) {
-        try {
-        final CursorPage<DSurvey, Long> page = service.getSurveysPage(pageSize, cursorKey);
+        final CursorPage<DVersion, Long> page = service.getVersionsPage(surveyId, pageSize, cursorKey);
         final JCursorPage body = CONVERTER.convertPage(page);
 
         return body;
-        }
-        catch (Exception e) {
-            LOG.error("This is it", e);
-        }
-        throw new BadRequestException(-1, "getPage");
     }
     
     /**
@@ -218,16 +205,16 @@ public class OldSurveyController {
         @RestCode(code=302, description="The entity was updated", message="OK")})
     @RequestMapping(value="v10/{id}", method= RequestMethod.POST)
     public RedirectView update(
-                                                @RequestHeader(value=OldSurveyController.NAME_X_REQUESTED_WITH, required=false) String xRequestedWith,
+                                                                                                @RequestHeader(value=OldVersionController.NAME_X_REQUESTED_WITH, required=false) String xRequestedWith,
             HttpServletResponse response,
             @PathVariable Long id,
-            @ModelAttribute JSurvey jEntity
+            @ModelAttribute JVersion jEntity
             ) {
         
-        final DSurvey dEntity = service.updateSurvey(Converter.convert(jEntity));
+        final DVersion dEntity = service.updateVersion(Converter.convert(jEntity));
         
         // AJAX request? Respond with 204 No Content.
-        if (OldSurveyController.VALUE_X_REQUESTED_WITH_AJAX.equals(xRequestedWith)) {
+        if (OldVersionController.VALUE_X_REQUESTED_WITH_AJAX.equals(xRequestedWith)) {
             response.setStatus(HttpStatus.NO_CONTENT.value());
             return null;
         }
@@ -235,6 +222,37 @@ public class OldSurveyController {
         final String relative = String.format("%d", dEntity.getId());
         final RedirectView returnValue = new RedirectView(relative, true);
         return returnValue;
+    }
+
+    protected static void writeAnswersAsCsv(PrintWriter pw, Iterable<DAnswer> answers, JVersion jVersion) {
+        
+        final Map<String, JQuestion> questionsMap = new HashMap<String, JQuestion>();
+        final Map<String, JOption> optionsMap = new HashMap<String, JOption>();
+        for (JQuestion q : jVersion.getQuestions()) {
+            questionsMap.put(q.getId(), q);
+            if (null != q.getOptions()) {
+                for (JOption o : q.getOptions()) {
+                    optionsMap.put(o.getId(), o);
+                }
+            }
+        }
+        
+        final SimpleDateFormat SDF = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        final String FORMAT = "%s,%s,%s,%s,%s,%s,%s,%s";
+        
+        pw.println(String.format(FORMAT, "versionId", "responseId", "questionId", 
+                "user", "lastUpdated", "answerType", "answer", "label"));
+        
+        JQuestion q;
+        JOption o;
+        for (DAnswer a : answers) {
+            q = questionsMap.get(a.getQuestion().getId().toString());
+            o = optionsMap.get(a.getAnswer().toString());
+            pw.println(String.format(FORMAT, 
+                    a.getVersion().getId(), a.getResponse().getId(), a.getQuestion().getId(),
+                    a.getUpdatedBy(), SDF.format(a.getUpdatedDate()), 
+                    q.getType(), a.getAnswer(), null != o ? o.getLabel() : ""));
+        }
     }
 
     public void setService(SurveyService service) {

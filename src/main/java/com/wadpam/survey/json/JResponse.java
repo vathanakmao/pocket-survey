@@ -1,7 +1,7 @@
 package com.wadpam.survey.json;
 
 import com.wadpam.open.json.JBaseObject;
-import java.util.List;
+import java.util.Collection;
 
 /**
  *
@@ -32,7 +32,7 @@ public class JResponse extends JBaseObject {
     private String extUserId;
     
     /** The answers for this response */
-    private List<JAnswer> answers;
+    private Collection<JAnswer> answers;
 
     public Long getSurveyId() {
         return surveyId;
@@ -48,11 +48,11 @@ public class JResponse extends JBaseObject {
                 surveyId, versionId, answers, extProductId);
     }
 
-    public List<JAnswer> getAnswers() {
+    public Collection<JAnswer> getAnswers() {
         return answers;
     }
 
-    public void setAnswers(List<JAnswer> answers) {
+    public void setAnswers(Collection<JAnswer> answers) {
         this.answers = answers;
     }
 

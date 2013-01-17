@@ -27,33 +27,37 @@
     
     <bean id="surveyCrudService" class="com.wadpam.survey.service.SurveyCrudService" />
     <bean id="versionService" class="com.wadpam.survey.service.VersionService" />
+    <bean id="questionService" class="com.wadpam.survey.service.QuestionService" />
+    <bean id="optionService" class="com.wadpam.survey.service.OptionService" />
+    <bean id="responseService" class="com.wadpam.survey.service.ResponseService" />
+    <bean id="answerService" class="com.wadpam.survey.service.AnswerService" />
     
     <!--           Controllers             -->
         
     <bean id="answerController" class="com.wadpam.survey.web.AnswerController">
-        <property name="service" ref="surveyService" />
+        <!--<property name="service" ref="surveyService" />-->
     </bean>
     
     <bean id="optionController" class="com.wadpam.survey.web.OptionController">
-        <property name="service" ref="surveyService" />
+        <!--<property name="service" ref="surveyService" />-->
     </bean>
     
     <bean id="questionController" class="com.wadpam.survey.web.QuestionController">
-        <property name="service" ref="surveyService" />
+        <!--<property name="service" ref="surveyService" />-->
     </bean>
     
     <bean id="responseController" class="com.wadpam.survey.web.ResponseController">
-        <property name="service" ref="surveyService" />
+        <!--<property name="service" ref="surveyService" />-->
     </bean>
     
     <bean id="surveyController" class="com.wadpam.survey.web.SurveyController">
-        <property name="surveyCrudService" ref="surveyCrudService" />
+<!--        <property name="surveyCrudService" ref="surveyCrudService" />-->
     </bean>
     
     <bean id="versionController" class="com.wadpam.survey.web.VersionController">
-        <property name="service" ref="surveyService" />
+        <!--<property name="service" ref="surveyService" />-->
     </bean>
     
 <!--    <bean id="surveyCrudController" class="com.wadpam.survey.web.SurveyCrudController" />-->
-    <bean id="versionCrudController" class="com.wadpam.survey.web.VersionCrudController" />
+    <!--<bean id="versionCrudController" class="com.wadpam.survey.web.VersionCrudController" />-->
 </beans>

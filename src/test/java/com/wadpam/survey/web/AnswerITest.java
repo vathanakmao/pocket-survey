@@ -24,8 +24,9 @@ import org.springframework.web.client.RestTemplate;
  */
 public class AnswerITest {
 
-    static final String                  BASE_URL       = "http://localhost:8943/api/apidocs/survey/v10/4242/version/v10/5656/response/v10/49548/";
-    static final String                  BASE_URL_SURVEY       = "http://localhost:8943/api/apidocs/survey/v10";
+    static final String                  BASE_URL_HOST = "http://localhost:8943";
+    static final String                  BASE_URL_SURVEY = BASE_URL_HOST + "/api/apidocs/survey/v10";
+    static final String                  BASE_URL = BASE_URL_SURVEY + "/4242/version/v10/5656/response/v10/49548/";
 
     RestTemplate                         template;
     public AnswerITest() {
@@ -42,6 +43,7 @@ public class AnswerITest {
     @Before
     public void setUp() {
         template = new RestTemplate();
+        System.out.println("========================= AnswerITest.setUp() ======");
     }
 
     @After
@@ -68,7 +70,7 @@ public class AnswerITest {
 
     @Test
     public void testCreate() {
-        
+        System.out.println("====================== testCreate() ================");
         MultiValueMap<String, Object> requestEntity = new LinkedMultiValueMap<String, Object>();
         requestEntity.set("title", "Survey Title for answer");
         
@@ -115,6 +117,7 @@ public class AnswerITest {
 
     @Test
     public void testCreateNoSuchQuestion() {
+        System.out.println("============= AnswerITest.testCreateNoSuchQuestion() ======");
         
         MultiValueMap<String, Object> requestEntity = new LinkedMultiValueMap<String, Object>();
         requestEntity.set("title", "Survey Title for answer");
@@ -133,12 +136,13 @@ public class AnswerITest {
                 survey.getId(), version.getId());
         JResponse response = template.getForObject(responseURI, JResponse.class);
 
+        System.out.println("------------- AnswerITest.testCreateNoSuchQuestion() ---------");
         // now, POST an answer
         requestEntity.set("questionId", "1938424");
         requestEntity.set("answer", "MyAnswer");
         try {
             URI uri = template.postForLocation(
-                    responseURI + "/answer/v10",
+                    BASE_URL_HOST + responseURI.getPath() + "/answer/v10",
                 requestEntity,
                 response.getId());
             fail();

@@ -48,6 +48,7 @@ public class ResponseITest {
     @Before
     public void setUp() {
         template = new RestTemplate();
+        System.out.println("----------------------------------- setUp() --------------------------");
     }
 
     @After
@@ -96,6 +97,7 @@ public class ResponseITest {
 
     @Test
     public void testCreateWithAnswers() {
+        System.out.println("------------- testCreateWithAnswers() --------------");
         
         MultiValueMap<String, Object> requestEntity = new LinkedMultiValueMap<String, Object>();
         requestEntity.add("title", "Survey Title");
