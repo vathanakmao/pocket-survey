@@ -9,9 +9,12 @@ import com.wadpam.survey.service.SurveyService;
 import com.wadpam.survey.service.VersionService;
 import java.io.Serializable;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import net.sf.mardao.core.CursorPage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -29,49 +32,46 @@ public class VersionController extends CrudController<JVersion, DVersion, Long, 
     @Autowired
     private SurveyService surveyService;
     
+    @ModelAttribute(value="surveyId")
+    public Long addSurveyId(@PathVariable Long surveyId) {
+        return surveyId;
+    }
+
     @Override
     @RequestMapping(value="v10", method= RequestMethod.GET)
     @ResponseBody
     public JCursorPage<JVersion> getPage(
             HttpServletRequest request,
-            @PathVariable String surveyVersion,
-            @PathVariable Long surveyId,
+            HttpServletResponse response,
+            @PathVariable String domain,
+            Model model,
             @RequestParam(defaultValue="10") int pageSize, 
             @RequestParam(required=false) Serializable cursorKey) {
-        
+
+        Long surveyId = (Long) model.asMap().get("surveyId");
         final CursorPage<DVersion, Long> page = surveyService.getVersionsPage(surveyId, pageSize, cursorKey);
         final JCursorPage body = convertPage(page);
 
         return body;
     }
-    
-    
 
     // --------------------- Converter and setters -----------------------------
 
+    public VersionController() {
+        super(JVersion.class);
+    }
+
     @Override
-    public JVersion convertDomain(DVersion from) {
-        if (null == from) {
-            return null;
-        }
-        
-        final JVersion to = new JVersion();
+    public void convertDomain(DVersion from, JVersion to) {
         convertLongEntity(from, to);
 
         to.setDescription(from.getDescription());
         to.setState(from.getState());
         to.setSurveyId(null != from.getSurvey() ? from.getSurvey().getId() : null);
-        
-        return to;
     }
 
     @Override
-    public DVersion convertJson(JVersion from) {
-        if (null == from) {
-            return null;
-        }
-        
-        final DVersion to = new DVersion();
+    public void convertJson(JVersion from, DVersion to) {
         convertJLong(from, to);
 
         to.setDescription(from.getDescription());
@@ -81,8 +81,6 @@ public class VersionController extends CrudController<JVersion, DVersion, Long, 
             survey.setId(from.getSurveyId());
             to.setSurvey(survey);
         }
-        
-        return to;
     }
     
     @Autowired

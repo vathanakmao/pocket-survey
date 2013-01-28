@@ -17,9 +17,12 @@ import com.wadpam.survey.service.OptionService;
 import com.wadpam.survey.service.SurveyService;
 import java.io.Serializable;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import net.sf.mardao.core.CursorPage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -40,6 +43,22 @@ public class OptionController extends CrudController<JOption,
     @Autowired
     protected SurveyService surveyService;
 
+    @ModelAttribute("surveyId")
+    public Long addSurveyId(@PathVariable Long surveyId) {
+        return surveyId;
+    }
+    
+    @ModelAttribute("versionId")
+    public Long addVersionId(@PathVariable Long versionId) {
+        return versionId;
+    }
+    
+    @ModelAttribute("questionId")
+    public Long addQuestionId(@PathVariable Long questionId) {
+        return questionId;
+    }
+    
+    
     /**
      * Queries for a (next) page of entities
      * @param pageSize default is 10
@@ -52,40 +71,34 @@ public class OptionController extends CrudController<JOption,
     @RequestMapping(value="v10", method= RequestMethod.GET)
     @ResponseBody
     public JCursorPage<JOption> getPage(HttpServletRequest request, 
-            @PathVariable String versionId, 
-            @PathVariable Long questionId, 
+            HttpServletResponse response,
+            @PathVariable String domain, 
+            Model model, 
             @RequestParam(defaultValue="10") int pageSize, 
             @RequestParam(required=false) Serializable cursorKey) {
+        Long questionId = (Long) model.asMap().get("questionId");
         CursorPage<DOption, Long> page = surveyService.getOptionsPage(questionId, pageSize, cursorKey);
         return convertPage(page);
     }
-    
+
     // ----------------------------- Converter and setters ---------------------
 
+    public OptionController() {
+        super(JOption.class);
+    }
+    
     @Override
-    public JOption convertDomain(DOption from) {
-        if (null == from) {
-            return null;
-        }
-        
-        final JOption to = new JOption();
+    public void convertDomain(DOption from, JOption to) {
         convertLongEntity(from, to);
         
         to.setLabel(from.getLabel());
         to.setQuestionId(null != from.getQuestion() ? from.getQuestion().getId() : null);
         to.setSurveyId(null != from.getSurvey() ? from.getSurvey().getId() : null);
         to.setVersionId(null != from.getVersion() ? from.getVersion().getId() : null);
-        
-        return to;
     }
 
     @Override
-    public DOption convertJson(JOption from) {
-        if (null == from) {
-            return null;
-        }
-        
-        final DOption to = new DOption();
+    public void convertJson(JOption from, DOption to) {
         convertJLong(from, to);
 
         to.setLabel(from.getLabel());
@@ -104,8 +117,6 @@ public class OptionController extends CrudController<JOption,
             version.setId(from.getVersionId());
             to.setVersion(version);
         }
-        
-        return to;
     }
 
     @Autowired

@@ -16,9 +16,12 @@ import com.wadpam.survey.service.QuestionService;
 import com.wadpam.survey.service.SurveyService;
 import java.io.Serializable;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import net.sf.mardao.core.CursorPage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -39,6 +42,15 @@ public class QuestionController extends CrudController<JQuestion,
     @Autowired
     protected SurveyService surveyService;
     
+    @ModelAttribute("surveyId")
+    public Long addSurveyId(@PathVariable Long surveyId) {
+        return surveyId;
+    }
+    
+    @ModelAttribute("versionId")
+    public Long addVersionId(@PathVariable Long versionId) {
+        return versionId;
+    }
     
     /**
      * Queries for a (next) page of entities
@@ -52,23 +64,25 @@ public class QuestionController extends CrudController<JQuestion,
     @RequestMapping(value="v10", method= RequestMethod.GET)
     @ResponseBody
     public JCursorPage<JQuestion> getPage(HttpServletRequest request, 
-            @PathVariable String surveyId, 
-            @PathVariable Long versionId, 
+            HttpServletResponse response,
+            @PathVariable String domain, 
+            Model model, 
             @RequestParam(defaultValue="10") int pageSize, 
             @RequestParam(required=false) Serializable cursorKey) {
+        
+        Long versionId = (Long) model.asMap().get("versionId");
         CursorPage<DQuestion, Long> page = surveyService.getQuestionsPage(versionId, pageSize, cursorKey);
         return convertPage(page);
     }
-    
+
     // ---------------- Converter and setters ------------------------------
 
+    public QuestionController() {
+        super(JQuestion.class);
+    }
+    
     @Override
-    public JQuestion convertDomain(DQuestion from) {
-        if (null == from) {
-            return null;
-        }
-        
-        final JQuestion to = new JQuestion();
+    public void convertDomain(DQuestion from, JQuestion to) {
         convertLongEntity(from, to);
 
         to.setOrdering(from.getOrdering());
@@ -77,17 +91,10 @@ public class QuestionController extends CrudController<JQuestion,
         to.setType(from.getType());
         to.setSurveyId(null != from.getSurvey() ? from.getSurvey().getId() : null);
         to.setVersionId(null != from.getVersion() ? from.getVersion().getId() : null);
-        
-        return to;
     }
 
     @Override
-    public DQuestion convertJson(JQuestion from) {
-        if (null == from) {
-            return null;
-        }
-        
-        final DQuestion to = new DQuestion();
+    public void convertJson(JQuestion from, DQuestion to) {
         convertJLong(from, to);
 
         to.setOrdering(from.getOrdering());
@@ -104,8 +111,6 @@ public class QuestionController extends CrudController<JQuestion,
             version.setId(from.getVersionId());
             to.setVersion(version);
         }
-        
-        return to;
     }
 
     @Autowired

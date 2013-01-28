@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import net.sf.mardao.core.CursorPage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -55,15 +56,31 @@ public class ResponseController extends CrudController<JResponse,
     @Autowired
     protected SurveyService surveyService;
 
+    @ModelAttribute("surveyId")
+    public Long addSurveyId(@PathVariable Long surveyId) {
+        return surveyId;
+    }
+    
+    @ModelAttribute("versionId")
+    public Long addVersionId(@PathVariable Long versionId) {
+        return versionId;
+    }
+    
     @Override
-    public JResponse addInnerObjects(HttpServletRequest request, JResponse jEntity) {
+    public JResponse addInnerObjects(HttpServletRequest request, 
+            HttpServletResponse response,
+            String domain,
+            Model model,
+            JResponse jEntity) {
         LOG.debug("addInnerObjects for {}...", jEntity);
         if (null != jEntity && 
                 (null != request.getParameter(NAME_INNER_ANSWERS) || 
                  null != request.getAttribute(NAME_INNER_ANSWERS))) {
             // add answers
             Long outerId = Long.parseLong(jEntity.getId());
-            final JCursorPage<JAnswer> inners = answerController.getPage(request, "", outerId, 5, null);
+            model.addAttribute("responseId", outerId);
+            final JCursorPage<JAnswer> inners = answerController.getPage(request, response,
+                    domain, model, 5, null);
             LOG.debug("found inners {}", inners.getItems());
             jEntity.setAnswers(inners.getItems());
         }
@@ -72,8 +89,9 @@ public class ResponseController extends CrudController<JResponse,
     }
 
     @Override
-    protected DResponse create(JResponse body) {
-        
+    protected DResponse create(HttpServletRequest request, 
+            String domain, 
+            JResponse body) {
         return surveyService.upsertResponse(body);
     }
     
@@ -94,10 +112,13 @@ public class ResponseController extends CrudController<JResponse,
     @RequestMapping(value="v10", method= RequestMethod.GET)
     @ResponseBody
     public JCursorPage<JResponse> getPage(HttpServletRequest request, 
-            @PathVariable String surveyId, 
-            @PathVariable Long versionId, 
+            HttpServletResponse response,
+            @PathVariable String domain, 
+            Model model, 
             @RequestParam(defaultValue="10") int pageSize, 
             @RequestParam(required=false) Serializable cursorKey) {
+        
+        Long versionId = (Long) model.asMap().get("versionId");
         CursorPage<DResponse, Long> page = surveyService.getResponsesPage(versionId, pageSize, cursorKey);
         return convertPage(page);
     }
@@ -162,13 +183,12 @@ public class ResponseController extends CrudController<JResponse,
     
     // -------------------------- Converter and setters ------------------------
 
+    public ResponseController() {
+        super(JResponse.class);
+    }
+    
     @Override
-    public JResponse convertDomain(DResponse from) {
-        if (null == from) {
-            return null;
-        }
-        
-        final JResponse to = new JResponse();
+    public void convertDomain(DResponse from, JResponse to) {
         convertLongEntity(from, to);
         
         to.setState(from.getState());
@@ -178,17 +198,10 @@ public class ResponseController extends CrudController<JResponse,
         to.setExtMeetingId(from.getExtMeetingId());
         to.setExtProductId(from.getExtProductId());
         to.setExtUserId(from.getExtUserId());
-        
-        return to;
     }
 
     @Override
-    public DResponse convertJson(JResponse from) {
-        if (null == from) {
-            return null;
-        }
-        
-        final DResponse to = new DResponse();
+    public void convertJson(JResponse from, DResponse to) {
         convertJLong(from, to);
 
         to.setState(from.getState());
@@ -206,8 +219,6 @@ public class ResponseController extends CrudController<JResponse,
         to.setExtMeetingId(from.getExtMeetingId());
         to.setExtProductId(from.getExtProductId());
         to.setExtUserId(from.getExtUserId());
-        
-        return to;
     }
 
     @Autowired

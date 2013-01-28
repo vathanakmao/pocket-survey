@@ -41,6 +41,7 @@ public class OptionITest {
     @Before
     public void setUp() {
         template = new RestTemplate();
+        System.out.println("====================== setUp() =====================");
     }
 
     @After
@@ -92,6 +93,7 @@ public class OptionITest {
 
     @Test
     public void test3Create() {
+        System.out.println("- test3Create()");
         
         MultiValueMap<String, Object> requestEntity = new LinkedMultiValueMap<String, Object>();
         requestEntity.set("title", "Survey Title for answer");
@@ -114,8 +116,9 @@ public class OptionITest {
         // now, POST an option
         requestEntity.set("questionId", question.getId());
         requestEntity.set("label", "MyOptionLabel");
-        URI uri = template.postForLocation(String.format("%s/option/v10", questionURI),
-                requestEntity);
+        URI uri = template.postForLocation(
+                BASE_URL_SURVEY + "/{surveyId}/version/v10/{versionId}/question/v10/{questionId}/option/v10",
+                requestEntity, survey.getId(), version.getId(), question.getId());
         assertNotNull("createOption", uri);
         System.out.println("created option URI is " + uri);
         

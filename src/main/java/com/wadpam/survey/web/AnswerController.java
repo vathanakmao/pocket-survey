@@ -18,9 +18,12 @@ import com.wadpam.survey.service.AnswerService;
 import com.wadpam.survey.service.SurveyService;
 import java.io.Serializable;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import net.sf.mardao.core.CursorPage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -41,6 +44,21 @@ public class AnswerController extends CrudController<JAnswer,
     @Autowired
     protected SurveyService surveyService;
 
+    @ModelAttribute("surveyId")
+    public Long addSurveyId(@PathVariable Long surveyId) {
+        return surveyId;
+    }
+    
+    @ModelAttribute("versionId")
+    public Long addVersionId(@PathVariable Long versionId) {
+        return versionId;
+    }
+    
+    @ModelAttribute("responseId")
+    public Long addResponseId(@PathVariable Long responseId) {
+        return responseId;
+    }
+    
     /**
      * Queries for a (next) page of entities
      * @param pageSize default is 10
@@ -54,10 +72,12 @@ public class AnswerController extends CrudController<JAnswer,
     @ResponseBody
     public JCursorPage<JAnswer> getPage(
             HttpServletRequest request,
-            @PathVariable String versionId,
-            @PathVariable Long responseId,
+            HttpServletResponse response,
+            @PathVariable String domain,
+            Model model,
             @RequestParam(defaultValue="10") int pageSize, 
             @RequestParam(required=false) Serializable cursorKey) {
+        Long responseId = (Long) model.asMap().get("responseId");
         final CursorPage<DAnswer, Long> page = surveyService.getAnswersPage(responseId, pageSize, cursorKey);
         final JCursorPage<JAnswer> body = convertPage(page);
 
@@ -66,13 +86,12 @@ public class AnswerController extends CrudController<JAnswer,
     
     // ------------------------- Converter and setters -------------------------
 
+    public AnswerController() {
+        super(JAnswer.class);
+    }
+
     @Override
-    public JAnswer convertDomain(DAnswer from) {
-        if (null == from) {
-            return null;
-        }
-        
-        final JAnswer to = new JAnswer();
+    public void convertDomain(DAnswer from, JAnswer to) {
         convertLongEntity(from, to);
         
         to.setAnswer(from.getAnswer());
@@ -80,17 +99,10 @@ public class AnswerController extends CrudController<JAnswer,
         to.setResponseId(null != from.getResponse() ? from.getResponse().getId() : null);
         to.setSurveyId(null != from.getSurvey() ? from.getSurvey().getId() : null);
         to.setVersionId(null != from.getVersion() ? from.getVersion().getId() : null);
-        
-        return to;
     }
 
     @Override
-    public DAnswer convertJson(JAnswer from) {
-        if (null == from) {
-            return null;
-        }
-        
-        final DAnswer to = new DAnswer();
+    public void convertJson(JAnswer from, DAnswer to) {
         convertJLong(from, to);
 
         to.setAnswer(from.getAnswer());
@@ -114,8 +126,6 @@ public class AnswerController extends CrudController<JAnswer,
             version.setId(from.getVersionId());
             to.setVersion(version);
         }
-        
-        return to;
     }
 
     @Autowired

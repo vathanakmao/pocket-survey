@@ -9,8 +9,10 @@ import com.wadpam.survey.service.SurveyCrudService;
 import java.util.Arrays;
 import java.util.Collection;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -27,14 +29,20 @@ public class SurveyController extends CrudController<JSurvey, DSurvey, Long, Sur
     private VersionController versionController;
 
     @Override
-    public JSurvey addInnerObjects(HttpServletRequest request, JSurvey jSurvey) {
+    public JSurvey addInnerObjects(HttpServletRequest request, 
+            HttpServletResponse response,
+            String domain,
+            Model model,
+            JSurvey jSurvey) {
         LOG.debug("addInnerObjects for {}...", jSurvey);
         if (null != jSurvey && 
                 (null != request.getParameter(NAME_INNER_VERSIONS) || 
                  null != request.getAttribute(NAME_INNER_VERSIONS))) {
             // add versions
             Long surveyId = Long.parseLong(jSurvey.getId());
-            final JCursorPage<JVersion> versions = versionController.getPage(request, "", surveyId, 5, null);
+            model.addAttribute("surveyId", surveyId);
+            final JCursorPage<JVersion> versions = versionController.getPage(request, 
+                    response, domain, model, 5, null);
             LOG.debug("found versions {}", versions.getItems());
             jSurvey.setVersions(versions.getItems());
         }
@@ -48,35 +56,25 @@ public class SurveyController extends CrudController<JSurvey, DSurvey, Long, Sur
     }
     
     // ----------------------- Converter and setters ---------------------------
+
+    public SurveyController() {
+        super(JSurvey.class);
+    }
     
     @Override
-    public JSurvey convertDomain(DSurvey from) {
-        if (null == from) {
-            return null;
-        }
-        
-        final JSurvey to = new JSurvey();
+    public void convertDomain(DSurvey from, JSurvey to) {
         convertLongEntity(from, to);
         
         to.setState(from.getState());
         to.setTitle(from.getTitle());
-        
-        return to;
     }
 
     @Override
-    public DSurvey convertJson(JSurvey from) {
-        if (null == from) {
-            return null;
-        }
-        
-        final DSurvey to = new DSurvey();
+    public void convertJson(JSurvey from, DSurvey to) {
         convertJLong(from, to);
 
         to.setState(from.getState());
         to.setTitle(from.getTitle());
-        
-        return to;
     }
     
     @Autowired
