@@ -9,7 +9,7 @@ package com.wadpam.survey.dao;
  * @author mardao DAO generator (net.sf.mardao.plugin.ProcessDomainMojo)
  */
 public interface DOptionDao extends GeneratedDOptionDao {
-
-	// TODO: declare your Business Methods here
-	
+    
+    void setMemCacheEntities(boolean memCacheEntities);
+    
 }

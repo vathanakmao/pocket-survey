@@ -10,6 +10,6 @@ package com.wadpam.survey.dao;
  */
 public interface DQuestionDao extends GeneratedDQuestionDao {
 
-	// TODO: declare your Business Methods here
+    void setMemCacheEntities(boolean memCacheEntities);
 	
 }
