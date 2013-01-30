@@ -8,6 +8,7 @@ import com.wadpam.docrest.domain.RestCode;
 import com.wadpam.docrest.domain.RestReturn;
 import com.wadpam.open.json.JCursorPage;
 import com.wadpam.open.mvc.CrudController;
+import com.wadpam.survey.domain.DAnswer;
 import com.wadpam.survey.domain.DResponse;
 import com.wadpam.survey.domain.DSurvey;
 import com.wadpam.survey.domain.DVersion;
@@ -19,6 +20,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import net.sf.mardao.core.CursorPage;
@@ -122,6 +125,59 @@ public class ResponseController extends CrudController<JResponse,
         CursorPage<DResponse, Long> page = surveyService.getResponsesPage(versionId, pageSize, cursorKey);
         return convertPage(page);
     }
+    
+    /**
+     * Queries for a (next) page of entities, all related to specified meeting.
+     * @param extMeetingId the specified meeting's external id
+     * @param answers set to true to get inner answers
+     * @param pageSize default is 10
+     * @param cursorKey null to get first page
+     * @return a page of entities
+     */
+    @RestReturn(value=JCursorPage.class, entity=JResponse.class, code={
+        @RestCode(code=200, description="A CursorPage with JSON entities", message="OK")})
+    @RequestMapping(value="v10", method= RequestMethod.GET, params="extMeetingId")
+    @ResponseBody
+    public JCursorPage<JResponse> getPageByExtMeetingId(
+            @RequestParam String extMeetingId,
+            @RequestParam(defaultValue="false") boolean answers, 
+            @RequestParam(defaultValue="10") int pageSize, 
+            @RequestParam(required=false) Serializable cursorKey) {
+        final CursorPage<DResponse, Long> page = surveyService.getResponsesPageByExtMeetingId(
+                extMeetingId, pageSize, cursorKey);
+        
+        final JCursorPage<JResponse> body = (JCursorPage<JResponse>) convertPage(page);
+
+        // inner answers to include?
+        if (answers) {
+            HashMap<Long, JResponse> ids = new HashMap<Long, JResponse>();
+            for (JResponse j : body.getItems()) {
+                ids.put(Long.parseLong(j.getId()), j);
+            }
+            
+            if (!ids.isEmpty()) {
+                Iterable<DAnswer> dAnswers = surveyService.getAnswersByResponseIds(ids.keySet());
+                List<JAnswer> jAnswers = (List<JAnswer>) answerController.convert(dAnswers);
+                
+                // distribute all answers to correct JResponse
+                JResponse jResponse;
+                Collection<JAnswer> inner;
+                for (JAnswer da : jAnswers) {
+                    jResponse = ids.get(da.getResponseId());
+                    inner = jResponse.getAnswers();
+                    if (null == inner) {
+                        inner = new ArrayList<JAnswer>();
+                        jResponse.setAnswers(inner);
+                    }
+                    inner.add(da);
+                }
+            }
+        }
+        
+        return body;
+    }
+    
+    
     
     @ModelAttribute
     public void populateModel(

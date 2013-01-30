@@ -1,5 +1,6 @@
 package com.wadpam.survey.web;
 
+import com.wadpam.open.json.JCursorPage;
 import com.wadpam.survey.json.JAnswer;
 import com.wadpam.survey.json.JQuestion;
 import com.wadpam.survey.json.JResponse;
@@ -131,6 +132,11 @@ public class ResponseITest {
         assertEquals("versionId", version.getId(), actual.getVersionId().toString());
         assertNotNull("createdInnerAnswers", actual.getAnswers());
         assertEquals("createdInnerAnswers", 1, actual.getAnswers().size());
+        
+        JCursorPage page = template.getForObject(BASE_URL_SURVEY + "/{surveyId}/version/v10/{versionId}/response/v10?extMeetingId=42", JCursorPage.class,
+                survey.getId(), version.getId());
+        assertNotNull(page);
+        assertTrue(page.getItems().isEmpty());
     }
 
     @Test
