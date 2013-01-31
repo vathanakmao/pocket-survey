@@ -13,6 +13,9 @@ public class DSurveyDaoBean
 		implements DSurveyDao 
 {
 
-	// TODO: implement your Business Methods here
+    @Override
+    public void setMemCacheEntities(boolean memCacheEntities) {
+        this.memCacheEntities = memCacheEntities;
+    }
 
 }
