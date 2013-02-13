@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <title>CRUD client</title>
+        <link href="http://pocket-survey.appspot.com/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    </head>
+    <body>
+        <form id="createSurveyForm" method="POST" action="http://pocket-survey.appspot.com/api/crud/crudsurvey/v10">
+            <fieldset>
+            <label for="title">Survey Title</label>
+            <input id="title" name="title" type="text" value="myTitle" />
+            <br />
+            <input id="submitForm" type="submit" value="submitForm" />
+            </fieldset>
+        </form>
+        <button id="jqueryForm" class="btn btn-success" onclick="createjQueryForm();">jquery form</button>           
+        <button id="jqueryJSON" class="btn btn-info" onclick="createjQueryJSON();">jquery JSON</button>           
+
+        <div id="responseStatus" class="alert"></div>
+        <div id="responseBody" class="alert alert-success"></div>
+
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+        <script type="text/javascript" src="http://pocket-survey.appspot.com/bootstrap/js/bootstrap.min.js" ></script>
+        <script type="text/javascript">
+function createjQueryForm() {
+    var url = $("#createSurveyForm").attr("action");
+    $.post(url, {
+        title: $("#title").val()
+    })
+    .done(function(data, textStatus, jqXHR) {
+        $("#responseStatus").html(textStatus);
+        $("#responseBody").html(data.id);
+    });
+}
+
+function createjQueryJSON() {
+    var url = $("#createSurveyForm").attr("action") + "?_expects=200";
+    $.ajax(url, {
+        async: false,
+        contentType: "application/json",
+        data : JSON.stringify({
+            title: $("#title").val()
+        }),
+        processData: false,
+        type: "POST"
+    })
+    .done(function(data, textStatus, jqXHR) {
+        $("#responseStatus").html(textStatus);
+        $("#responseBody").html(data.id);
+    });
+}
+        </script>
+    </body>
+</html>

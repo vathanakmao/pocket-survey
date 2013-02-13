@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Bootstrap, from Twitter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+    </style>
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
+                    <link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
+                                   <link rel="shortcut icon" href="ico/favicon.png">
+    <link href="css/custom.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="brand" href="#">Pocket Survey</a>	
+			  <p class="navbar-text pull-right">
+              Logged in as <a href="#" class="navbar-link">Username</a>
+            </p>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row-fluid">
+       
+        <div class="span9">
+          <div class="hero-unit">
+            <h1>Pocket Survey</h1>
+            <p>This is the admin area of your surveys, click on any of the surveys in the menu to edit, or click the buitton bellow to start a new one.</p>
+            <p><a class="btn btn-primary btn-large" id="create_survey">Create New Survey &raquo;</a></p>
+          </div>
+        </div><!--/span-->
+ 			<div class="span3">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list"  id="my_surveys">
+              <li class="nav-header">My Surveys</li>
+            </ul>
+          </div><!--/.well -->
+        </div><!--/span-->
+      </div><!--/row-->
+      <hr>
+      <footer>
+        <p>&copy; Golden Gekko 2013</p>
+      </footer>
+    </div><!--/.fluid-container-->
+
+
+	<!-- Modal -->
+	<div id="surveyName" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			<h3 id="myModalLabel">New Survey</h3>
+		</div>
+	<form action="survey.html" method="get" id="new_survey_form">
+
+		<div class="modal-body">
+			<p>
+				Please enter a name for your survey:
+				<input type="text" name="survey_name" value="" id="survey_name" />
+			</p>
+		</div>
+</form>
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+			<button class="btn btn-primary" id="save_new_survey">Save changes</button>
+		</div>
+
+	</div>
+
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/backendAPI.js"></script>
+    <script src="js/project.backend.js"></script>
+
+
+	<script type="text/javascript" language="javascript" charset="utf-8">
+	// <![CDATA[
+		$(function(){
+
+			setTimeout(init_home,50);
+
+		});
+
+		function init_home(){
+			populate_mysurveys();
+		}
+
+		$("#create_survey").live('click',function(){
+			$("#surveyName").modal('show');
+		});
+
+		$("#save_new_survey").live('click',function(){
+			console.log("clicked it");
+			if(valid_survey_name($('#survey_name').val())){
+				var survey = create_new_survey($('#survey_name').val());
+				console.log(survey);
+			//	window.location = "survey.html?id="+survey.id;
+				//$("#new_survey_form").submit();
+			}else{
+				alert("name already taken please select a new name.")
+			}
+		});
+
+		
+
+	// ]]>
+	</script>
+
+  </body>
+</html>

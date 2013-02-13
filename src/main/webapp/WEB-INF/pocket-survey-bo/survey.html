@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Bootstrap, from Twitter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+
+#question_list{
+	    background: #e5e5e5;
+	    padding: 5%;
+	  }
+
+  div.spinner {
+      position: absolute;
+      width: 54px;
+      height: 54px;
+      display: inline-block;
+		margin-left:-28px;
+		left:50%;
+top: 12px;
+    }
+    
+    div.spinner div {
+      width: 12%;
+      height: 26%;
+      background: #000;
+      position: absolute;
+      left: 44.5%;
+      top: 37%;
+      opacity: 0;
+      -webkit-animation: fade 1s linear infinite;
+      -webkit-border-radius: 50px;
+      -webkit-box-shadow: 0 0 3px rgba(0,0,0,0.2);
+    }
+    
+    div.spinner div.bar1 {-webkit-transform:rotate(0deg) translate(0, -142%); -webkit-animation-delay: 0s;}    
+    div.spinner div.bar2 {-webkit-transform:rotate(30deg) translate(0, -142%); -webkit-animation-delay: -0.9167s;}
+    div.spinner div.bar3 {-webkit-transform:rotate(60deg) translate(0, -142%); -webkit-animation-delay: -0.833s;}
+    div.spinner div.bar4 {-webkit-transform:rotate(90deg) translate(0, -142%); -webkit-animation-delay: -0.75s;}
+    div.spinner div.bar5 {-webkit-transform:rotate(120deg) translate(0, -142%); -webkit-animation-delay: -0.667s;}
+    div.spinner div.bar6 {-webkit-transform:rotate(150deg) translate(0, -142%); -webkit-animation-delay: -0.5833s;}
+    div.spinner div.bar7 {-webkit-transform:rotate(180deg) translate(0, -142%); -webkit-animation-delay: -0.5s;}
+    div.spinner div.bar8 {-webkit-transform:rotate(210deg) translate(0, -142%); -webkit-animation-delay: -0.41667s;}
+    div.spinner div.bar9 {-webkit-transform:rotate(240deg) translate(0, -142%); -webkit-animation-delay: -0.333s;}
+    div.spinner div.bar10 {-webkit-transform:rotate(270deg) translate(0, -142%); -webkit-animation-delay: -0.25s;}
+    div.spinner div.bar11 {-webkit-transform:rotate(300deg) translate(0, -142%); -webkit-animation-delay: -0.1667s;}
+    div.spinner div.bar12 {-webkit-transform:rotate(330deg) translate(0, -142%); -webkit-animation-delay: -0.0833s;}
+
+     @-webkit-keyframes fade {
+      from {opacity: 1;}
+      to {opacity: 0.25;}
+    }
+
+    </style>
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
+                    <link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
+                                   <link rel="shortcut icon" href="ico/favicon.png">
+    <link href="css/custom.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="brand" href="index.html">Pocket Survey</a>	
+			  <p class="navbar-text pull-right">
+              Logged in as <a href="#" class="navbar-link">Username</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span9">
+          <div class="hero-unit" id="question_list">
+            <div class="spinner" id="spinner">
+				 <div class="bar1"></div>
+				 <div class="bar2"></div>
+				 <div class="bar3"></div>
+				 <div class="bar4"></div>
+				 <div class="bar5"></div>
+				 <div class="bar6"></div>
+				 <div class="bar7"></div>
+				 <div class="bar8"></div>
+				 <div class="bar9"></div>
+				 <div class="bar10"></div>
+				 <div class="bar11"></div>
+				 <div class="bar12"></div>
+			  </div>
+          </div>
+        </div><!--/span-->
+    		<div class="span3">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list" id="my_surveys">
+              <li class="nav-header">My Surveys</li>
+            </ul>
+          </div><!--/.well -->
+        </div><!--/span-->
+      </div><!--/row-->
+    
+      <hr>
+
+      <footer>
+        <p>&copy; Golden Gekko 2013</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+
+	<!-- Modal -->
+	<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-header">
+		 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		 <h3 id="myModalLabel">Modal header</h3>
+	  </div>
+	  <div class="modal-body">
+		 <p>One fine body…</p>
+	  </div>
+	  <div class="modal-footer">
+		 <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+		 <button class="btn btn-primary">Save changes</button>
+	  </div>
+	</div>
+
+
+
+	<!-- editMyQuestion  -->
+	<div id="editMyQuestion" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"  data-backdrop="static">
+	  <div class="modal-header">
+		 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		 <h3 id="myModalLabel">editMyQuestion</h3>
+	  </div>
+	  <div class="modal-body">
+		 <p>the question goes here</p>
+	  </div>
+	  <div class="modal-footer">
+		 <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+		 <button class="btn btn-primary" id="save_question">Save changes</button>
+	  </div>
+	</div>
+
+
+
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/backendAPI.js"></script>
+    <script src="js/project.backend.js"></script>
+
+	<script type="text/javascript" language="javascript" charset="utf-8">
+	// <![CDATA[
+
+		$(function(){
+			setTimeout(init_new_survey,50);
+		});
+
+		function init_new_survey(){
+			if(typeof(getUrlVars()['id']) != "undefined"){
+								
+			}else{
+				//doesn't exisit
+				alert('the surevey your looking for doesn\'t exsist please try again.');
+				window.location = "index.html";
+			}
+			populate_mysurveys(true,true);
+			
+		}
+
+
+		
+
+		$(function(){
+			
+		});
+
+
+
+
+	// ]]>
+	</script>
+  </body>
+</html>
