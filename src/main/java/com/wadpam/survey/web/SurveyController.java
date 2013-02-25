@@ -44,7 +44,7 @@ public class SurveyController extends CrudController<JSurvey, DSurvey, Long, Sur
     @RestReturn(value=JVersion.class, code={
         @RestCode(code=200, description="Version successfully cloned.")
     })
-    @RequestMapping(value="v10/{surveyId}", method= RequestMethod.POST)
+    @RequestMapping(value="v10/{surveyId}", method= RequestMethod.POST, params={"fromVersionId"})
     public JVersion cloneVersion(
             @PathVariable Long surveyId,
             @RequestParam Long fromVersionId,
