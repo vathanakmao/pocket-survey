@@ -3,6 +3,7 @@ package com.wadpam.survey.service;
 import com.wadpam.open.mvc.MardaoCrudService;
 import com.wadpam.survey.dao.DSurveyDao;
 import com.wadpam.survey.domain.DSurvey;
+import com.wadpam.survey.domain.DVersion;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -24,6 +25,10 @@ public class SurveyCrudService extends MardaoCrudService<DSurvey, Long, DSurveyD
         return domain.getId();
     }
     
+    public DVersion cloneVersion(Long surveyId, Long fromVersionId, String description) {
+        return surveyService.cloneVersion(surveyId, fromVersionId, description);
+    }
+
     @Autowired
     public void setDSurveyDao(DSurveyDao dSurveyDao) {
         this.dao = dSurveyDao;

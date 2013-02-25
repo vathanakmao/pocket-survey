@@ -98,7 +98,12 @@ public class SurveyService {
         return to;
     }
     
-    public DVersion cloneVersion(DSurvey survey, DVersion from, String description) {
+    public DVersion cloneVersion(Long surveyId, Long fromVersionId, String description) {
+        final DSurvey survey = new DSurvey();
+        survey.setId(surveyId);
+        final DVersion from = new DVersion();
+        from.setId(fromVersionId);
+        
         final DVersion to = new DVersion();
         to.setDescription(description);
         to.setState(JVersion.STATE_DRAFT);
@@ -205,7 +210,7 @@ public class SurveyService {
         surveyDao.persist(dEntity);
         
         // create the first version
-        cloneVersion(dEntity, null, "0.1");
+        cloneVersion(dEntity.getId(), null, "0.1");
         
         return dEntity;
     }
@@ -223,7 +228,7 @@ public class SurveyService {
                     String.format("Cannot find from-version with id %d", fromVersionId));
         }
         
-        return cloneVersion(survey, fromVersion, description);
+        return cloneVersion(surveyId, fromVersionId, description);
     }
     
     public Integer deleteAll() {
