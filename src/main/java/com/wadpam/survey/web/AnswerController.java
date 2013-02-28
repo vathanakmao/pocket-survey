@@ -41,7 +41,6 @@ public class AnswerController extends CrudController<JAnswer,
         Long, 
         AnswerService> {
     
-    @Autowired
     protected SurveyService surveyService;
 
     @ModelAttribute("surveyId")
@@ -131,5 +130,10 @@ public class AnswerController extends CrudController<JAnswer,
     @Autowired
     public void setAnswerService(AnswerService answerService) {
         this.service = answerService;
+    }
+
+    @Autowired
+    public void setSurveyService(SurveyService surveyService) {
+        this.surveyService = surveyService;
     }
 }

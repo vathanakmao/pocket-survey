@@ -24,8 +24,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <itest.include>**/*ITest.java</itest.include>
         <surefire.default.skip>true</surefire.default.skip>
-        <mardao.version>2.1.8</mardao.version>
-        <openserver.version>12</openserver.version>
+        <mardao.version>2.2.0</mardao.version>
+        <openserver.version>16-SNAPSHOT</openserver.version>
         <javadocExecutable>${java.home}/../bin/javadoc</javadocExecutable>
         <docrest.version>1.17</docrest.version>
         <logging.level>ALL</logging.level>
@@ -63,7 +63,7 @@
         <dependency>
             <groupId>com.wadpam.openserver</groupId>
             <artifactId>users</artifactId>
-            <version>${openserver.version}</version>
+            <version>14</version>
         </dependency>
 
         <dependency>

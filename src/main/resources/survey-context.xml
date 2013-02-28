@@ -7,7 +7,8 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
                 http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
-		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd" 
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd"
+       default-autowire="no"
     >
 
     <import resource="classpath:/survey-dao.xml" />
@@ -25,39 +26,60 @@
         <property name="versionDao" ref="dVersionDao" />
     </bean>
     
-    <bean id="surveyCrudService" class="com.wadpam.survey.service.SurveyCrudService" />
-    <bean id="versionService" class="com.wadpam.survey.service.VersionService" />
-    <bean id="questionService" class="com.wadpam.survey.service.QuestionService" />
-    <bean id="optionService" class="com.wadpam.survey.service.OptionService" />
-    <bean id="responseService" class="com.wadpam.survey.service.ResponseService" />
-    <bean id="answerService" class="com.wadpam.survey.service.AnswerService" />
+    <bean id="surveyCrudService" class="com.wadpam.survey.service.SurveyCrudService">
+        <property name="dao" ref="dSurveyDao" />
+        <property name="surveyService" ref="surveyService" />
+    </bean>
+    <bean id="versionService" class="com.wadpam.survey.service.VersionService" >
+        <property name="dao" ref="dVersionDao" />
+    </bean>
+    <bean id="questionService" class="com.wadpam.survey.service.QuestionService" >
+        <property name="dao" ref="dQuestionDao" />
+        <property name="surveyService" ref="surveyService" />
+    </bean>
+    <bean id="optionService" class="com.wadpam.survey.service.OptionService" >
+        <property name="dao" ref="dOptionDao" />
+        <property name="surveyService" ref="surveyService" />
+    </bean>
+    <bean id="responseService" class="com.wadpam.survey.service.ResponseService" >
+        <property name="dao" ref="dResponseDao" />
+    </bean>
+    <bean id="answerService" class="com.wadpam.survey.service.AnswerService" >
+        <property name="dao" ref="dAnswerDao" />
+        <property name="surveyService" ref="surveyService" />
+    </bean>
     
     <!--           Controllers             -->
         
     <bean id="answerController" class="com.wadpam.survey.web.AnswerController">
-        <!--<property name="service" ref="surveyService" />-->
+        <property name="answerService" ref="answerService" />
+        <property name="surveyService" ref="surveyService" />
     </bean>
     
     <bean id="optionController" class="com.wadpam.survey.web.OptionController">
-        <!--<property name="service" ref="surveyService" />-->
+        <property name="optionService" ref="optionService" />
+        <property name="surveyService" ref="surveyService" />
     </bean>
     
     <bean id="questionController" class="com.wadpam.survey.web.QuestionController">
-        <!--<property name="service" ref="surveyService" />-->
+        <property name="questionService" ref="questionService" />
+        <property name="surveyService" ref="surveyService" />
     </bean>
     
     <bean id="responseController" class="com.wadpam.survey.web.ResponseController">
-        <!--<property name="service" ref="surveyService" />-->
+        <property name="answerController" ref="answerController" />
+        <property name="responseService" ref="responseService" />
+        <property name="surveyService" ref="surveyService" />
     </bean>
     
     <bean id="surveyController" class="com.wadpam.survey.web.SurveyController">
-<!--        <property name="surveyCrudService" ref="surveyCrudService" />-->
+        <property name="versionController" ref="versionController" />
+        <property name="surveyCrudService" ref="surveyCrudService" />
     </bean>
     
     <bean id="versionController" class="com.wadpam.survey.web.VersionController">
-        <!--<property name="service" ref="surveyService" />-->
+        <property name="versionService" ref="versionService" />
+        <property name="surveyService" ref="surveyService" />
     </bean>
     
-<!--    <bean id="surveyCrudController" class="com.wadpam.survey.web.SurveyCrudController" />-->
-    <!--<bean id="versionCrudController" class="com.wadpam.survey.web.VersionCrudController" />-->
 </beans>

@@ -29,7 +29,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("{domain}/survey/{surveyVersion}/{surveyId}/version")
 public class VersionController extends CrudController<JVersion, DVersion, Long, VersionService> {
     
-    @Autowired
     private SurveyService surveyService;
     
     @ModelAttribute(value="surveyId")
@@ -86,5 +85,10 @@ public class VersionController extends CrudController<JVersion, DVersion, Long, 
     @Autowired
     public void setVersionService(VersionService versionService) {
         this.service = versionService;
+    }
+
+    @Autowired
+    public void setSurveyService(SurveyService surveyService) {
+        this.surveyService = surveyService;
     }
 }

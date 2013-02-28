@@ -15,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 public class QuestionService extends MardaoCrudService<DQuestion, Long, DQuestionDao> {
 
-    @Autowired
     protected SurveyService surveyService;
     
     @Override
@@ -27,5 +26,10 @@ public class QuestionService extends MardaoCrudService<DQuestion, Long, DQuestio
     @Autowired
     public void setDQuestionDao(DQuestionDao dQuestionDao) {
         this.dao = dQuestionDao;
+    }
+
+    @Autowired
+    public void setSurveyService(SurveyService surveyService) {
+        this.surveyService = surveyService;
     }
 }

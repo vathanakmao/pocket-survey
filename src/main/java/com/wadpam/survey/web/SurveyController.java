@@ -31,7 +31,6 @@ public class SurveyController extends CrudController<JSurvey, DSurvey, Long, Sur
     
     public static final String NAME_INNER_VERSIONS = "versions";
     
-    @Autowired
     private VersionController versionController;
     
     /**
@@ -106,5 +105,10 @@ public class SurveyController extends CrudController<JSurvey, DSurvey, Long, Sur
     @Autowired
     public void setSurveyCrudService(SurveyCrudService surveyCrudService) {
         this.service = surveyCrudService;
+    }
+
+    @Autowired
+    public void setVersionController(VersionController versionController) {
+        this.versionController = versionController;
     }
 }

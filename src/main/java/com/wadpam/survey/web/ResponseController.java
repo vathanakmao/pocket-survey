@@ -53,10 +53,8 @@ public class ResponseController extends CrudController<JResponse,
     
     public static final String NAME_INNER_ANSWERS = "answers";
     
-    @Autowired
     protected AnswerController answerController;
     
-    @Autowired
     protected SurveyService surveyService;
 
     @ModelAttribute("surveyId")
@@ -280,5 +278,15 @@ public class ResponseController extends CrudController<JResponse,
     @Autowired
     public void setResponseService(ResponseService responseService) {
         this.service = responseService;
+    }
+
+    @Autowired
+    public void setAnswerController(AnswerController answerController) {
+        this.answerController = answerController;
+    }
+
+    @Autowired
+    public void setSurveyService(SurveyService surveyService) {
+        this.surveyService = surveyService;
     }
 }

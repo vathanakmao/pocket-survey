@@ -99,10 +99,9 @@ public class SurveyService {
     }
     
     public DVersion cloneVersion(Long surveyId, Long fromVersionId, String description) {
+        LOG.debug("clone version from {} for surveyId {}", fromVersionId, surveyId);
         final DSurvey survey = new DSurvey();
         survey.setId(surveyId);
-        final DVersion from = new DVersion();
-        from.setId(fromVersionId);
         
         final DVersion to = new DVersion();
         to.setDescription(description);
@@ -112,7 +111,9 @@ public class SurveyService {
         versionDao.persist(to);
         
         // clone version
-        if (null != from) {
+        if (null != fromVersionId) {
+            final DVersion from = new DVersion();
+            from.setId(fromVersionId);
             for (DQuestion fq : questionDao.queryByVersion(from)) {
                 cloneQuestion(to, fq);
             }

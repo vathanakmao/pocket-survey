@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class SurveyCrudService extends MardaoCrudService<DSurvey, Long, DSurveyDao> {
     
     /** For business logic */
-    @Autowired
     private SurveyService surveyService;
 
     /**
@@ -32,5 +31,10 @@ public class SurveyCrudService extends MardaoCrudService<DSurvey, Long, DSurveyD
     @Autowired
     public void setDSurveyDao(DSurveyDao dSurveyDao) {
         this.dao = dSurveyDao;
+    }
+
+    @Autowired
+    public void setSurveyService(SurveyService surveyService) {
+        this.surveyService = surveyService;
     }
 }

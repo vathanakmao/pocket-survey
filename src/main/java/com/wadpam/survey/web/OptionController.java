@@ -40,7 +40,6 @@ public class OptionController extends CrudController<JOption,
         Long, 
         OptionService> {
     
-    @Autowired
     protected SurveyService surveyService;
 
     @ModelAttribute("surveyId")
@@ -122,6 +121,11 @@ public class OptionController extends CrudController<JOption,
     @Autowired
     public void setOptionService(OptionService optionService) {
         this.service = optionService;
+    }
+
+    @Autowired
+    public void setSurveyService(SurveyService surveyService) {
+        this.surveyService = surveyService;
     }
     
 }
