@@ -64,6 +64,7 @@ public class VersionController extends CrudController<JVersion, DVersion, Long, 
     public void convertDomain(DVersion from, JVersion to) {
         convertLongEntity(from, to);
 
+        to.setAppArg0(from.getAppArg0());
         to.setDescription(from.getDescription());
         to.setState(from.getState());
         to.setSurveyId(null != from.getSurvey() ? from.getSurvey().getId() : null);
@@ -73,6 +74,7 @@ public class VersionController extends CrudController<JVersion, DVersion, Long, 
     public void convertJson(JVersion from, DVersion to) {
         convertJLong(from, to);
 
+        to.setAppArg0(from.getAppArg0());
         to.setDescription(from.getDescription());
         to.setState(from.getState());
         if (null != from.getSurveyId()) {

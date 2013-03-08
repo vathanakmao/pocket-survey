@@ -84,6 +84,7 @@ public class QuestionController extends CrudController<JQuestion,
     public void convertDomain(DQuestion from, JQuestion to) {
         convertLongEntity(from, to);
 
+        to.setAppArg0(from.getAppArg0());
         to.setOrdering(from.getOrdering());
         to.setQuestion(from.getQuestion());
         to.setRequired(from.getRequired());
@@ -96,6 +97,7 @@ public class QuestionController extends CrudController<JQuestion,
     public void convertJson(JQuestion from, DQuestion to) {
         convertJLong(from, to);
 
+        to.setAppArg0(from.getAppArg0());
         to.setOrdering(from.getOrdering());
         to.setQuestion(from.getQuestion());
         to.setRequired(from.getRequired());

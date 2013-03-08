@@ -20,6 +20,17 @@ public class JOption extends JBaseObject {
     /** The text label for this option*/
     private String label;
     
+    /** Application-specific attribute */
+    private String appArg0;
+
+    public String getAppArg0() {
+        return appArg0;
+    }
+
+    public void setAppArg0(String appArg0) {
+        this.appArg0 = appArg0;
+    }
+
     public Long getSurveyId() {
         return surveyId;
     }

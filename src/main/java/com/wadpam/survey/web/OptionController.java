@@ -90,6 +90,7 @@ public class OptionController extends CrudController<JOption,
     public void convertDomain(DOption from, JOption to) {
         convertLongEntity(from, to);
         
+        to.setAppArg0(from.getAppArg0());
         to.setLabel(from.getLabel());
         to.setQuestionId(null != from.getQuestion() ? from.getQuestion().getId() : null);
         to.setSurveyId(null != from.getSurvey() ? from.getSurvey().getId() : null);
@@ -100,6 +101,7 @@ public class OptionController extends CrudController<JOption,
     public void convertJson(JOption from, DOption to) {
         convertJLong(from, to);
 
+        to.setAppArg0(from.getAppArg0());
         to.setLabel(from.getLabel());
         if (null != from.getQuestionId()) {
             final DQuestion foreign = new DQuestion();
