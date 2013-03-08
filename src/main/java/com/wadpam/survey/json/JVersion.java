@@ -22,6 +22,17 @@ public class JVersion extends JBaseObject {
     /** The Questions configured for this survey */
     private Collection<JQuestion> questions;
 
+    /** Application-specific attribute */
+    private String appArg0;
+
+    public String getAppArg0() {
+        return appArg0;
+    }
+
+    public void setAppArg0(String appArg0) {
+        this.appArg0 = appArg0;
+    }
+
     public String getDescription() {
         return description;
     }

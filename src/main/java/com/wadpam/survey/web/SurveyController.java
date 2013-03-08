@@ -94,6 +94,7 @@ public class SurveyController extends CrudController<JSurvey, DSurvey, Long, Sur
     public void convertDomain(DSurvey from, JSurvey to) {
         convertLongEntity(from, to);
         
+        to.setAppArg0(from.getAppArg0());
         to.setState(from.getState());
         to.setTitle(from.getTitle());
     }
@@ -102,6 +103,7 @@ public class SurveyController extends CrudController<JSurvey, DSurvey, Long, Sur
     public void convertJson(JSurvey from, DSurvey to) {
         convertJLong(from, to);
 
+        to.setAppArg0(from.getAppArg0());
         to.setState(from.getState());
         to.setTitle(from.getTitle());
     }

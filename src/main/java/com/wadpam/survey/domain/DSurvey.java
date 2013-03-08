@@ -19,6 +19,18 @@ public class DSurvey extends AbstractLongEntity {
     @Basic
     private String title;
 
+    /** Application-specific attribute */
+    @Basic
+    private String appArg0;
+
+    public String getAppArg0() {
+        return appArg0;
+    }
+
+    public void setAppArg0(String appArg0) {
+        this.appArg0 = appArg0;
+    }
+
     public Long getState() {
         return state;
     }

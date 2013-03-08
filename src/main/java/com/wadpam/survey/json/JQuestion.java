@@ -69,6 +69,17 @@ public class JQuestion extends JBaseObject {
     /** The options configured for this question */
     private Collection<JOption> options;
     
+    /** Application-specific attribute */
+    private String appArg0;
+
+    public String getAppArg0() {
+        return appArg0;
+    }
+
+    public void setAppArg0(String appArg0) {
+        this.appArg0 = appArg0;
+    }
+
     public Long getSurveyId() {
         return surveyId;
     }

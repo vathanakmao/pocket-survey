@@ -20,6 +20,17 @@ public class JSurvey extends JBaseObject {
     /** The Versions configured for this survey */
     private Collection<JVersion> versions;
 
+    /** Application-specific attribute */
+    private String appArg0;
+
+    public String getAppArg0() {
+        return appArg0;
+    }
+
+    public void setAppArg0(String appArg0) {
+        this.appArg0 = appArg0;
+    }
+
     public String getTitle() {
         return title;
     }
