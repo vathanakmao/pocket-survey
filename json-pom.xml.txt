@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.wadpam.survey</groupId>
     <artifactId>json-survey</artifactId>
-    <version>7-SNAPSHOT</version>
+    <version>11</version>
     <packaging>jar</packaging>
     <name>Survey-JSON</name>
 
@@ -41,8 +41,8 @@
     <dependencies>
         <dependency>
             <groupId>com.wadpam.openserver</groupId>
-            <artifactId>jsonp</artifactId>
-            <version>5</version>
+            <artifactId>json</artifactId>
+            <version>17</version>
         </dependency>
     </dependencies>
 </project>
