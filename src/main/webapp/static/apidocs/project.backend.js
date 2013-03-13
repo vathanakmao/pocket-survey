@@ -12,12 +12,12 @@ function backendAPI_admin_get(domain,surveyId,versionId,responseId,id){
 }
 
 //Get data
-function backendAPI_admin_getPage(){
+function backendAPI_admin_getPage(surveyId,versionId,responseId){
 	//getData
 	var data = {};
 	data.pageSize = $("#pageSize").val();
 	data.cursorKey = $("#cursorKey").val();
-	data = projectAPI.getPage(data);
+	data = projectAPI.getPage(data,surveyId,versionId,responseId);
 	//add data to table
 	$("#JAnswer").tmpl(data).appendTo("#getPage-JAnswer-output");
 }
@@ -77,12 +77,12 @@ function backendAPI_admin_get(id){
 }
 
 //Get data
-function backendAPI_admin_getPage(){
+function backendAPI_admin_getPage(surveyId,versionId){
 	//getData
 	var data = {};
 	data.pageSize = $("#pageSize").val();
 	data.cursorKey = $("#cursorKey").val();
-	data = projectAPI.getPage(data);
+	data = projectAPI.getPage(data,surveyId,versionId);
 	//add data to table
 	$("#JResponse").tmpl(data).appendTo("#getPage-JResponse-output");
 }
@@ -144,12 +144,12 @@ function backendAPI_admin_getCsv(domain,surveyId,versionId){
 }
 
 //Get data
-function backendAPI_admin_getPage(){
+function backendAPI_admin_getPage(surveyId){
 	//getData
 	var data = {};
 	data.pageSize = $("#pageSize").val();
 	data.cursorKey = $("#cursorKey").val();
-	data = projectAPI.getPage(data);
+	data = projectAPI.getPage(data,surveyId);
 	//add data to table
 	$("#JVersion").tmpl(data).appendTo("#getPage-JVersion-output");
 }

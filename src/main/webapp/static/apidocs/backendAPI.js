@@ -162,6 +162,18 @@ backendAPI.prototype.get = function(domain,surveyId,versionId,responseId,id) {
 
 /*
 variables
+		"name":"surveyId"
+			"description":""
+			"dataType":"Long"
+			"paramType":"path"
+		"name":"versionId"
+			"description":""
+			"dataType":"Long"
+			"paramType":"path"
+		"name":"responseId"
+			"description":""
+			"dataType":"Long"
+			"paramType":"path"
 		"name":"pageSize"
 			"description":"default is 10"
 			"dataType":"int"
@@ -170,11 +182,20 @@ variables
 			"description":"null to get first page"
 			"dataType":"Serializable"
 			"paramType":"query"
-count = 2
+count = 5
 */
-backendAPI.prototype.getPage = function(data) {
+backendAPI.prototype.getPage = function(surveyId,versionId,responseId,data) {
 	var type = "GET";
-	var url = "survey/v10/{surveyId}/version/v10/{versionId}/response/v10/{responseId}/answer/v10";
+
+
+
+
+
+
+
+
+
+	var url = "survey/v10/"+surveyId+"/version/v10/"+versionId+"/response/v10/"+responseId+"/answer/v10";
 	var dataType = "json";
 	//var errMsg = [];
 	//var response = this.makeRequest(type,url,dataType,data,errMsg);
@@ -222,11 +243,14 @@ variables
 			"description":"the question's id"
 			"dataType":"Long"
 			"paramType":"path"
-count = 4
+		"name":"expects"
+			"description":""
+			"dataType":"Integer"
+			"paramType":"query"
+count = 5
 */
-backendAPI.prototype.create = function(domain,surveyId,versionId,questionId) {
+backendAPI.prototype.create = function(domain,surveyId,versionId,questionId,data) {
 	var type = "POST";
-	var data = {};
 
 
 
@@ -444,7 +468,7 @@ variables
 			"dataType":"Long"
 			"paramType":"path"
 		"name":"versionId"
-			"description":""
+			"description":"the version's id"
 			"dataType":"Long"
 			"paramType":"path"
 		"name":"id"
@@ -487,7 +511,7 @@ variables
 			"dataType":"Long"
 			"paramType":"path"
 		"name":"versionId"
-			"description":""
+			"description":"the version's id"
 			"dataType":"Long"
 			"paramType":"path"
 		"name":"pageSize"
@@ -530,7 +554,7 @@ variables
 			"dataType":"Long"
 			"paramType":"path"
 		"name":"versionId"
-			"description":""
+			"description":"the version's id"
 			"dataType":"Long"
 			"paramType":"path"
 		"name":"id"
@@ -709,6 +733,14 @@ backendAPI.prototype.get = function(id) {
 
 /*
 variables
+		"name":"surveyId"
+			"description":""
+			"dataType":"Long"
+			"paramType":"path"
+		"name":"versionId"
+			"description":""
+			"dataType":"Long"
+			"paramType":"path"
 		"name":"pageSize"
 			"description":"default is 10"
 			"dataType":"int"
@@ -717,11 +749,17 @@ variables
 			"description":"null to get first page"
 			"dataType":"Serializable"
 			"paramType":"query"
-count = 2
+count = 4
 */
-backendAPI.prototype.getPage = function(data) {
+backendAPI.prototype.getPage = function(surveyId,versionId,data) {
 	var type = "GET";
-	var url = "survey/v10/{surveyId}/version/v10/{versionId}/response/v10";
+
+
+
+
+
+
+	var url = "survey/v10/"+surveyId+"/version/v10/"+versionId+"/response/v10";
 	var dataType = "json";
 	//var errMsg = [];
 	//var response = this.makeRequest(type,url,dataType,data,errMsg);
@@ -852,7 +890,7 @@ backendAPI.prototype.create = function(domain) {
 
 
 
-	var url = "survey/v10";
+	var url = "oldsurvey/v10";
 	var dataType = "json";
 	//var errMsg = [];
 	//var response = this.makeRequest(type,url,dataType,data,errMsg);
@@ -874,7 +912,7 @@ backendAPI.prototype.delete = function(id) {
 
 
 
-	var url = "survey/v10/"+id;
+	var url = "oldsurvey/v10/"+id;
 	var dataType = "json";
 	//var errMsg = [];
 	//var response = this.makeRequest(type,url,dataType,data,errMsg);
@@ -896,7 +934,7 @@ backendAPI.prototype.deleteJsonp = function(id) {
 
 
 
-	var url = "survey/v10/"+id;
+	var url = "oldsurvey/v10/"+id;
 	var dataType = "json";
 	//var errMsg = [];
 	//var response = this.makeRequest(type,url,dataType,data,errMsg);
@@ -918,7 +956,7 @@ backendAPI.prototype.get = function(id) {
 
 
 
-	var url = "survey/v10/"+id;
+	var url = "oldsurvey/v10/"+id;
 	var dataType = "json";
 	//var errMsg = [];
 	//var response = this.makeRequest(type,url,dataType,data,errMsg);
@@ -940,7 +978,7 @@ count = 2
 */
 backendAPI.prototype.getPage = function(data) {
 	var type = "GET";
-	var url = "survey/v10";
+	var url = "oldsurvey/v10";
 	var dataType = "json";
 	//var errMsg = [];
 	//var response = this.makeRequest(type,url,dataType,data,errMsg);
@@ -962,7 +1000,7 @@ backendAPI.prototype.update = function(id) {
 
 
 
-	var url = "survey/v10/"+id;
+	var url = "oldsurvey/v10/"+id;
 	var dataType = "json";
 	//var errMsg = [];
 	//var response = this.makeRequest(type,url,dataType,data,errMsg);
@@ -998,7 +1036,7 @@ backendAPI.prototype.create = function(domain,surveyId,data) {
 
 
 
-	var url = "survey/v10/"+surveyId+"/version/v10";
+	var url = "survey/v10/"+surveyId+"/oldversion/v10";
 	var dataType = "json";
 	//var errMsg = [];
 	//var response = this.makeRequest(type,url,dataType,data,errMsg);
@@ -1020,7 +1058,7 @@ backendAPI.prototype.get = function(id) {
 
 
 
-	var url = "survey/v10/{surveyId}/version/v10/"+id;
+	var url = "survey/v10/{surveyId}/oldversion/v10/"+id;
 	var dataType = "json";
 	//var errMsg = [];
 	//var response = this.makeRequest(type,url,dataType,data,errMsg);
@@ -1056,7 +1094,7 @@ backendAPI.prototype.getCsv = function(domain,surveyId,versionId) {
 
 
 
-	var url = "survey/v10/"+surveyId+"/version/v10/"+versionId+"/csv";
+	var url = "survey/v10/"+surveyId+"/oldversion/v10/"+versionId+"/csv";
 	var dataType = "json";
 	//var errMsg = [];
 	//var response = this.makeRequest(type,url,dataType,data,errMsg);
@@ -1066,6 +1104,10 @@ backendAPI.prototype.getCsv = function(domain,surveyId,versionId) {
 
 /*
 variables
+		"name":"surveyId"
+			"description":""
+			"dataType":"Long"
+			"paramType":"path"
 		"name":"pageSize"
 			"description":"default is 10"
 			"dataType":"int"
@@ -1074,11 +1116,14 @@ variables
 			"description":"null to get first page"
 			"dataType":"Serializable"
 			"paramType":"query"
-count = 2
+count = 3
 */
-backendAPI.prototype.getPage = function(data) {
+backendAPI.prototype.getPage = function(surveyId,data) {
 	var type = "GET";
-	var url = "survey/v10/{surveyId}/version/v10";
+
+
+
+	var url = "survey/v10/"+surveyId+"/oldversion/v10";
 	var dataType = "json";
 	//var errMsg = [];
 	//var response = this.makeRequest(type,url,dataType,data,errMsg);
@@ -1100,7 +1145,7 @@ backendAPI.prototype.update = function(id) {
 
 
 
-	var url = "survey/v10/{surveyId}/version/v10/"+id;
+	var url = "survey/v10/{surveyId}/oldversion/v10/"+id;
 	var dataType = "json";
 	//var errMsg = [];
 	//var response = this.makeRequest(type,url,dataType,data,errMsg);

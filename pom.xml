@@ -26,7 +26,7 @@
         <mardao.version>2.2.0</mardao.version>
         <openserver.version>17-SNAPSHOT</openserver.version>
         <javadocExecutable>${java.home}/../bin/javadoc</javadocExecutable>
-        <docrest.version>1.19</docrest.version>
+        <docrest.version>1.22</docrest.version>
         <logging.level>ALL</logging.level>
         <endpoint.apiUrl>http://pocket-survey.appspot.com/api/apidocs/</endpoint.apiUrl>
         <swagger.basePath>http://localhost:8929/swagger/</swagger.basePath>
@@ -442,6 +442,24 @@
                             <useStandardDocletOptions>false</useStandardDocletOptions>
                             <verbose>true</verbose>
                         </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <version>1.7</version>
+                        <executions>
+                            <execution>
+                                <phase>package</phase>
+                                <configuration>
+                                    <target>
+                                        <copy file="src/main/webapp/static/apidocs/api.md" tofile="src/main/apidocs/README.md" overwrite="true" />
+                                    </target>
+                                </configuration>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                            </execution>
+                        </executions>
                     </plugin>
                     
                 </plugins>
