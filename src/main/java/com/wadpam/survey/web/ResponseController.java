@@ -141,7 +141,7 @@ public class ResponseController extends CrudController<JResponse,
             @RequestParam String extMeetingId,
             @RequestParam(defaultValue="false") boolean answers, 
             @RequestParam(defaultValue="10") int pageSize, 
-            @RequestParam(required=false) Serializable cursorKey) {
+            @RequestParam(required=false) String cursorKey) {
         final CursorPage<DResponse, Long> page = surveyService.getResponsesPageByExtMeetingId(
                 extMeetingId, pageSize, cursorKey);
         

@@ -2,16 +2,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.wadpam.survey</groupId>
+    <parent>
+        <groupId>com.wadpam.survey</groupId>
+        <artifactId>parent</artifactId>
+        <version>12-SNAPSHOT</version>
+    </parent>
     <artifactId>webapp-survey-gae</artifactId>
-    <version>7-SNAPSHOT</version>
     <packaging>war</packaging>
     <name>Pocket-Survey webapp GAE</name>
 
     <!-- Specify hard-coded project properties here -->
     <properties>
         <spring.profiles.active>gae</spring.profiles.active>
-        <gae.version>1.7.0</gae.version>
         <gae.application.version>lab</gae.application.version>
         <gae.application.id>pocket-survey</gae.application.id>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -24,10 +26,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <itest.include>**/*ITest.java</itest.include>
         <surefire.default.skip>true</surefire.default.skip>
-        <mardao.version>2.2.0</mardao.version>
-        <openserver.version>16-SNAPSHOT</openserver.version>
         <javadocExecutable>${java.home}/../bin/javadoc</javadocExecutable>
-        <docrest.version>1.17</docrest.version>
         <logging.level>ALL</logging.level>
         <endpoint.apiUrl>http://pocket-survey.appspot.com/api/apidocs/</endpoint.apiUrl>
         <swagger.basePath>http://localhost:8929/swagger/</swagger.basePath>

@@ -4,21 +4,22 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.wadpam.survey</groupId>
     <artifactId>parent</artifactId>
-    <version>5-SNAPSHOT</version>
+    <version>12-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>Pocket-Survey parent</name>
 
     <modules>
+        <module>./pom.xml</module>
+        <module>./json-pom.xml.txt</module>
         <module>./gae-pom.xml.txt</module>
         <module>./mysql-pom.xml.txt</module>
-        <module>./json-pom.xml.txt</module>
-        <module>./pom.xml</module>
     </modules>
     
     <properties>
         <gae.version>1.7.0</gae.version>
-        <docrest.version>1.17</docrest.version>
-        <mardao.version>2.0.1</mardao.version>
+        <docrest.version>1.22</docrest.version>
+        <mardao.version>2.2.2</mardao.version>
+        <openserver.version>18</openserver.version>
     </properties>
     
     <developers>

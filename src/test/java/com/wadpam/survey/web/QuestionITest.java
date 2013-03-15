@@ -1,5 +1,6 @@
 package com.wadpam.survey.web;
 
+import com.wadpam.survey.json.JQuestion;
 import com.wadpam.survey.json.JResponse;
 import com.wadpam.survey.json.JSurvey;
 import com.wadpam.survey.json.JVersion;
@@ -81,7 +82,7 @@ public class QuestionITest {
         assertNotNull("createQuestion", uri);
         System.out.println("created question, URI is " + uri);
         
-        JResponse actual = template.getForObject(uri, JResponse.class);
+        JQuestion actual = template.getForObject(uri, JQuestion.class);
         assertNotNull("createdQuestion", actual);
         assertEquals("surveyId", survey.getId(), actual.getSurveyId().toString());
     }

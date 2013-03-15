@@ -287,7 +287,12 @@ public class SurveyService {
         return answerDao.queryByVersion(version);
     }
 
+    @Deprecated
     public CursorPage<DAnswer, Long> getAnswersPage(Long responseId, int pageSize, Serializable cursorKey) {
+        return getAnswersPage(responseId, pageSize, null != cursorKey ? cursorKey.toString() : (String) null);
+    }
+    
+    public CursorPage<DAnswer, Long> getAnswersPage(Long responseId, int pageSize, String cursorKey) {
         final DResponse response = new DResponse();
         response.setId(responseId);
         final CursorPage<DAnswer, Long> page = answerDao.queryPageByResponse(response, pageSize, cursorKey);
@@ -311,7 +316,12 @@ public class SurveyService {
         return optionDao.queryByVersion(version);
     }
     
+    @Deprecated
     public CursorPage<DOption, Long> getOptionsPage(Long questionId, int pageSize, Serializable cursorKey) {
+        return getOptionsPage(questionId, pageSize, null != cursorKey ? cursorKey.toString() : (String) null);
+    }
+    
+    public CursorPage<DOption, Long> getOptionsPage(Long questionId, int pageSize, String cursorKey) {
         DQuestion question = new DQuestion();
         question.setId(questionId);
         final CursorPage<DOption, Long> page = optionDao.queryPageByQuestion(question, pageSize, cursorKey);
@@ -341,7 +351,7 @@ public class SurveyService {
         return questionDao.queryByVersion(version);
     }
     
-    public CursorPage<DQuestion, Long> getQuestionsPage(Long versionId, int pageSize, Serializable cursorKey) {
+    public CursorPage<DQuestion, Long> getQuestionsPage(Long versionId, int pageSize, String cursorKey) {
         final DVersion version = new DVersion();
         version.setId(versionId);
         final CursorPage<DQuestion, Long> page = questionDao.queryPageByVersion(version, pageSize, cursorKey);
@@ -353,14 +363,14 @@ public class SurveyService {
         return entity;
     }
     
-    public CursorPage<DResponse, Long> getResponsesPage(Long versionId, int pageSize, Serializable cursorKey) {
+    public CursorPage<DResponse, Long> getResponsesPage(Long versionId, int pageSize, String cursorKey) {
         DVersion version = new DVersion();
         version.setId(versionId);
         final CursorPage<DResponse, Long> page = responseDao.queryPageByVersion(version, pageSize, cursorKey);
         return page;
     }
     
-    public CursorPage<DResponse, Long> getResponsesPageByExtMeetingId(String extMeetingId, int pageSize, Serializable cursorKey) {
+    public CursorPage<DResponse, Long> getResponsesPageByExtMeetingId(String extMeetingId, int pageSize, String cursorKey) {
         final CursorPage<DResponse, Long> page = responseDao.queryPageByExtMeetingId(extMeetingId, pageSize, cursorKey);
         return page;
     }
@@ -370,7 +380,12 @@ public class SurveyService {
         return entity;
     }
     
+    @Deprecated
     public CursorPage<DSurvey, Long> getSurveysPage(int pageSize, Serializable cursorKey) {
+        return getSurveysPage(pageSize, null != cursorKey ? cursorKey.toString() : (String) null);
+    }
+    
+    public CursorPage<DSurvey, Long> getSurveysPage(int pageSize, String cursorKey) {
         final CursorPage<DSurvey, Long> page = surveyDao.queryPage(pageSize, cursorKey);
         return page;
     }
@@ -380,7 +395,7 @@ public class SurveyService {
         return entity;
     }
     
-    public CursorPage<DVersion, Long> getVersionsPage(Long surveyId, int pageSize, Serializable cursorKey) {
+    public CursorPage<DVersion, Long> getVersionsPage(Long surveyId, int pageSize, String cursorKey) {
         DSurvey survey = new DSurvey();
         survey.setId(surveyId);
         final CursorPage<DVersion, Long> page = versionDao.queryPageBySurvey(survey, pageSize, cursorKey);

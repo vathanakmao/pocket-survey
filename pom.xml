@@ -23,8 +23,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <itest.include>**/*ITest.java</itest.include>
         <surefire.default.skip>true</surefire.default.skip>
-        <mardao.version>2.2.0</mardao.version>
-        <openserver.version>17</openserver.version>
+        <mardao.version>2.2.2</mardao.version>
+        <openserver.version>18</openserver.version>
         <javadocExecutable>${java.home}/../bin/javadoc</javadocExecutable>
         <docrest.version>1.22</docrest.version>
         <logging.level>ALL</logging.level>
@@ -45,11 +45,6 @@
             <scope>provided</scope>
         </dependency>
         
-<!--        <dependency>
-            <groupId>com.wadpam.openserver</groupId>
-            <artifactId>domain</artifactId>
-            <version>${openserver.version}</version>
-        </dependency>-->
         <dependency>
             <groupId>com.wadpam.openserver</groupId>
             <artifactId>errors</artifactId>
@@ -65,11 +60,6 @@
             <artifactId>mvc-boiler</artifactId>
             <version>${openserver.version}</version>
         </dependency>
-<!--        <dependency>
-            <groupId>com.wadpam.openserver</groupId>
-            <artifactId>users</artifactId>
-            <version>${openserver.version}</version>
-        </dependency>-->
 
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -121,7 +111,7 @@
             <version>1.1.1</version>
         </dependency>
 
-        <dependency>
+<!--        <dependency>
             <groupId>com.google.appengine</groupId>
             <artifactId>appengine-testing</artifactId>
             <version>${gae.version}</version>
@@ -138,7 +128,7 @@
             <artifactId>appengine-api-stubs</artifactId>
             <version>${gae.version}</version>
             <scope>test</scope>
-        </dependency>
+        </dependency>-->
 
         <dependency>
             <groupId>junit</groupId>
@@ -182,24 +172,6 @@
         </resources>
 
         <plugins>
-<!--            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>properties-maven-plugin</artifactId>
-                <version>1.0-alpha-2</version>
-                <executions>
-                    <execution>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>write-project-properties</goal>
-                        </goals>
-                        <configuration>
-                            <outputFile>
-                                ${project.build.outputDirectory}/application.properties
-                            </outputFile>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>       -->
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -396,10 +368,11 @@
         </developer>
     </developers>
 
-    <scm>
+    <!-- preparing releases should be done with parent pom -->
+<!--    <scm>
         <url>https://github.com/sosandstrom/pocket-survey</url>
         <developerConnection>scm:git:ssh://git@github.com/sosandstrom/pocket-survey.git</developerConnection>
-    </scm>
+    </scm>-->
 
     <profiles>
         <profile>
