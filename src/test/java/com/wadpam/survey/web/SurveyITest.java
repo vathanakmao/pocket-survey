@@ -1,6 +1,8 @@
 package com.wadpam.survey.web;
 
+import com.wadpam.open.json.JCursorPage;
 import com.wadpam.survey.json.JSurvey;
+import com.wadpam.survey.json.JSurveyPage;
 import java.net.URI;
 import static org.junit.Assert.*;
 
@@ -59,4 +61,16 @@ public class SurveyITest {
         
     }
 
+    @Test
+    public void testGetPageWithVersions() {
+        testCreate();
+        
+        JSurveyPage page = template.getForObject(BASE_URL + "survey/v10?versions=true", JSurveyPage.class);
+        assertNotNull(page);
+        assertNotNull(page.getItems());
+        
+        JSurvey survey = page.getItems().iterator().next();
+        assertNotNull(survey.getVersions());
+        assertFalse(survey.getVersions().isEmpty());
+    }
 }
