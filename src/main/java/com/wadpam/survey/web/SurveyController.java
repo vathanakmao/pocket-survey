@@ -60,22 +60,20 @@ public class SurveyController extends CrudController<JSurvey, DSurvey, Long, Sur
     }
 
     @Override
-    public void addInnerObjects(HttpServletRequest request, 
-            HttpServletResponse response,
-            String domain,
-            Model model,
-            JSurvey jSurvey) {
-        LOG.debug("addInnerObjects for {}...", jSurvey);
-        if (null != jSurvey && 
-                (null != request.getParameter(NAME_INNER_VERSIONS) || 
-                 null != request.getAttribute(NAME_INNER_VERSIONS))) {
-            // add versions
-            Long surveyId = Long.parseLong(jSurvey.getId());
-            model.addAttribute("surveyId", surveyId);
-            final JCursorPage<JVersion> versions = versionController.getPage(request, 
-                    response, domain, model, 1000, null);
-            LOG.debug("found versions {}", versions.getItems());
-            jSurvey.setVersions(versions.getItems());
+    public void addInnerObjects(HttpServletRequest request, HttpServletResponse response, String domain, Model model, Iterable<JSurvey> jEntities) {
+        for (JSurvey jSurvey : jEntities) {
+            LOG.debug("addInnerObjects for {}...", jSurvey);
+            if (null != jSurvey && 
+                    (null != request.getParameter(NAME_INNER_VERSIONS) || 
+                     null != request.getAttribute(NAME_INNER_VERSIONS))) {
+                // add versions
+                Long surveyId = Long.parseLong(jSurvey.getId());
+                model.addAttribute("surveyId", surveyId);
+                final JCursorPage<JVersion> versions = versionController.getPage(request, 
+                        response, domain, model, 1000, null);
+                LOG.debug("found versions {}", versions.getItems());
+                jSurvey.setVersions(versions.getItems());
+            }
         }
     }
 
