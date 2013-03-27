@@ -60,7 +60,8 @@ public class SurveyController extends CrudController<JSurvey, DSurvey, Long, Sur
     }
 
     @Override
-    public void addInnerObjects(HttpServletRequest request, HttpServletResponse response, String domain, Model model, Iterable<JSurvey> jEntities) {
+    public void addInnerObjects(HttpServletRequest request, HttpServletResponse response, 
+            String domain, Model model, Iterable<JSurvey> jEntities) {
         for (JSurvey jSurvey : jEntities) {
             LOG.debug("addInnerObjects for {}...", jSurvey);
             if (null != jSurvey && 
