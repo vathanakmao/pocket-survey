@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.wadpam.survey</groupId>
     <artifactId>json-survey</artifactId>
-    <version>13</version>
+    <version>14-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>Survey-JSON</name>
 
