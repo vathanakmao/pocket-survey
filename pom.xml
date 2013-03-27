@@ -441,4 +441,8 @@
        
     </profiles>
 
+
+	<scm>
+		<developerConnection>scm:git:git@github.com:vathanakmao/pocket-survey.git</developerConnection>
+	</scm>
 </project>
