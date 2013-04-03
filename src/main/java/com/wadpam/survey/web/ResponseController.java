@@ -53,6 +53,8 @@ public class ResponseController extends CrudController<JResponse,
     public static final int    ERR_CREATE_NOT_FOUND       = SurveyService.ERR_RESPONSE + 2;
     public static final int    ERR_CREATE_CONFLICT        = SurveyService.ERR_RESPONSE + 3;
 
+    public static final int    OPERATION_GET_PAGE_BY_CREATEDBY = 1001;
+
     public static final String MODEL_NAME_SURVEYID = "surveyId";
     public static final String MODEL_NAME_VERSIONID = "versionId";
     public static final String MODEL_NAME_FORMANSWERS = "formAnswers";
@@ -73,7 +75,15 @@ public class ResponseController extends CrudController<JResponse,
     public Long addVersionId(@PathVariable Long versionId) {
         return versionId;
     }
-    
+
+    @Override
+    public void addInnerObjects(HttpServletRequest request, HttpServletResponse response, String domain, Model model,
+            Iterable<JResponse> jEntity) {
+        for (JResponse j : jEntity) {
+            addInnerObjects(request, response, domain, model, j);
+        }
+    }
+
     @Override
     public void addInnerObjects(HttpServletRequest request, 
             HttpServletResponse response,
@@ -156,21 +166,22 @@ public class ResponseController extends CrudController<JResponse,
      */
     @RestReturn(value=JCursorPage.class, entity=JResponse.class, code={
         @RestCode(code=200, description="A CursorPage with JSON entities", message="OK")})
-    @RequestMapping(value="v10", method= RequestMethod.GET, params="userId")
+    @RequestMapping(value="v10", method= RequestMethod.GET, params="createdBy")
     @ResponseBody
     public JCursorPage<JResponse> getPageByCreatedBy(
-            @RequestParam String userId,
-            @RequestParam(defaultValue="false") boolean answers,
+            HttpServletRequest request,
+            HttpServletResponse response,
+            @PathVariable String domain, 
+            @RequestParam String createdBy,
             @RequestParam(defaultValue="10") int pageSize, 
-            @RequestParam(required=false) String cursorKey) {
+            @RequestParam(required=false) String cursorKey,
+            Model model) {
 
-        final CursorPage<DResponse, Long> page = service.getResponsesPageByCreatedBy(userId, pageSize, cursorKey);
-        final JCursorPage<JResponse> body = (JCursorPage<JResponse>) convertPage(page);
+        preService(request, domain, OPERATION_GET_PAGE_BY_CREATEDBY, null, null, cursorKey);
 
-        // inner answers to include?
-        if (answers) {
-            addInnerAnswers(body);
-        }
+        final CursorPage<DResponse, Long> page = service.getResponsesPageByCreatedBy(createdBy, pageSize, cursorKey);
+        final JCursorPage<JResponse> body = (JCursorPage<JResponse>) convertPageWithInner(request, response, domain, model, page);
+        postService(request, domain, OPERATION_GET_PAGE_BY_CREATEDBY, body, cursorKey, page);
 
         return body;
     }
@@ -188,20 +199,18 @@ public class ResponseController extends CrudController<JResponse,
     @RequestMapping(value="v10", method= RequestMethod.GET, params="extMeetingId")
     @ResponseBody
     public JCursorPage<JResponse> getPageByExtMeetingId(
+            HttpServletRequest request,
+            HttpServletResponse response,
+            @PathVariable String domain,
             @PathVariable Long surveyId,
             @PathVariable Long versionId,
             @RequestParam String extMeetingId,
-            @RequestParam(defaultValue="false") boolean answers, 
             @RequestParam(defaultValue="10") int pageSize, 
-            @RequestParam(required=false) String cursorKey) {
+            @RequestParam(required=false) String cursorKey,
+            Model model) {
 
         final CursorPage<DResponse, Long> page = service.getResponsesPageBySurveyIdVersionIdAndExtMeetingId(surveyId, versionId, extMeetingId, pageSize, cursorKey);
-        final JCursorPage<JResponse> body = (JCursorPage<JResponse>) convertPage(page);
-
-        // inner answers to include?
-        if (answers) {
-           addInnerAnswers(body);
-        }
+        final JCursorPage<JResponse> body = (JCursorPage<JResponse>) convertPageWithInner(request, response, domain, model, page);
 
         return body;
     }
