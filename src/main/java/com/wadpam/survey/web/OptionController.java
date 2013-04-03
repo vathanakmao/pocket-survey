@@ -8,6 +8,7 @@ import com.wadpam.docrest.domain.RestCode;
 import com.wadpam.docrest.domain.RestReturn;
 import com.wadpam.open.json.JCursorPage;
 import com.wadpam.open.mvc.CrudController;
+import static com.wadpam.open.mvc.CrudController.convertJLong;
 import com.wadpam.survey.domain.DOption;
 import com.wadpam.survey.domain.DQuestion;
 import com.wadpam.survey.domain.DSurvey;
@@ -15,7 +16,7 @@ import com.wadpam.survey.domain.DVersion;
 import com.wadpam.survey.json.JOption;
 import com.wadpam.survey.service.OptionService;
 import com.wadpam.survey.service.SurveyService;
-import java.io.Serializable;
+import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import net.sf.mardao.core.CursorPage;
@@ -123,6 +124,26 @@ public class OptionController extends CrudController<JOption,
         }
     }
 
+    @Override
+    public void convertJMap(Map<String, Object> from, JOption to) {
+        convertJLong(from, to);
+
+        to.setAppArg0((String)from.get("appArg0"));
+        to.setLabel((String)from.get("label"));
+        Integer l = (Integer) from.get("questionId");
+        if (null != l) {
+            to.setQuestionId((long) l);
+        }
+        l = (Integer) from.get("surveyId");
+        if (null != l) {
+            to.setSurveyId((long) l);
+        }
+        l = (Integer) from.get("versionId");
+        if (null != l) {
+            to.setVersionId((long) l);
+        }
+    }
+    
     @Autowired
     public void setOptionService(OptionService optionService) {
         this.service = optionService;
@@ -132,5 +153,5 @@ public class OptionController extends CrudController<JOption,
     public void setSurveyService(SurveyService surveyService) {
         this.surveyService = surveyService;
     }
-    
+
 }

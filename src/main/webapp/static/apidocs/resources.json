@@ -5,29 +5,5 @@
     "baseUrl": "http://pocket-survey.appspot.com/api/apidocs/",
     "clientId": "${clientId}",
     "apis": [
-        {
-            "path": "/JAnswer.{format}",
-            "description": "com.wadpam.survey.json.JAnswer "
-        }
-,        {
-            "path": "/JOption.{format}",
-            "description": "com.wadpam.survey.json.JOption "
-        }
-,        {
-            "path": "/JQuestion.{format}",
-            "description": "com.wadpam.survey.json.JQuestion "
-        }
-,        {
-            "path": "/JResponse.{format}",
-            "description": "com.wadpam.survey.json.JResponse "
-        }
-,        {
-            "path": "/JSurvey.{format}",
-            "description": "com.wadpam.survey.json.JSurvey "
-        }
-,        {
-            "path": "/JVersion.{format}",
-            "description": "com.wadpam.survey.json.JVersion "
-        }
     ]
 }

@@ -8,6 +8,9 @@
     <packaging>jar</packaging>
     <name>Pocket-Survey service</name>
 
+    <description>Pocket Survey implements a survey service with persistence, business logic and REST-JSON API</description>
+    <url>http://github.com/sosandstrom/pocket-survey/</url>
+    
     <!-- Specify hard-coded project properties here -->
     <properties>
         <gae.version>1.7.0</gae.version>
@@ -110,25 +113,6 @@
             <artifactId>commons-logging</artifactId>
             <version>1.1.1</version>
         </dependency>
-
-<!--        <dependency>
-            <groupId>com.google.appengine</groupId>
-            <artifactId>appengine-testing</artifactId>
-            <version>${gae.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.google.appengine</groupId>
-            <artifactId>appengine-api-labs</artifactId>
-            <version>${gae.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.google.appengine</groupId>
-            <artifactId>appengine-api-stubs</artifactId>
-            <version>${gae.version}</version>
-            <scope>test</scope>
-        </dependency>-->
 
         <dependency>
             <groupId>junit</groupId>
@@ -309,57 +293,22 @@
         </plugins>
     </build>
 
-    <pluginRepositories>
-        <pluginRepository>
-            <id>sosandstrom-github-releases</id>
-            <name>sosandstrom Maven releases repo at GitHub</name>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <url>https://raw.github.com/sosandstrom/maven-repo/master/releases</url>
-        </pluginRepository>
-        <pluginRepository>
-            <id>sosandstrom-github-snapshots</id>
-            <name>sosandstrom Maven snapshots repo at GitHub</name>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-            <url>https://raw.github.com/sosandstrom/maven-repo/master/snapshots</url>
-        </pluginRepository>
-    </pluginRepositories>
-            
-    <repositories>
-        <repository>
-            <id>sosandstrom-github-releases</id>
-            <name>sosandstrom Maven releases repo at GitHub</name>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <url>https://raw.github.com/sosandstrom/maven-repo/master/releases</url>
-        </repository>
-        <repository>
-            <id>sosandstrom-github-snapshots</id>
-            <name>sosandstrom Maven snapshots repo at GitHub</name>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-            <url>https://raw.github.com/sosandstrom/maven-repo/master/snapshots</url>
-        </repository>
-    </repositories>
+    <licenses>
+        <license>
+            <name>GPL v3</name>
+            <url>http://www.gnu.org/licenses/gpl-3.0.txt</url>
+            <distribution>repo</distribution>
+            <comments>Third party libraries used in this project have their own licenses.</comments>
+        </license>
+    </licenses>
 
     <developers>
+        <developer>
+            <id>mattiaslevin</id>
+            <name>Mattias Levin</name>
+            <email>mattias.levin@gmail.com</email>
+            <url>http://www.linkedin.com/in/mattiaslevin</url>
+        </developer>
         <developer>
             <id>sosandstrom</id>
             <name>Ola Sandstrom</name>
@@ -369,10 +318,15 @@
     </developers>
 
     <!-- preparing releases should be done with parent pom -->
-<!--    <scm>
+    <scm>
         <url>https://github.com/sosandstrom/pocket-survey</url>
         <developerConnection>scm:git:ssh://git@github.com/sosandstrom/pocket-survey.git</developerConnection>
-    </scm>-->
+    </scm>
+
+    <issueManagement>
+        <system>github</system>
+        <url>https://github.com/sosandstrom/pocket-survey/issues</url>
+    </issueManagement>
 
     <profiles>
         <profile>

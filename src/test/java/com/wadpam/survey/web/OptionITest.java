@@ -5,6 +5,7 @@ import com.wadpam.survey.json.JQuestion;
 import com.wadpam.survey.json.JSurvey;
 import com.wadpam.survey.json.JVersion;
 import java.net.URI;
+import java.util.ArrayList;
 import static org.junit.Assert.*;
 
 import org.junit.After;
@@ -12,6 +13,11 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.HttpClientErrorException;
@@ -126,6 +132,60 @@ public class OptionITest {
         assertNotNull("createdOption", actual);
         assertEquals("surveyId", Long.valueOf(survey.getId()), actual.getSurveyId());
         assertEquals("questionId", Long.valueOf(question.getId()), actual.getQuestionId());
+    }
+
+    @Test
+    public void testCreateBatch() {
+        System.out.println("- testCreateBatch()");
+        
+        MultiValueMap<String, Object> requestEntity = new LinkedMultiValueMap<String, Object>();
+        requestEntity.set("title", "Survey Title for answer");
+        
+        // create a survey first
+        URI surveyURI = template.postForLocation(BASE_URL_SURVEY, requestEntity);
+        JSurvey survey = template.getForObject(surveyURI, JSurvey.class);
+        assertNotNull(survey);
+        JVersion version = survey.getVersions().iterator().next();
+        
+        // create a question
+        requestEntity.clear();
+        requestEntity.set("question", "What is the correct answer?");
+        URI questionURI = template.postForLocation(
+                BASE_URL_SURVEY + "/{surveyId}/version/v10/{versionId}/question/v10",
+                requestEntity,
+                survey.getId(), version.getId());
+        JQuestion question = template.getForObject(questionURI, JQuestion.class);
+
+        // now, POST some options
+        ArrayList<JOption> options = new ArrayList<JOption>();
+        JOption jo;
+        for (int i = 0; i < 10; i++) {
+            jo = new JOption();
+            jo.setQuestionId(Long.parseLong(question.getId()));
+            jo.setLabel("Option #" + i);
+            options.add(jo);
+        }
+        requestEntity.clear();
+        requestEntity.set("jEntities", options);
+        
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity httpEntity = new HttpEntity(options, headers); //requestEntity, headers);
+        
+        ResponseEntity<Long[]> response = template.exchange(
+                BASE_URL_SURVEY + "/{surveyId}/version/v10/{versionId}/question/v10/{questionId}/option/v10/_batch",
+                HttpMethod.POST,
+                httpEntity, Long[].class, survey.getId(), version.getId(), question.getId());
+        Long[] ids = response.getBody();
+        assertNotNull("createOptions", ids);
+        for (Long l : ids) {
+            System.out.println("Batch-created option id is " + l);
+        }
+        
+//        JOption actual = template.getForObject(uri, JOption.class);
+//        assertNotNull("createdOption", actual);
+//        assertEquals("surveyId", Long.valueOf(survey.getId()), actual.getSurveyId());
+//        assertEquals("questionId", Long.valueOf(question.getId()), actual.getQuestionId());
     }
 
 }
