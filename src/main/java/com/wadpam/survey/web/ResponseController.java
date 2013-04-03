@@ -147,7 +147,34 @@ public class ResponseController extends CrudController<JResponse,
         CursorPage<DResponse, Long> page = surveyService.getResponsesPage(versionId, pageSize, cursorKey);
         return convertPage(page);
     }
-    
+
+    /**
+     * Queries for a (next) page of survey response
+     * @param pageSize default is 10
+     * @param cursorKey null to get first page
+     * @return a page of survey response objects by user
+     */
+    @RestReturn(value=JCursorPage.class, entity=JResponse.class, code={
+        @RestCode(code=200, description="A CursorPage with JSON entities", message="OK")})
+    @RequestMapping(value="v10", method= RequestMethod.GET, params="userId")
+    @ResponseBody
+    public JCursorPage<JResponse> getPageByCreatedBy(
+            @RequestParam String userId,
+            @RequestParam(defaultValue="false") boolean answers,
+            @RequestParam(defaultValue="10") int pageSize, 
+            @RequestParam(required=false) String cursorKey) {
+
+        final CursorPage<DResponse, Long> page = service.getResponsesPageByCreatedBy(userId, pageSize, cursorKey);
+        final JCursorPage<JResponse> body = (JCursorPage<JResponse>) convertPage(page);
+
+        // inner answers to include?
+        if (answers) {
+            addInnerAnswers(body);
+        }
+
+        return body;
+    }
+
     /**
      * Queries for a (next) page of entities, all related to specified meeting.
      * @param extMeetingId the specified meeting's external id
@@ -167,41 +194,45 @@ public class ResponseController extends CrudController<JResponse,
             @RequestParam(defaultValue="false") boolean answers, 
             @RequestParam(defaultValue="10") int pageSize, 
             @RequestParam(required=false) String cursorKey) {
-        
+
         final CursorPage<DResponse, Long> page = service.getResponsesPageBySurveyIdVersionIdAndExtMeetingId(surveyId, versionId, extMeetingId, pageSize, cursorKey);
         final JCursorPage<JResponse> body = (JCursorPage<JResponse>) convertPage(page);
 
         // inner answers to include?
         if (answers) {
-            HashMap<Long, JResponse> ids = new HashMap<Long, JResponse>();
-            for (JResponse j : body.getItems()) {
-                ids.put(Long.parseLong(j.getId()), j);
-            }
-            
-            if (!ids.isEmpty()) {
-                Iterable<DAnswer> dAnswers = surveyService.getAnswersByResponseIds(ids.keySet());
-                List<JAnswer> jAnswers = (List<JAnswer>) answerController.convert(dAnswers);
-                
-                // distribute all answers to correct JResponse
-                JResponse jResponse;
-                Collection<JAnswer> inner;
-                for (JAnswer da : jAnswers) {
-                    jResponse = ids.get(da.getResponseId());
-                    inner = jResponse.getAnswers();
-                    if (null == inner) {
-                        inner = new ArrayList<JAnswer>();
-                        jResponse.setAnswers(inner);
-                    }
-                    inner.add(da);
-                }
-            }
+           addInnerAnswers(body);
         }
-        
+
         return body;
     }
-    
-    
-    
+
+    private JCursorPage<JResponse> addInnerAnswers(JCursorPage<JResponse> body) {
+        HashMap<Long, JResponse> ids = new HashMap<Long, JResponse>();
+        for(JResponse j : body.getItems()) {
+            ids.put(Long.parseLong(j.getId()), j);
+        }
+
+        if (!ids.isEmpty()) {
+            Iterable<DAnswer> dAnswers = surveyService.getAnswersByResponseIds(ids.keySet());
+            List<JAnswer> jAnswers = (List<JAnswer>) answerController.convert(dAnswers);
+
+            // distribute all answers to correct JResponse
+            JResponse jResponse;
+            Collection<JAnswer> inner;
+            for(JAnswer da : jAnswers) {
+                jResponse = ids.get(da.getResponseId());
+                inner = jResponse.getAnswers();
+                if (null == inner) {
+                    inner = new ArrayList<JAnswer>();
+                    jResponse.setAnswers(inner);
+                }
+                inner.add(da);
+            }
+        }
+
+        return body;
+    }
+
     @ModelAttribute
     public void populateModel(
         @PathVariable Long surveyId, 
