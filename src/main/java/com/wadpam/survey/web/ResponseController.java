@@ -61,6 +61,7 @@ public class ResponseController extends CrudController<JResponse,
     public static final String MODEL_NAME_QUESTIONIDS = "quetionIds";
     
     public static final String NAME_INNER_ANSWERS = "answers";
+    public static final String NAME_INNER_PAGESIZE = "innerPageSize";
     
     protected AnswerController answerController;
     
@@ -94,11 +95,19 @@ public class ResponseController extends CrudController<JResponse,
         if (null != jEntity && 
                 (null != request.getParameter(NAME_INNER_ANSWERS) || 
                  null != request.getAttribute(NAME_INNER_ANSWERS))) {
+
+            // default inner page size: 50
+            int innerPageSize = 50;
+            if (null != request.getParameter(NAME_INNER_PAGESIZE)) {
+                innerPageSize = Integer.parseInt(request.getParameter(NAME_INNER_PAGESIZE));
+            }
+
             // add answers
             Long outerId = Long.parseLong(jEntity.getId());
             model.addAttribute("responseId", outerId);
             final JCursorPage<JAnswer> inners = answerController.getPage(request, response,
-                    domain, model, 5, null);
+                    domain, model, innerPageSize, null);
+
             LOG.debug("found inners {}", inners.getItems());
             jEntity.setAnswers(inners.getItems());
         }
