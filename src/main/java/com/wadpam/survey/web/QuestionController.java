@@ -50,6 +50,7 @@ public class QuestionController extends CrudController<JQuestion,
     public static final int    ERR_CREATE_CONFLICT  = SurveyService.ERR_QUESTION + 3;
 
     public static final String NAME_INNER_OPTIONS = "options";
+    public static final String NAME_INNER_PAGESIZE = "innerPageSize";
 
     protected SurveyService surveyService;
     private OptionController optionController;
@@ -58,13 +59,21 @@ public class QuestionController extends CrudController<JQuestion,
     public void addInnerObjects(HttpServletRequest request, HttpServletResponse response,
             String domain, Model model, Iterable<JQuestion> jEntities) {
         if (null != jEntities
-                && (null != request.getParameter(NAME_INNER_OPTIONS) || null != request.getAttribute(NAME_INNER_OPTIONS))) {
+                && (null != request.getParameter(NAME_INNER_OPTIONS)
+                        || null != request.getAttribute(NAME_INNER_OPTIONS))) {
             for(JQuestion jEntity : jEntities) {
                 // add options
                 Long outerId = Long.parseLong(jEntity.getId());
                 model.addAttribute("questionId", outerId);
+
+                // default inner page size: 50
+                int innerPageSize = 50;
+                if (null != request.getParameter(NAME_INNER_PAGESIZE)) {
+                    innerPageSize = Integer.parseInt(request.getParameter(NAME_INNER_PAGESIZE));
+                }
+
                 final JCursorPage<JOption> inners = optionController.getPage(request, response,
-                        domain, model, 1000, null);
+                        domain, model, innerPageSize, null);
                 LOG.debug("found inners {}", inners.getItems());
                 jEntity.setOptions(inners.getItems());
             }

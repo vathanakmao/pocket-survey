@@ -36,7 +36,8 @@ public class SurveyController extends CrudController<JSurvey, DSurvey, Long, Sur
     public static final int    ERR_CREATE_CONFLICT      = SurveyService.ERR_SURVEY + 2;
 
     public static final String NAME_INNER_VERSIONS = "versions";
-    
+    public static final String NAME_INNER_PAGESIZE = "innerPageSize";
+
     private VersionController versionController;
     
     /**
@@ -70,8 +71,15 @@ public class SurveyController extends CrudController<JSurvey, DSurvey, Long, Sur
                 // add versions
                 Long surveyId = Long.parseLong(jSurvey.getId());
                 model.addAttribute("surveyId", surveyId);
+
+                // default inner page size: 50
+                int innerPageSize = 50;
+                if (null != request.getParameter(NAME_INNER_PAGESIZE)) {
+                    innerPageSize = Integer.parseInt(request.getParameter(NAME_INNER_PAGESIZE));
+                }
+
                 final JCursorPage<JVersion> versions = versionController.getPage(request, 
-                        response, domain, model, 1000, null);
+                        response, domain, model, innerPageSize, null);
                 LOG.debug("found versions {}", versions.getItems());
                 jSurvey.setVersions(versions.getItems());
             }
