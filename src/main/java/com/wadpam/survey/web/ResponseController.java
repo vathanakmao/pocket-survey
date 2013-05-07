@@ -163,8 +163,10 @@ public class ResponseController extends CrudController<JResponse,
             @RequestParam(required=false) String cursorKey) {
         
         Long versionId = (Long) model.asMap().get("versionId");
-        CursorPage<DResponse, Long> page = surveyService.getResponsesPage(versionId, pageSize, cursorKey);
-        return convertPage(page);
+        final CursorPage<DResponse, Long> page = surveyService.getResponsesPage(versionId, pageSize, cursorKey);
+        final JCursorPage<JResponse> body = (JCursorPage<JResponse>) convertPageWithInner(request, response, domain, model, page);
+
+        return body;
     }
 
     /**
