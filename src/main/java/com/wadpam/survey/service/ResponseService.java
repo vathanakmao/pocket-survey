@@ -30,8 +30,8 @@ public class ResponseService extends MardaoCrudService<
         return dao.queryPageBySurveyIdVersionIdAndExtMeetingId(surveyId, versionId, extMeetingId, pageSize, cursorKey);
     }
 
-    public CursorPage<DResponse, Long> getResponsesPageByCreatedBy(String createdById, int pageSize, String cursorKey) {
-        return dao.queryPageByCreatedBy(createdById, pageSize, cursorKey);
+    public CursorPage<DResponse, Long> getResponsesPageByVersionIdCreatedBy(Long versionId, String createdById, int pageSize, String cursorKey) {
+        return dao.queryPageByVersionIdCreatedBy(versionId, createdById, pageSize, cursorKey);
     }
 
     @Autowired

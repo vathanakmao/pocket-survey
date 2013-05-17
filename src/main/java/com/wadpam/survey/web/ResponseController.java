@@ -190,7 +190,8 @@ public class ResponseController extends CrudController<JResponse,
 
         preService(request, domain, OPERATION_GET_PAGE_BY_CREATEDBY, null, null, cursorKey);
 
-        final CursorPage<DResponse, Long> page = service.getResponsesPageByCreatedBy(createdBy, pageSize, cursorKey);
+        Long versionId = (Long) model.asMap().get("versionId");
+        final CursorPage<DResponse, Long> page = service.getResponsesPageByVersionIdCreatedBy(versionId, createdBy, pageSize, cursorKey);
         final JCursorPage<JResponse> body = (JCursorPage<JResponse>) convertPageWithInner(request, response, domain, model, page);
         postService(request, domain, OPERATION_GET_PAGE_BY_CREATEDBY, body, cursorKey, page);
 
