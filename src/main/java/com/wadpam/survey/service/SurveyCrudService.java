@@ -23,9 +23,14 @@ public class SurveyCrudService extends MardaoCrudService<DSurvey, Long, DSurveyD
         surveyService.createSurvey(domain);
         return domain.getId();
     }
-    
+
     public DVersion cloneVersion(Long surveyId, Long fromVersionId, String description) {
         return surveyService.cloneVersion(surveyId, fromVersionId, description);
+    }
+
+    @Override
+    public void delete(String parentKeyString, Long id) {
+        surveyService.deleteSurvey(id);
     }
 
     @Autowired

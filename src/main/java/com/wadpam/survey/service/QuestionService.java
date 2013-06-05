@@ -16,16 +16,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class QuestionService extends MardaoCrudService<DQuestion, Long, DQuestionDao> {
 
     protected SurveyService surveyService;
-    
+
     @Override
     public Long create(DQuestion domain) {
         surveyService.createQuestion(domain);
         return domain.getId();
     }
-    
+
     @Autowired
     public void setDQuestionDao(DQuestionDao dQuestionDao) {
         this.dao = dQuestionDao;
+    }
+
+    @Override
+    public void delete(String parentKeyString, Long id) {
+        surveyService.deleteQuestion(id);
     }
 
     @Autowired

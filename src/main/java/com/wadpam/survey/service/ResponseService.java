@@ -18,9 +18,11 @@ import com.wadpam.survey.domain.DResponse;
  */
 public class ResponseService extends MardaoCrudService<
         DResponse, 
-        Long, 
+        Long,
         DResponseDao> {
-    
+
+    protected SurveyService surveyService;
+
     public CursorPage<DResponse, Long> getResponsesPageByExtMeetingId(String extMeetingId, int pageSize, String cursorKey) {
         final CursorPage<DResponse, Long> page = dao.queryPageByExtMeetingId(extMeetingId, pageSize, cursorKey);
         return page;
@@ -37,5 +39,15 @@ public class ResponseService extends MardaoCrudService<
     @Autowired
     public void setDResponseDao(DResponseDao dResponseDao) {
         this.dao = dResponseDao;
+    }
+
+    @Override
+    public void delete(String parentKeyString, Long id) {
+        surveyService.deleteResponse(id);
+    }
+
+    @Autowired
+    public void setSurveyService(SurveyService surveyService) {
+        this.surveyService = surveyService;
     }
 }

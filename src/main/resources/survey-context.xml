@@ -32,6 +32,7 @@
     </bean>
     <bean id="versionService" class="com.wadpam.survey.service.VersionService" >
         <property name="dao" ref="dVersionDao" />
+        <property name="surveyService" ref="surveyService" />
     </bean>
     <bean id="questionService" class="com.wadpam.survey.service.QuestionService" >
         <property name="dao" ref="dQuestionDao" />
@@ -43,6 +44,7 @@
     </bean>
     <bean id="responseService" class="com.wadpam.survey.service.ResponseService" >
         <property name="dao" ref="dResponseDao" />
+        <property name="surveyService" ref="surveyService" />
     </bean>
     <bean id="answerService" class="com.wadpam.survey.service.AnswerService" >
         <property name="dao" ref="dAnswerDao" />

@@ -3,6 +3,8 @@ package com.wadpam.survey.dao;
 import net.sf.mardao.core.CursorPage;
 
 import com.wadpam.survey.domain.DResponse;
+import com.wadpam.survey.domain.DSurvey;
+import com.wadpam.survey.domain.DVersion;
 
 /**
  * Business Methods interface for entity DResponse.
@@ -30,4 +32,8 @@ public interface DResponseDao extends GeneratedDResponseDao {
 
     public CursorPage<DResponse, Long> queryPageByVersionIdCreatedBy(Long versionId, String createdById, int pageSize,
             String cursorKey);
+
+    public Iterable<Long> queryKeysBySurvey(DSurvey survey);
+
+    public Iterable<Long> queryKeysByVersion(DVersion version);
 }

@@ -1,6 +1,11 @@
 package com.wadpam.survey.dao;
 
 import com.wadpam.survey.domain.DAnswer;
+import com.wadpam.survey.domain.DQuestion;
+import com.wadpam.survey.domain.DResponse;
+import com.wadpam.survey.domain.DSurvey;
+import com.wadpam.survey.domain.DVersion;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import net.sf.mardao.core.Filter;
@@ -34,5 +39,28 @@ public class DAnswerDaoBean
         super.setResponseDao(dao);
         this.myResponseDao = dao;
     }
-    
+
+    @Override
+    public Iterable<Long> queryKeysBySurvey(DSurvey survey) {
+        Filter filter = createEqualsFilter(COLUMN_NAME_SURVEY, survey);
+        return queryIterableKeys(0, 0, null, null, null, false, null, false, filter);
+    }
+
+    @Override
+    public Iterable<Long> queryKeysByResponse(DResponse response) {
+        Filter filter = createEqualsFilter(COLUMN_NAME_RESPONSE, response);
+        return queryIterableKeys(0, 0, null, null, null, false, null, false, filter);
+    }
+
+    @Override
+    public Iterable<Long> queryKeysByVersion(DVersion version) {
+        Filter filter = createEqualsFilter(COLUMN_NAME_VERSION, version);
+        return queryIterableKeys(0, 0, null, null, null, false, null, false, filter);
+    }
+
+    @Override
+    public Iterable<Long> queryKeysByQuestion(DQuestion question) {
+        Filter filter = createEqualsFilter(COLUMN_NAME_QUESTION, question);
+        return queryIterableKeys(0, 0, null, null, null, false, null, false, filter);
+    }
 }

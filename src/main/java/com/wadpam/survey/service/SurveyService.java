@@ -9,6 +9,8 @@ import net.sf.mardao.core.dao.DaoImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.wadpam.open.exceptions.ConflictException;
 import com.wadpam.open.exceptions.NotFoundException;
 import com.wadpam.survey.dao.DAnswerDao;
@@ -42,7 +44,7 @@ import com.wadpam.survey.web.SurveyController;
 public class SurveyService {
 
     public static final String DOMAIN_APIDOCS = "apidocs";
-    
+
     /** Base offset for survey resource errors (101000) */
     public static final int ERR_SURVEY = 101000;
     /** Base offset for response resource errors (102000) */
@@ -55,11 +57,13 @@ public class SurveyService {
     public static final int ERR_OPTION = 105000;
     /** Base offset for version resource errors (106010) */
     public static final int ERR_VERSION = 106010;
-    
+
     public static final int ERR_VERSION_CREATE_NOT_FOUND = 106001;
-    
+
     static final Logger LOG = LoggerFactory.getLogger(SurveyService.class);
-    
+
+    private static final DatastoreService DATA_STORE = DatastoreServiceFactory.getDatastoreService();
+
     private DAnswerDao answerDao;
     private Di18nDao i18nDao;
     private DOptionDao optionDao;
@@ -67,7 +71,7 @@ public class SurveyService {
     private DResponseDao responseDao;
     private DSurveyDao surveyDao;
     private DVersionDao versionDao;
-    
+
     public void init() {
     }
     
@@ -255,14 +259,77 @@ public class SurveyService {
         
         return count;
     }
-    
+
     public void deleteResponse(Long id) {
-        // TODO: cascade
+        DResponse response = new DResponse();
+        response.setId(id);
+        Iterable<Long> answerKeys = answerDao.queryKeysByResponse(response);
+
+        // Delete Answer of the response
+        answerDao.delete(null, answerKeys);
+        // Delete Response
         responseDao.delete(id);
     }
-    
+
+    public void deleteQuestion(Long id) {
+        DQuestion question = new DQuestion();
+        question.setId(id);
+
+        Iterable<Long> optionKeys = optionDao.queryKeysByQuestion(question);
+        Iterable<Long> answerKeys = answerDao.queryKeysByQuestion(question);
+
+        // Delete Answer of the survey
+        answerDao.delete(null, answerKeys);
+        // Delete Option of the survey
+        optionDao.delete(null, optionKeys);
+        // Delete question
+        questionDao.delete(id);
+
+    }
+
+    public void deleteVersion(Long id) {
+        DVersion version = new DVersion();
+        version.setId(id);
+
+        Iterable<Long> questionKeys = questionDao.queryKeysByVersion(version);
+        Iterable<Long> optionKeys = optionDao.queryKeysByVersion(version);
+        Iterable<Long> responseKeys = responseDao.queryKeysByVersion(version);
+        Iterable<Long> answerKeys = answerDao.queryKeysByVersion(version);
+
+        // Delete Answer of the survey
+        answerDao.delete(null, answerKeys);
+        // Delete Response of the survey
+        responseDao.delete(null, responseKeys);
+        // Delete Option of the survey
+        optionDao.delete(null, optionKeys);
+        // Delete Question of the survey
+        questionDao.delete(null, questionKeys);
+        // Delete version
+        versionDao.delete(id);
+
+    }
+
     public void deleteSurvey(Long id) {
-        // TODO: cascade
+        DSurvey survey = new DSurvey();
+        survey.setId(id);
+
+        Iterable<Long> versionKeys = versionDao.queryKeysBySurvey(survey);
+        Iterable<Long> questionKeys = questionDao.queryKeysBySurvey(survey);
+        Iterable<Long> optionKeys = optionDao.queryKeysBySurvey(survey);
+        Iterable<Long> responseKeys = responseDao.queryKeysBySurvey(survey);
+        Iterable<Long> answerKeys = answerDao.queryKeysBySurvey(survey);
+
+        // Delete Option of the survey
+        optionDao.delete(null, optionKeys);
+        // Delete Answer of the survey
+        answerDao.delete(null, answerKeys);
+        // Delete Response of the survey
+        responseDao.delete(null, responseKeys);
+        // Delete Question of the survey
+        questionDao.delete(null, questionKeys);
+        // Delete version of the survey
+        versionDao.delete(null, versionKeys);
+        // Delete survey
         surveyDao.delete(id);
     }
 

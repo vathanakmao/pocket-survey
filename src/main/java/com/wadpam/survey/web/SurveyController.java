@@ -39,7 +39,7 @@ public class SurveyController extends CrudController<JSurvey, DSurvey, Long, Sur
     public static final String NAME_INNER_PAGESIZE = "innerPageSize";
 
     private VersionController versionController;
-    
+
     /**
      * Deep-clone a survey version.
      * @param surveyId
@@ -114,7 +114,7 @@ public class SurveyController extends CrudController<JSurvey, DSurvey, Long, Sur
         to.setState(from.getState());
         to.setTitle(from.getTitle());
     }
-    
+
     @Autowired
     public void setSurveyCrudService(SurveyCrudService surveyCrudService) {
         this.service = surveyCrudService;
