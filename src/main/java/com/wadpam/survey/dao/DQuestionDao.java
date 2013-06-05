@@ -1,7 +1,5 @@
 package com.wadpam.survey.dao;
 
-import com.wadpam.survey.domain.DSurvey;
-import com.wadpam.survey.domain.DVersion;
 
 /**
  * Business Methods interface for entity DQuestion.
@@ -15,8 +13,8 @@ public interface DQuestionDao extends GeneratedDQuestionDao {
 
     void setMemCacheEntities(boolean memCacheEntities);
 
-    Iterable<Long> queryKeysBySurvey(DSurvey survey);
+    Iterable<Long> queryKeysByVersion(Object versionKey);
 
-    Iterable<Long> queryKeysByVersion(DVersion version);
+    Iterable<Long> queryKeysBySurvey(Object surveyKey);
 	
 }

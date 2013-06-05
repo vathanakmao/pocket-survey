@@ -263,7 +263,8 @@ public class SurveyService {
     public void deleteResponse(Long id) {
         DResponse response = new DResponse();
         response.setId(id);
-        Iterable<Long> answerKeys = answerDao.queryKeysByResponse(response);
+        Object key = responseDao.getPrimaryKey(response);
+        Iterable<Long> answerKeys = answerDao.queryKeysByResponse(key);
 
         // Delete Answer of the response
         answerDao.delete(null, answerKeys);
@@ -274,9 +275,10 @@ public class SurveyService {
     public void deleteQuestion(Long id) {
         DQuestion question = new DQuestion();
         question.setId(id);
+        Object key = questionDao.getPrimaryKey(question);
 
-        Iterable<Long> optionKeys = optionDao.queryKeysByQuestion(question);
-        Iterable<Long> answerKeys = answerDao.queryKeysByQuestion(question);
+        Iterable<Long> optionKeys = optionDao.queryKeysByQuestion(key);
+        Iterable<Long> answerKeys = answerDao.queryKeysByQuestion(key);
 
         // Delete Answer of the survey
         answerDao.delete(null, answerKeys);
@@ -290,11 +292,12 @@ public class SurveyService {
     public void deleteVersion(Long id) {
         DVersion version = new DVersion();
         version.setId(id);
+        Object key = versionDao.getPrimaryKey(version);
 
-        Iterable<Long> questionKeys = questionDao.queryKeysByVersion(version);
-        Iterable<Long> optionKeys = optionDao.queryKeysByVersion(version);
-        Iterable<Long> responseKeys = responseDao.queryKeysByVersion(version);
-        Iterable<Long> answerKeys = answerDao.queryKeysByVersion(version);
+        Iterable<Long> questionKeys = questionDao.queryKeysByVersion(key);
+        Iterable<Long> optionKeys = optionDao.queryKeysByVersion(key);
+        Iterable<Long> responseKeys = responseDao.queryKeysByVersion(key);
+        Iterable<Long> answerKeys = answerDao.queryKeysByVersion(key);
 
         // Delete Answer of the survey
         answerDao.delete(null, answerKeys);
@@ -312,12 +315,13 @@ public class SurveyService {
     public void deleteSurvey(Long id) {
         DSurvey survey = new DSurvey();
         survey.setId(id);
+        Object key = surveyDao.getPrimaryKey(survey);
 
-        Iterable<Long> versionKeys = versionDao.queryKeysBySurvey(survey);
-        Iterable<Long> questionKeys = questionDao.queryKeysBySurvey(survey);
-        Iterable<Long> optionKeys = optionDao.queryKeysBySurvey(survey);
-        Iterable<Long> responseKeys = responseDao.queryKeysBySurvey(survey);
-        Iterable<Long> answerKeys = answerDao.queryKeysBySurvey(survey);
+        Iterable<Long> versionKeys = versionDao.queryKeysBySurvey(key);
+        Iterable<Long> questionKeys = questionDao.queryKeysBySurvey(key);
+        Iterable<Long> optionKeys = optionDao.queryKeysBySurvey(key);
+        Iterable<Long> responseKeys = responseDao.queryKeysBySurvey(key);
+        Iterable<Long> answerKeys = answerDao.queryKeysBySurvey(key);
 
         // Delete Option of the survey
         optionDao.delete(null, optionKeys);

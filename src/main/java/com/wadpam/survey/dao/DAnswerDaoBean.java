@@ -41,26 +41,26 @@ public class DAnswerDaoBean
     }
 
     @Override
-    public Iterable<Long> queryKeysBySurvey(DSurvey survey) {
-        Filter filter = createEqualsFilter(COLUMN_NAME_SURVEY, survey);
-        return queryIterableKeys(0, 0, null, null, null, false, null, false, filter);
+    public Iterable<Long> queryKeysBySurvey(Object surveyKey) {
+        Filter filter = createEqualsFilter(COLUMN_NAME_SURVEY, surveyKey);
+        return queryIterableKeys(0, -1, null, null, null, false, null, false, filter);
     }
 
     @Override
-    public Iterable<Long> queryKeysByResponse(DResponse response) {
-        Filter filter = createEqualsFilter(COLUMN_NAME_RESPONSE, response);
-        return queryIterableKeys(0, 0, null, null, null, false, null, false, filter);
+    public Iterable<Long> queryKeysByResponse(Object responseKey) {
+        Filter filter = createEqualsFilter(COLUMN_NAME_RESPONSE, responseKey);
+        return queryIterableKeys(0, -1, null, null, null, false, null, false, filter);
     }
 
     @Override
-    public Iterable<Long> queryKeysByVersion(DVersion version) {
-        Filter filter = createEqualsFilter(COLUMN_NAME_VERSION, version);
-        return queryIterableKeys(0, 0, null, null, null, false, null, false, filter);
+    public Iterable<Long> queryKeysByVersion(Object versionKey) {
+        Filter filter = createEqualsFilter(COLUMN_NAME_VERSION, versionKey);
+        return queryIterableKeys(0, -1, null, null, null, false, null, false, filter);
     }
 
     @Override
-    public Iterable<Long> queryKeysByQuestion(DQuestion question) {
-        Filter filter = createEqualsFilter(COLUMN_NAME_QUESTION, question);
-        return queryIterableKeys(0, 0, null, null, null, false, null, false, filter);
+    public Iterable<Long> queryKeysByQuestion(Object questionKey) {
+        Filter filter = createEqualsFilter(COLUMN_NAME_QUESTION, questionKey);
+        return queryIterableKeys(0, -1, null, null, null, false, null, false, filter);
     }
 }

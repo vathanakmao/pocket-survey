@@ -1,12 +1,8 @@
 package com.wadpam.survey.dao;
 
-import com.wadpam.survey.domain.DAnswer;
-import com.wadpam.survey.domain.DQuestion;
-import com.wadpam.survey.domain.DResponse;
-import com.wadpam.survey.domain.DSurvey;
-import com.wadpam.survey.domain.DVersion;
-
 import java.util.Collection;
+
+import com.wadpam.survey.domain.DAnswer;
 
 /**
  * Business Methods interface for entity DAnswer.
@@ -20,12 +16,12 @@ public interface DAnswerDao extends GeneratedDAnswerDao {
 
     Iterable<DAnswer> queryByResponseIds(Collection<Long> ids);
 
-    Iterable<Long> queryKeysBySurvey(DSurvey survey);
+    Iterable<Long> queryKeysByQuestion(Object questionKey);
 
-    Iterable<Long> queryKeysByResponse(DResponse response);
+    Iterable<Long> queryKeysByVersion(Object versionKey);
 
-    Iterable<Long> queryKeysByVersion(DVersion version);
+    Iterable<Long> queryKeysByResponse(Object responseKey);
 
-    Iterable<Long> queryKeysByQuestion(DQuestion question);
+    Iterable<Long> queryKeysBySurvey(Object surveyKey);
 
 }

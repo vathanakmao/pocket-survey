@@ -4,8 +4,6 @@ import net.sf.mardao.core.CursorPage;
 import net.sf.mardao.core.Filter;
 
 import com.wadpam.survey.domain.DResponse;
-import com.wadpam.survey.domain.DSurvey;
-import com.wadpam.survey.domain.DVersion;
 
 /**
  * Implementation of Business Methods related to entity DResponse.
@@ -45,14 +43,14 @@ public class DResponseDaoBean extends GeneratedDResponseDaoImpl implements DResp
     }
     
     @Override
-    public Iterable<Long> queryKeysBySurvey(DSurvey survey) {
-        Filter filter = createEqualsFilter(COLUMN_NAME_SURVEY, survey);
-        return queryIterableKeys(0, 0, null, null, null, false, null, false, filter);
+    public Iterable<Long> queryKeysBySurvey(Object surveyKey) {
+        Filter filter = createEqualsFilter(COLUMN_NAME_SURVEY, surveyKey);
+        return queryIterableKeys(0, -1, null, null, null, false, null, false, filter);
     }
 
     @Override
-    public Iterable<Long> queryKeysByVersion(DVersion version) {
-        Filter filter = createEqualsFilter(COLUMN_NAME_VERSION, version);
-        return queryIterableKeys(0, 0, null, null, null, false, null, false, filter);
+    public Iterable<Long> queryKeysByVersion(Object versionKey) {
+        Filter filter = createEqualsFilter(COLUMN_NAME_VERSION, versionKey);
+        return queryIterableKeys(0, -1, null, null, null, false, null, false, filter);
     }
 }

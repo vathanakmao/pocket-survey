@@ -1,6 +1,5 @@
 package com.wadpam.survey.dao;
 
-import com.wadpam.survey.domain.DSurvey;
 
 /**
  * Business Methods interface for entity DVersion.
@@ -14,5 +13,5 @@ public interface DVersionDao extends GeneratedDVersionDao {
 
     void setMemCacheEntities(boolean memCacheEntities);
 
-    Iterable<Long> queryKeysBySurvey(DSurvey survey);
+    Iterable<Long> queryKeysBySurvey(Object surveyKey);
 }
