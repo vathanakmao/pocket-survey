@@ -63,4 +63,11 @@ public class DAnswerDaoBean
         Filter filter = createEqualsFilter(COLUMN_NAME_QUESTION, questionKey);
         return queryIterableKeys(0, -1, null, null, null, false, null, false, filter);
     }
+    
+    @Override
+    public Iterable<Long> queryKeysByResponseAndQuestions(Object responseKey, Collection<Object> questionKeys) {
+        Filter filter = createEqualsFilter(COLUMN_NAME_RESPONSE, responseKey);
+        Filter filter1 = createInFilter(COLUMN_NAME_QUESTION, questionKeys);
+        return queryIterableKeys(0, -1, null, null, null, false, null, false, filter, filter1);
+    }
 }

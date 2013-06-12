@@ -1,6 +1,7 @@
 package com.wadpam.survey.service;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 
 import net.sf.mardao.core.CursorPage;
@@ -335,6 +336,18 @@ public class SurveyService {
         versionDao.delete(null, versionKeys);
         // Delete survey
         surveyDao.delete(id);
+    }
+
+    public void deleteAnswersByResponseAndQuestions(Long responseId, Long[] questionId) {
+        Object responseKey = responseDao.getPrimaryKey(null, responseId);
+        final ArrayList<Object> questionKeys = new ArrayList<Object>();
+        for (Long id : questionId) {
+            questionKeys.add(questionDao.getPrimaryKey(null, id));
+        }
+
+        Iterable<Long> answers = answerDao.queryKeysByResponseAndQuestions(responseKey, questionKeys);
+        // Delete answer
+        answerDao.delete(null, answers);
     }
 
     public DAnswer getAnswer(Long id) {
