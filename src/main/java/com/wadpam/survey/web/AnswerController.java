@@ -4,23 +4,14 @@
 
 package com.wadpam.survey.web;
 
-import com.wadpam.docrest.domain.RestCode;
-import com.wadpam.docrest.domain.RestReturn;
-import com.wadpam.open.json.JCursorPage;
-import com.wadpam.open.mvc.CrudController;
-import com.wadpam.survey.domain.DAnswer;
-import com.wadpam.survey.domain.DQuestion;
-import com.wadpam.survey.domain.DResponse;
-import com.wadpam.survey.domain.DSurvey;
-import com.wadpam.survey.domain.DVersion;
-import com.wadpam.survey.json.JAnswer;
-import com.wadpam.survey.service.AnswerService;
-import com.wadpam.survey.service.SurveyService;
-import java.io.Serializable;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import net.sf.mardao.core.CursorPage;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -29,6 +20,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.wadpam.docrest.domain.RestCode;
+import com.wadpam.docrest.domain.RestReturn;
+import com.wadpam.open.json.JCursorPage;
+import com.wadpam.open.mvc.CrudController;
+import com.wadpam.open.mvc.CrudListener;
+import com.wadpam.survey.domain.DAnswer;
+import com.wadpam.survey.domain.DQuestion;
+import com.wadpam.survey.domain.DResponse;
+import com.wadpam.survey.domain.DSurvey;
+import com.wadpam.survey.domain.DVersion;
+import com.wadpam.survey.json.JAnswer;
+import com.wadpam.survey.service.AnswerService;
+import com.wadpam.survey.service.SurveyService;
 
 /**
  *
@@ -85,7 +90,29 @@ public class AnswerController extends CrudController<JAnswer,
 
         return body;
     }
-    
+
+    /**
+     * Delete answers of a set of questions within a response and return HttpStatus.NO_CONTENT.
+     * 
+     * @param domain the path-variable domain
+     * @param responseId the path-variable response
+     * @param id the path-variable id
+     * @return HttpStatus.NO_CONTENT
+     */
+    @RestReturn(value = ResponseEntity.class,
+            code = {@RestCode(code = 204, description = "Entities deleted", message = "OK")})
+    @RequestMapping(value = "v10", method = RequestMethod.DELETE, params = {"questionId"})
+    public ResponseEntity deleteByResponseAndQuestions(HttpServletRequest request, HttpServletResponse response,
+            @PathVariable String domain,
+            @PathVariable Long responseId,
+            @RequestParam Long[] questionId,
+            @RequestParam(required = false) String parentKeyString) {
+
+        surveyService.deleteAnswersByResponseAndQuestions(responseId, questionId);
+
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
+    }
+
     // ------------------------- Converter and setters -------------------------
 
     public AnswerController() {

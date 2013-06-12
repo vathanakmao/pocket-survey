@@ -24,4 +24,5 @@ public interface DAnswerDao extends GeneratedDAnswerDao {
 
     Iterable<Long> queryKeysBySurvey(Object surveyKey);
 
+    Iterable<Long> queryKeysByResponseAndQuestions(Object responseKey, Collection<Object> questionKeys);
 }
