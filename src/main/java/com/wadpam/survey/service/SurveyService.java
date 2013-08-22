@@ -3,6 +3,7 @@ package com.wadpam.survey.service;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import net.sf.mardao.core.CursorPage;
 import net.sf.mardao.core.dao.DaoImpl;
@@ -28,6 +29,7 @@ import com.wadpam.survey.domain.DResponse;
 import com.wadpam.survey.domain.DSurvey;
 import com.wadpam.survey.domain.DVersion;
 import com.wadpam.survey.json.JAnswer;
+import com.wadpam.survey.json.JOption;
 import com.wadpam.survey.json.JResponse;
 import com.wadpam.survey.json.JSurvey;
 import com.wadpam.survey.json.JVersion;
@@ -199,6 +201,30 @@ public class SurveyService {
         
         questionDao.persist(dEntity);
         return dEntity;
+    }
+    
+    /**
+     * Create a set of options.
+     * @param options
+     * @return IDs of the created options.
+     * @throws ConflictException when one of the options already exist comparing their IDs
+     * @throws NotFoundException when the question of one of the options does not exist.
+     */
+    public Collection<Long> createOptions(JOption[] options) throws ConflictException, NotFoundException {
+        for (JOption option : options) {
+            // id must be generated
+            if (null != option.getId()) {
+                throw new ConflictException(OptionController.ERR_CREATE_CONFLICT, String.format("id {} must not be specified", option.getId()), null, "id must be generated");
+            }
+            
+            // check that question exists
+            final DQuestion question = questionDao.findByPrimaryKey(option.getQuestionId());
+            if (null == question) {
+                throw new NotFoundException(OptionController.ERR_CREATE_NOT_FOUND, String.format("Question {} not found",  option.getQuestionId()), null, "Cannot answer non-existing question");
+            }
+        }
+        
+        return optionDao.persist(Converter.convertToDOptions(options));
     }
     
     public DSurvey createSurvey(DSurvey dEntity) {
@@ -484,6 +510,11 @@ public class SurveyService {
     public DOption updateOption(DOption dEntity) {
         optionDao.update(dEntity);
         return dEntity;
+    }
+    
+    public JOption[] updateOptions(JOption[] options) {
+        optionDao.update(Converter.convertToDOptions(options));
+        return options;
     }
 
     public DQuestion updateQuestion(DQuestion dEntity) {

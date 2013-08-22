@@ -1,5 +1,9 @@
 package com.wadpam.survey.web;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 import com.wadpam.open.json.JBaseObject;
 import com.wadpam.open.web.BaseConverter;
 import com.wadpam.survey.domain.DAnswer;
@@ -109,6 +113,19 @@ public class Converter extends BaseConverter {
         to.setSurveyId(null != from.getSurvey() ? from.getSurvey().getId() : null);
         to.setVersionId(null != from.getVersion() ? from.getVersion().getId() : null);
         
+        return to;
+    }
+    
+    public static Collection<DOption> convertToDOptions(JOption[] from) {
+        if (from == null) {
+            return null;
+        }
+        
+        List<DOption> to = new ArrayList<DOption>();
+        for (JOption jOption : from) {
+            DOption dOption = convert(jOption);
+            to.add(dOption);
+        }
         return to;
     }
 

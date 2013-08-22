@@ -4,11 +4,34 @@
 
 package com.wadpam.survey.web;
 
+import java.net.URI;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import net.sf.mardao.core.CursorPage;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.wadpam.docrest.domain.RestCode;
 import com.wadpam.docrest.domain.RestReturn;
 import com.wadpam.open.json.JCursorPage;
 import com.wadpam.open.mvc.CrudController;
-import static com.wadpam.open.mvc.CrudController.convertJLong;
 import com.wadpam.survey.domain.DOption;
 import com.wadpam.survey.domain.DQuestion;
 import com.wadpam.survey.domain.DSurvey;
@@ -16,19 +39,6 @@ import com.wadpam.survey.domain.DVersion;
 import com.wadpam.survey.json.JOption;
 import com.wadpam.survey.service.OptionService;
 import com.wadpam.survey.service.SurveyService;
-import java.util.Map;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import net.sf.mardao.core.CursorPage;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  *
@@ -82,6 +92,42 @@ public class OptionController extends CrudController<JOption,
         Long questionId = (Long) model.asMap().get("questionId");
         CursorPage<DOption, Long> page = surveyService.getOptionsPage(questionId, pageSize, cursorKey);
         return convertPage(page);
+    }
+    
+    /**
+     * Create a set of options. 
+     * <p>
+     * The Content-Type request header must be set to application/json.
+     * 
+     * @param domain
+     * @param options
+     * @return a JSON array of integers represented IDs of the created options.
+     */
+    @RestReturn(value=URI.class, code={
+        @RestCode(code = 201, description="Options created")
+    })
+    @RequestMapping(value="v10/batch", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Collection<Long>> createFromJson(@PathVariable String domain, @RequestBody JOption[] options) {
+        Collection<Long> optionIds = surveyService.createOptions(options);
+        return new ResponseEntity<Collection<Long>>(optionIds, HttpStatus.CREATED);
+    }
+    
+    /**
+     * Update a set of options. 
+     * <p>
+     * The Content-Type request header must be set to application/json. 
+     * 
+     * @param domain
+     * @param options
+     * @return a JSON array of integers represented IDs of the created options.
+     */
+    @RestReturn(value=URI.class, code={
+        @RestCode(code = 201, description="Options created")
+    })
+    @RequestMapping(value="v10/batch", method=RequestMethod.PUT, consumes=MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Void> updateFromJson(@PathVariable String domain, @RequestBody JOption[] options) {
+        surveyService.updateOptions(options);
+        return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
     }
 
     // ----------------------------- Converter and setters ---------------------
