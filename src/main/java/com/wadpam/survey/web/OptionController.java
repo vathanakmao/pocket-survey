@@ -5,6 +5,7 @@
 package com.wadpam.survey.web;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -32,6 +33,7 @@ import com.wadpam.docrest.domain.RestCode;
 import com.wadpam.docrest.domain.RestReturn;
 import com.wadpam.open.json.JCursorPage;
 import com.wadpam.open.mvc.CrudController;
+import com.wadpam.open.mvc.CrudListener;
 import com.wadpam.survey.domain.DOption;
 import com.wadpam.survey.domain.DQuestion;
 import com.wadpam.survey.domain.DSurvey;
@@ -69,6 +71,43 @@ public class OptionController extends CrudController<JOption,
     @ModelAttribute("questionId")
     public Long addQuestionId(@PathVariable Long questionId) {
         return questionId;
+    }
+    
+    /**
+     * Create or update (upsert) the option objects from the json-object-encoded array body by MediaType.APPLICATION_JSON_VALUE, 
+     * and responds with the upserted IDs.
+     * @param domain the path-variable domain
+     * @param jEntities The Request body will be bound to this object array
+     * @return 200 and the upserted Ids
+     */
+    @RestReturn(value=Object.class, code={
+        @RestCode(code=200, description="Batch of Entities upserted", message="OK")
+    })
+    @RequestMapping(value="v10/_batch", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public List<Long> upsertBatchFromJsonWithContent(HttpServletRequest request,
+            HttpServletResponse response,
+            @PathVariable String domain,
+            Model model,
+            @PathVariable Integer surveyId,
+            @PathVariable Integer versionId,
+            @PathVariable Integer questionId,
+            @RequestBody ArrayList<Map<String,Object>> jEntities) {
+        LOG.debug("upserting {} entities", jEntities.size());
+
+        ArrayList<DOption> dEntities = new ArrayList<DOption>();
+        for (Map<String,Object> map : jEntities) {
+            JOption jEntity = convertMap(map);
+            jEntity.setSurveyId(surveyId.longValue());
+            jEntity.setVersionId(versionId.longValue());
+            jEntity.setQuestionId(questionId.longValue());
+            DOption d = convertJson(jEntity);
+            dEntities.add(d);
+        }
+        
+        final List<Long> body = service.upsert(dEntities);
+        
+        return body;
     }
     
     
@@ -176,9 +215,11 @@ public class OptionController extends CrudController<JOption,
 
         to.setAppArg0((String)from.get("appArg0"));
         to.setLabel((String)from.get("label"));
-        to.setQuestionId(Converter.convertToLong((String) from.get("questionId")));
-        to.setSurveyId(Converter.convertToLong((String) from.get("surveyId")));
-        to.setVersionId(Converter.convertToLong((String) from.get("versionId")));
+        
+        // should be obtained from path variables
+//        to.setQuestionId(Converter.convertToLong((String) from.get("questionId")));
+//        to.setSurveyId(Converter.convertToLong((String) from.get("surveyId")));
+//        to.setVersionId(Converter.convertToLong((String) from.get("versionId")));
     }
     
     @Autowired
