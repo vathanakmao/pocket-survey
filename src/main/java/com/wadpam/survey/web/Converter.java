@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.wadpam.open.json.JBaseObject;
 import com.wadpam.open.web.BaseConverter;
 import com.wadpam.survey.domain.DAnswer;
@@ -23,7 +26,8 @@ import com.wadpam.survey.json.JVersion;
  *
  * @author os
  */
-public class Converter extends BaseConverter {
+public class Converter extends BaseConverter {    
+    private static final Logger LOG = LoggerFactory.getLogger(Converter.class);
     
     public JBaseObject convertBase(Object d) {
         JBaseObject returnValue = null;
@@ -307,6 +311,22 @@ public class Converter extends BaseConverter {
         }
         
         return to;
+    }
+    
+    /**
+     * Convert a String value to Long. If the value is null or there any exceptions occurred,
+     * it returns null.
+     * 
+     * @param from
+     * @return Long value.
+     */
+    public static Long convertToLong(String from) {
+        try {
+            return Long.parseLong(from);
+        } catch (Exception ex) {
+            LOG.error("Failed to convert the string '{}' to Long [message='{}']", from, ex.getMessage());
+            return null;
+        }
     }
     
 }

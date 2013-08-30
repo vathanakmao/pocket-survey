@@ -176,21 +176,9 @@ public class OptionController extends CrudController<JOption,
 
         to.setAppArg0((String)from.get("appArg0"));
         to.setLabel((String)from.get("label"));
-        
-        Long l = Long.parseLong((String) from.get("questionId"));
-        if (null != l) {
-            to.setQuestionId((long) l);
-        }
-        
-        l = Long.parseLong((String) from.get("surveyId"));
-        if (null != l) {
-            to.setSurveyId((long) l);
-        }
-        
-        l = Long.parseLong((String) from.get("versionId"));
-        if (null != l) {
-            to.setVersionId((long) l);
-        }
+        to.setQuestionId(Converter.convertToLong((String) from.get("questionId")));
+        to.setSurveyId(Converter.convertToLong((String) from.get("surveyId")));
+        to.setVersionId(Converter.convertToLong((String) from.get("versionId")));
     }
     
     @Autowired
