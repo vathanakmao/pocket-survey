@@ -135,42 +135,6 @@ public class OptionController extends CrudController<JOption,
         CursorPage<DOption, Long> page = surveyService.getOptionsPage(questionId, pageSize, cursorKey);
         return convertPage(page);
     }
-    
-    /**
-     * Create a set of options. 
-     * <p>
-     * The Content-Type request header must be set to application/json.
-     * 
-     * @param domain
-     * @param options
-     * @return a JSON array of integers represented IDs of the created options.
-     */
-    @RestReturn(value=URI.class, code={
-        @RestCode(code = 201, description="Options created")
-    })
-    @RequestMapping(value="v10/batch", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Collection<Long>> createFromJson(@PathVariable String domain, @RequestBody JOption[] options) {
-        Collection<Long> optionIds = surveyService.createOptions(options);
-        return new ResponseEntity<Collection<Long>>(optionIds, HttpStatus.CREATED);
-    }
-    
-    /**
-     * Update a set of options. 
-     * <p>
-     * The Content-Type request header must be set to application/json. 
-     * 
-     * @param domain
-     * @param options
-     * @return a JSON array of integers represented IDs of the created options.
-     */
-    @RestReturn(value=URI.class, code={
-        @RestCode(code = 201, description="Options created")
-    })
-    @RequestMapping(value="v10/batch", method=RequestMethod.PUT, consumes=MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void> updateFromJson(@PathVariable String domain, @RequestBody JOption[] options) {
-        surveyService.updateOptions(options);
-        return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
-    }
 
     // ----------------------------- Converter and setters ---------------------
 

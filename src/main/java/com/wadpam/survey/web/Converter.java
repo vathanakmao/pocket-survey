@@ -312,21 +312,5 @@ public class Converter extends BaseConverter {
         
         return to;
     }
-    
-    /**
-     * Convert a String value to Long. If the value is null or there any exceptions occurred,
-     * it returns null.
-     * 
-     * @param from
-     * @return Long value.
-     */
-    public static Long convertToLong(String from) {
-        try {
-            return Long.parseLong(from);
-        } catch (Exception ex) {
-            LOG.error("Failed to convert the string '{}' to Long [message='{}']", from, ex.getMessage());
-            return null;
-        }
-    }
-    
+
 }
