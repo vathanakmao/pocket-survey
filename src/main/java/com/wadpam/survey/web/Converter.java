@@ -1,12 +1,5 @@
 package com.wadpam.survey.web;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.wadpam.open.json.JBaseObject;
 import com.wadpam.open.web.BaseConverter;
 import com.wadpam.survey.domain.DAnswer;
@@ -26,8 +19,7 @@ import com.wadpam.survey.json.JVersion;
  *
  * @author os
  */
-public class Converter extends BaseConverter {    
-    private static final Logger LOG = LoggerFactory.getLogger(Converter.class);
+public class Converter extends BaseConverter {
     
     public JBaseObject convertBase(Object d) {
         JBaseObject returnValue = null;
@@ -117,19 +109,6 @@ public class Converter extends BaseConverter {
         to.setSurveyId(null != from.getSurvey() ? from.getSurvey().getId() : null);
         to.setVersionId(null != from.getVersion() ? from.getVersion().getId() : null);
         
-        return to;
-    }
-    
-    public static Collection<DOption> convertToDOptions(JOption[] from) {
-        if (from == null) {
-            return null;
-        }
-        
-        List<DOption> to = new ArrayList<DOption>();
-        for (JOption jOption : from) {
-            DOption dOption = convert(jOption);
-            to.add(dOption);
-        }
         return to;
     }
 
@@ -312,5 +291,5 @@ public class Converter extends BaseConverter {
         
         return to;
     }
-
+    
 }
