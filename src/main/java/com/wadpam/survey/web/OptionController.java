@@ -85,32 +85,35 @@ public class OptionController extends CrudController<JOption,
     })
     @RequestMapping(value="v10/_batch", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
+    @Override
     public List<Long> upsertBatchFromJsonWithContent(HttpServletRequest request,
             HttpServletResponse response,
             @PathVariable String domain,
             Model model,
-            @PathVariable Integer surveyId,
-            @PathVariable Integer versionId,
-            @PathVariable Integer questionId,
             @RequestBody ArrayList<Map<String,Object>> jEntities) {
         LOG.debug("upserting {} entities", jEntities.size());
+        final List<Long> ids = new ArrayList<Long>();
 
-        ArrayList<DOption> dEntities = new ArrayList<DOption>();
-        for (Map<String,Object> map : jEntities) {
+        // ArrayList<DOption> dEntities = new ArrayList<DOption>();
+        for(Map<String, Object> map : jEntities) {
             JOption jEntity = convertMap(map);
-            jEntity.setSurveyId(surveyId.longValue());
-            jEntity.setVersionId(versionId.longValue());
-            jEntity.setQuestionId(questionId.longValue());
             DOption d = convertJson(jEntity);
-            dEntities.add(d);
+            // To keep them in order we need to sequentially update them instead of batch upsert (batch upsert use future)
+            if (d.getId() != null) {
+                service.update(d);
+                ids.add(d.getId());
+            }
+            else {
+                ids.add(service.create(d));
+            }
         }
-        
-        final List<Long> body = service.upsert(dEntities);
-        
-        return body;
+
+        // final List<Long> body = service.upsert(dEntities);
+        // return body;
+        return ids;
     }
-    
-    
+
+
     /**
      * Queries for a (next) page of entities
      * @param pageSize default is 10
@@ -215,13 +218,13 @@ public class OptionController extends CrudController<JOption,
 
         to.setAppArg0((String)from.get("appArg0"));
         to.setLabel((String)from.get("label"));
-        
+
         // should be obtained from path variables
-//        to.setQuestionId(Converter.convertToLong((String) from.get("questionId")));
-//        to.setSurveyId(Converter.convertToLong((String) from.get("surveyId")));
-//        to.setVersionId(Converter.convertToLong((String) from.get("versionId")));
+        to.setQuestionId((Long) from.get("questionId"));
+        to.setSurveyId((Long) from.get("surveyId"));
+        to.setVersionId((Long) from.get("versionId"));
     }
-    
+
     @Autowired
     public void setOptionService(OptionService optionService) {
         this.service = optionService;
